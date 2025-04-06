@@ -6,6 +6,8 @@
  *   - 学习状态标识
  *   - 收藏状态显示
  *   - 下拉刷新功能
+ *   - 已学习题目排序在后
+ *   - 均衡卡片高度
  -->
 <template>
   <view class="question-list">
@@ -20,20 +22,26 @@
       refresher-enabled
       :refresher-triggered="isRefreshing"
       @refresherrefresh="onRefresh"
+      :scroll-top="scrollTop"
+      @scroll="onScroll"
     >
-      <view v-if="questions.length > 0">
+      <view v-if="questions.length > 0" class="question-list__items">
         <view 
-          v-for="question in questions" 
+          v-for="question in sortedQuestions" 
           :key="question.id" 
           class="question-item"
+          :class="{'question-item--learned': question.isLearned}"
           @click="handleQuestionClick(question.id)"
         >
           <view class="question-info">
-            <text class="question-title">{{ question.title }}</text>
-          </view>
-          <view class="question-status">
-            <text v-if="question.isLearned" class="status-tag status-tag--learned">已学习</text>
-            <text v-if="question.isFavorite" class="status-tag status-tag--favorite">已收藏</text>
+            <text class="question-order">{{ question.sort_order }}.</text>
+            <view class="question-content">
+              <text class="question-title">{{ question.title }}</text>
+              <view class="question-status">
+                <text v-if="question.isLearned" class="status-tag status-tag--learned">已学习</text>
+                <text v-if="question.isFavorite" class="status-tag status-tag--favorite">已收藏</text>
+              </view>
+            </view>
           </view>
         </view>
       </view>
@@ -45,7 +53,6 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import { getQuestions, getCategoryDetail } from '../../utils/dataLoader';
 import { LearningStorage, FavoriteStorage } from '../../utils/storage';
 
@@ -55,7 +62,22 @@ export default {
       categoryId: 0,
       questions: [],
       categoryName: '',
-      isRefreshing: false
+      isRefreshing: false,
+      scrollTop: 0,
+      currentScrollTop: 0
+    }
+  },
+  
+  computed: {
+    // 按学习状态排序题目：未学习的在前，已学习的在后
+    sortedQuestions() {
+      return [...this.questions].sort((a, b) => {
+        // 首先按学习状态排序
+        if (a.isLearned && !b.isLearned) return 1;
+        if (!a.isLearned && b.isLearned) return -1;
+        // 其次按序号排序
+        return a.sort_order - b.sort_order;
+      });
     }
   },
   
@@ -66,7 +88,32 @@ export default {
     }
   },
   
+  // 从题目详情返回时刷新数据
+  onShow() {
+    console.log('题目列表页面显示，更新状态');
+    if (this.categoryId) {
+      this.loadQuestionStatuses();
+      
+      // 恢复滚动位置
+      setTimeout(() => {
+        try {
+          const savedPosition = uni.getStorageSync('questionListScrollPosition');
+          if (savedPosition !== '' && savedPosition !== undefined) {
+            this.scrollTop = savedPosition;
+          }
+        } catch (e) {
+          console.error('恢复滚动位置失败:', e);
+        }
+      }, 100);
+    }
+  },
+  
   methods: {
+    // 监听滚动事件
+    onScroll(e) {
+      this.currentScrollTop = e.detail.scrollTop;
+    },
+    
     // 加载题目列表
     async loadQuestions() {
       try {
@@ -106,6 +153,9 @@ export default {
     
     // 点击题目
     handleQuestionClick(questionId) {
+      // 保存滚动位置
+      uni.setStorageSync('questionListScrollPosition', this.currentScrollTop);
+      
       uni.navigateTo({
         url: `/pages/question-detail/index?questionId=${questionId}&categoryId=${this.categoryId}`
       });
@@ -129,14 +179,14 @@ export default {
   
   &__header {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   
   &__title {
     font-size: 20px;
     font-weight: bold;
     color: #333333;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
   }
   
   &__count {
@@ -148,32 +198,77 @@ export default {
     height: calc(100vh - 100px);
   }
   
+  &__items {
+    display: grid;
+    grid-gap: 12px;
+  }
+  
   .question-item {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.1s, box-shadow 0.2s;
+    
+    &:active {
+      transform: scale(0.98);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    }
+    
+    &--learned {
+      opacity: 0.85;
+      border-left: 4px solid #4CAF50;
+    }
     
     .question-info {
-      margin-bottom: 12px;
+      display: flex;
+      width: 100%;
+    }
+    
+    .question-order {
+      font-size: 15px;
+      color: #666666;
+      margin-right: 6px;
+      min-width: 22px;
+      padding-top: 1px;
+    }
+    
+    .question-content {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
     }
     
     .question-title {
-      font-size: 16px;
+      font-size: 15px;
       color: #333333;
-      line-height: 1.5;
+      line-height: 1.4;
+      margin-right: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     .question-status {
       display: flex;
-      gap: 8px;
+      gap: 6px;
+      align-items: center;
+      margin-top: 2px;
     }
     
     .status-tag {
-      font-size: 12px;
-      padding: 2px 8px;
-      border-radius: 4px;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+      line-height: 1.5;
+      display: inline-block;
       
       &--learned {
         color: #4CAF50;
