@@ -10,10 +10,7 @@
   <view class="category-card" @click="$emit('click')">
     <view class="category-card__header">
       <text class="category-card__name">{{ name }}</text>
-      <view class="category-card__stats">
-        <text class="category-card__count">{{ progressText }}</text>
-        <text class="category-card__percent">{{ progress }}%</text>
-      </view>
+      <text class="category-card__count">{{ progressText }}</text>
     </view>
     
     <view class="category-card__progress">
@@ -23,6 +20,7 @@
           :style="{ width: `${progress}%` }"
         ></view>
       </view>
+      <text class="category-card__percent">{{ progress }}%</text>
     </view>
   </view>
 </template>
@@ -84,27 +82,15 @@ export default {
     flex: 1;
   }
   
-  &__stats {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
   &__count {
     font-size: 14px;
     color: #666666;
   }
   
-  &__percent {
-    font-size: 12px;
-    color: #1890ff;
-    min-width: 36px;
-    text-align: right;
-  }
-  
   &__progress {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
   
   &__progress-bar {
@@ -120,6 +106,13 @@ export default {
     background: #1890ff;
     border-radius: 3px;
     transition: width 0.3s ease;
+  }
+  
+  &__percent {
+    font-size: 12px;
+    color: #1890ff;
+    min-width: 36px;
+    text-align: right;
   }
 }
 </style> 
