@@ -1,0 +1,8 @@
+.hbuilderx/
+node_modules/
+package-lock.json
+相关文件/
+unpackage/
+pnpm-lock.yaml
+
+

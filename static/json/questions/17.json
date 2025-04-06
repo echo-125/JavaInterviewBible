@@ -1,0 +1,133 @@
+[ {
+  "id" : 487,
+  "uri" : "https://zha-ge.cn/java/eifmn7mi/",
+  "title" : "什么是分布式系统？它与集群有什么区别？",
+  "categoryId" : 17,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>分布式系统</strong> 是由多个<strong>独立计算机</strong>通过网络连接起来协同工作的系统，每台计算机都能独立处理数据并共享任务。它强调的是<strong>分散性</strong>和<strong>节点的独立性</strong>。</p>\n<p>而 <strong>集群</strong> 则是多个计算机一起工作，通常是<strong>共享资源</strong>，并作为一个整体对外提供服务。集群更注重的是通过节点之间的<strong>资源共享</strong>和<strong>高效的协调</strong>来提高系统的整体性能。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式系统</strong>注重每个节点独立运作，而<strong>集群</strong>强调通过共享资源和协作来提升性能。</p>"
+}, {
+  "id" : 488,
+  "uri" : "https://zha-ge.cn/java/34hxd2so/",
+  "title" : "解释 CAP 理论，并说明为什么无法同时满足所有条件？",
+  "categoryId" : 17,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>CAP 理论</strong> 是指在一个分布式系统中，<strong>一致性</strong>（所有节点的数据保持一致）、<strong>可用性</strong>（系统总是能回应请求）和 <strong>分区容错性</strong>（即使部分系统无法通信，整体依然能继续工作）这三者，最多只能保证其中的 <strong>两项</strong>。</p>\n<p>简单来说，当系统出现问题时，比如网络不通或某些节点发生故障，系统必须做出选择，决定优先保证哪两项特性，而无法同时保证这 <strong>三项</strong>。比如，系统可能会选择<strong>保证一致性和可用性</strong>，但在网络问题发生时，可能就无法保证分区容错性。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>CAP 理论</strong>告诉我们，在分布式系统中，系统在出现问题时只能在 <strong>一致性</strong>、<strong>可用性</strong> 和 <strong>分区容错性</strong> 中选择两项来优先保障，无法同时做到三项都完美。</p>"
+}, {
+  "id" : 489,
+  "uri" : "https://zha-ge.cn/java/u7tkqwaz/",
+  "title" : "什么是分布式 BASE 理论？它如何与 CAP 理论关联？",
+  "categoryId" : 17,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>BASE 理论</strong>是一种与传统数据库不同的概念，专门用来描述分布式系统中更灵活的一致性方式。</p>\n<p>在分布式系统中，<strong>保证所有数据实时一致</strong>是很难做到的，因此 <strong>BASE</strong> 理论提出了一种折中的方法，允许系统在短时间内数据不完全一致，但最终会通过系统的工作过程，达到一致的状态。</p>\n<p>简单来说，<strong>BASE 理论</strong>的核心是：</p>\n<ol>\n <li><strong>保证系统基本能用</strong>：即使数据不完全一致，系统依然可以正常工作。</li>\n <li><strong>系统的状态可以有变化</strong>：系统允许在某些时刻数据不同步。</li>\n <li><strong>最终会达到一致</strong>：虽然数据可能暂时不同步，但最终系统会把数据调整到一致的状态。</li>\n</ol>\n<p>这种方式特别适合那些对<strong>系统可用性</strong>和<strong>扩展性</strong>要求高的<strong>大规模分布式系统</strong>。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>BASE 理论</strong>强调在分布式系统中，<strong>短时间内允许数据不一致</strong>，但<strong>最终会通过系统调整</strong>，让数据一致。这种方式适合那些需要高可用和扩展的场景。</p>"
+}, {
+  "id" : 490,
+  "uri" : "https://zha-ge.cn/java/rglzqx4o/",
+  "title" : "分布式锁 有哪些常见的实现方式？各自的优缺点是什么？",
+  "categoryId" : 17,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>分布式锁</strong>的作用是保证不同机器上的程序在同一时间访问<strong>共享资源</strong>时，不会发生冲突或者错误。简单来说，分布式锁就像一个<strong>规则</strong>，它告诉程序什么时候该去使用资源，什么时候需要等待，确保多个程序不会同时使用同一个资源。</p>\n<p>常见的实现方法有几种，每种方法都有自己的优缺点，包括：</p>\n<ol>\n <li><strong>Redis 实现的锁</strong>：通过 Redis 来管理锁，效率高，适用于需要快速响应的场景。</li>\n <li><strong>Zookeeper 实现的锁</strong>：通过 Zookeeper 来保证分布式系统中资源的独占访问，适合大型分布式系统。</li>\n <li><strong>数据库锁</strong>：通过数据库来管理锁，通常用于需要保证数据一致性的场景。</li>\n <li><strong>消息队列锁</strong>：通过消息队列来实现锁，适合流量较大的系统。</li>\n <li><strong>etcd 锁</strong>：通过 etcd 来管理分布式锁，适用于需要高可用和一致性的场景。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式锁</strong>确保不同程序不会同时访问共享资源，避免冲突。选择哪种锁的实现方式，取决于你系统的需求和特点。</p>"
+}, {
+  "id" : 491,
+  "uri" : "https://zha-ge.cn/java/biwzj7hh/",
+  "title" : "解释分布式事务的概念，它与本地事务的核心区别是什么？",
+  "categoryId" : 17,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>分布式事务</strong>是指在一个系统中，涉及到多个不同的<strong>服务</strong>、<strong>数据库</strong>或<strong>服务器</strong>的操作。简单来说，<strong>分布式事务</strong>就是在多个地方（比如 <strong>订单</strong>、<strong>支付</strong>、<strong>库存</strong> 等）同时进行的一些操作，这些操作需要 <strong>一起成功</strong>，才能确保整个过程是 <strong>完整的</strong>。</p>\n<p>如果其中任何一步出问题，系统会自动做出<strong>补救</strong>，确保所有步骤 <strong>最终一致</strong>，避免<strong>数据错误</strong>。</p>\n<p>这些操作可能分布在不同的 <strong>服务器</strong> 或甚至是不同地方的 <strong>机器</strong>上。<strong>分布式事务</strong>的目标是确保，即使系统出现 <strong>故障</strong> 或 <strong>网络问题</strong>，也能保证所有操作<strong>要么都完成</strong>，<strong>要么都回退</strong>，避免半途而废，确保数据不会混乱。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式事务</strong>确保在多个地方执行的操作要么都成功，要么都不做，保证了数据的<strong>一致性</strong>和<strong>完整性</strong>，即使出现<strong>故障</strong>或<strong>网络问题</strong>，也能确保没有错误发生。</p>"
+}, {
+  "id" : 492,
+  "uri" : "https://zha-ge.cn/java/dczl2mm4/",
+  "title" : "常见的分布式事务 解决方案有哪些？它们各自适用于什么场景？",
+  "categoryId" : 17,
+  "sortOrder" : 6,
+  "answer" : "<p>分布式事务的目标是确保多个系统之间的数据要么都成功，要么都失败。这样，如果在处理多个操作时出现问题，系统能够做出相应的调整，避免数据出错。</p>\n<p><strong>一致性类型：</strong></p>\n<ul>\n <li><strong>强一致性</strong>：所有操作要么完全成功，要么完全失败，确保系统状态的一致。</li>\n <li><strong>最终一致性</strong>：虽然系统可能在短时间内出现不一致的情况，但最终数据会变得一致。</li>\n</ul>\n<p><strong>常见的做法：</strong></p>\n<ol>\n <li><strong>2PC/3PC</strong>：这些方法可以确保系统的一致性，但需要一个“协调员”来控制操作的顺序。</li>\n <li><strong>消息系统</strong>：像 <strong>RocketMQ</strong>、<strong>Kafka</strong> 这样的工具可以帮助确保数据的最终一致性。</li>\n <li><strong>TCC</strong>：通过分步骤的操作来确保最终一致性，这种方式恢复得比消息系统更快。</li>\n <li><strong>Seata</strong>：这是一个专为微服务设计的工具，用来帮助管理分布式事务，确保多个服务之间的数据一致性。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式事务</strong>确保多个系统的数据要么都成功，要么都失败，通过不同的方式来保证数据的一致性，避免因为故障导致数据不一致。</p>"
+}, {
+  "id" : 493,
+  "uri" : "https://zha-ge.cn/java/5sb5ifhs/",
+  "title" : "雪花算法 是什么？它如何保证全局唯一性？",
+  "categoryId" : 17,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>雪花算法</strong>是一种用来生成<strong>全局唯一 ID</strong>的方法。它的最大特点是，生成的 ID 既不重复，又能按照时间顺序排列，特别适合在分布式系统中使用。</p>\n<p>简单来说，<strong>雪花算法</strong>能保证在多个地方同时生成的 ID 都是<strong>唯一的</strong>，而且它们会根据生成的<strong>时间顺序</strong>排列。这样就能避免不同地方生成的 ID 发生冲突，同时还能方便地按时间顺序进行排序。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>雪花算法</strong>帮助生成唯一的 ID，不会重复，并且按时间排序，非常适合分布式系统中使用。</p>"
+}, {
+  "id" : 494,
+  "uri" : "https://zha-ge.cn/java/3vr731qo/",
+  "title" : "负载均衡 是什么？有哪些常见的负载均衡算法？",
+  "categoryId" : 17,
+  "sortOrder" : 8,
+  "answer" : "<p>为了提高<strong>网站</strong>的效率，我们通常会把多台机器组成一个<strong>集群</strong>，让它们一起工作。虽然有很多机器，但外面用户访问网站时，只有一个入口，比如 <code>www.hollischuang.com</code>。那么，当用户输入网址时，怎么把请求分发到不同的机器呢？这就是<strong>负载均衡</strong>的作用。</p>\n<p><strong>负载均衡</strong>的主要功能是把用户的请求合理地分配给多台机器，确保每台机器的工作量大致相等。这样，就不会让某台机器压力太大，从而避免整个系统变慢或崩溃。通过负载均衡，可以保证网站的<strong>快速响应</strong>、<strong>稳定性</strong>和<strong>扩展性</strong>。</p>\n<p><strong>负载均衡器</strong>就是负责决定将用户请求发给哪台机器。做这个决策的规则叫做<strong>负载均衡算法</strong>，这些算法帮助合理地分配请求到不同的服务器。负载均衡算法主要分为两种类型：<strong>静态算法</strong>和<strong>动态算法</strong>。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>负载均衡</strong>确保了网站能够高效、稳定地运行，它通过将用户的请求分配给不同机器，避免某台机器过载。负载均衡器根据算法来做出分配决策，保证网站的性能和可靠性。</p>"
+}, {
+  "id" : 495,
+  "uri" : "https://zha-ge.cn/java/g9qywg0b/",
+  "title" : "如何保证接口的 幂等性？有哪些常见的实现方式？",
+  "categoryId" : 17,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>接口幂等性</strong>的意思是，当你多次请求同一个接口，做相同的操作时，<strong>结果是一样的</strong>，不会因为请求重复而引起问题。简单来说，就是无论你请求多少次，操作的<strong>结果和系统状态</strong>都应该保持一致，不会出现重复操作带来的副作用。</p>\n<p>保证接口的幂等性非常重要，它是<strong>确保系统高可用</strong>和<strong>数据一致性</strong>的关键。</p>\n<p>要解决接口幂等性的问题，通常需要采取一些技术策略，包括：</p>\n<ol>\n <li><strong>请求的唯一标识</strong>：每个请求都有一个独特的标识，用来判断是不是重复请求。</li>\n <li><strong>重复请求的识别</strong>：系统需要判断请求是否已经处理过，避免多次处理同一个请求。</li>\n <li><strong>状态恢复</strong>：当出现问题时，能够恢复到正确的状态，确保系统不会因重复请求而出错。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>接口幂等性</strong>保证了多次请求相同操作时，<strong>结果始终一致</strong>，不会带来副作用，这对于保证系统的可靠性和数据一致性至关重要。</p>"
+}, {
+  "id" : 496,
+  "uri" : "https://zha-ge.cn/java/z6qcogbj/",
+  "title" : "设计一个分布式锁 需要考虑哪些问题？如何保证高可用和高性能？",
+  "categoryId" : 17,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>分布式锁</strong>就是保证在多个地方，<strong>只有一个</strong>程序可以用某个资源，防止数据出错或者不一致。</p>\n<p>实现分布式锁时，主要需要解决几个问题：</p>\n<ol>\n <li><strong>怎么拿到和放掉锁</strong>：保证只有一个程序能使用，其他程序要等。</li>\n <li><strong>设置锁的时间限制</strong>：防止锁占用太久。</li>\n <li><strong>如果崩溃了，锁要释放</strong>：如果占锁的程序崩了，锁就自动释放。</li>\n <li><strong>能不能重复拿锁</strong>：考虑是否允许程序多次获取锁。</li>\n</ol>\n<p>常见的分布式锁方式有：</p>\n<ul>\n <li><strong>Redis</strong>：适合需要高速度的情况。</li>\n <li><strong>Zookeeper</strong>：适合多个程序之间需要配合的场景。</li>\n <li><strong>数据库</strong>：适合对数据一致性要求高的情况。</li>\n</ul>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式锁</strong>就是让资源只有一个程序能用，避免冲突，不同的方式适合不同的需求。</p>"
+}, {
+  "id" : 497,
+  "uri" : "https://zha-ge.cn/java/ca0vtjp5/",
+  "title" : "分布式锁 与普通锁的核心区别是什么？如何选择合适的锁方案？",
+  "categoryId" : 17,
+  "sortOrder" : 11,
+  "answer" : "<p><strong>锁</strong>就是用来控制谁能使用资源的，确保在同一时刻<strong>只有一个工作单元</strong>（通常是一个线程）能操作这个资源，这样就避免了多个工作单元同时修改同一个资源，造成冲突或者错误。</p>\n<p><strong>分布式锁</strong>则是在<strong>多个机器</strong>之间使用，确保当不同的服务或者节点在共享一个资源时，它们不会互相干扰，避免发生问题。</p>\n<p>简单来说，<strong>锁</strong>通常是在<strong>单台机器</strong>上控制资源使用，而<strong>分布式锁</strong>则是帮助在<strong>多个机器</strong>或者<strong>服务</strong>之间协作时，保证它们不会发生冲突。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>锁</strong>控制资源使用，确保只有一个线程能操作资源；<strong>分布式锁</strong>则是在多个机器之间，避免它们同时访问同一个资源导致问题。</p>"
+}, {
+  "id" : 498,
+  "uri" : "https://zha-ge.cn/java/xrvhr8xl/",
+  "title" : "什么是 一致性哈希？它是如何优化分布式存储的？",
+  "categoryId" : 17,
+  "sortOrder" : 12
+}, {
+  "id" : 499,
+  "uri" : "https://zha-ge.cn/java/892c0li1/",
+  "title" : "如何在分布式架构中 实现 Session 共享？",
+  "categoryId" : 17,
+  "sortOrder" : 13,
+  "answer" : "<p><strong>分布式Session</strong>指的是在多个服务器和节点之间共享和存储用户的信息，比如<strong>登录状态</strong>或者<strong>购物车数据</strong>。在传统的<strong>Session</strong>中，数据是保存在单台服务器的内存里的，但在分布式环境下，因为服务器之间不能直接共享内存，我们就需要用一些特别的方法来确保这些信息在不同服务器之间保持一致，并且能长期保存。</p>\n<p>常见的做法有：</p>\n<ol>\n <li>使用<strong>共享缓存</strong>（比如 <strong>Redis</strong>），这样不同的服务器都能访问相同的会话数据。</li>\n <li>使用<strong>数据库</strong>，将会话信息存储在数据库中，确保多台服务器能够读取和写入。</li>\n <li>还有一些<strong>专门的工具</strong>，可以管理这些会话信息。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式Session</strong>确保用户的数据在多个服务器间共享，通常通过使用<strong>共享缓存</strong>、<strong>数据库</strong>或专门工具来实现，避免了传统方式下数据无法跨服务器共享的问题。</p>"
+}, {
+  "id" : 500,
+  "uri" : "https://zha-ge.cn/java/w2o2g2lw/",
+  "title" : "设计分布式幂等机制 需要考虑哪些因素？有哪些常见的实现方式？",
+  "categoryId" : 17,
+  "sortOrder" : 14,
+  "answer" : "<p><strong>分布式幂等性</strong>的目的是确保在分布式系统中，<strong>重复的请求</strong>不会导致同样的操作被执行多次，避免像<strong>重复扣款</strong>、<strong>重复订单</strong>这些问题。</p>\n<p>为了实现幂等性，我们需要确保<strong>相同的操作</strong>无论执行多少次，<strong>系统的结果始终一致</strong>。换句话说，就是即使用户重复提交相同的请求，系统也不会做重复的处理，结果是一样的。</p>\n<p>常见的做法有：</p>\n<ol>\n <li><strong>唯一请求标识</strong>：给每个请求加上一个<strong>独特的标识</strong>，通过这个标识判断请求是否已经处理过。</li>\n <li><strong>数据库/缓存</strong>：通过存储请求的状态来判断是否已经执行过该操作，避免重复处理。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>分布式幂等性</strong>确保同一个操作不会被重复执行，避免了像<strong>重复扣款</strong>、<strong>重复订单</strong>等问题，常见方法是通过<strong>唯一标识</strong>或<strong>存储状态</strong>来判断请求是否已经处理过。</p>"
+}, {
+  "id" : 501,
+  "uri" : "https://zha-ge.cn/java/gz9lqbm6/",
+  "title" : "你了解哪些 分布式事务 解决方案？它们各有什么优缺点？",
+  "categoryId" : 17,
+  "sortOrder" : 15,
+  "answer" : "<p><strong>分布式事务解决方案</strong>是用来确保在分布式系统中，多个操作能够保持一致，不会出现问题。常见的解决方案有：</p>\n<ol>\n <li><p><strong>两阶段提交（2PC）</strong>：这是一个简单的方案，分成两个步骤，首先确认操作是否可以执行，然后再真正执行。如果某一步失败，系统会撤销操作，保证一致性。</p></li>\n <li><p><strong>三阶段提交（3PC）</strong>：它在两阶段提交的基础上增加了一个额外的步骤，进一步防止因为系统崩溃导致操作不一致的情况。</p></li>\n <li><p><strong>TCC（Try-Confirm-Cancel）</strong>：这种方案分为三个步骤，首先尝试执行操作，然后确认操作是否成功，最后如果操作失败，就撤销操作。它适合一些特定的业务场景。</p></li>\n <li><p><strong>消息队列机制</strong>：通过消息系统来确保不同服务之间的操作按顺序进行，确保操作的一致性。</p></li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p>这些<strong>分布式事务解决方案</strong>帮助确保多个操作在分布式系统中能够保持一致。每种方案适用不同的场景，确保系统在执行多个操作时不会出问题。</p>"
+}, {
+  "id" : 502,
+  "uri" : "https://zha-ge.cn/java/gz1auzmt/",
+  "title" : "什么是 二阶段提交（2PC）？它如何保证数据一致性？",
+  "categoryId" : 17,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>二阶段提交</strong>其实是一种协议，主要目的是确保在多个系统或者数据库之间，所有的操作要么全都成功，要么全都失败，避免出现部分操作成功、部分操作失败的情况。</p>\n<p>简单来说，当你做一项操作，涉及到多个系统时：</p>\n<ol>\n <li><strong>第一步</strong>：每个系统先检查自己能不能完成任务。</li>\n <li><strong>第二步</strong>：如果每个系统都能完成任务，大家就一起执行操作；如果有一个系统说做不了，所有系统就都会放弃，撤回之前的操作，确保操作的一致性。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>二阶段提交</strong>保证了在多个系统之间，操作要么都成功，要么都失败，不会出现“部分成功”的情况。</p>"
+}, {
+  "id" : 503,
+  "uri" : "https://zha-ge.cn/java/277ie7a0/",
+  "title" : "什么是 三阶段提交（3PC）？它相比 2PC 有哪些改进？",
+  "categoryId" : 17,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>三阶段提交</strong>协议是在<strong>二阶段提交</strong>的基础上，增加了一个<strong>预准备阶段</strong>，目的是避免因为系统崩溃或网络问题导致的资源不一致和操作卡住。</p>\n<p>三阶段提交通过三次交流来完成事务提交：</p>\n<ol>\n <li><strong>预备阶段</strong>：协调者告诉所有参与的系统，准备好提交事务。</li>\n <li><strong>准备阶段</strong>：每个系统告诉协调者自己是否准备好进行提交。</li>\n <li><strong>提交阶段</strong>：如果所有系统都准备好，协调者发出提交请求；如果有任何系统不同意，协调者会发出回滚请求，让所有系统撤销之前的操作。</li>\n</ol>\n<p>通过增加第三个阶段，<strong>三阶段提交</strong>协议能更好地应对系统失败或其他问题，避免卡住不动的情况。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>三阶段提交</strong>通过增加<strong>预准备阶段</strong>，确保在系统出问题时，能避免卡住并确保操作的一致性，保证整个过程更稳定。</p>"
+}, {
+  "id" : 504,
+  "uri" : "https://zha-ge.cn/java/k3xw5yuh/",
+  "title" : "什么是 补偿事务？它如何用于解决分布式一致性问题？",
+  "categoryId" : 17,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>补偿事务</strong>是在分布式系统中，当某个操作失败时，通过执行一个“撤销”操作来恢复之前成功的操作，确保系统的数据保持一致。</p>\n<p>简单来说，<strong>补偿事务</strong>就是当某个操作出现问题时，它会采取措施撤回之前的操作，保证整个过程的正确性。</p>\n<p>它通常有两种常见的方式：</p>\n<ol>\n <li><strong>TCC（Try-Confirm-Cancel）</strong>：这是一种通过三个步骤来处理操作的方式，确保每个操作在失败时可以撤回，保持一致性。</li>\n <li><strong>Saga模式</strong>：这种方式把整个操作拆成多个小步骤，每个步骤都有自己的补偿方法，如果某一步失败，就执行撤销操作恢复之前的状态。</li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>补偿事务</strong>通过“撤销”已经成功的操作，帮助在出现故障时，恢复系统的一致性。常见的方式有<strong>TCC</strong>和<strong>Saga模式</strong>。</p>"
+}, {
+  "id" : 505,
+  "uri" : "https://zha-ge.cn/java/g38z5qlr/",
+  "title" : "分布式 ID 生成 有哪些常见方案？如何选择最合适的方案？",
+  "categoryId" : 17,
+  "sortOrder" : 19,
+  "answer" : "<p>分布式ID生成有多种方法，常见的几种包括：</p>\n<ol>\n <li><strong>UUID</strong>：它是一种保证唯一性的标识符，每个生成的ID都不同，不会重复。</li>\n <li><strong>雪花算法</strong>：这是一种生成有序且唯一ID的算法，特别适合在分布式系统中使用，能够生成顺序的ID。</li>\n <li><strong>数据库自增ID</strong>：每次从数据库中获取一个ID，自动增加，保证唯一性，但在分布式系统中可能会遇到性能瓶颈。</li>\n <li><strong>Redis自增ID</strong>：通过Redis来生成ID，能保证唯一性并且效率高，适合高并发环境。</li>\n</ol>\n<p>每种方案都有<strong>优缺点</strong>，选择哪种方法要根据系统的实际需求，比如<strong>性能要求</strong>、<strong>唯一性保障</strong>以及系统的<strong>分布式架构</strong>等因素。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p>不同的<strong>ID生成方案</strong>适用于不同的需求，选择时需要考虑<strong>性能</strong>、<strong>唯一性</strong>和系统的<strong>架构</strong>等方面。</p>"
+} ]

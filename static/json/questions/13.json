@@ -1,0 +1,134 @@
+[ {
+  "id" : 406,
+  "uri" : "https://zha-ge.cn/java/0uy1rta9/",
+  "title" : "MyBatis的执行流程可以详细剖析一下吗？",
+  "categoryId" : 13,
+  "sortOrder" : 1,
+  "answer" : "<p>MyBatis 是一个非常流行的工具，它能帮助开发者把<strong>SQL语句</strong>和<strong>Java对象</strong>连接起来，减少了手动写数据库操作代码的麻烦，从而提高开发效率。MyBatis 的执行流程是其核心，了解这个流程不仅能帮助我们更高效地使用它，还能优化性能、解决问题。</p>\n<h3 id=\"mybatis-执行流程包括四个关键步骤\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#mybatis-执行流程包括四个关键步骤\"><span><strong>MyBatis 执行流程包括四个关键步骤</strong>：</span></a></h3>\n<ol>\n <li><strong>加载配置</strong>：先读取配置文件，准备好 MyBatis 环境。</li>\n <li><strong>动态代理生成 Mapper</strong>：通过动态生成的代理类，获得<strong>Mapper接口</strong>的具体实现。</li>\n <li><strong>执行 SQL</strong>：根据查询条件找到对应的 SQL，完成参数绑定并执行查询。</li>\n <li><strong>处理结果</strong>：将查询到的结果转换成<strong>Java对象</strong>或<strong>集合</strong>，然后返回给调用者。</li>\n</ol>\n<p>接下来，我们将深入剖析 MyBatis 执行流程的每一步，同时结合扩展知识点和代码示例进行全面解析。</p>"
+}, {
+  "id" : 407,
+  "uri" : "https://zha-ge.cn/java/89b133gy/",
+  "title" : "MyBatis与Hibernate的差异体现在哪些方面？",
+  "categoryId" : 13,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>MyBatis</strong> 更加灵活，开发者可以完全控制<strong>SQL语句</strong>和查询，适合那些需要<strong>定制化查询</strong>的场景。而 <strong>Hibernate</strong> 是一个 ORM 工具，它通过将<strong>Java类</strong>和<strong>数据库表</strong>关联起来，隐藏了 SQL 的复杂性，适合那些需要<strong>标准化</strong>和<strong>自动化</strong>的操作。</p>\n<p>简单来说，<strong>MyBatis</strong> 适合那些对 SQL 有精细控制需求的场景，而 <strong>Hibernate</strong> 更适合开发者不想关心 SQL，只专注于业务逻辑的场景。</p>"
+}, {
+  "id" : 408,
+  "uri" : "https://zha-ge.cn/java/vm3c9yq5/",
+  "title" : "MyBatis中#{}与${}的区别究竟是什么？",
+  "categoryId" : 13,
+  "sortOrder" : 3,
+  "answer" : "<p>在 MyBatis 中，<code>#{} 和 ${}</code> 是两种用来传递参数到 SQL 语句中的占位符。它们看起来类似，但工作原理和使用场景完全不同。</p>\n<h3 id=\"简单区别\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#简单区别\"><span><strong>简单区别</strong></span></a></h3>\n<ul>\n <li><strong><code>#{}</code></strong>：这是<strong>参数占位符</strong>，使用<strong>预编译</strong>机制，把参数替换成 <code>?</code>，然后通过绑定机制传递给 SQL。这样做的好处是<strong>安全性高</strong>，能有效防止 SQL 注入。</li>\n <li><strong><code>${}</code></strong>：这直接把参数的值拼接到 SQL 语句中，适用于<strong>动态 SQL</strong>，但这种方式存在<strong>安全隐患</strong>，容易导致 SQL 注入。</li>\n</ul>\n<h3 id=\"核心问题\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#核心问题\"><span><strong>核心问题</strong></span></a></h3>\n<p>如果不清楚两者的区别，可能会导致<strong>SQL注入风险</strong>、<strong>参数绑定失败</strong>或者<strong>性能问题</strong>。因此，了解它们的工作原理和使用场景非常重要。</p>"
+}, {
+  "id" : 409,
+  "uri" : "https://zha-ge.cn/java/40q8keq3/",
+  "title" : "MyBatis动态SQL的作用是什么？其运行机制如何？有哪些具体形式？",
+  "categoryId" : 13,
+  "sortOrder" : 4,
+  "answer" : "<p>MyBatis 的 <strong>动态 SQL</strong> 允许你根据条件来自动生成 SQL 语句，避免了写很多重复代码，让代码更加灵活。在执行时，MyBatis 会根据你设定的条件动态地拼接完整的 SQL 语句。</p>\n<p>常用的标签有：</p>\n<ul>\n <li><strong><code>&lt;if&gt;</code></strong>：用来判断条件，只有条件满足时，SQL 语句才会被添加进去；</li>\n <li><strong><code>&lt;choose&gt;</code></strong>：类似于“如果...否则”的逻辑，根据不同条件选择执行哪一部分 SQL；</li>\n <li><strong><code>&lt;foreach&gt;</code></strong>：用来处理集合或数组，生成多条 SQL 语句。</li>\n</ul>\n<p>这些标签可以帮助你处理复杂的查询，让 SQL 的构建变得更加灵活和高效。</p>"
+}, {
+  "id" : 410,
+  "uri" : "https://zha-ge.cn/java/exsfq7m4/",
+  "title" : "MyBatis支持延迟加载吗？如果支持，其底层原理是什么？",
+  "categoryId" : 13,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>MyBatis</strong> 是一个非常实用的框架，专门用来管理和存取数据。它支持 <strong>延迟加载（Lazy Loading）</strong>，这是一种优化数据加载的方式。</p>\n<h3 id=\"是否支持延迟加载\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#是否支持延迟加载\"><span><strong>是否支持延迟加载？</strong></span></a></h3>\n<p><strong>✅ 是的，MyBatis 支持延迟加载！</strong></p>\n<h3 id=\"什么是延迟加载\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#什么是延迟加载\"><span><strong>什么是延迟加载？</strong></span></a></h3>\n<p><strong>延迟加载</strong> 就是当你查询一个主要的数据时，关联的其他数据不会立刻被加载。只有当你真正需要查看这些关联数据时，它们才会被加载。这种方式可以帮助你 <strong>提高性能</strong>，避免浪费资源，还能 <strong>减少对数据库的压力</strong>。</p>\n<p>例如：</p>\n<ul>\n <li>查询用户表时，用户的地址信息（关联表）不会立即加载，只有在访问 <code>user.getAddress()</code> 时才触发 SQL 查询加载地址数据。</li>\n</ul>\n<p>接下来，我们将详细讲解 <strong>MyBatis 延迟加载的实现原理</strong>、其配置方法及实际应用场景。</p>"
+}, {
+  "id" : 411,
+  "uri" : "https://zha-ge.cn/java/dwx0raln/",
+  "title" : "MyBatis插件的运作机制是什么？如何开发一个自定义插件？",
+  "categoryId" : 13,
+  "sortOrder" : 6,
+  "answer" : "<p>MyBatis 插件的核心原理是基于 <strong>拦截器（Interceptor）</strong> 的机制。通过 <strong>动态代理</strong> 和 <strong>责任链模式</strong>，可以在 MyBatis 执行操作时，插入一些额外的功能，改变或扩展 MyBatis 的行为。</p>\n<p>简单来说，<strong>拦截器</strong> 就像是一个“中间人”，它能在 MyBatis 执行任务之前或之后，插入自己需要的操作。我们通过实现 <strong>Interceptor 接口</strong> 来告诉 MyBatis，当它执行某些操作时，我们要做什么，比如：<strong>动态分页</strong>、<strong>性能监控</strong>、<strong>结果处理</strong> 等。这样，我们可以轻松增强 MyBatis 的功能，而不需要修改 MyBatis 的核心代码。</p>"
+}, {
+  "id" : 412,
+  "uri" : "https://zha-ge.cn/java/adsizrxo/",
+  "title" : "MyBatis如何完成数据库类型与Java类型的相互转换？",
+  "categoryId" : 13,
+  "sortOrder" : 7,
+  "answer" : "<p>MyBatis 的 <strong>类型转换</strong> 是通过 <strong>TypeHandler</strong> 来完成的。它的作用就是把数据库中的数据类型和 Java 代码中的数据类型相互转换。</p>\n<p>举个例子，当数据库里存的是数字类型的数据，但在 Java 中你可能需要把它当作字符串来使用，<strong>TypeHandler</strong> 就会帮你做这个转换。MyBatis 已经提供了很多常见的转换工具，我们也可以根据需要 <strong>自定义</strong> 处理一些比较复杂的转换规则。这样，就能确保数据在数据库和 Java 之间流动时保持正确的格式。</p>"
+}, {
+  "id" : 413,
+  "uri" : "https://zha-ge.cn/java/52nuxb1g/",
+  "title" : "MyBatis-Plus是什么？它有哪些功能？与MyBatis有何不同？",
+  "categoryId" : 13,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>MyBatis-Plus</strong> 是一个基于 <strong>MyBatis</strong> 的增强工具，旨在简化开发过程中那些复杂和重复的工作，让开发变得更加高效。</p>\n<h3 id=\"mybatis-plus-是什么\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#mybatis-plus-是什么\"><span><strong>MyBatis-Plus 是什么？</strong></span></a></h3>\n<p><strong>✅ MyBatis-Plus</strong>（简称 MP）是 MyBatis 的升级版，它不仅保留了 MyBatis 的所有基本功能，还增加了许多 <strong>便捷的扩展功能</strong>，比如：<strong>增删改查（CRUD）接口</strong>、<strong>代码生成器</strong>、<strong>分页功能</strong> 和 <strong>条件查询构造器</strong> 等。</p>\n<h3 id=\"mybatis-plus-的作用\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#mybatis-plus-的作用\"><span><strong>MyBatis-Plus 的作用</strong></span></a></h3>\n<ol>\n <li><strong>简化代码开发</strong>： \n  <ul>\n   <li>提供了丰富的接口，少量的配置就能完成复杂的操作，省去很多手动编写的代码。</li>\n  </ul></li>\n <li><strong>开箱即用</strong>： \n  <ul>\n   <li>内置了分页、查询构造器等常用功能，你不用再花时间去自己实现这些功能，直接用就能工作。</li>\n  </ul></li>\n <li><strong>兼容 MyBatis</strong>： \n  <ul>\n   <li>完全兼容原本的 MyBatis，可以轻松接入到已有的项目中，不需要重新开发。</li>\n  </ul></li>\n</ol>\n<h3 id=\"mybatis-与-mybatis-plus-的区别\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#mybatis-与-mybatis-plus-的区别\"><span><strong>MyBatis 与 MyBatis-Plus 的区别</strong></span></a></h3>\n<table>\n <thead>\n  <tr>\n   <th><strong>特性</strong></th>\n   <th><strong>MyBatis</strong></th>\n   <th><strong>MyBatis-Plus</strong></th>\n  </tr>\n </thead>\n <tbody>\n  <tr>\n   <td><strong>开发复杂度</strong></td>\n   <td>手动编写 Mapper 和 SQL</td>\n   <td>提供丰富的 API，避免手写 SQL</td>\n  </tr>\n  <tr>\n   <td><strong>功能支持</strong></td>\n   <td>提供基础功能，灵活性高</td>\n   <td>提供增强功能，如分页、CRUD、拦截器等</td>\n  </tr>\n  <tr>\n   <td><strong>学习曲线</strong></td>\n   <td>需要熟悉 XML 和注解配置</td>\n   <td>上手简单，提供更智能化的解决方案</td>\n  </tr>\n  <tr>\n   <td><strong>扩展性</strong></td>\n   <td>高，需要手动实现扩展功能</td>\n   <td>内置插件化扩展机制，使用方便</td>\n  </tr>\n </tbody>\n</table>\n<p>接下来，我们将深入探讨 MyBatis-Plus 的特性、实现原理和应用场景。</p>"
+}, {
+  "id" : 414,
+  "uri" : "https://zha-ge.cn/java/lfhtkzrh/",
+  "title" : "MyBatis的核心优势有哪些？",
+  "categoryId" : 13,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>MyBatis</strong> 是一个帮助管理数据库和 Java 代码的框架，特别适合需要精确控制 SQL 的复杂业务场景。它的优势在于：</p>\n<ul>\n <li><strong>灵活的 SQL 管理</strong>：开发者可以完全控制 SQL 语句，适应复杂查询需求。</li>\n <li><strong>高效的 Java 对象支持</strong>：自动将数据库记录转换为 Java 对象，简化数据操作。</li>\n <li><strong>高性能</strong>：直接执行 SQL，减少不必要的转换和计算，支持缓存优化。</li>\n <li><strong>易于集成</strong>：可以轻松与其他框架（如 Spring）集成，配置简便，适应性强。</li>\n</ul>\n<p>总的来说，MyBatis 提供了对 SQL 的精确控制，同时确保高效性能，适合复杂的数据库操作。</p>"
+}, {
+  "id" : 415,
+  "uri" : "https://zha-ge.cn/java/huzhejhs/",
+  "title" : "MyBatis存在哪些不足之处？",
+  "categoryId" : 13,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>MyBatis</strong> 的缺点主要体现在以下几点：</p>\n<ol>\n <li><p><strong>代码量多，依赖手写 SQL</strong>：开发者需要自己编写 SQL，导致代码量增加，尤其在 SQL 复杂时，维护变得困难且容易出错。</p></li>\n <li><p><strong>复杂 SQL 的维护和出错风险</strong>：随着业务逻辑变复杂，手写 SQL 更容易出错，且错误难以发现和修复。</p></li>\n <li><p><strong>性能优化要求高</strong>：开发者需要具备 SQL 和数据库调优能力，否则不高效的 SQL 可能影响系统性能。</p></li>\n</ol>\n<p>总体来说，<strong>MyBatis</strong> 给开发者提供了更多控制，但也需要更多的维护和优化工作。</p>"
+}, {
+  "id" : 416,
+  "uri" : "https://zha-ge.cn/java/by1pmill/",
+  "title" : "MyBatis的运行原理是什么？",
+  "categoryId" : 13,
+  "sortOrder" : 11,
+  "answer" : "<p><strong>MyBatis</strong> 是一个帮助 Java 程序和数据库之间轻松传递数据的工具。它通过一个叫做 <strong>SQL 映射文件</strong> 的东西，把 SQL 语句和 Java 代码连接起来，减少了重复的工作，让开发变得更高效。</p>\n<p>它的工作原理是这样的：</p>\n<ol>\n <li><p><strong>动态 SQL 解析</strong>：MyBatis 会自动调整 SQL 语句，根据不同情况生成正确的 SQL，省去手动修改的麻烦。</p></li>\n <li><p><strong>将数据库表转成 Java 对象</strong>：它会自动把数据库里的数据变成 Java 代码中可以操作的对象，就像在操作普通的对象一样，简化了数据库操作。</p></li>\n <li><p><strong>简化数据库访问</strong>：通过一些简单的配置和方法调用，MyBatis 让你访问数据库变得非常简单，不用每次都写复杂的数据库操作代码。</p></li>\n</ol>\n<p><strong>简化理解</strong>：</p>\n<ul>\n <li>MyBatis 通过读取配置文件和映射文件，动态生成 SQL，并将查询结果转换为 Java 对象返回。</li>\n</ul>"
+}, {
+  "id" : 417,
+  "uri" : "https://zha-ge.cn/java/6b5yuh9q/",
+  "title" : "MyBatis使用的是哪种数据库连接池？",
+  "categoryId" : 13,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>MyBatis</strong> 是一个常用的工具，它通过 <strong>数据库连接池</strong> 来管理和复用数据库连接，避免每次都重新连接，从而提高效率。MyBatis 默认支持几种连接池，开发者可以根据需要选择。</p>\n<h3 id=\"mybatis-默认支持的连接池\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#mybatis-默认支持的连接池\"><span><strong>MyBatis 默认支持的连接池</strong></span></a></h3>\n<ol>\n <li><p><strong>Pooled（内置连接池）</strong>：<br> MyBatis 自带的连接池，适用于简单场景，可以复用连接，避免每次创建连接。</p></li>\n <li><p><strong>Unpooled（无连接池）</strong>：<br> 每次请求时都会新建连接，通常只在测试或简单环境中使用。</p></li>\n <li><p><strong>第三方连接池</strong>：<br> 如 <strong>HikariCP</strong>、<strong>Druid</strong> 等，它们提供更好的性能和更多功能，适合生产环境。</p></li>\n</ol>\n<p>总结来说，<strong>MyBatis</strong> 通过这些连接池来优化连接管理，选择合适的连接池能提升效率。</p>"
+}, {
+  "id" : 418,
+  "uri" : "https://zha-ge.cn/java/9y5f1cyw/",
+  "title" : "MyBatis如何实现字段与对象的映射？",
+  "categoryId" : 13,
+  "sortOrder" : 13,
+  "answer" : "<p><strong>MyBatis</strong> 通过一个配置文件来把数据库里的表字段和 Java 中的对象属性一一对应。简单来说，就是它会根据你配置的规则，自动把查询结果中的数据填充到 Java 对象的属性中。</p>\n<p>这种对应关系是通过 <strong><code>resultMap</code></strong> 或 <strong><code>&lt;result&gt;</code></strong> 标签来实现的。也就是说，MyBatis 会根据这些规则，把从数据库查询出来的每一列数据，自动放到 Java 对象的相应位置，让你不用手动去设置每个字段。</p>\n<p>总结一下，<strong>MyBatis</strong> 自动帮你把数据库的查询结果转换成 Java 对象，省去了很多繁琐的手动操作。</p>"
+}, {
+  "id" : 419,
+  "uri" : "https://zha-ge.cn/java/iaru0xkg/",
+  "title" : "ORM的定义是什么？有哪些主流框架？",
+  "categoryId" : 13,
+  "sortOrder" : 14,
+  "answer" : "<p><strong>ORM</strong>（<strong>对象关系映射</strong>）是一种技术，用来让 <strong>面向对象编程语言</strong> 和 <strong>关系型数据库</strong> 之间进行数据交换。它的核心原理是，把数据库中的表自动转化成编程语言中的对象，这样开发者就不需要手动写 SQL 语句，就能轻松操作数据库。</p>\n<p>换句话说，ORM 会帮你自动处理数据存取，直接操作 <strong>Java 对象</strong>，而不需要关心数据库中的表和字段。这样可以让开发变得更加简单和高效。</p>\n<hr>\n<h3 id=\"orm-的核心作用\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#orm-的核心作用\"><span><strong>ORM 的核心作用</strong></span></a></h3>\n<ol>\n <li><strong>简化数据库操作</strong>： \n  <ul>\n   <li>将表记录映射为对象，通过操作对象即可完成数据库的增删改查。</li>\n  </ul></li>\n <li><strong>提高开发效率</strong>： \n  <ul>\n   <li>减少手写 SQL 和重复代码。</li>\n  </ul></li>\n <li><strong>降低耦合</strong>： \n  <ul>\n   <li>数据库表和业务逻辑分离，便于后期维护。</li>\n  </ul></li>\n <li><strong>面向对象思想</strong>： \n  <ul>\n   <li>对象之间的关联通过 ORM 映射关系实现，而非通过 SQL 手动管理。</li>\n  </ul></li>\n</ol>\n<hr>\n<h3 id=\"常用的-orm-框架\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#常用的-orm-框架\"><span><strong>常用的 ORM 框架</strong></span></a></h3>\n<ol>\n <li><strong>Hibernate</strong>（Java）</li>\n <li><strong>MyBatis</strong>（Java，部分支持 ORM）</li>\n <li><strong>JPA（Java Persistence API）</strong>（Java 标准）</li>\n <li><strong>Entity Framework</strong>（.NET）</li>\n <li><strong>Django ORM</strong>（Python）</li>\n <li><strong>SQLAlchemy</strong>（Python）</li>\n <li><strong>Active Record</strong>（Ruby on Rails）</li>\n</ol>\n<p>下面，我们将详细解析 ORM 的工作原理、各个框架的特点，以及它们的实际应用场景。</p>"
+}, {
+  "id" : 420,
+  "uri" : "https://zha-ge.cn/java/0pg4by7u/",
+  "title" : "MyBatis中如UserMapper这样的接口为何无实现类却能正常调用？",
+  "categoryId" : 13,
+  "sortOrder" : 15,
+  "answer" : "<p>在 <strong>MyBatis</strong> 中，像 <strong><code>UserMapper</code></strong> 这样的接口并没有提供实现类，但它依然能正常使用。这是因为 <strong>动态代理</strong> 技术的应用。</p>\n<p>简单来说，<strong>动态代理</strong> 就是 MyBatis 在程序运行时，自动生成接口的实现类，并把数据库的操作和接口方法对应起来。这样，你只需要定义接口方法和相应的 SQL 映射，MyBatis 就会自动帮你实现接口的调用逻辑。</p>\n<p>所以，开发者不用手动写接口的实现类，MyBatis 会在后台自动完成这些工作，从而大大简化了开发流程。</p>"
+}, {
+  "id" : 421,
+  "uri" : "https://zha-ge.cn/java/qjx8gf81/",
+  "title" : "MyBatis的分页功能是如何实现的？分页插件的原理是什么？",
+  "categoryId" : 13,
+  "sortOrder" : 16,
+  "answer" : "<p>在 <strong>MyBatis</strong> 中，分页是常见需求，特别是在数据量大的情况下，分页可以有效减少一次性加载所有数据的压力。<strong>MyBatis</strong> 提供了两种分页方式：</p>\n<ol>\n <li><p><strong>手写分页 SQL</strong>：开发者需要在 SQL 语句中手动加入分页语法，如 <strong><code>LIMIT</code></strong> 或 <strong><code>ROWNUM</code></strong>。适用于简单场景，但复杂时维护较为麻烦。</p></li>\n <li><p><strong>分页插件</strong>：如 <strong>PageHelper</strong> 或 <strong>MyBatis-Plus</strong>，插件会自动修改 SQL，动态加入分页参数，优化查询，减少开发者工作量。</p></li>\n</ol>\n<h3 id=\"分页插件的原理\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#分页插件的原理\"><span><strong>分页插件的原理</strong></span></a></h3>\n<p>分页插件通过拦截 MyBatis 执行过程，在执行 SQL 查询之前，自动为 SQL 加入分页参数，并修改查询逻辑，自动完成分页操作。</p>"
+}, {
+  "id" : 422,
+  "uri" : "https://zha-ge.cn/java/pcje61zi/",
+  "title" : "MyBatis如何将SQL执行结果转化为目标对象？支持哪些映射方式？",
+  "categoryId" : 13,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>MyBatis</strong> 通过 <strong>映射器（Mapper）</strong> 和 <strong>映射文件</strong> 将 SQL 查询结果转换成 Java 对象。具体来说，MyBatis 执行 SQL 查询后，把数据库返回的数据自动填充到 Java 对象的属性里。</p>\n<h3 id=\"映射的方式有两种\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#映射的方式有两种\"><span>映射的方式有两种：</span></a></h3>\n<ol>\n <li><strong>结果映射</strong>：把查询结果直接映射到对象中。</li>\n <li><strong>动态映射</strong>：根据不同的条件动态生成映射规则。</li>\n</ol>\n<p>这些映射规则可以通过 <strong>XML 文件</strong> 或 <strong>注解</strong> 来指定。</p>\n<p><strong>MyBatis</strong> 支持不同类型的映射方式，包括：</p>\n<ul>\n <li><strong>基本映射</strong>：将简单的数据库字段映射到对象的单一属性。</li>\n <li><strong>集合映射</strong>：处理多个数据记录，映射成一个对象集合。</li>\n <li><strong>嵌套映射</strong>：用于处理对象之间的关系，像数据库中的外键一样，嵌套其他对象。</li>\n <li><strong>动态 SQL 映射</strong>：根据不同条件动态生成 SQL，适应复杂查询。</li>\n</ul>\n<p>这些映射方式根据不同的业务需求，帮助 MyBatis 更好地处理数据。</p>"
+}, {
+  "id" : 423,
+  "uri" : "https://zha-ge.cn/java/g0asbeg5/",
+  "title" : "如何在MyBatis中实现批量插入操作？",
+  "categoryId" : 13,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>批量插入</strong> 就是一次性把多条数据插入到数据库，比起一个个插，它能提高效率，减少连接数据库的麻烦。</p>\n<h3 id=\"为什么要用批量插入\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#为什么要用批量插入\"><span><strong>为什么要用批量插入？</strong></span></a></h3>\n<ol>\n <li><strong>提高效率</strong>：减少数据库操作次数，做事情更快。</li>\n <li><strong>减少网络麻烦</strong>：一次性发很多数据，避免频繁和数据库交流。</li>\n <li><strong>提高事务效率</strong>：把多条插入合成一个事务，减少提交的次数。</li>\n</ol>\n<h3 id=\"批量插入的常见方法\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#批量插入的常见方法\"><span><strong>批量插入的常见方法</strong></span></a></h3>\n<ol>\n <li><strong>手动拼接 SQL</strong>：自己写 SQL 语句把多条插入合并。</li>\n <li><strong>用 MyBatis 的批量插入功能</strong>：利用 MyBatis 提供的功能一次插入多条。</li>\n <li><strong>用 MyBatis-Plus 或 JPA 等工具</strong>：这些工具简化了批量插入的操作。</li>\n <li><strong>用数据库本身的批量插入功能</strong>：直接用数据库支持的批量插入。</li>\n</ol>\n<p>总结就是，<strong>批量插入</strong> 能让数据插入变得更高效，减少浪费。</p>"
+}, {
+  "id" : 424,
+  "uri" : "https://zha-ge.cn/java/jks71vq6/",
+  "title" : "MyBatis实现一对一关联有哪些方法？具体操作步骤是什么？",
+  "categoryId" : 13,
+  "sortOrder" : 19,
+  "answer" : "<p><strong>MyBatis</strong> 实现一对一映射的方式有几种，最常用的有以下几种：</p>\n<ol>\n <li><p><strong>基于 <code>&lt;association&gt;</code> 元素</strong>：<br> 这种方式将数据库中的一条记录映射为一个 Java 对象，通常用于关联表之间的数据映射。</p></li>\n <li><p><strong>基于 <code>&lt;resultMap&gt;</code> 元素</strong>：<br> 通过这个元素，MyBatis 可以把查询结果映射到 Java 对象的属性上，适用于比较灵活的映射需求。</p></li>\n <li><p><strong>注解方式</strong>：<br> MyBatis 也支持通过 <strong>注解</strong> 来实现一对一的映射，用代码方式来配置映射，简化了配置。</p></li>\n</ol>\n<p>这些方式的核心都是将数据库的查询结果转换成 Java 对象的形式，只是实现的方式不一样。选择哪种方式，取决于项目的需求和具体的配置情况。</p>"
+} ]

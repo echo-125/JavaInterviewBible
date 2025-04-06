@@ -1,0 +1,47 @@
+{
+	"name": "java-interview-bible",
+	"version": "1.0.0",
+	"description": "Java面试宝典 - 帮助开发者准备Java面试的学习工具",
+	"main": "main.ts",
+	"scripts": {
+		"dev:mp-weixin": "uni -p mp-weixin",
+		"build:mp-weixin": "uni build -p mp-weixin",
+		"lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+		"format": "prettier --write src/"
+	},
+	"keywords": [
+		"java",
+		"interview",
+		"learning",
+		"miniprogram"
+	],
+	"author": "Your Name",
+	"license": "MIT",
+	"dependencies": {
+		"@dcloudio/uni-app": "3.0.0-3080720230703001",
+		"@dcloudio/uni-app-plus": "3.0.0-3080720230703001",
+		"@dcloudio/uni-components": "3.0.0-3080720230703001",
+		"@dcloudio/uni-h5": "3.0.0-3080720230703001",
+		"@dcloudio/uni-mp-weixin": "3.0.0-3080720230703001",
+		"pinia": "2.0.36",
+		"sass": "1.62.1",
+		"vue": "3.2.45"
+	},
+	"devDependencies": {
+		"@dcloudio/types": "3.3.2",
+		"@dcloudio/vite-plugin-uni": "3.0.0-3080720230703001",
+		"@types/node": "18.15.11",
+		"@typescript-eslint/eslint-plugin": "5.59.1",
+		"@typescript-eslint/parser": "5.59.1",
+		"@vue/eslint-config-typescript": "11.0.3",
+		"@vue/runtime-core": "3.2.45",
+		"@vitejs/plugin-vue": "4.1.0",
+		"eslint": "8.39.0",
+		"eslint-config-prettier": "8.8.0",
+		"eslint-plugin-vue": "9.11.0",
+		"prettier": "2.8.8",
+		"terser": "5.17.1",
+		"typescript": "5.0.4",
+		"vite": "4.3.3"
+	}
+}

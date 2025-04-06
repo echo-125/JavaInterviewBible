@@ -1,0 +1,162 @@
+[ {
+  "id" : 31,
+  "uri" : "https://zha-ge.cn/java/zi6drywx/",
+  "title" : "Java中HashMap的工作原理是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>HashMap</strong> 是 Java 中常用的 <strong>键值对存储容器</strong>，它的底层结构是 <strong>数组 + 链表</strong>（在 JDK 1.8 之后变成了 <strong>数组 + 链表 + 红黑树</strong>）。通过 <strong>哈希算法</strong>，它可以快速找到存储的数据，特别适合用在需要 <strong>存储数据和快速查找</strong> 的场景中。</p>"
+}, {
+  "id" : 32,
+  "uri" : "https://zha-ge.cn/java/mokfpsrz/",
+  "title" : "使用HashMap时有哪些提升性能的实用技巧？",
+  "categoryId" : 2,
+  "sortOrder" : 2,
+  "answer" : "<p>HashMap 的速度提升，主要靠 <strong>合适的大小设置</strong> 和 <strong>增长规则</strong>，这样可以避免太多的数据冲突。还有，选对合适的 <strong>数据结构</strong> 和 <strong>方法</strong> 也很重要。通过这些措施，能确保 HashMap 在 <strong>增加、查找和删除数据</strong> 时更快，特别是在 <strong>数据量大</strong> 或者很多人同时使用的时候。</p>"
+}, {
+  "id" : 33,
+  "uri" : "https://zha-ge.cn/java/x59h9v41/",
+  "title" : "Hash碰撞的定义是什么？如何解决哈希冲突？",
+  "categoryId" : 2,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>哈希碰撞</strong> 就是说，不同的数据计算后，结果却是一样的。这样就会影响查找速度，特别是数据多的时候。解决哈希碰撞的方法有两种：<strong>链地址法</strong> 和 <strong>开放定址法</strong>。这两种方法通过不同的方式来解决数据冲突，确保即使数据量很大，哈希表依然能保持 <strong>高效</strong> 的运行。</p>"
+}, {
+  "id" : 34,
+  "uri" : "https://zha-ge.cn/java/rirh0mh2/",
+  "title" : "Java中List接口的实现类有哪些？",
+  "categoryId" : 2,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>Java 中的 List 接口</strong> 用来存放 <strong>顺序排列</strong> 和 <strong>可以重复</strong> 的数据。常见的实现有 <code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code> 和 <code>Stack</code>，每种方式内部的实现方式不同，适合的场景也不同。所以在开发时，我们需要根据实际情况来选择最合适的方式。</p>"
+}, {
+  "id" : 35,
+  "uri" : "https://zha-ge.cn/java/6jix3570/",
+  "title" : "Java中ArrayList与LinkedList的区别是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 5,
+  "answer" : "<p><strong><code>ArrayList</code></strong> 是基于 <strong>动态数组</strong> 的，它查找数据的速度很快，但 <strong>插入</strong> 和 <strong>删除</strong> 数据时会比较慢；而 <strong><code>LinkedList</code></strong> 是基于 <strong>双向链表</strong> 的，插入和删除数据时速度比较快，但查找数据时比较慢。两者各有优缺点，我们需要根据实际情况来选择合适的方式。</p>"
+}, {
+  "id" : 36,
+  "uri" : "https://zha-ge.cn/java/o7p2zmv6/",
+  "title" : "Java中HashMap与Hashtable的不同点有哪些？",
+  "categoryId" : 2,
+  "sortOrder" : 6,
+  "answer" : "<p><strong>HashMap</strong> 和 <strong>Hashtable</strong> 都是 Java 中用来存储 <strong>键</strong>（key）和值（value）的工具，它们的功能差不多。它们的主要区别是：<strong>HashMap</strong> 允许键或者值是 <strong>null</strong>，但是 <strong>Hashtable</strong> 不允许；另外，<strong>HashMap</strong> 在多线程环境下不安全，而 <strong>Hashtable</strong> 是线程安全的（它通过同步机制来保证安全）。</p>"
+}, {
+  "id" : 37,
+  "uri" : "https://zha-ge.cn/java/oko6z65b/",
+  "title" : "ConcurrentHashMap与Hashtable的差异是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>ConcurrentHashMap</strong> 和 <strong>Hashtable</strong> 都是 Java 中用来保证 <strong>线程安全</strong> 的工具，它们都可以通过 <strong>键</strong>（key）来存储 <strong>值</strong>（value）。它们的主要区别是：<strong>ConcurrentHashMap</strong> 使用了 <strong>分段锁</strong>，这样可以让多个操作同时进行，提升了性能；而 <strong>Hashtable</strong> 使用了 <strong>全局锁</strong>，这就导致它在多人同时操作时性能较差。此外，<strong>ConcurrentHashMap</strong> 更加现代化，支持更多并发操作，而 <strong>Hashtable</strong> 已经被标记为过时，不再推荐使用。</p>"
+}, {
+  "id" : 38,
+  "uri" : "https://zha-ge.cn/java/sj12u46h/",
+  "title" : "Java中HashMap的扩容机制是如何实现的？",
+  "categoryId" : 2,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>HashMap 的扩容</strong> 是当存储的元素超过一定数量时，它会 <strong>自动增加存储空间</strong>，并把原来存的数据重新安排到新的空间里。这个过程能让它工作得更快，但也会占用更多的 <strong>内存</strong> 和 <strong>计算资源</strong>。</p>"
+}, {
+  "id" : 39,
+  "uri" : "https://zha-ge.cn/java/bi72w0yl/",
+  "title" : "为什么HashMap在Java中扩容时使用2的n次方倍？",
+  "categoryId" : 2,
+  "sortOrder" : 9,
+  "answer" : "<p>在 Java 中，<strong>HashMap</strong> 扩容时会 <strong>把空间翻倍</strong>，就是每次都变成 2 的 <strong>倍数</strong>。这样设计的好处是，<strong>HashMap</strong> 能更高效地进行数据分配，避免数据聚集在一起，提高了数据的分布均匀性。这样做还能 <strong>减少冲突</strong>，提高 <strong>性能</strong>。</p>"
+}, {
+  "id" : 40,
+  "uri" : "https://zha-ge.cn/java/3vczah26/",
+  "title" : "为什么Java中HashMap的默认负载因子设定为0.75？",
+  "categoryId" : 2,
+  "sortOrder" : 10,
+  "answer" : "<p><code>HashMap</code> 的默认负载因子是 <strong>0.75</strong>，这个值是 <strong>效率和空间占用的平衡点</strong>。</p>\n<ul>\n <li><p><strong>负载因子（Load Factor）是啥？</strong><br><strong>负载因子 = 已用桶的数量 / 总桶数</strong>，默认是 <code>0.75</code>，意思是 <strong>当 <code>HashMap</code> 里的数据填充到 75% 时，就会触发扩容</strong>。</p></li>\n <li><p><strong>为什么是 0.75，而不是 0.5 或 1.0？</strong></p>\n  <ul>\n   <li>如果负载因子 <strong>太低</strong>（比如 <code>0.5</code>）： \n    <ul>\n     <li>扩容会更早触发，占用更多内存，浪费空间。</li>\n    </ul></li>\n   <li>如果负载因子 <strong>太高</strong>（比如 <code>1.0</code>）： \n    <ul>\n     <li><code>HashMap</code> 里数据太满，哈希冲突会变多，查找变慢，影响性能。</li>\n    </ul></li>\n   <li><strong>0.75 是经验值，能保证查找快，同时不会频繁扩容，性能最优！</strong></li>\n  </ul></li>\n</ul>\n<p><strong>总结：</strong> <code>0.75</code> 这个默认值是 <strong>“内存占用”和“性能”之间的最佳折中方案</strong>，避免了过多的扩容，也减少了哈希冲突，查询效率更高。 \uD83D\uDE80</p>"
+}, {
+  "id" : 41,
+  "uri" : "https://zha-ge.cn/java/t1h4n5gd/",
+  "title" : "JDK 1.8为何在HashMap中引入红黑树改进？",
+  "categoryId" : 2,
+  "sortOrder" : 11,
+  "answer" : "<p>在 <strong>JDK 1.8</strong> 中，<strong>HashMap</strong> 引入了 <strong>红黑树</strong>，用来代替原来的 <strong>链表</strong>，主要目的是优化 <strong>数据冲突</strong> 时的性能。简单来说，当某个位置的数据太多，形成很长的链表时，<strong>HashMap</strong> 会自动把这个链表变成 <strong>红黑树</strong>，这样就能让 <strong>查找、插入</strong> 和 <strong>删除操作</strong> 更加高效。通过这种方式，性能从 <strong>原来的慢速度</strong>（随数据量增加越来越慢）变成了 <strong>更快的速度</strong>，避免了链表在大量数据冲突时出现的性能问题。</p>"
+}, {
+  "id" : 42,
+  "uri" : "https://zha-ge.cn/java/735egdwq/",
+  "title" : "Java中ConcurrentHashMap在1.7与1.8版本间的区别是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>Java 1.7 和 1.8</strong> 中的 <code>ConcurrentHashMap</code> 在实现上有很大的不同：</p>\n<ul>\n <li><p>在 <strong>1.7</strong> 版本中，<code>ConcurrentHashMap</code> 使用了 <strong>分段锁</strong>，把数据分成多个部分，每次只对某一部分加锁，这样可以减少锁冲突。不过，这种方式在灵活性和性能上有一定的局限。</p></li>\n <li><p>在 <strong>1.8</strong> 版本中，<code>ConcurrentHashMap</code> 放弃了 <strong>分段锁</strong>，改用了更高效的 <strong>CAS</strong>（一种保证数据正确性的方式）、<strong>同步锁</strong> 和 <strong>红黑树</strong> 的组合，这大大提高了在多线程同时操作时的 <strong>性能</strong>。</p></li>\n</ul>\n<p>这些改进让 <strong>1.8 的版本在高并发场景中更加高效和灵活！</strong></p>"
+}, {
+  "id" : 43,
+  "uri" : "https://zha-ge.cn/java/t69pyihh/",
+  "title" : "Java中ConcurrentHashMap的get方法需要加锁吗？（需说明如何确保线程安全）",
+  "categoryId" : 2,
+  "sortOrder" : 13,
+  "answer" : "<p>在 <strong>ConcurrentHashMap</strong> 中，<strong>get</strong> 方法是 <strong>无锁</strong> 的。这意味着多个线程可以同时进行 <strong>读取操作</strong>，而不需要等待其他线程完成，避免了加锁的开销，提升了性能。通过 <strong>分段锁</strong> 和其他优化，<strong>get</strong> 方法能在大部分情况下快速访问数据，而不需要做额外的同步操作。这样，大多数的读取操作可以更高效地执行。</p>"
+}, {
+  "id" : 44,
+  "uri" : "https://zha-ge.cn/java/xm1p34ic/",
+  "title" : "Java中的CopyOnWriteArrayList是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 14,
+  "answer" : "<p><code>CopyOnWriteArrayList</code> 是一个 <strong>线程安全</strong> 的集合，它采用了一种叫 <strong>写时复制</strong> 的方式。当要修改数据时，它会先把原来的数据复制一份，再在这份复制的数据上进行修改，这样就避免了 <strong>读</strong> 和 <strong>写</strong> 同时进行时的冲突。这个方法特别适合 <strong>读操作多，写操作少</strong> 的场景，因为它能保证读取数据时不会受到修改的影响。</p>"
+}, {
+  "id" : 45,
+  "uri" : "https://zha-ge.cn/java/7p2t2s78/",
+  "title" : "你是否遇到过ConcurrentModificationException异常，它是如何触发的？",
+  "categoryId" : 2,
+  "sortOrder" : 15,
+  "answer" : "<p><strong>ConcurrentModificationException</strong> 错误是 <strong>Java</strong> 中常见的一种错误，通常发生在你 <strong>遍历集合</strong>（比如 <strong>ArrayList</strong> 或 <strong>HashMap</strong>）时，同时又修改了集合的内容（例如添加或删除元素）。这个错误的原因是：当一个线程在浏览集合里的数据时，另外一个线程或者代码段修改了集合的内容，导致数据出现不一致，程序就会报错。</p>"
+}, {
+  "id" : 46,
+  "uri" : "https://zha-ge.cn/java/yeu0qyuo/",
+  "title" : "Java中的集合类有哪些？它们的分类方式是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 16,
+  "answer" : "<p>Java 中的 <strong>集合类</strong> 是用来存储和操作数据的一组工具，分为 <strong>List</strong>、<strong>Set</strong>、<strong>Queue</strong> 和 <strong>Map</strong> 四种类型。每种集合类型根据不同的需求有不同的特点，比如 <strong>数据顺序</strong>、<strong>是否允许重复元素</strong>、<strong>是否线程安全</strong> 等。每种集合类型也有不同的 <strong>性能表现</strong>，所以根据实际需求选择合适的集合类是提升代码 <strong>效率</strong> 的一个重要方法。</p>"
+}, {
+  "id" : 47,
+  "uri" : "https://zha-ge.cn/java/j5pcrw1u/",
+  "title" : "你能列举几种集合的排序方法吗？",
+  "categoryId" : 2,
+  "sortOrder" : 17,
+  "answer" : "<p>在 <strong>Java</strong> 中，集合的排序方式有两种：<strong>自然排序</strong> 和 <strong>定制排序</strong>。</p>\n<ul>\n <li><strong>自然排序</strong> 是通过每个元素自带的 <strong>compareTo()</strong> 方法来进行排序的，元素本身会知道自己该排在前面还是后面。</li>\n <li><strong>定制排序</strong> 则是通过定义一个规则来告诉集合怎么排，通常是用一个 <strong>Comparator</strong> 来实现自定义的排序方式。</li>\n</ul>\n<p>常见的排序工具有 <strong>Collections.sort()</strong> 和 <strong>TreeSet</strong>，它们可以帮助我们按照指定的规则对数据进行排序。</p>"
+}, {
+  "id" : 48,
+  "uri" : "https://zha-ge.cn/java/vu6u4seu/",
+  "title" : "fail-fast与fail-safe的定义是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 18,
+  "answer" : "<p>在并发编程中，<strong>fail-fast</strong> 和 <strong>fail-safe</strong> 是两种常见的集合设计方式。</p>\n<ul>\n <li><strong>fail-fast</strong>：如果在遍历集合的时候，集合的内容发生了变化（比如添加或删除元素），就会立刻抛出错误，帮助我们 <strong>及时发现问题</strong> 并停止程序运行。</li>\n <li><strong>fail-safe</strong>：即使集合在遍历过程中被修改，也不会抛出错误。它通常会通过 <strong>创建集合的副本</strong> 来避免并发修改带来的问题，确保程序继续执行。</li>\n</ul>\n<p>这两种策略各有优缺点，<strong>fail-fast</strong> 更加严格，有助于快速发现潜在的并发问题，而 <strong>fail-safe</strong> 更加宽容，适用于容忍数据不一致的场景。</p>"
+}, {
+  "id" : 49,
+  "uri" : "https://zha-ge.cn/java/wqpr9oxb/",
+  "title" : "Set如何保证元素的唯一性？",
+  "categoryId" : 2,
+  "sortOrder" : 19,
+  "answer" : "<p>在 <strong>Java</strong> 中，<strong>Set</strong> 集合通过 <strong>哈希</strong> 技术来确保元素不重复。具体来说，<strong>HashSet</strong> 和其他 <strong>Set</strong> 类型的集合会通过 <strong>hashCode()</strong> 方法和 <strong>equals()</strong> 方法来判断两个元素是否相等。如果两个元素的 <strong>哈希值</strong> 相同，并且通过 <strong>equals</strong> 方法也被认为相同，那么这两个元素就会被认为是一样的，不允许重复添加到集合中。</p>"
+}, {
+  "id" : 50,
+  "uri" : "https://zha-ge.cn/java/3tf6qlsd/",
+  "title" : "ArrayList、LinkedList与Vector的区别是什么？",
+  "categoryId" : 2,
+  "sortOrder" : 20,
+  "answer" : "<p>这三者都是 <strong>List</strong> 接口的实现类，用来存储一组数据。</p>\n<h5 id=\"_1-arraylist-底层是数组\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-arraylist-底层是数组\"><span>1. <code>ArrayList</code>：底层是数组</span></a></h5>\n<p><code>ArrayList</code> 使用动态数组作为存储结构，能够根据需要自动扩展其容量。</p>\n<h6 id=\"_2-linkedlist-底层是双向链表\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-linkedlist-底层是双向链表\"><span>2. <code>LinkedList</code>：底层是双向链表</span></a></h6>\n<p><code>LinkedList</code> 使用双向链表来存储数据，每个元素都包含指向前后元素的引用。</p>\n<h6 id=\"_3-vector-底层是数组-但线程安全\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-vector-底层是数组-但线程安全\"><span>3. <code>Vector</code>：底层是数组，但线程安全</span></a></h6>\n<p><code>Vector</code> 与 <code>ArrayList</code> 类似，也使用数组实现，但它是线程安全的。</p>\n<h5 id=\"性能对比\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#性能对比\"><span>性能对比</span></a></h5>\n<h6 id=\"_1-arraylist\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-arraylist\"><span>1. <code>ArrayList</code>：</span></a></h6>\n<ul>\n <li><strong>优点</strong>：读取元素非常快。</li>\n <li><strong>缺点</strong>：插入和删除效率较低，尤其是在数组中间插入时。由于需要移动数组中的其他元素，插入或删除操作较慢。</li>\n</ul>\n<h6 id=\"_2-linkedlist\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-linkedlist\"><span>2. <code>LinkedList</code>：</span></a></h6>\n<ul>\n <li><strong>优点</strong>：插入和删除操作特别高效，尤其是对头尾元素进行操作时。</li>\n <li><strong>缺点</strong>：读取元素较慢，因为需要遍历链表才能访问特定位置的元素。</li>\n</ul>\n<h6 id=\"_3-vector\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-vector\"><span>3. <code>Vector</code>：</span></a></h6>\n<ul>\n <li><strong>优点</strong>：线程安全，适用于多线程环境。</li>\n <li><strong>缺点</strong>：和 <code>ArrayList</code> 类似，但性能较差，因为每个操作都被加锁。</li>\n</ul>\n<hr>\n<h5 id=\"如何选择\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#如何选择\"><span>如何选择</span></a></h5>\n<ul>\n <li>如果你读数据多，修改少，选择 <code>ArrayList</code>。</li>\n <li>如果你插入、删除操作多，特别是头尾操作，选择 <code>LinkedList</code>。</li>\n <li>如果你需要线程安全，性能不那么关键，选择 <code>Vector</code>，但现在一般推荐使用 <code>ArrayList</code> 或其他线程安全的类（如 <code>CopyOnWriteArrayList</code>）。</li>\n</ul>"
+}, {
+  "id" : 51,
+  "uri" : "https://zha-ge.cn/java/sdo22g9h/",
+  "title" : "如何将集合转换为线程安全的实现？",
+  "categoryId" : 2,
+  "sortOrder" : 21,
+  "answer" : "<p>要让集合变得 <strong>线程安全</strong>，通常有两种常见的方法：</p>\n<ol>\n <li><p><strong>同步包装</strong>：通过像 <code>Collections.synchronizedList()</code> 这样的工具，把普通的集合变成线程安全的集合。它通过在集合操作上加锁，确保每次只有一个线程可以访问集合。</p></li>\n <li><p><strong>并发集合类</strong>：比如 <strong>CopyOnWriteArrayList</strong> 和 <strong>ConcurrentHashMap</strong>，这些集合本身就已经设计成支持线程安全的，专门用来应对多个线程同时操作的情况。</p></li>\n</ol>"
+}, {
+  "id" : 52,
+  "uri" : "https://zha-ge.cn/java/4i61lnro/",
+  "title" : "HashMap在并发环境下有哪些潜在问题？",
+  "categoryId" : 2,
+  "sortOrder" : 22,
+  "answer" : "<p>在多个线程同时使用 <code>HashMap</code> 时，会出现 <strong>线程不安全</strong> 的问题。常见的并发问题包括 <strong>数据丢失</strong>、<strong>死循环</strong> 和 <strong>死锁</strong> 等。<code>HashMap</code> 本身是 <strong>非线程安全</strong> 的，因为它在多个线程同时访问时没有进行 <strong>同步</strong>，这样就容易导致数据出错或者程序卡住。</p>"
+}, {
+  "id" : 53,
+  "uri" : "https://zha-ge.cn/java/584axlox/",
+  "title" : "你使用过Java 8中的Stream吗？它有哪些功能？",
+  "categoryId" : 2,
+  "sortOrder" : 23,
+  "answer" : "<p><code>Stream</code> 是 Java 8 引入的一种新的处理集合的方式，它让我们可以 <strong>简洁</strong> 地对集合进行操作，而不需要手动写循环。通过 <strong>函数式编程</strong>，<code>Stream</code> 让代码更加 <strong>简短</strong> 和 <strong>易懂</strong>。<code>Stream</code> 提供了很多现成的操作，可以用来对集合中的数据进行 <strong>过滤</strong>、<strong>排序</strong>、<strong>转换</strong> 和 <strong>汇总</strong>，而且它还支持 <strong>并行计算</strong>，可以让处理速度更快。</p>"
+} ]

@@ -1,0 +1,274 @@
+[ {
+  "id" : 194,
+  "uri" : "https://zha-ge.cn/java/sog75ugq/",
+  "title" : "Java内存模型(JMM)的定义是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>Java 内存模型 (JMM)</strong> 是 <strong>Java</strong> 中规定了不同 <strong>线程</strong> 如何共享和操作变量的一套规则。它确保了当多个线程同时操作同一个变量时，这些操作是 <strong>有序</strong> 的，避免了多线程编程中的一些 <strong>常见问题</strong>。</p>\n<p>JMM 通过以下三大原则来确保多线程程序的正确性：</p>\n<ol>\n <li><strong>可见性</strong>：当一个线程修改了变量的值，其他线程能够 <strong>及时看到</strong> 这个变化。</li>\n <li><strong>原子性</strong>：某些操作是不可分割的，要么成功，要么失败，不会出现中途被打断的情况。</li>\n <li><strong>有序性</strong>：保证程序中的指令按照 <strong>正确的顺序</strong> 执行，避免出现执行顺序混乱的问题。</li>\n</ol>\n<p>简单来说，<strong>JMM</strong> 就是确保不同线程之间 <strong>协调合作</strong>，让多线程程序更加 <strong>稳定</strong> 和 <strong>高效</strong>。</p>"
+}, {
+  "id" : 195,
+  "uri" : "https://zha-ge.cn/java/k1penp3r/",
+  "title" : "volatile能否确保原子性？原因是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>不能！</strong> 使用 <code>volatile</code> 来保证操作的 <strong>原子性</strong>。</p>\n<p><code>volatile</code> 只确保了变量在不同 <strong>线程</strong> 之间是 <strong>可见的</strong>，也就是说，当一个线程修改了变量的值，其他线程会 <strong>立即看到</strong> 这个变化。它还 <strong>禁止指令重排序</strong>，保证代码的执行顺序。但它 <strong>不能保证原子性</strong>，也就是说，<code>volatile</code> 无法保证某个操作是 <strong>不可分割的</strong>。</p>\n<p>举个例子，像 <code>i++</code> 这样的操作，本质上是 <strong>两步</strong>：先读取 <code>i</code> 的值，然后再加一并写回。这两个步骤不能合成一个原子操作，所以如果有多个线程同时操作，可能会出现问题。<code>volatile</code> 无法将这两个步骤合并为一个整体。</p>\n<p>简单来说，<code>volatile</code> 只能保证一个变量的可见性，不能保证它的操作是原子的。</p>"
+}, {
+  "id" : 196,
+  "uri" : "https://zha-ge.cn/java/aubya3p3/",
+  "title" : "volatile如何实现可见性和有序性的保障？",
+  "categoryId" : 7,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>volatile</strong> 是 Java 中用来保证 <strong>多线程环境</strong> 下变量 <strong>可见性</strong> 和 <strong>有序性</strong> 的关键字。</p>\n<ol>\n <li><p><strong>可见性</strong>：当一个线程修改了一个共享变量的值，<strong>其他线程能立即看到</strong> 这个变化。这样就避免了不同线程之间对同一个变量的读取出现不同的值。</p></li>\n <li><p><strong>有序性</strong>：它保证了线程中的指令执行顺序 <strong>不被乱序</strong>，即使 CPU 或者其他硬件优化了执行顺序，<code>volatile</code> 也会确保代码按预期顺序执行。</p></li>\n</ol>\n<p>简单来说，<code>volatile</code> 就是 <strong>保证变量在多线程中正确共享和顺序执行</strong>，解决了线程间的同步问题。但它 <strong>不能保证原子性</strong>，即不能确保某些操作的完整性（比如 <code>i++</code>）。</p>"
+}, {
+  "id" : 197,
+  "uri" : "https://zha-ge.cn/java/6w9bbf14/",
+  "title" : "既有synchronized为何还需要volatile？",
+  "categoryId" : 7,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>因为它们解决的问题不同，适用的场景也不同！</strong></p>\n<ul>\n <li><p><strong><code>synchronized</code></strong> 适用于 <strong>多个线程同时访问共享数据</strong> 时，确保只有一个线程能操作它，防止数据出错。它 <strong>保证了原子性</strong>，也就是说，线程执行到 <code>synchronized</code> 代码块时，其他线程必须等待，直到当前线程执行完毕。适合用在 <strong>复杂的同步逻辑</strong> 场景，比如多个线程修改同一个变量时。</p></li>\n <li><p><strong><code>volatile</code></strong> 只是一个 <strong>轻量级的同步工具</strong>，它只保证 <strong>变量对所有线程是可见的</strong>，并且 <strong>防止指令乱序执行</strong>，但<strong>不保证原子性</strong>。适用于 <strong>简单的状态标志</strong> 场景，比如用来表示某个任务是否完成、是否需要停止等。</p></li>\n</ul>\n<p><strong>简单总结：</strong></p>\n<ul>\n <li><strong><code>synchronized</code></strong> 适用于 <strong>复杂的多线程共享数据控制</strong>，保证 <strong>一个线程执行时，其他线程必须等</strong>。</li>\n <li><strong><code>volatile</code></strong> 适用于 <strong>简单的多线程状态标志</strong>，保证 <strong>变量的最新值对所有线程可见，但不能保证完整性</strong>。</li>\n</ul>\n<p>它们是 <strong>互补</strong> 的，而不是互相替代的。</p>"
+}, {
+  "id" : 198,
+  "uri" : "https://zha-ge.cn/java/f3jh9519/",
+  "title" : "如何理解抽象队列同步器(AQS)的原理？",
+  "categoryId" : 7,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>AQS (AbstractQueuedSynchronizer)</strong> 是 Java 中用来处理 <strong>多线程同步</strong> 的核心工具。它提供了一种简单的框架，帮助我们更容易地实现 <strong>锁</strong> 和 <strong>同步器</strong>，从而让多线程程序的控制变得更加高效。</p>\n<p>AQS 的工作原理：</p>\n<ul>\n <li>它通过 <strong>FIFO 队列</strong> 来管理等待执行的线程，确保线程按顺序排队。</li>\n <li>使用 <strong>CAS</strong>（Compare and Swap）技术，保证在多线程同时操作时，只有一个线程能成功获取资源，避免了冲突和数据不一致的问题。</li>\n</ul>\n<p><strong>AQS</strong> 是像 <strong>ReentrantLock</strong>、<strong>CountDownLatch</strong> 和 <strong>Semaphore</strong> 等工具的基础，帮助它们实现高效、安全的线程控制。</p>"
+}, {
+  "id" : 199,
+  "uri" : "https://zha-ge.cn/java/1hwmq72z/",
+  "title" : "为何Java的ConcurrentHashMap不允许key或value为null？",
+  "categoryId" : 7,
+  "sortOrder" : 6,
+  "answer" : "<p><strong><code>ConcurrentHashMap</code> 禁止 key 和 value 为 <code>null</code> 是为了确保线程安全</strong>，避免多线程环境下出现逻辑混乱。</p>\n<p>如果允许 <code>null</code>，在多线程同时访问时，可能会出现一些难以预料的情况。例如，当你使用 <code>get()</code> 方法时，如果返回 <code>null</code>，就无法确定是 <strong>key 不存在</strong> 还是 <strong>value 为 null</strong>，这会导致判断上的混淆。</p>\n<p>为了确保操作行为明确、<strong>高效</strong> 且 <strong>线程安全</strong>，<code>ConcurrentHashMap</code> 设计上 <strong>禁止使用 <code>null</code></strong> 作为 key 或 value。</p>"
+}, {
+  "id" : 200,
+  "uri" : "https://zha-ge.cn/java/4hrd7vt1/",
+  "title" : "Java如何实现平台的无关性？",
+  "categoryId" : 7,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>Java</strong> 实现 <strong>平台无关性</strong> 的关键在于 <strong>字节码</strong> 和 <strong>Java 虚拟机（JVM）</strong>。</p>\n<ol>\n <li><p><strong>编译成字节码</strong>：Java 代码首先被编译成一种 <strong>中间语言</strong> ——字节码，这种字节码不依赖于任何特定的操作系统或硬件平台。</p></li>\n <li><p><strong>JVM 解释执行</strong>：然后，字节码会被安装在不同平台上的 <strong>JVM</strong>（Java 虚拟机）解释并执行。JVM 会根据操作系统的特点进行调整和适配。</p></li>\n</ol>\n<p>这样，<strong>Java 程序</strong> 就可以在 <strong>不同操作系统</strong> 上运行，而无需修改代码，因为字节码是跨平台的，JVM 会处理不同平台之间的差异。</p>"
+}, {
+  "id" : 201,
+  "uri" : "https://zha-ge.cn/java/wy18aw5g/",
+  "title" : "Java属于编译型语言还是解释型语言？",
+  "categoryId" : 7,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>Java 是一种“编译型 + 解释型”结合的语言。</strong></p>\n<ol>\n <li><p><strong>编译成字节码</strong>：首先，Java 程序通过 <strong>编译器</strong>（<code>javac</code>）将代码转换成 <strong>字节码</strong>（<code>.class</code> 文件）。这种字节码不是直接针对某一平台的，而是通用的。</p></li>\n <li><p><strong>JVM 解释执行</strong>：然后，字节码由 <strong>Java 虚拟机（JVM）</strong> 解释执行。JVM 根据不同平台的需求，适应性地执行这些字节码，使得程序可以在不同操作系统上运行。</p></li>\n <li><p><strong>JIT优化</strong>：为了提升运行效率，JVM 还会通过 <strong>JIT（即时编译器）</strong> 对一些 <strong>常用代码</strong> 进行优化编译，直接转换成机器语言，提高程序运行速度。</p></li>\n</ol>\n<p>简而言之，<strong>Java</strong> 先把代码编译成一种通用格式，再通过虚拟机执行，并且通过优化让程序运行得更快。</p>"
+}, {
+  "id" : 202,
+  "uri" : "https://zha-ge.cn/java/ffdlimxz/",
+  "title" : "JVM的运行时内存区域是如何划分的？",
+  "categoryId" : 7,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>JVM 的运行时内存区域</strong> 是 JVM 在程序运行时使用的内存，它将内存分为几个区域，每个区域负责不同的任务：</p>\n<ol>\n <li><strong>方法区</strong>：存放 <strong>类的信息</strong>，比如类的结构和方法。</li>\n <li><strong>堆区</strong>：存放 <strong>对象</strong> 和 <strong>数组</strong>，是 JVM 中最大的一块内存区域。</li>\n <li><strong>栈区</strong>：存放 <strong>局部变量</strong> 和 <strong>方法调用信息</strong>，每个线程有自己的栈。</li>\n <li><strong>程序计数器</strong>：记录当前线程执行的 <strong>指令位置</strong>。</li>\n <li><strong>本地方法栈</strong>：存放 <strong>本地方法</strong> 的信息，通常用于操作系统底层代码。</li>\n <li><strong>直接内存</strong>：直接访问操作系统内存，提高性能。</li>\n</ol>\n<p>这些区域协作，帮助 JVM 高效管理内存和执行任务。</p>"
+}, {
+  "id" : 203,
+  "uri" : "https://zha-ge.cn/java/z1v34pop/",
+  "title" : "方法区的定义及其实现方式是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>方法区</strong> 是 JVM 中用来存储 <strong>类的元数据</strong>（比如类的结构）、<strong>常量池</strong>、<strong>静态变量</strong> 和 <strong>JIT 编译后的代码</strong> 的地方。它是 JVM 内存结构的一个重要部分。</p>\n<p>不过，<strong>方法区</strong> 的具体实现会随着不同的 JVM 版本有所不同。例如，在 <strong>JDK 8</strong> 以后，使用了 <strong>元空间（Metaspace）</strong> 来替代之前的 <strong>永久代（PermGen）</strong>，使得内存管理更加灵活。</p>\n<p>总结来说，<strong>方法区</strong> 存储了程序中与 <strong>类</strong> 和 <strong>静态内容</strong> 相关的重要信息。</p>"
+}, {
+  "id" : 204,
+  "uri" : "https://zha-ge.cn/java/n18z9az7/",
+  "title" : "JVM创建对象的过程是怎样的？",
+  "categoryId" : 7,
+  "sortOrder" : 11,
+  "answer" : "<p>在 <strong>Java</strong> 中，JVM 创建一个对象的过程包含几个重要的步骤：</p>\n<ol>\n <li><strong>类加载</strong>：首先，JVM 加载对象所对应的 <strong>类</strong>，确保类的定义在内存中可用。</li>\n <li><strong>内存分配</strong>：接着，JVM 会为对象在 <strong>堆区</strong> 分配内存空间。</li>\n <li><strong>构造函数调用</strong>：然后，JVM 调用类的 <strong>构造函数</strong> 来初始化对象。</li>\n <li><strong>对象初始化</strong>：在构造函数执行后，对象会被初始化，确保它处于正确的状态。</li>\n <li><strong>引用返回</strong>：最后，创建好的对象通过引用返回给程序，供后续使用。</li>\n</ol>\n<p>整个过程依赖于 <strong>JVM 的内存管理</strong>、<strong>垃圾回收机制</strong>（清理不再使用的对象）、<strong>类加载器</strong>（负责加载类的定义）和 <strong>反射机制</strong>（在运行时动态获取类的信息）。这些协同工作，确保对象能高效且正确地创建并管理。</p>"
+}, {
+  "id" : 205,
+  "uri" : "https://zha-ge.cn/java/4sivght1/",
+  "title" : "Java类的生命周期是如何定义的？",
+  "categoryId" : 7,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>类的生命周期</strong> 是指 <strong>类从加载到卸载</strong> 这一整个过程，包括以下几个阶段：</p>\n<ol>\n <li><strong>加载</strong>：JVM 首先将 <strong>类的定义</strong> 从文件中加载到内存中。</li>\n <li><strong>验证</strong>：JVM 检查类的结构是否正确，是否符合 <strong>Java 语言规范</strong>。</li>\n <li><strong>准备</strong>：JVM 为类的 <strong>静态变量</strong> 分配内存，并设置初始值。</li>\n <li><strong>解析</strong>：JVM 处理类中引用的其他类、方法和变量，将它们与实际地址连接。</li>\n <li><strong>初始化</strong>：类的 <strong>构造函数</strong> 被调用，<strong>静态代码块</strong> 被执行，类的初始化完成。</li>\n <li><strong>使用</strong>：类可以被程序使用，执行类中定义的功能。</li>\n <li><strong>卸载</strong>：当类不再使用时，JVM 会将它从内存中 <strong>卸载</strong>，释放资源。</li>\n</ol>\n<p>理解 <strong>类的生命周期</strong> 可以帮助我们更好地理解 <strong>JVM 的运行机制</strong>，特别是在优化性能和管理内存时。</p>"
+}, {
+  "id" : 206,
+  "uri" : "https://zha-ge.cn/java/qmsgdciz/",
+  "title" : "YoungGC和FullGC的触发条件分别是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 13,
+  "answer" : "<p><strong>YoungGC</strong> 和 <strong>FullGC</strong> 是 <strong>垃圾回收（GC）</strong> 的两种常见类型，它们用于回收不同的内存区域：</p>\n<ol>\n <li><p><strong>YoungGC</strong>：主要发生在 <strong>年轻代</strong> 内存区域。这个区域存放的是 <strong>生命周期较短的对象</strong>，所以这些对象通常会被频繁回收。当这些对象不再被使用时，JVM 会快速回收它们，释放内存。</p></li>\n <li><p><strong>FullGC</strong>：涉及到整个 <strong>堆内存</strong>（包括年轻代和老年代）的回收。它通常发生在 <strong>老年代</strong> 内存不足时，JVM 会进行一次彻底的垃圾回收，回收所有的对象，确保内存不会溢出。</p></li>\n</ol>\n<p>了解它们的触发条件和特征可以帮助我们 <strong>优化 JVM 性能</strong>，减少垃圾回收时导致的 <strong>停顿</strong>，提高程序的效率和稳定性。</p>"
+}, {
+  "id" : 207,
+  "uri" : "https://zha-ge.cn/java/86kj3z9w/",
+  "title" : "JVM支持哪些垃圾回收算法？",
+  "categoryId" : 7,
+  "sortOrder" : 14,
+  "answer" : "<p><strong>JVM 提供了几种垃圾回收算法</strong>，每种算法有不同的优缺点，主要包括：</p>\n<ol>\n <li><strong>标记清除</strong>：标记不再使用的对象并清除，简单但可能留下内存碎片。</li>\n <li><strong>复制算法</strong>：将内存分成两块，把活着的对象复制到另一块，减少碎片，但可能浪费内存。</li>\n <li><strong>标记整理</strong>：标记不再使用的对象后，将活着的对象整理到一起，避免碎片。</li>\n <li><strong>分代收集</strong>：将内存分为多个区域，分别处理年轻代和老年代的回收，优化回收过程。</li>\n</ol>\n<p>现代 JVM 通常会结合这些算法，<strong>优化回收性能</strong> 和 <strong>内存管理效率</strong>。</p>"
+}, {
+  "id" : 208,
+  "uri" : "https://zha-ge.cn/java/qsjjmw65/",
+  "title" : "Java堆的分代机制是什么？为何要分代？",
+  "categoryId" : 7,
+  "sortOrder" : 15,
+  "answer" : "<p><strong>Java 堆内存的分代</strong> 是 JVM 为了优化 <strong>垃圾回收</strong>（GC）过程，将堆内存分为 <strong>年轻代</strong> 和 <strong>老年代</strong> 两个区域的策略。</p>\n<ul>\n <li><strong>年轻代</strong> 存储的是 <strong>生命周期短的对象</strong>，这些对象通常很快就会不再使用，因此会频繁回收。</li>\n <li><strong>老年代</strong> 存储的是 <strong>生命周期长的对象</strong>，这些对象通常会长时间存活，回收频率较低。</li>\n</ul>\n<p>通过这种分代策略，JVM 能够根据对象的生命周期特点，<strong>更高效地进行垃圾回收</strong>，避免对长生命周期对象的不必要回收，从而提高性能并减少停顿时间。</p>"
+}, {
+  "id" : 209,
+  "uri" : "https://zha-ge.cn/java/pghxhevz/",
+  "title" : "新生代与老年代的垃圾回收器有何不同？",
+  "categoryId" : 7,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>新生代和老年代垃圾回收器</strong> 的区别在于它们处理的对象不同，采用的方式也不同：</p>\n<ul>\n <li><p><strong>新生代垃圾回收器</strong>：专门处理 <strong>短命</strong> 的对象，这些对象很快就不再使用，因此它回收得比较频繁。它主要用 <strong>复制算法</strong>，就是把活着的对象快速复制到另一块空白内存里。</p></li>\n <li><p><strong>老年代垃圾回收器</strong>：专门处理 <strong>长命</strong> 的对象，这些对象存活时间长，不需要经常回收。所以它回收的频率低，通常用 <strong>标记-清除</strong> 或 <strong>标记-整理算法</strong>，这两种方法更适合处理存活时间长的对象。</p></li>\n</ul>\n<p>这样，JVM 就能根据不同类型对象的特点，采用合适的方式 <strong>提高效率</strong>，减少程序的卡顿时间。</p>"
+}, {
+  "id" : 210,
+  "uri" : "https://zha-ge.cn/java/9esb4nxe/",
+  "title" : "新生代与老年代采用的GC算法是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>新生代</strong> 和 <strong>老年代</strong> 的垃圾回收方式不同：</p>\n<ul>\n <li><p><strong>新生代</strong> 主要处理 <strong>短期存在的对象</strong>，它采用 <strong>复制算法</strong>。这意味着，它会将活着的对象从 <strong>Eden 区</strong> 和 <strong>Survivor 区</strong> 移动到另一块空闲的内存区域，这样可以快速回收不再需要的对象。</p></li>\n <li><p><strong>老年代</strong> 则处理 <strong>长时间存活的对象</strong>，回收时采用 <strong>标记-清除</strong> 或 <strong>标记-整理</strong> 的方式。它会先标记出不再使用的对象，然后清理或者整理内存，确保不会留下碎片。</p></li>\n</ul>\n<p>通过这种 <strong>分代垃圾回收策略</strong>，JVM 可以 <strong>更高效地管理内存</strong>，提高回收速度，并减少垃圾回收时的停顿时间，从而 <strong>提升 Java 应用的性能</strong>。</p>"
+}, {
+  "id" : 211,
+  "uri" : "https://zha-ge.cn/java/godah094/",
+  "title" : "STW的含义及其影响是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>STW（Stop-The-World）</strong> 是 JVM 在进行 <strong>垃圾回收</strong> 时的一种暂停机制，它会 <strong>暂停所有应用线程</strong>，确保垃圾回收的操作可以安全完成。虽然这种暂停是必要的，但它会导致 <strong>应用卡顿</strong>，特别是在 <strong>需要实时响应</strong> 或者 <strong>高并发</strong> 的场景中，这种停顿的影响会比较明显。</p>"
+}, {
+  "id" : 212,
+  "uri" : "https://zha-ge.cn/java/ag5pzu50/",
+  "title" : "G1与CMS垃圾回收器的区别是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 19,
+  "answer" : "<p><strong>G1</strong> 和 <strong>CMS</strong> 都是 Java 中用来管理内存和减少 <strong>垃圾回收（GC）停顿时间</strong> 的工具，但它们的工作方式有所不同：</p>\n<ul>\n <li><p><strong>G1GC</strong>：提供了 <strong>可预测的停顿时间</strong> 和 <strong>低延迟</strong>，特别适合 <strong>大内存</strong> 或对 <strong>性能要求高的应用</strong>。它通过把内存分成多个区域，有针对性地回收不需要的部分，减少停顿时间。</p></li>\n <li><p><strong>CMS</strong>：通过 <strong>并发标记和清理</strong> 的方式，减少垃圾回收时应用的停顿时间。但是，在 <strong>老年代</strong> 的回收效率较低，可能会频繁触发 <strong>FullGC</strong>（完全回收），造成更长的停顿。</p></li>\n</ul>\n<p>了解这两者的区别，有助于我们选择最合适的垃圾回收器，从而优化应用的 <strong>性能</strong> 和 <strong>响应速度</strong>。</p>"
+}, {
+  "id" : 213,
+  "uri" : "https://zha-ge.cn/java/7616dq9f/",
+  "title" : "Java中类的加载流程是怎样的？",
+  "categoryId" : 7,
+  "sortOrder" : 20,
+  "answer" : "<p>在 Java 中，<strong>类加载过程</strong> 是将 <code>.class</code> 文件中的字节码加载到内存并转化为 <strong><code>Class</code> 对象</strong> 的过程。这个过程分为 <strong>加载</strong>、<strong>链接</strong> 和 <strong>初始化</strong> 三个阶段：</p>\n<ol>\n <li><strong>加载</strong>：JVM 首先会读取 <code>.class</code> 文件，将其中的字节码加载到内存中。</li>\n <li><strong>链接</strong>：在这个阶段，JVM 会检查类的 <strong>结构是否正确</strong>，并且连接类中的方法和变量等资源。</li>\n <li><strong>初始化</strong>：最后，JVM 会执行类中的 <strong>构造方法</strong> 和 <strong>静态代码块</strong>，完成类的初始化，使其准备好被程序使用。</li>\n</ol>\n<p>这三个阶段共同确保类被 <strong>正确加载</strong> 并 <strong>准备好执行</strong>。</p>"
+}, {
+  "id" : 214,
+  "uri" : "https://zha-ge.cn/java/1tu21wbb/",
+  "title" : "常见的JVM分析工具有哪些？",
+  "categoryId" : 7,
+  "sortOrder" : 21,
+  "answer" : "<p><strong>JVM 工具</strong> 是 Java 开发者用来 <strong>监控</strong>、<strong>分析</strong> 和 <strong>优化</strong> Java 应用性能的一些工具。常见的 JVM 工具包括：</p>\n<ol>\n <li><strong>jps</strong>：帮助查看当前正在运行的 JVM 进程。</li>\n <li><strong>jstat</strong>：用来监控 <strong>JVM 的性能</strong>，查看内存使用情况、垃圾回收等信息。</li>\n <li><strong>jmap</strong>：可以查看 <strong>内存使用情况</strong>，帮助分析内存泄漏等问题。</li>\n <li><strong>jstack</strong>：用来 <strong>查看线程堆栈信息</strong>，帮助调试线程的问题。</li>\n <li><strong>jconsole</strong>：提供一个 <strong>图形化界面</strong>，实时监控 JVM 的运行状况。</li>\n <li><strong>VisualVM</strong>：是一个 <strong>可视化工具</strong>，可以监控应用的 <strong>内存使用</strong>、<strong>CPU 性能</strong>、<strong>垃圾回收</strong> 等信息。</li>\n</ol>\n<p>正确使用这些工具，能够帮助开发者更好地了解应用的运行状态，及时发现和解决 <strong>性能问题</strong>，提升 <strong>应用稳定性</strong> 和 <strong>效率</strong>。</p>"
+}, {
+  "id" : 215,
+  "uri" : "https://zha-ge.cn/java/14b77xi9/",
+  "title" : "Java中四种引用的区别是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 22,
+  "answer" : "<p>在 Java 中，有四种不同的引用类型，它们主要的区别在于对垃圾回收器的影响和内存管理的方式：</p>\n<ol>\n <li><p><strong>强引用</strong>：这是最常见的引用方式。只要有 <strong>强引用</strong> 指向一个对象，垃圾回收器就不会回收这个对象，除非程序结束或者对象不再被使用。</p></li>\n <li><p><strong>软引用</strong>：当 <strong>内存不足</strong> 时，垃圾回收器会回收这些对象。它适用于 <strong>缓存数据</strong>，因为缓存的数据可以在内存不够时被回收，但如果内存充足，它们会保持不被回收。</p></li>\n <li><p><strong>弱引用</strong>：只要垃圾回收器运行，<strong>弱引用</strong> 指向的对象就会被回收，不管内存是否充足。它适合用在 <strong>需要临时引用某个对象</strong> 但不想让它长期占用内存的场景。</p></li>\n <li><p><strong>虚引用</strong>：几乎没有什么实际用途，主要是用来 <strong>跟踪对象是否被回收</strong>，帮助开发者查看对象的回收状态。</p></li>\n</ol>\n<p>这些引用类型帮助 Java 更加 <strong>灵活地管理内存</strong>，优化程序的内存使用。</p>"
+}, {
+  "id" : 216,
+  "uri" : "https://zha-ge.cn/java/teu75fcg/",
+  "title" : "内存泄漏与内存溢出的差异是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 23,
+  "answer" : "<p><strong>内存泄漏</strong> 和 <strong>内存溢出</strong> 都是 Java 应用开发中常见的内存问题，但它们的原因和影响不同：</p>\n<ul>\n <li><p><strong>内存泄漏</strong>：指的是程序分配的内存没有被正确释放，导致这些内存空间无法再使用，最终使得可用内存逐渐减少，影响系统性能。可以把它理解为“浪费”了内存，程序虽然没用这些内存，但也没办法再用它们。</p></li>\n <li><p><strong>内存溢出</strong>：是指程序试图使用超过系统或 JVM 限制的内存空间。比如，程序请求了过多的内存，导致系统无法提供这么多资源，最终程序崩溃。</p></li>\n</ul>\n<p>理解这两者的区别有助于开发者更好地<strong>避免内存问题</strong>，通过合理的内存管理避免程序变慢或崩溃。</p>"
+}, {
+  "id" : 217,
+  "uri" : "https://zha-ge.cn/java/izpxi8s2/",
+  "title" : "OutOfMemory与StackOverflow的不同点是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 24,
+  "answer" : "<p><strong>OutOfMemoryError</strong> 和 <strong>StackOverflowError</strong> 是 Java 程序中常见的错误，它们有不同的原因和影响：</p>\n<ul>\n <li><p><strong>OutOfMemoryError</strong>：当 JVM 没有足够的内存来分配时，就会出现这种错误。它通常和程序中用来存储数据的区域（比如堆内存、方法区或直接内存）有关。简单来说，这就像是你没有足够的空间来存放新东西。</p></li>\n <li><p><strong>StackOverflowError</strong>：这种错误发生在栈内存不够用时，通常是因为程序在执行时不断地调用自己（也就是递归调用）导致栈的空间被耗尽。</p></li>\n</ul>\n<p>总结来说，<strong>OutOfMemoryError</strong> 是内存不足的问题，通常是堆内存不够，而 <strong>StackOverflowError</strong> 是因为栈内存溢出，通常是递归调用太深造成的。</p>"
+}, {
+  "id" : 218,
+  "uri" : "https://zha-ge.cn/java/vjm0kj2w/",
+  "title" : "JVM如何判定对象是否存活？",
+  "categoryId" : 7,
+  "sortOrder" : 25,
+  "answer" : "<p>JVM 判断一个对象是否还活着，主要有两种方式：<strong>引用计数法</strong> 和 <strong>可达性分析法</strong>。</p>\n<ul>\n <li><p><strong>引用计数法</strong>：这就像是在计算对象有多少人使用它。如果一个对象被其他对象引用了，那么它的引用计数就会加一。当引用计数变成零时，就说明没有人再使用这个对象，JVM 可以回收它。</p></li>\n <li><p><strong>可达性分析法</strong>：这种方法更加智能，JVM 会从一些特别的对象（我们叫它 GC 根）开始，分析每个对象是否能通过引用链找到它。如果对象能通过这个链条被找到，就说明它还活着；如果找不到，就认为这个对象已经不再使用，可以被回收。</p></li>\n</ul>\n<p>现代的 JVM 通常使用 <strong>可达性分析法</strong> 来判断对象是否存活，因为它比引用计数法更准确，也避免了引用计数法的一些问题。</p>"
+}, {
+  "id" : 219,
+  "uri" : "https://zha-ge.cn/java/zlaincq9/",
+  "title" : "Java 8与Java 11的垃圾回收机制有何区别？",
+  "categoryId" : 7,
+  "sortOrder" : 26,
+  "answer" : "<p>在 <strong>Java 8</strong> 和 <strong>Java 11</strong> 中，垃圾回收器（GC）有一些显著的不同，主要体现在默认使用的垃圾回收器、优化功能和新特性上：</p>\n<ul>\n <li><p><strong>Java 8</strong>：默认使用 <strong>Parallel GC</strong>，这是一个专注于提高吞吐量的垃圾回收器。它能够快速回收内存，适用于那些对回收速度要求高，但对延迟不那么敏感的应用。不过，它在垃圾回收时会导致较长的停顿。</p></li>\n <li><p><strong>Java 11</strong>：引入了更先进的垃圾回收器，如 <strong>G1 GC</strong> 和 <strong>ZGC</strong>。这些回收器优化了回收的延迟，尤其是 <strong>ZGC</strong>，它特别适合需要低延迟和大内存支持的应用。这样，Java 11 可以处理更大规模的应用，同时确保应用不会因为垃圾回收而频繁卡顿。</p></li>\n</ul>\n<p>总结来说，<strong>Java 8</strong> 更注重吞吐量，而 <strong>Java 11</strong> 更加关注降低延迟和支持大内存。</p>"
+}, {
+  "id" : 220,
+  "uri" : "https://zha-ge.cn/java/sdvx2y2r/",
+  "title" : "为何虚拟机用元空间替代永久代？",
+  "categoryId" : 7,
+  "sortOrder" : 27,
+  "answer" : "<p>在 <strong>JDK 8</strong> 中，JVM 对内存管理做了一些重要改动，特别是将 <strong>永久代</strong>（PermGen）替换为 <strong>元空间</strong>（Metaspace）。这次改动主要是为了解决 <strong>永久代内存溢出</strong> 和 <strong>内存管理不灵活</strong> 的问题。</p>\n<ul>\n <li><p><strong>永久代</strong>：之前，JVM 用永久代来存储类的信息。但由于永久代使用的内存空间是 <strong>JVM 堆内存</strong>，它的大小固定，容易导致 <strong>内存溢出</strong>，特别是在类加载较多时。</p></li>\n <li><p><strong>元空间</strong>：JDK 8 引入了元空间，它使用的是 <strong>本地内存</strong>（也就是操作系统的内存），不再依赖于 JVM 堆内存。这使得元空间的内存管理更加 <strong>灵活</strong>，可以根据需要动态调整内存的分配。通过这样的方式，元空间能有效减少 <strong>内存溢出</strong> 的风险，并为 <strong>JVM 类加载</strong> 提供了更高效的支持。</p></li>\n</ul>\n<p>简而言之，<strong>元空间</strong> 是对 <strong>永久代</strong> 的升级，它更加 <strong>灵活</strong> 和 <strong>高效</strong>，有效避免了以前的内存溢出问题。</p>"
+}, {
+  "id" : 221,
+  "uri" : "https://zha-ge.cn/java/r23wov4m/",
+  "title" : "逃逸分析的定义是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 28,
+  "answer" : "<p><strong>逃逸分析</strong> 是 JVM 的一种优化技术，它的目的是通过分析代码中对象的 <strong>作用范围</strong> 来提高性能。</p>\n<ul>\n <li>它会检查对象是否 <strong>逃离</strong> 当前的方法或线程。简单来说，就是判断这个对象是否会在方法外部或线程外部使用。</li>\n <li>如果对象 <strong>不会逃逸</strong>，那么 JVM 可以把它分配到 <strong>栈上</strong>，而不是堆内存上。这样就避免了堆内存的分配，减少了垃圾回收的压力。</li>\n <li>另外，逃逸分析还可以 <strong>消除不必要的锁操作</strong>，提高程序的执行效率。</li>\n</ul>\n<p>简而言之，逃逸分析就是分析对象的 <strong>作用范围</strong>，为 JVM 的 <strong>内存优化</strong> 和 <strong>性能提升</strong> 提供基础。</p>"
+}, {
+  "id" : 222,
+  "uri" : "https://zha-ge.cn/java/nxjsj9jy/",
+  "title" : "JVM如何确保对象内存分配的线程安全性？",
+  "categoryId" : 7,
+  "sortOrder" : 29,
+  "answer" : "<p>JVM 在分配对象内存时，必须确保 <strong>线程安全</strong>，尤其是在多线程环境下。这是因为多个线程可能同时尝试访问和修改同一个对象，如果没有合适的保护机制，就会导致数据冲突和不一致。</p>\n<p>为了保证线程安全，JVM 使用了以下几种机制：</p>\n<ul>\n <li><strong>锁机制</strong>：通过加锁，确保每次只有一个线程可以访问或修改对象的内存，避免多个线程同时操作时发生冲突。</li>\n <li><strong>CAS（比较和交换）</strong>：这是一种通过比较当前值和预期值是否一致，再决定是否更新对象的方式，从而确保线程之间不会干扰彼此的操作。</li>\n <li><strong>内存屏障</strong>：内存屏障是一种技术，确保指令的执行顺序不会被乱序执行。它通过规定哪些操作必须先执行，哪些操作可以后执行，来保证多线程环境下的正确性。</li>\n</ul>\n<p>这些机制确保了即使多个线程同时进行内存分配和初始化，它们之间不会互相干扰，从而避免了 <strong>数据一致性问题</strong>，保证了程序的稳定性和正确性。</p>"
+}, {
+  "id" : 223,
+  "uri" : "https://zha-ge.cn/java/wmtcp8dq/",
+  "title" : "项目中如何选择合适的垃圾回收器及其依据是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 30,
+  "answer" : "<p>选择合适的垃圾回收器需要根据项目的实际需求来决定，主要考虑 <strong>吞吐量</strong>、<strong>延迟</strong> 和 <strong>内存大小</strong> 等因素。</p>\n<ul>\n <li><strong>吞吐量优先</strong>：如果项目是批量处理或后台计算任务，选择 <strong>Parallel GC</strong>。它能更高效地处理大量数据，但可能会有较长的停顿。</li>\n <li><strong>低延迟优先</strong>：如果是交互式应用或需要实时响应的系统，选择 <strong>G1 GC</strong> 或 <strong>ZGC</strong>。这两者能减少停顿时间，确保系统的实时性。</li>\n <li><strong>堆内存较大</strong>：选择 <strong>G1 GC</strong> 或 <strong>ZGC</strong>，它们能处理更大的内存并优化垃圾回收。</li>\n <li><strong>堆内存较小</strong>：如果内存较小，可以选择 <strong>Serial GC</strong>，它简单高效，适合内存受限的场景。</li>\n</ul>\n<p><strong>总结</strong>：最合适的垃圾回收器才是最优的。选择时一定要结合实际场景，进行充分的测试！</p>"
+}, {
+  "id" : 224,
+  "uri" : "https://zha-ge.cn/java/1exws7bt/",
+  "title" : "Java虚拟机的定义是什么？为何Java被称为平台无关的语言？",
+  "categoryId" : 7,
+  "sortOrder" : 31,
+  "answer" : "<p><strong>Java 虚拟机</strong>（JVM）就像一个“虚拟的计算机”，它用来运行 Java 程序。Java 程序在编译后会生成 <strong>字节码</strong>，而这些字节码不是直接在操作系统上执行，而是在 JVM 中运行。这样，无论你的电脑是什么操作系统或硬件，只要安装了 JVM，Java 程序都能运行。</p>\n<p>这让 Java 成为一种 <strong>平台无关的语言</strong>，也就是说 <strong>一次编译，随处运行</strong>。只要生成的字节码，就可以在任何平台上通过 JVM 执行，而无需重新编译。</p>"
+}, {
+  "id" : 225,
+  "uri" : "https://zha-ge.cn/java/jwuz0vjk/",
+  "title" : "Java的内存结构是如何设计的？",
+  "categoryId" : 7,
+  "sortOrder" : 32,
+  "answer" : "<p>Java 内存结构是 JVM 管理内存的方式，它把内存分成几个区域，每个区域有不同的功能：</p>\n<ul>\n <li><strong>程序计数器</strong>：记录当前执行的指令。</li>\n <li><strong>虚拟机栈</strong>：存储方法调用的局部变量和操作数据。</li>\n <li><strong>本地方法栈</strong>：存放本地方法的信息。</li>\n <li><strong>堆</strong>：存储对象和数组，是垃圾回收的重点区域。</li>\n <li><strong>方法区</strong>：存储类的信息和常量池，也在垃圾回收管理范围内。</li>\n</ul>\n<p>其中，<strong>堆</strong> 和 <strong>方法区</strong> 是垃圾回收的主要管理区域，负责清理不再使用的对象和数据。</p>"
+}, {
+  "id" : 226,
+  "uri" : "https://zha-ge.cn/java/671q1et8/",
+  "title" : "Java对象创建的完整流程是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 33,
+  "answer" : "<p>Java 对象的创建过程大致包括以下几个步骤：</p>\n<ol>\n <li><strong>内存分配</strong>：JVM 从堆内存中为对象分配空间。</li>\n <li><strong>构造方法调用</strong>：调用类的构造方法来初始化对象的属性。</li>\n <li><strong>初始化</strong>：执行构造方法后的初始化工作，确保对象处于正确的状态。</li>\n</ol>\n<p>在多线程环境下，JVM 会通过一些机制确保对象创建时不会出现问题，保持 <strong>线程安全</strong>，避免多个线程同时创建或修改同一个对象时发生冲突。</p>\n<hr>"
+}, {
+  "id" : 227,
+  "uri" : "https://zha-ge.cn/java/jst9dr1s/",
+  "title" : "如何判定对象是否可以被垃圾回收？",
+  "categoryId" : 7,
+  "sortOrder" : 34,
+  "answer" : "<p>Java 中的垃圾回收机制通过 <strong>垃圾回收器（GC）</strong> 自动管理内存，确保不再使用的对象被清除。判断一个对象是否可以被回收，主要有两种标准：</p>\n<ol>\n <li><strong>引用计数</strong>：如果没有其他地方再使用这个对象，它的引用次数就变成了 0，这时它就可以被回收。</li>\n <li><strong>可达性分析</strong>：如果没有任何活动的引用指向这个对象，说明它不能再被访问，也就可以回收了。</li>\n</ol>\n<p>简单来说，只要一个对象没有被其他部分使用，就可以被垃圾回收。</p>"
+}, {
+  "id" : 228,
+  "uri" : "https://zha-ge.cn/java/ohu90xv0/",
+  "title" : "JVM的永久代会发生垃圾回收吗？",
+  "categoryId" : 7,
+  "sortOrder" : 35,
+  "answer" : "<p><strong>JVM 的永久代</strong>（PermGen）是用来存放 <strong>类的信息</strong> 和 <strong>常量</strong> 的地方。在 Java 7 之前，永久代会进行 <strong>垃圾回收</strong>，但它和堆内存的回收不同。回收的主要对象是 <strong>类</strong> 和 <strong>类加载器</strong>，确保不再使用的类能被卸载，释放内存。</p>\n<p>从 Java 8 开始，永久代被 <strong>元空间</strong>（Metaspace）取代。这样做的好处是解决了永久代的内存溢出问题，改用本地内存来存储这些数据，使得内存管理更加灵活和高效。</p>"
+}, {
+  "id" : 229,
+  "uri" : "https://zha-ge.cn/java/iigb4skw/",
+  "title" : "Minor GC与Full GC的发生时机分别是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 36,
+  "answer" : "<p><strong>Minor GC</strong> 和 <strong>Full GC</strong> 是 Java 垃圾回收的两种主要方式：</p>\n<ul>\n <li><p><strong>Minor GC</strong>：发生在 <strong>年轻代</strong>，当年轻代的内存使用达到一定程度时，垃圾回收器会回收这些短生命周期的对象。通常，回收的时间较短。</p></li>\n <li><p><strong>Full GC</strong>：发生在 <strong>老年代</strong> 或者 <strong>整个堆内存</strong> 需要回收时。它会回收年轻代和老年代，回收的范围越广，回收的时间和代价也越高，通常需要更长的停顿时间。</p></li>\n</ul>"
+}, {
+  "id" : 230,
+  "uri" : "https://zha-ge.cn/java/0wzutcio/",
+  "title" : "Stop The World、OopMap和安全点的定义是什么？",
+  "categoryId" : 7,
+  "sortOrder" : 37,
+  "answer" : "<p><strong>OopMap</strong> 是 JVM 中的一种数据结构，用来标记栈中哪些位置存放了 <strong>对象引用</strong>。它帮助 <strong>垃圾回收器（GC）</strong> 在回收内存时，准确找到和处理这些对象，确保回收的正确性。</p>\n<p><strong>安全点</strong> 是程序执行中的某些特定位置，垃圾回收器可以在这些点暂停程序执行，进行垃圾回收，确保回收过程不会影响程序的正常运行。</p>\n<p><strong>Stop The World（STW）</strong> 是指 <strong>JVM</strong> 在执行垃圾回收或其他需要安全操作时，会 <strong>暂停所有正在运行的 Java 线程</strong>（除了执行 GC 的线程）， 让 <strong>GC 线程独占 CPU</strong>，以确保回收操作可以安全、高效地进行。虽然 STW 会导致应用暂停，但它是 <strong>GC 机制的必要手段</strong>，用于确保对象引用关系不被修改，从而进行准确的垃圾回收。</p>"
+}, {
+  "id" : 231,
+  "uri" : "https://zha-ge.cn/java/wzud9evr/",
+  "title" : "JVM的主要组件及其作用有哪些？",
+  "categoryId" : 7,
+  "sortOrder" : 38,
+  "answer" : "<p><strong>JVM（Java Virtual Machine）</strong> 是运行 Java 程序的虚拟机器，主要由以下几个部分组成：</p>\n<ul>\n <li><strong>类加载器</strong>：负责加载 Java 类文件，把类加载到内存中。</li>\n <li><strong>内存区域</strong>：这部分内存包含多个区域，像方法区、堆、栈等，每个区域存储不同的数据，支持程序的运行。</li>\n <li><strong>执行引擎</strong>：它执行程序中的指令，确保代码被按顺序执行。</li>\n <li><strong>垃圾回收器</strong>：它自动清理不再使用的内存，防止程序运行时内存泄漏。</li>\n</ul>\n<p>这些组件一起协作，保证了 Java 程序在不同设备上顺利运行。</p>"
+}, {
+  "id" : 232,
+  "uri" : "https://zha-ge.cn/java/wvehmfoa/",
+  "title" : "JVM支持哪些垃圾回收器？如何选择合适的回收器？",
+  "categoryId" : 7,
+  "sortOrder" : 39,
+  "answer" : "<p><strong>JVM</strong> 提供了几种不同的垃圾回收器，帮助管理内存。主要包括 <strong>串行回收器</strong>、<strong>并行回收器</strong>、<strong>CMS 回收器</strong> 和 <strong>G1 回收器</strong> 等。选择合适的垃圾回收器通常取决于应用的 <strong>性能需求</strong>、<strong>响应时间要求</strong> 和 <strong>内存使用情况</strong>。</p>\n<ul>\n <li><strong>G1 回收器</strong>：适合需要处理大内存和高吞吐量的应用，帮助系统保持高效。</li>\n <li><strong>CMS 回收器</strong>：适合对停顿时间要求较低的应用，它可以减少垃圾回收时的等待时间。</li>\n</ul>\n<p>每种回收器有自己的特点，开发者需要根据应用的具体需求来选择合适的回收器。</p>"
+} ]

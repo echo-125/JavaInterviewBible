@@ -1,0 +1,231 @@
+[ {
+  "id" : 349,
+  "uri" : "https://zha-ge.cn/java/7i09uzco/",
+  "title" : "设计模式的23种类型如何归为三大类？",
+  "categoryId" : 11,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>设计模式</strong>通常分为三大类：</p>\n<ol>\n <li><strong>创建型模式</strong>：关注如何创建对象，帮助我们以灵活的方式生成对象。</li>\n <li><strong>结构型模式</strong>：关注如何组合对象，帮助我们组织不同的对象，使它们高效协作。</li>\n <li><strong>行为型模式</strong>：关注对象之间的交互，帮助我们设计对象如何相互配合和通信。</li>\n</ol>\n<p>每一类模式都有其独特的解决方案，帮助开发者在不同的场景中选择最合适的方式来解决问题。</p>"
+}, {
+  "id" : 350,
+  "uri" : "https://zha-ge.cn/java/13uql3ol/",
+  "title" : "单例模式的本质是什么？请描述一个典型的应用场景",
+  "categoryId" : 11,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>单例模式</strong>就是保证一个类只会有一个实例，而且无论在哪里都能通过统一的方式来访问它。</p>\n<p>这种模式适用于需要共享资源或配置信息的场景，避免了重复创建多个实例，从而节省了资源和提高了效率。</p>"
+}, {
+  "id" : 351,
+  "uri" : "https://zha-ge.cn/java/13m8fn0i/",
+  "title" : "单例模式有哪些构造方法？怎样保障多线程环境下的安全性？",
+  "categoryId" : 11,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>单例模式</strong>常见的实现方式有：</p>\n<ol>\n <li><strong>懒汉式（Lazy Initialization）</strong>：只有在需要的时候才创建实例。</li>\n <li><strong>饿汉式（Eager Initialization）</strong>：程序启动时就创建实例，确保只有一个。</li>\n <li><strong>双重检查锁定（Double-Checked Locking）</strong>：通过加锁的方式，确保多线程环境下也能保证只创建一个实例。</li>\n <li><strong>静态内部类（Static Inner Class）</strong>：通过静态类来确保延迟加载实例且线程安全。</li>\n <li><strong>枚举实现（Enum）</strong>：使用枚举来实现单例，天然支持线程安全。</li>\n</ol>\n<p>每种方式的重点和保证线程安全的方式不同，接下来会详细介绍每种方法。</p>"
+}, {
+  "id" : 352,
+  "uri" : "https://zha-ge.cn/java/ekuamgli/",
+  "title" : "工厂模式与抽象工厂模式的核心差异在哪里？",
+  "categoryId" : 11,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>工厂模式</strong>和<strong>抽象工厂模式</strong>都用来帮助我们<strong>创建对象</strong>，让我们在代码中避免直接使用<code>new</code>来实例化对象。它们的区别可以简单地总结为：</p>\n<ul>\n <li><strong>工厂模式</strong>（Factory Method）：用来<strong>创建一种产品</strong>，也就是说，这个工厂方法只负责创造一种特定的东西。</li>\n <li><strong>抽象工厂模式</strong>（Abstract Factory）：用来<strong>创建一组相关的产品</strong>，也就是它通过多个方法来创造多个不同的东西，这些东西通常是相互关联的。</li>\n</ul>"
+}, {
+  "id" : 353,
+  "uri" : "https://zha-ge.cn/java/1m0fup4m/",
+  "title" : "建造者模式的基本概念是什么？适合在哪些情况下使用？",
+  "categoryId" : 11,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>建造者模式</strong>是一种创建对象的方式，按步骤一步步构建一个复杂对象， 并且可以灵活决定每一步的内容，适合需要灵活构建复杂对象的场景。</p>"
+}, {
+  "id" : 354,
+  "uri" : "https://zha-ge.cn/java/mnwfsexv/",
+  "title" : "原型模式的原理是什么？在什么情境下最实用？",
+  "categoryId" : 11,
+  "sortOrder" : 6,
+  "answer" : "<p><strong>原型模式</strong>是一种设计方法，主要通过<strong>复制</strong>一个已经存在的对象来创建新的对象，而不是每次都从头开始使用构造函数创建一个新对象。这个方法特别适合需要频繁创建相似对象的场景，能够有效减少创建新对象时的<strong>资源消耗</strong>。</p>"
+}, {
+  "id" : 355,
+  "uri" : "https://zha-ge.cn/java/pbb9f5g8/",
+  "title" : "适配器模式的核心思想是什么？它常用于何种场合？",
+  "categoryId" : 11,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>适配器模式</strong>是一种设计方法，目的是通过创建一个适配器来转换接口，使得两个原本不能互相配合的系统或类能够一起工作。</p>\n<p>简单来说，它通过让接口变得兼容，帮助不同的系统正常协作。<strong>适配器模式</strong>通常在<strong>旧系统和新系统</strong>需要一起工作，或者<strong>接口不兼容</strong>时非常有用。</p>"
+}, {
+  "id" : 356,
+  "uri" : "https://zha-ge.cn/java/tbq5no1u/",
+  "title" : "桥接模式的基本定义是什么？通常用于解决什么问题？",
+  "categoryId" : 11,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>桥接模式</strong>的意思是，把事物的<strong>核心功能</strong>和<strong>具体实现方式</strong>拆开，变成两个独立的部分。 这种方式的好处是，不管是<strong>核心功能</strong>还是<strong>具体实现</strong>，改动的时候都不会互相牵连。 它特别适合那些需要支持<strong>多种组合变化</strong>的情况，比如你有不同的<strong>操作系统</strong>，或者功能模块<strong>很复杂的系统</strong>， 每个部分都可以<strong>单独升级或者扩展</strong>。</p>"
+}, {
+  "id" : 357,
+  "uri" : "https://zha-ge.cn/java/bj86bkdx/",
+  "title" : "装饰器模式的核心机制是什么？在哪些场景中更有优势？",
+  "categoryId" : 11,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>装饰器模式</strong>是一种结构型设计模式，它通过<strong>将对象的功能动态地添加到现有对象</strong>中，从而增强对象的功能。装饰器模式允许我们不直接修改类的代码，而是通过装饰器类将新功能“包装”在原始对象周围，从而实现功能增强。</p>"
+}, {
+  "id" : 358,
+  "uri" : "https://zha-ge.cn/java/q6j1x7fz/",
+  "title" : "代理模式的基本逻辑是什么？常见的应用场景有哪些？",
+  "categoryId" : 11,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>代理模式</strong>就是通过一个 <strong>中间人</strong>（也叫代理对象）来控制我们对另一个对象的访问。<strong>代理对象</strong>在实际访问目标对象之前或之后，可以做一些额外的事情，例如：</p>\n<ul>\n <li><strong>检查用户是否有权限</strong>；</li>\n <li><strong>延迟加载数据</strong>；</li>\n <li><strong>记录操作日志</strong>。</li>\n</ul>\n<p>这个模式适用于我们不想直接修改目标对象，但又希望为它增加一些额外功能的场景。</p>\n<p>代理有两种常见的方式：</p>\n<ol>\n <li><strong>静态代理</strong>：在<strong>编译时</strong>就已经决定好哪个对象需要代理。</li>\n <li><strong>动态代理</strong>：在<strong>运行时</strong>才决定使用哪个代理对象。</li>\n</ol>\n<p>通过代理模式，我们能在不改变目标对象的情况下，增加一些额外的处理逻辑，使得程序更灵活、可扩展。</p>"
+}, {
+  "id" : 359,
+  "uri" : "https://zha-ge.cn/java/hn5tukgd/",
+  "title" : "责任链模式的运行机制是什么？适合用于什么情况？",
+  "categoryId" : 11,
+  "sortOrder" : 11,
+  "answer" : "<p><strong>责任链模式</strong>就是把请求处理分成一系列的步骤，每个步骤都有一个**“处理者”**。当请求到来时，处理者依次判断自己能不能处理这个请求。如果不能处理，就把请求交给下一个处理者去处理。</p>\n<p>这样就形成了一条<strong>链条</strong>，每个处理者都可以决定是否处理这个请求。这种模式特别适合那些处理流程比较复杂，且每个步骤的处理方式不同的场景。通过责任链模式，可以让多个处理者<strong>独立</strong>地处理不同的步骤，从而使得整个处理过程更加灵活和可扩展。</p>"
+}, {
+  "id" : 360,
+  "uri" : "https://zha-ge.cn/java/xmmsw63m/",
+  "title" : "状态模式的本质特性是什么？在哪些场景下更适用？",
+  "categoryId" : 11,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>状态模式</strong>是一种让对象在不同情况下表现不同的方式。</p>\n<p>简单来说，就是把每个状态的行为单独写成一个类，程序会根据对象的<strong>当前状态</strong>来决定要执行什么操作。</p>\n<p>这样做的好处是：</p>\n<ul>\n <li><strong>代码更简洁</strong>，不需要写一堆<code>if-else</code>判断；</li>\n <li><strong>状态管理更清晰</strong>，方便维护和修改。</li>\n</ul>\n<p>通过定义一个<strong>状态接口</strong>，再实现多个<strong>状态类</strong>来处理不同状态下的行为，程序就可以根据当前状态选择合适的行为，而不需要冗长的判断逻辑。</p>"
+}, {
+  "id" : 361,
+  "uri" : "https://zha-ge.cn/java/p8s9dn6l/",
+  "title" : "策略模式的实现逻辑是什么？它适合解决什么问题？",
+  "categoryId" : 11,
+  "sortOrder" : 13,
+  "answer" : "<p><strong>策略模式</strong>其实就是一种方法，它帮助我们把不同的处理方式分开存放，并且可以随时选择使用哪一种。</p>\n<p>换句话说，如果有很多不同的处理方式，我们可以把它们每一个单独放在不同的**“盒子”<strong>里，然后根据需要在</strong>运行时**挑选出合适的“盒子”来使用，而不需要去修改原本的代码。</p>\n<p>这样，我们的程序就能<strong>更灵活</strong>，不需要每次变化时都去改动大量的代码。通过<strong>策略模式</strong>，我们可以根据不同的场景轻松选择合适的处理方式，避免了重复编写代码。</p>"
+}, {
+  "id" : 362,
+  "uri" : "https://zha-ge.cn/java/wevbhzbj/",
+  "title" : "模板方法模式的原理是什么？在哪些场合能发挥作用？",
+  "categoryId" : 11,
+  "sortOrder" : 14,
+  "answer" : "<p><strong>模板方法模式</strong>就是：有一套<strong>固定的流程</strong>，大部分步骤都<strong>安排好了</strong>，只有一些 <strong>具体的环节</strong> 需要你自己来决定怎么做。</p>\n<p>我们把这些<strong>环节单独拿出来</strong>，不同的子类可以用自己的方式去实现。</p>\n<p>这样，一方面<strong>流程不会乱</strong>，另一方面也能让子类有自己的<strong>特色</strong>。通过这种方式，我们可以保证大部分流程的一致性，同时又允许根据需要定制部分细节。</p>"
+}, {
+  "id" : 363,
+  "uri" : "https://zha-ge.cn/java/sl30m68k/",
+  "title" : "观察者模式的运行方式是什么？常用于哪些实际场景？",
+  "categoryId" : 11,
+  "sortOrder" : 15,
+  "answer" : "<p><strong>观察者模式</strong>其实就是一种方法，它让一些对象能够自动收到通知，一旦某个关键对象的状态发生变化。</p>\n<p>例如，当你关注某个<strong>新闻频道</strong>时，系统会自动告诉你当有新新闻发布，而你不需要去查看。</p>\n<p>这种方式通过一种**“订阅-通知”<strong>的方式，所有订阅者都会在关键对象发生变化时立即知道，从而让系统能够根据这些变化</strong>动态更新**，而不需要不断地去查询这些变化。</p>\n<p>具体来说，通过<code>registerObserver</code>方法让自己成为观察者，通过<code>notifyObservers</code>方法自动告知所有观察者。这种方式通过<strong>动态更新</strong>，让系统无需频繁手动查询，从而提升了效率和响应能力。</p>"
+}, {
+  "id" : 364,
+  "uri" : "https://zha-ge.cn/java/i2ftdxqy/",
+  "title" : "中介者模式的定义是什么？它在什么情况下最有效？",
+  "categoryId" : 11,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>中介者模式</strong>就是一种方法，专门用来处理多个对象之间复杂的联系。</p>\n<p>简单来说，就是大家有啥事别直接互相联系，先找一个**“中间人”**来安排。这样一来，沟通更方便，流程也不会乱套！</p>\n<p>通过这种方式，<strong>中间人</strong>负责协调各个对象之间的互动，避免了直接联系可能带来的混乱。</p>"
+}, {
+  "id" : 365,
+  "uri" : "https://zha-ge.cn/java/eq8tygq7/",
+  "title" : "享元模式的核心思想是什么？通常在哪些场景中应用？",
+  "categoryId" : 11,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>享元模式</strong>是一种让我们通过<strong>共享相同的对象</strong>来节省<strong>内存</strong>的方式。</p>\n<p>简单来说，就是如果我们有很多<strong>相似的对象</strong>，比如很多颜色相同的<strong>圆形图案</strong>，传统的做法是每个圆形都独立创建一份新的对象，而<strong>享元模式</strong>则是把这些<strong>相同的部分</strong>提取出来，只用一份数据，所有的对象都共享这份数据。</p>\n<p>这样，就可以避免重复创建相同的对象，减少<strong>内存的占用</strong>，提高<strong>程序的性能</strong>。</p>\n<p>这就像是你把所有相同的<strong>零件</strong>放在一个共享<strong>仓库</strong>里，每个零件需要用的时候直接去拿，而不是每次都重新制作一份。</p>"
+}, {
+  "id" : 366,
+  "uri" : "https://zha-ge.cn/java/6etk1nkw/",
+  "title" : "外观模式的实现原理是什么？适合用于什么环境？",
+  "categoryId" : 11,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>外观模式</strong>就是：系统里有很多复杂的功能，直接用起来会很麻烦。这时候我们可以做一个简单的**“门面”或“入口”**，把所有复杂的细节都藏在后面。</p>\n<p>你只需要通过这个<strong>入口</strong>，就能很方便地完成任务。比如，<strong>一键开机</strong>就能启动一堆程序，你不用关心每个程序是怎么启动的，<strong>简单又省事</strong>！</p>\n<p>这样一来，使用变得更方便，同时也避免了直接接触复杂的细节。</p>"
+}, {
+  "id" : 367,
+  "uri" : "https://zha-ge.cn/java/k2et11pn/",
+  "title" : "备忘录模式的基本功能是什么？在哪些场景下更合适？",
+  "categoryId" : 11,
+  "sortOrder" : 19,
+  "answer" : "<p><strong>备忘录模式</strong>就是一种让我们能够保存对象的状态，并且在需要的时候可以恢复到之前的状态的方法。</p>\n<p>简单来说，当我们操作某个对象时，比如修改一个文件、编辑一段文字，<strong>备忘录模式</strong>允许我们保存当前的状态，之后可以**“回滚”**到这个状态。</p>\n<p>常见的应用场景就是<strong>撤销操作</strong>。比如你在编辑文档时不小心删除了内容，想要恢复到删除之前的状态，这时候就用到了<strong>备忘录模式</strong>。它帮助我们轻松找回之前的状态，避免了误操作带来的麻烦。</p>"
+}, {
+  "id" : 368,
+  "uri" : "https://zha-ge.cn/java/tjo0covi/",
+  "title" : "开闭原则的核心思想是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 20,
+  "answer" : "<p><strong>开闭原则</strong>就是说，当你需要给系统增加新功能时，不要去修改已经存在的代码，而是要通过<strong>扩展</strong>现有的功能来添加新的内容。</p>\n<p>这样可以让现有的功能保持<strong>稳定</strong>，不会因为增加新功能而出错。简单来说，就是增加新功能时，<strong>不动老的东西</strong>，只在原来的基础上做扩展。</p>\n<p>这样，系统也会<strong>更可靠</strong>，维护起来也<strong>更轻松</strong>。</p>"
+}, {
+  "id" : 369,
+  "uri" : "https://zha-ge.cn/java/gd5japtc/",
+  "title" : "里氏替换原则的本质含义是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 21,
+  "answer" : "<p><strong>里氏替换原则</strong>告诉我们：如果一个类 <strong>B</strong> 是类 <strong>A</strong> 的子类，那么程序中的任何可以使用类 <strong>A</strong> 的地方，都应该能够使用类 <strong>B</strong>，并且程序的行为<strong>不发生任何变化</strong>。</p>\n<p>简单来说，如果我们把父类换成子类，系统仍然应该保持一致的行为，而不会引发<strong>错误</strong>或<strong>不兼容</strong>的情况。这样就能确保替换过程中不会破坏原有的功能，保持系统的<strong>稳定性</strong>。</p>"
+}, {
+  "id" : 370,
+  "uri" : "https://zha-ge.cn/java/tn53vonb/",
+  "title" : "接口隔离原则的基本理念是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 22,
+  "answer" : "<p><strong>接口隔离原则</strong>就是：<strong>不要让类去做它不需要的事情</strong>。在设计接口时，我们应该只给出<strong>必要的功能</strong>，避免让接口变得过于复杂，像一个**“大杂烩”**。这样一来，每个类只需要实现它所需要的功能，避免了额外的负担。</p>\n<p>通过遵循这个原则，我们可以让代码变得更加<strong>简洁</strong>和<strong>高效</strong>，提高系统的<strong>灵活性</strong>和<strong>可维护性</strong>。确保每个类只关注它真正需要的功能，既能降低耦合，也能提高代码的<strong>可读性</strong>。</p>"
+}, {
+  "id" : 371,
+  "uri" : "https://zha-ge.cn/java/hmkq3mes/",
+  "title" : "依赖倒置原则的关键点是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 23,
+  "answer" : "<p><strong>依赖倒置原则</strong>就是说：<strong>关键的业务逻辑不应该直接依赖具体的实现</strong>，比如不应该直接依赖某种支付方式或者数据库操作。</p>\n<p>相反，应该依赖一个<strong>通用的方式</strong>。这样，当你需要更换支付方式或者数据库时，就不需要修改业务逻辑代码，保证系统的<strong>灵活性</strong>和<strong>可扩展性</strong>。</p>\n<p>通过遵循这个原则，我们可以减少系统的<strong>耦合</strong>，提高代码的<strong>可维护性</strong>。</p>"
+}, {
+  "id" : 372,
+  "uri" : "https://zha-ge.cn/java/mhm626ud/",
+  "title" : "单一职责原则的核心要求是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 24,
+  "answer" : "<p><strong>单一职责原则</strong>的核心就是：<strong>一个类只管一件事，别让它干太多活</strong>。</p>\n<p>换句话说，如果一个类既负责做A又负责做B，那就很容易出问题。因为无论是A变了，还是B变了，你都得修改这个类，<strong>修改</strong>多了，可能就把其他地方弄乱了。这样设计的代码<strong>脆弱</strong>，维护起来特别麻烦。</p>\n<p>遵循这个原则，能让每个类专注于自己的一项职责，<strong>减少错误</strong>，<strong>提高代码的稳定性</strong>和<strong>易维护性</strong>。</p>"
+}, {
+  "id" : 373,
+  "uri" : "https://zha-ge.cn/java/60eyuwdt/",
+  "title" : "你熟悉哪些典型设计模式？它们的实际应用场景如何？",
+  "categoryId" : 11,
+  "sortOrder" : 25,
+  "answer" : "<p><strong>设计模式</strong>其实就是一些已经被验证过的解决问题的办法，像是写代码时的**“套路”**。</p>\n<p>常见的几种设计模式有：<strong>单例模式</strong>、<strong>工厂模式</strong>、<strong>观察者模式</strong>、<strong>策略模式</strong>等。</p>\n<p>每种模式解决的都是某种特定的编码问题，使用这些模式能让代码<strong>更灵活</strong>、<strong>更容易维护</strong>，也更容易在将来进行<strong>扩展</strong>和<strong>修改</strong>。通过这些设计模式，我们可以避免重复造轮子，使得程序结构更加清晰和高效。</p>"
+}, {
+  "id" : 374,
+  "uri" : "https://zha-ge.cn/java/0rklkhot/",
+  "title" : "你眼中的优质代码有哪些特征？",
+  "categoryId" : 11,
+  "sortOrder" : 26,
+  "answer" : "<p><strong>好的代码</strong>不仅能够解决问题，还能够保证系统的<strong>可维护性</strong>、<strong>可扩展性</strong>，并能轻松适应未来的需求变化。</p>\n<p>写出好的代码，要求我们遵循一些编程原则，如：</p>\n<ul>\n <li><strong>代码简洁性</strong>：代码要简短明了，避免冗余；</li>\n <li><strong>代码可读性</strong>：让别人（甚至自己）也能轻松理解；</li>\n <li><strong>模块化</strong>：把代码分成小块，每一块做一件事；</li>\n <li><strong>复用性</strong>：相同的功能可以重复使用，避免重复编写。</li>\n</ul>\n<p>通过遵循这些原则，代码不仅能解决当前的问题，还能更容易地应对未来的变化和需求。</p>"
+}, {
+  "id" : 375,
+  "uri" : "https://zha-ge.cn/java/iwriib03/",
+  "title" : "MVC模式的架构理念是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 27,
+  "answer" : "<p><strong>MVC模式</strong>（Model-View-Controller）是一种经典的分层设计模式，通过将代码分成三大模块，实现职责分离：</p>\n<ul>\n <li><strong>Model（模型层）</strong>：负责管理和处理<strong>数据</strong>以及<strong>业务逻辑</strong>；</li>\n <li><strong>View（视图层）</strong>：负责显示<strong>用户界面</strong>；</li>\n <li><strong>Controller（控制器层）</strong>：负责处理<strong>用户输入</strong>，协调<strong>模型</strong>和<strong>视图</strong>之间的交互。</li>\n</ul>\n<p>它的核心目标是<strong>解耦代码</strong>，让开发和维护变得更简单、更高效。通过这种方式，修改一部分代码时，其他部分不受影响，增强了程序的<strong>灵活性</strong>和<strong>可维护性</strong>。</p>"
+}, {
+  "id" : 376,
+  "uri" : "https://zha-ge.cn/java/dfzqv7ht/",
+  "title" : "三类工厂模式的特性和不同点是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 28,
+  "answer" : "<p><strong>工厂模式</strong>就是让专门的<strong>工厂</strong>来负责创建对象，其他地方不需要关心怎么创建。</p>\n<ul>\n <li><strong>简单工厂模式</strong>适用于只需要创建一个类型对象的简单情况。</li>\n <li><strong>工厂方法模式</strong>适合当我们需要扩展或增加不同类型的对象时，每个类型有自己的创建方式。</li>\n <li><strong>抽象工厂模式</strong>用来创建一组<strong>相关的对象</strong>，确保这些对象可以一起使用。</li>\n</ul>\n<p>通过工厂模式，我们可以把<strong>对象创建</strong>的工作交给工厂，减少代码中的重复和复杂性，提高<strong>灵活性</strong>和<strong>可扩展性</strong>。</p>"
+}, {
+  "id" : 377,
+  "uri" : "https://zha-ge.cn/java/q1rz6kkf/",
+  "title" : "你在项目中如何运用设计模式提升代码质量？",
+  "categoryId" : 11,
+  "sortOrder" : 29
+}, {
+  "id" : 378,
+  "uri" : "https://zha-ge.cn/java/b9daz5nt/",
+  "title" : "单例模式有哪些破解方法？",
+  "categoryId" : 11,
+  "sortOrder" : 30,
+  "answer" : "<p><strong>单例模式</strong>就是让一个类只有<strong>一个实例</strong>，通常通过将构造方法设为私有的，只能通过一个静态方法来获取实例。</p>\n<p>不过，<strong>破坏单例模式</strong>是可能的。我们可以通过：</p>\n<ul>\n <li><strong>反射</strong>绕过构造方法创建新对象；</li>\n <li><strong>序列化和反序列化</strong>重新生成实例；</li>\n <li>在<strong>多线程</strong>环境下，如果没有加锁，多个线程可能会创建多个实例。</li>\n</ul>\n<p>这些情况都会导致<strong>单例模式</strong>被破坏，从而失去它只允许一个实例的特性。</p>"
+}, {
+  "id" : 379,
+  "uri" : "https://zha-ge.cn/java/k25lr3ht/",
+  "title" : "为何枚举被视为单例实现的最佳选择？",
+  "categoryId" : 11,
+  "sortOrder" : 31,
+  "answer" : "<p><strong>枚举是实现单例最靠谱的方式</strong>，因为它自己天生就是一个单例，不用担心<strong>多线程</strong>会出问题，<strong>反射</strong>和<strong>序列化</strong>带来的麻烦也能避免。</p>\n<p>而且，枚举方式写起来特别<strong>简单</strong>，用起来也<strong>放心安全</strong>，<strong>省心又高效</strong>！通过这种方式，我们可以确保单例模式的正确实现，不用担心其他潜在问题。</p>"
+}, {
+  "id" : 380,
+  "uri" : "https://zha-ge.cn/java/yt106f4p/",
+  "title" : "在无锁条件下如何构建线程安全的单例模式？",
+  "categoryId" : 11,
+  "sortOrder" : 32,
+  "answer" : "<p>通过使用 <strong>静态内部类</strong> 和 <strong><code>volatile</code></strong> 关键字，我们可以在<strong>多线程环境</strong>下确保单例模式是<strong>线程安全</strong>的，同时避免了使用锁带来的性能问题。</p>\n<ul>\n <li><strong>静态内部类</strong>利用了类加载的特性，确保在第一次使用时只会创建一个实例，避免重复创建。</li>\n <li><strong><code>volatile</code></strong> 确保不同线程能够看到同一个实例，避免出现多个实例的情况。</li>\n</ul>\n<p>这种方法既保证了线程安全，又避免了性能上的损耗。</p>"
+}, {
+  "id" : 381,
+  "uri" : "https://zha-ge.cn/java/wam7ivg1/",
+  "title" : "策略模式相较于if-else的独特优势是什么？",
+  "categoryId" : 11,
+  "sortOrder" : 33,
+  "answer" : "<p><strong>策略模式</strong>就是将每种处理方式独立成小模块，它们之间互不干扰。如果要增加新功能，只需要添加一个新的模块，<strong>老代码完全不用修改</strong>，这样既清晰又省心。</p>\n<p>而 <strong>if-else</strong> 就是将所有处理方式放在一起。随着逻辑越来越多，代码就变得像一团<strong>乱麻</strong>，改起来很麻烦，容易出错。</p>"
+} ]

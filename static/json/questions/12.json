@@ -1,0 +1,168 @@
+[ {
+  "id" : 382,
+  "uri" : "https://zha-ge.cn/java/t40pptfp/",
+  "title" : "RocketMQ中事务消息的实现机制是怎样的？",
+  "categoryId" : 12,
+  "sortOrder" : 1,
+  "answer" : "<p>RocketMQ 的事务消息通过<strong>两阶段提交</strong>来确保消息和本地事务的一致性：</p>\n<ol>\n <li><strong>第一阶段</strong>：生产者先把消息发到 RocketMQ，但是消息是<strong>半消息</strong>（看不见的），然后执行本地事务。</li>\n <li><strong>第二阶段</strong>：如果本地事务成功，生产者提交事务，半消息就变成了正式消息；如果失败，事务回滚，半消息会被丢弃。如果生产者没及时提交或者回滚，RocketMQ 会去<strong>回查</strong>事务状态。</li>\n <li><strong>回查机制</strong>：RocketMQ 会定期回查这些半消息的状态，以确保消息和本地事务的一致性。</li>\n</ol>"
+}, {
+  "id" : 383,
+  "uri" : "https://zha-ge.cn/java/bnmib4if/",
+  "title" : "消息队列的核心概念是什么？",
+  "categoryId" : 12,
+  "sortOrder" : 2,
+  "answer" : "<p>随着互联网和业务的发展，服务和系统的规模越来越大，<strong>单体架构</strong>已经无法满足高效和高并发的需求。为了应对多个服务之间复杂的相互调用，合理管理资源使用，和应对突发流量，<strong>消息队列</strong>应运而生。它让系统在保持<strong>高性能</strong>的同时，<strong>解耦</strong>服务、提高<strong>灵活性</strong>，并能够处理大量并发请求。\uD83D\uDCC8</p>"
+}, {
+  "id" : 384,
+  "uri" : "https://zha-ge.cn/java/9z42akee/",
+  "title" : "消息队列在系统设计中的必要性是什么？",
+  "categoryId" : 12,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>消息队列</strong>是一种异步的消息传递机制，它通过将消息先存入队列，让生产者和消费者不直接交互，从而提高了系统的效率和灵活性。生产者把消息放入队列后，消费者可以根据自己的速度来取消息处理，这样避免了阻塞和等待。消息队列还帮助解耦系统模块，提高了系统的<strong>可伸缩性</strong>和<strong>容错性</strong>，即使在高并发和流量高峰时，系统也能保持稳定运行。它在现代系统中处理大规模并发请求和应对突发流量时非常有用。</p>"
+}, {
+  "id" : 385,
+  "uri" : "https://zha-ge.cn/java/9kchaosv/",
+  "title" : "消息队列应采用推送还是拉取方式？两种模式的优劣对比是什么？",
+  "categoryId" : 12,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>推模式 (Push)</strong>：在推模式下，消息队列会主动将消息推送给消费者。这种方式适合需要<strong>快速响应</strong>和<strong>实时性</strong>要求较高的场景，但如果消息量大，可能导致消费者无法处理过多的消息，从而出现<strong>过载</strong>，尤其是在高并发时。</p>\n<p><strong>拉模式 (Pull)</strong>：在拉模式下，消费者主动从队列中<strong>拉取</strong>消息。这适用于负载较轻或者处理能力有限的场景，消费者可以根据自己的处理能力来调整拉取消息的速率，避免过载。不过，这种方式可能会导致<strong>消息延迟</strong>，实时性较差。</p>\n<h3 id=\"推模式优缺点-\uD83D\uDE80\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#推模式优缺点-\uD83D\uDE80\"><span>推模式优缺点 \uD83D\uDE80</span></a></h3>\n<ul>\n <li><strong>优点</strong>：消息会迅速推送给消费者，适合需要快速反应的场景。</li>\n <li><strong>缺点</strong>：如果消费者处理不过来，可能会导致消息积压，严重时甚至<strong>系统崩溃</strong>。</li>\n</ul>\n<h3 id=\"拉模式优缺点-⏳\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#拉模式优缺点-⏳\"><span>拉模式优缺点 ⏳</span></a></h3>\n<ul>\n <li><strong>优点</strong>：消费者可以根据自己的能力调节拉取速率，适合负载较轻且能接受一些延迟的场景。</li>\n <li><strong>缺点</strong>：由于消费者主动拉取消息，可能会导致消息延迟，实时性不如推模式。</li>\n</ul>"
+}, {
+  "id" : 386,
+  "uri" : "https://zha-ge.cn/java/ts3j0425/",
+  "title" : "如何确保消息传输的可靠性不丢失？",
+  "categoryId" : 12,
+  "sortOrder" : 5,
+  "answer" : "<p>要确保消息不丢失，关键在于三个环节：<strong>生产消息</strong>、<strong>存储消息</strong>和<strong>消费消息</strong>的有效配合。\uD83D\uDD11</p>\n<ol>\n <li><strong>生产者的消息确认</strong>：生产者需要通过确认机制，确保消息成功到达消息队列。</li>\n <li><strong>存储消息</strong>：消息队列接收到消息后，会把它存储到磁盘里，这样即使内存出现问题，消息也能恢复。</li>\n <li><strong>消费者的消息确认</strong>：消费者处理完消息后，必须发送确认信息，表示消息已处理完成。如果没确认，消息会被重新发送给消费者。</li>\n</ol>\n<p>除此之外，如果消费者长时间无法处理消息，消息队列会自动进行重试，或者将这些消息放入一个<strong>死信队列</strong>（DLQ），确保消息不会丢失。\uD83D\uDD04</p>"
+}, {
+  "id" : 387,
+  "uri" : "https://zha-ge.cn/java/iwkvtl30/",
+  "title" : "面对重复消息时有哪些高效的处理策略？",
+  "categoryId" : 12,
+  "sortOrder" : 6,
+  "answer" : "<p>重复消费的问题可以通过确保消费者的处理逻辑具备<strong>幂等性</strong>来避免。简单来说，<strong>幂等性</strong>的意思是，不管同一条消息被消费多少次，处理的结果始终是一样的，不会引起任何<strong>副作用</strong>。这样，即使消息被重复处理，也不会对系统造成负面影响。</p>"
+}, {
+  "id" : 388,
+  "uri" : "https://zha-ge.cn/java/64kg0ct0/",
+  "title" : "如何保障消息的顺序一致性？",
+  "categoryId" : 12,
+  "sortOrder" : 7,
+  "answer" : "<p>保证消息的顺序性通常有两种方法：</p>\n<ol>\n <li><strong>单生产者单消费者</strong>：这种方式保证了消息的顺序性，适用于简单的场景，但由于只有一个生产者和消费者，<strong>性能较差</strong>，处理速度慢。</li>\n <li><strong>分区和顺序键</strong>：这种方法通过将消息按照<strong>顺序键</strong>进行分区，确保同类消息被发送到相同的队列中。这样既能保证消息的顺序性，又能提高系统的<strong>并发处理能力</strong>，适用于更复杂和高性能的场景。</li>\n <li><strong>不同消息队列的顺序性保证</strong>： \n  <ul>\n   <li><strong>Kafka</strong>：Kafka 中的消息在<strong>分区内部是有序的</strong>。生产者可以通过消息键（如商品ID）将消息发送到同一分区，确保消息的顺序。</li>\n   <li><strong>RocketMQ</strong>：RocketMQ 中的消息在<strong>队列内部是有序的</strong>。生产者可以通过消息键（如订单号）将消息发送到同一队列，确保消息的顺序。</li>\n   <li><strong>RabbitMQ</strong>：RabbitMQ 中的消息在<strong>队列内部是无序的</strong>。但可以通过设置消息的<strong>优先级</strong>，确保高优先级的消息先被消费。</li>\n   <li><strong>ActiveMQ</strong>：ActiveMQ 中的消息在<strong>队列内部是无序的</strong>。但可以通过设置消息的<strong>优先级</strong>，确保高优先级的消息先被消费。</li>\n  </ul></li>\n</ol>"
+}, {
+  "id" : 389,
+  "uri" : "https://zha-ge.cn/java/yxc2buow/",
+  "title" : "消息堆积问题有哪些解决之道？",
+  "categoryId" : 12,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>消息堆积</strong>是指消息生产的速度远远超过消费者处理的速度，导致消息在队列中不断积压。要解决这个问题，首先需要找到消费慢的根本原因。</p>\n<p>如果是<strong>代码问题</strong>（比如程序中的bug），需要修复这些问题。如果是因为<strong>消费能力不足</strong>，可以通过以下方法解决：</p>\n<ul>\n <li>增加<strong>消费线程</strong>，让多个线程同时处理消息。</li>\n <li>增加<strong>消费者实例</strong>，让更多的消费者来分担任务。</li>\n <li><strong>优化消费逻辑</strong>，提高每个消费者处理消息的效率。</li>\n</ul>\n<p>通过这些方式，可以有效减少消息堆积，保证系统的正常运行。</p>"
+}, {
+  "id" : 390,
+  "uri" : "https://zha-ge.cn/java/j5688ay5/",
+  "title" : "RocketMQ事务消息存在哪些局限？其他消息系统有何更出色的方案？",
+  "categoryId" : 12,
+  "sortOrder" : 9,
+  "answer" : "<p>RocketMQ 的<strong>事务消息</strong>有一些缺点，最明显的是改造成本比较高，而且它<strong>仅支持单个事务消息</strong>，如果需要处理多个事务消息就比较麻烦。另外，如果消息队列集群发生故障，事务会被中断，影响系统的正常运行。</p>\n<p>相比之下，<strong>QMQ</strong>提供了一个更灵活和可靠的方案。它不仅支持处理多个事务消息，而且不会受到消息队列集群故障的影响，能更好地保障系统的稳定性。</p>"
+}, {
+  "id" : 391,
+  "uri" : "https://zha-ge.cn/java/pt1uqjvi/",
+  "title" : "Kafka事务消息的实现机制是怎样的？",
+  "categoryId" : 12,
+  "sortOrder" : 10,
+  "answer" : "<p>Kafka 的<strong>事务消息</strong>并不是传统意义上的<strong>分布式事务</strong>，而是通过实现“<strong>准确一次</strong>”的传递语义，来确保消息的准确传递，也就是每条消息只会被处理一次。</p>\n<p>Kafka 使用<strong>事务协调器</strong>和<strong>幂等生产者</strong>来管理事务的启动、提交和回滚。这样，只有<strong>已提交的事务消息</strong>才能被消费者处理，从而确保了数据的一致性，避免了重复消费或丢失消息的问题。</p>"
+}, {
+  "id" : 392,
+  "uri" : "https://zha-ge.cn/java/5luwjz4s/",
+  "title" : "Kafka性能为何能如此强劲？其秘密何在？",
+  "categoryId" : 12,
+  "sortOrder" : 11,
+  "answer" : "<p>Kafka 高性能的核心在于它<strong>高效的设计和优化</strong>。它通过以下几个关键技术实现了卓越的性能：</p>\n<ol>\n <li><strong>顺序写入</strong>：数据按顺序写入，避免了不必要的操作，提高了效率。</li>\n <li><strong>页缓存机制</strong>：通过缓存机制减少磁盘操作，加速数据访问。</li>\n <li><strong>批量处理</strong>：一次处理多个数据，减少了操作次数，提高了吞吐量。</li>\n <li><strong>零拷贝技术</strong>：避免了数据复制，直接在内存中传输，节省时间。</li>\n <li><strong>高效的索引和分段策略</strong>：合理的存储和索引方式使得数据的查找和处理更加高效。</li>\n</ol>\n<p>这些设计和技术使得 Kafka 在<strong>处理高吞吐量</strong>和<strong>低延迟</strong>数据时，表现得非常高效。</p>"
+}, {
+  "id" : 393,
+  "uri" : "https://zha-ge.cn/java/n0tygewu/",
+  "title" : "Kafka如何确保消费者仅消费消息一次？",
+  "categoryId" : 12,
+  "sortOrder" : 12,
+  "answer" : "<p>Kafka 通过以下几种机制来确保每条消息只被消费一次：</p>\n<ol>\n <li><p><strong>消费者组机制</strong>：Kafka 中的消费者需要加入一个<strong>消费者组</strong>，每个组内的消费者共享消费任务，确保每条消息只被<strong>一个消费者</strong>消费，不会重复处理。</p></li>\n <li><p><strong>手动提交位移</strong>：消费者可以手动提交<strong>消费进度</strong>（位移），这样可以精确控制每条消息是否已经被处理，避免重复消费。</p></li>\n <li><p><strong>客户端幂等性机制</strong>：消费者端可以通过实现<strong>幂等性</strong>逻辑（比如使用唯一标识符）来判断消息是否已经被处理过，防止重复处理。</p></li>\n <li><p><strong>准确一次消费语义</strong>：Kafka 提供的<strong>准确一次</strong>消费语义，通过事务机制来保证<strong>消息消费</strong>和<strong>进度提交</strong>的原子性，确保每条消息只会被消费一次。</p></li>\n</ol>"
+}, {
+  "id" : 394,
+  "uri" : "https://zha-ge.cn/java/0cdq90lp/",
+  "title" : "Kafka如何做到消息不丢失？它的保障手段有哪些？",
+  "categoryId" : 12,
+  "sortOrder" : 13,
+  "answer" : "<p>Kafka 保证消息不丢失依赖于生产者、<strong>消息队列</strong>（Broker）和消费者之间的协作：</p>\n<ol>\n <li><strong>生产者</strong>通过<strong>确认机制</strong>来确保消息可靠地发送，避免消息丢失。</li>\n <li><strong>消息队列</strong>（Broker）通过<strong>持久化存储</strong>和<strong>副本机制</strong>来保证消息的可靠性，即使有部分服务器出现问题，消息也能保持安全。</li>\n <li><strong>消费者</strong>通过<strong>手动提交偏移量</strong>来控制消息的消费进度，避免消息未处理就丢失。</li>\n</ol>\n<p>虽然不能做到100%不丢失，但通过合理的配置，可以<strong>显著降低丢失的风险</strong>。⚡</p>"
+}, {
+  "id" : 395,
+  "uri" : "https://zha-ge.cn/java/bnfbj94d/",
+  "title" : "Kafka消息发送的核心流程是怎样的？简要剖析一下",
+  "categoryId" : 12,
+  "sortOrder" : 14,
+  "answer" : "<p>Kafka 消息发送的流程通常分为<strong>同步发送</strong>和<strong>异步发送</strong>：</p>\n<ul>\n <li><strong>同步发送</strong>：生产者会等待消息发送的结果，收到成功或失败的反馈后才继续进行其他操作。</li>\n <li><strong>异步发送</strong>：通过<strong>回调函数</strong>来判断消息是否成功，这样可以提高效率，因为不需要等待每次发送的结果。</li>\n</ul>\n<p>消息的发送过程涉及多个步骤：从消息的<strong>生成</strong>、<strong>序列化</strong>、<strong>分区选择</strong>，到消息的<strong>批量积累</strong>和发送，每个环节都非常关键。消息会通过<strong>Leader</strong> Broker 写入，并同步到<strong>Follower</strong>副本，以保证系统的<strong>高可用性</strong>和数据的<strong>持久性</strong>。\uD83D\uDE80</p>"
+}, {
+  "id" : 396,
+  "uri" : "https://zha-ge.cn/java/j2o54fbs/",
+  "title" : "RocketMQ如何保障消息顺序不乱？技术细节是什么？",
+  "categoryId" : 12,
+  "sortOrder" : 15,
+  "answer" : "<p>RocketMQ 通过将<strong>顺序消息</strong>发送到同一队列并使用<strong>加锁机制</strong>来确保消息按顺序消费。</p>\n<ul>\n <li>在<strong>生产者端</strong>，消息通过**<code>MessageQueueSelector</code>**确保每条消息都被发送到相同的队列，这样可以保证顺序性。</li>\n <li>在<strong>消费者端</strong>，通过使用**<code>MessageListenerOrderly</code>**和多层加锁机制，确保每条消息都能按照顺序进行处理，避免乱序消费。</li>\n</ul>\n<p>这种设计保证了消息在整个流程中保持<strong>顺序处理</strong>。</p>"
+}, {
+  "id" : 397,
+  "uri" : "https://zha-ge.cn/java/st558enw/",
+  "title" : "RocketMQ面对消息堆积的应对之道有哪些？",
+  "categoryId" : 12,
+  "sortOrder" : 16,
+  "answer" : "<p>当 RocketMQ 的<strong>消息堆积</strong>时，通常是因为<strong>消费端处理能力不足</strong>，导致消息没有及时处理。为了解决这个问题，可以尝试以下几种方法：</p>\n<ol>\n <li><strong>增加消费者数量</strong>：通过增加消费端实例，让多个消费者<strong>并行处理更多消息</strong>，减轻单个消费者的压力。</li>\n <li><strong>提升消费速度</strong>：优化消费者的性能，比如使用<strong>线程池</strong>或<strong>异步消费</strong>来加速消息处理。</li>\n <li><strong>控制生产者生产速度</strong>：如果可以控制生产端，可以适当降低<strong>消息的发送速度</strong>，避免过快积累。</li>\n <li><strong>清理过期消息</strong>：及时丢弃不再需要的或过期的消息，避免它们造成无意义的堆积。</li>\n <li><strong>调整配置参数</strong>：通过优化 RocketMQ 的<strong>配置参数</strong>来提升系统性能，使其能更高效地处理消息。</li>\n <li><strong>增加 Topic 的队列数</strong>：通过增加队列的数量来提高系统的<strong>并发处理能力</strong>，避免单个队列的消息积压。</li>\n</ol>"
+}, {
+  "id" : 398,
+  "uri" : "https://zha-ge.cn/java/kr0fm82v/",
+  "title" : "RabbitMQ的架构体系全貌是怎样的？有何独特之处？",
+  "categoryId" : 12,
+  "sortOrder" : 17,
+  "answer" : "<p>RabbitMQ 是一款开源的消息中间件，基于 <strong>AMQP</strong> 协议。它的核心架构包括以下几个关键组件：</p>\n<ol>\n <li><strong>生产者</strong>：负责将消息发送到 RabbitMQ 的<strong>交换器</strong>，但不会直接与队列交互。</li>\n <li><strong>虚拟主机 (VHost)</strong>：每个虚拟主机管理自己的交换器和队列，提供了一个<strong>逻辑上的资源隔离</strong>，不同的虚拟主机之间互不干扰。</li>\n <li><strong>交换器</strong>：接收生产者发送的消息，然后根据<strong>路由规则</strong>把消息分发到一个或多个队列。</li>\n <li><strong>队列</strong>：消息存储在队列中，等待消费者来取出并处理。队列保证了消息的<strong>持久化</strong>和<strong>消费顺序</strong>。</li>\n <li><strong>绑定</strong>：绑定定义了交换器和队列之间的<strong>路由规则</strong>，决定消息如何从交换器流向队列。</li>\n <li><strong>消费者</strong>：消费者负责从队列中取出消息并处理它们。</li>\n</ol>"
+}, {
+  "id" : 399,
+  "uri" : "https://zha-ge.cn/java/wklz950y/",
+  "title" : "RabbitMQ延迟消息的实现原理是什么？这技术含量不低！",
+  "categoryId" : 12,
+  "sortOrder" : 18,
+  "answer" : "<p>RabbitMQ 支持通过两种方式实现<strong>延迟消息</strong>：</p>\n<ol>\n <li><p><strong>死信队列</strong>（DLQ）：通过设置消息的<strong>过期时间</strong>（TTL），当消息到达过期时间后，它会被转到一个死信队列中，然后可以根据需要再次处理。</p></li>\n <li><p><strong>延迟消息插件</strong>：这种方法提供了更灵活和精准的延迟消息功能，可以更加<strong>精确地控制消息的延迟时间</strong>，适用于需要更高控制的场景。</p></li>\n</ol>\n<p>这两种方式都能帮助在消息发送后，延迟消息的处理，直到满足特定条件。</p>"
+}, {
+  "id" : 400,
+  "uri" : "https://zha-ge.cn/java/c3lzfk3u/",
+  "title" : "如何保证消息精准送达RabbitMQ？可靠性如何锁定？",
+  "categoryId" : 12,
+  "sortOrder" : 19
+}, {
+  "id" : 401,
+  "uri" : "https://zha-ge.cn/java/7bpx9j4n/",
+  "title" : "消息队列积压数百万条数小时未消，怎么快速化解危机？",
+  "categoryId" : 12,
+  "sortOrder" : 20,
+  "answer" : "<p>在使用消息队列（比如 Kafka、RabbitMQ、RocketMQ）时，有时会遇到<strong>消息延迟</strong>或<strong>堆积</strong>的问题。比如，生产者（发送消息的部分）不停地发送消息，而消费者（接收和处理消息的部分）处理速度跟不上，导致消息在队列中积压，造成延迟，最终可能引发以下问题：</p>\n<ol>\n <li><strong>延迟响应</strong>：消息处理不及时，影响用户体验。</li>\n <li><strong>资源压力</strong>：消息堆积占用队列存储资源，可能导致服务性能下降。</li>\n <li><strong>数据丢失风险</strong>：积压严重时可能出现消息丢失或被丢弃的情况。</li>\n</ol>\n<p>为了解决<strong>几百万消息持续积压</strong>的问题，我们需要从<strong>短期应急措施</strong>和<strong>长期架构优化</strong>两个层面入手：</p>\n<ul>\n <li><p><strong>短期应急</strong>：可以通过<strong>增加更多的消费者</strong>来加速消息处理，或者先<strong>跳过一些优先级低的消息</strong>，或者<strong>优化消费逻辑</strong>让消费者处理更快，来暂时缓解堆积问题。</p></li>\n <li><p><strong>长期优化</strong>：可以通过<strong>分散负载</strong>，比如使用<strong>削峰填谷</strong>的策略，增加队列的<strong>分区</strong>，或者使用<strong>延迟队列</strong>来控制消息处理速度，从而增强系统在高负载时的处理能力，避免堆积和延迟问题。</p></li>\n</ul>"
+}, {
+  "id" : 402,
+  "uri" : "https://zha-ge.cn/java/pwadwafj/",
+  "title" : "Kafka、ActiveMQ、RabbitMQ与RocketMQ如何保障高可用与消息可靠传输？丢消息时怎么办？",
+  "categoryId" : 12,
+  "sortOrder" : 21,
+  "answer" : "<p>消息队列是分布式系统中非常重要的一部分，主要功能是确保消息能够<strong>安全、准确</strong>地从一个地方传递到另一个地方。即使系统出现问题，消息队列也能确保系统继续正常工作，不会因为某个部分出故障而影响整体运作。不同的消息中间件采用不同的技术来确保消息的<strong>可靠传递</strong>和<strong>高可用性</strong>。</p>\n<ul>\n <li><p><strong>Kafka</strong>：Kafka 通过将数据分成多个小块并在多个地方保存副本来保证消息不丢失。即使某部分出现问题，其他部分依然能提供服务。Kafka 还提供了几种方式来确保消息的<strong>持久性</strong>，避免丢失。</p></li>\n <li><p><strong>ActiveMQ</strong>：ActiveMQ 通过将消息存储在<strong>硬盘</strong>上来避免丢失，同时采用<strong>集群和主从模式</strong>，确保即使部分系统出现故障，其他部分也能继续工作。</p></li>\n <li><p><strong>RabbitMQ</strong>：RabbitMQ 通过将消息存储在<strong>磁盘</strong>、使用<strong>镜像队列</strong>和<strong>消息确认机制</strong>来确保消息可靠传输。同时，RabbitMQ 还通过<strong>集群和高可用策略</strong>保持系统的持续可用性。</p></li>\n <li><p><strong>RocketMQ</strong>：RocketMQ 通过将消息存储在<strong>磁盘</strong>上，使用<strong>消息确认</strong>和<strong>主从同步</strong>等方法来确保消息不丢失。它还通过<strong>集群和副本机制</strong>来保证系统的高可用性。</p></li>\n</ul>"
+}, {
+  "id" : 403,
+  "uri" : "https://zha-ge.cn/java/0w2b1wdd/",
+  "title" : "Kafka、ActiveMQ、RabbitMQ与RocketMQ的异同点在哪里？",
+  "categoryId" : 12,
+  "sortOrder" : 22,
+  "answer" : "<p><strong>Kafka</strong> 和 <strong>RocketMQ</strong> 支持<strong>高吞吐量</strong>，适合处理大规模数据，而 <strong>ActiveMQ</strong> 和 <strong>RabbitMQ</strong> 的吞吐量相对较低。<strong>RabbitMQ</strong> 在<strong>延迟</strong>方面表现最好，适合对实时性要求较高的场景。</p>\n<p>在选择消息队列时，通常会考虑<strong>吞吐量</strong>、<strong>延迟</strong>和<strong>可靠性</strong>等因素。<strong>RabbitMQ</strong> 在<strong>高可用性</strong>、<strong>持久化</strong>和<strong>集群配置</strong>方面表现优秀，而 <strong>Kafka</strong> 更适合处理<strong>日志型数据</strong>和需要<strong>高吞吐量</strong>的应用场景。</p>"
+}, {
+  "id" : 404,
+  "uri" : "https://zha-ge.cn/java/b4de57qy/",
+  "title" : "RocketMQ架构体系的深度拆解",
+  "categoryId" : 12,
+  "sortOrder" : 23,
+  "answer" : "<p>RocketMQ 就像一个<strong>传递信息的系统</strong>，它的架构包含几个重要的部分：</p>\n<ol>\n <li><strong>生产者</strong>：就是负责<strong>发送消息</strong>的人。</li>\n <li><strong>消息代理（Broker）</strong>：接收到生产者发来的消息，然后<strong>存储</strong>这些消息，等着消费者来取。</li>\n <li><strong>消费者</strong>：就是<strong>拿消息</strong>并处理它的人。</li>\n <li><strong>名称服务（NameServer）</strong>：它帮助生产者和消费者找到该去哪儿取消息。</li>\n <li><strong>消息主题（Topic）</strong>：可以理解为<strong>分类</strong>，生产者把消息发送到某个特定的分类里，消费者从这个分类里取消息。</li>\n <li><strong>消息队列</strong>：每个分类下面的<strong>具体队列</strong>，生产者把消息发送到这些队列里，消费者再去取。</li>\n</ol>\n<p>简单来说，生产者把消息发送到队列，消费者从队列里取消息，名称服务帮助大家找到该去哪儿。</p>"
+}, {
+  "id" : 405,
+  "uri" : "https://zha-ge.cn/java/n7wr9e48/",
+  "title" : "RocketMQ延时消息的实现路径是怎样的？",
+  "categoryId" : 12,
+  "sortOrder" : 24,
+  "answer" : "<p>RocketMQ 通过设置<strong>延迟级别</strong>来实现<strong>延时消息</strong>，也就是说，消息会在设定的时间后才会被投递给消费者。到了 5.0 版本，RocketMQ 引入了<strong>基于时间轮算法的定时消息</strong>，大大提高了定时消息的<strong>处理效率</strong>和<strong>精度</strong>，避免了传统定时器的一些性能瓶颈问题。</p>"
+} ]

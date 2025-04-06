@@ -1,0 +1,239 @@
+[ {
+  "id" : 97,
+  "uri" : "https://zha-ge.cn/java/swfqwhgi/",
+  "title" : "Spring控制反转的定义是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>Spring IOC</strong> 是 Spring 框架的核心，它的作用是让 Spring 容器来负责创建和管理程序中的对象， 而不是由程序员自己手动创建和管理这些对象。具体来说，<strong>依赖注入</strong> 是一种让一个对象的需要（比如它需要其他对象来帮助它完成任务） 由外部提供，而不是对象自己去找。这种方式让代码变得更加 <strong>灵活</strong>，因为我们不需要改变对象的代码就能替换它们，也更容易维护和扩展。</p>"
+}, {
+  "id" : 98,
+  "uri" : "https://zha-ge.cn/java/sab68r2f/",
+  "title" : "Spring控制反转机制的优势有哪些？",
+  "categoryId" : 4,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>Spring IOC</strong> 的好处是把 <strong>对象的创建</strong> 和它们之间的 <strong>关系</strong> 交给 <strong>容器管理</strong>，这样就不需要在代码中手动写死每个对象的依赖， 避免了 <strong>硬编码依赖</strong>。这样做让代码变得 <strong>更灵活</strong>，更容易进行 <strong>扩展</strong>。同时，它还能让所有的 <strong>对象</strong> 都能统一管理和处理， 提升了开发的 <strong>效率</strong>，并且让程序的各个部分之间 <strong>解耦</strong>，避免了过多的直接依赖。</p>"
+}, {
+  "id" : 99,
+  "uri" : "https://zha-ge.cn/java/xo7cx08x/",
+  "title" : "Spring中的依赖注入机制指的是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 3,
+  "answer" : "<p>在Spring框架中，<strong>DI</strong>（依赖注入）是一种设计模式，它的作用是将<strong>对象之间的依赖关系</strong>从代码中解耦出来。 通过<strong>DI</strong>，Spring容器自动为你<strong>注入</strong>依赖的对象，而不需要你手动创建和管理这些对象。 比如，你可以通过<strong>构造函数</strong>或<strong>字段注入</strong>的方式来告诉Spring需要哪些对象，Spring会负责为你提供。 这么做的好处是，代码更简洁、灵活，并且<strong>易于测试</strong>。因此，<strong>DI</strong>提升了<strong>模块化</strong>和<strong>可维护性</strong>，让你专注于业务逻辑， 而不用担心对象的创建和管理。</p>"
+}, {
+  "id" : 100,
+  "uri" : "https://zha-ge.cn/java/zm3qiwn7/",
+  "title" : "Spring Bean的本质是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>Spring Bean</strong> 是 Spring 框架中的一种对象，主要由 <strong>Spring 容器</strong> 来创建、管理和控制。具体来说：</p>\n<ol>\n <li><strong>创建</strong>：Spring 容器在程序启动时，根据配置创建这些对象。</li>\n <li><strong>初始化</strong>：创建后，容器会对这些对象进行初始化，进行一些准备工作。</li>\n <li><strong>依赖注入</strong>：如果这个对象需要其他对象来完成工作，容器会自动把这些依赖的对象提供给它。</li>\n <li><strong>使用</strong>：对象可以在应用中被正常使用。</li>\n <li><strong>销毁</strong>：当不再需要这个对象时，容器会负责销毁它，释放资源。</li>\n</ol>\n<p>通过这种管理方式，容器帮助开发者减少了手动管理对象和它们之间关系的工作，使得代码更加 <strong>灵活</strong> 和 <strong>易于维护</strong>。</p>"
+}, {
+  "id" : 101,
+  "uri" : "https://zha-ge.cn/java/jg4sqw36/",
+  "title" : "Spring中的Bean工厂功能是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>BeanFactory</strong> 是 Spring 框架中的一个组件，负责从配置文件或者注解中读取对象的 <strong>信息</strong>，然后根据这些信息来 <strong>创建</strong> 对象，并管理它们的生命周期。它的工作原理可以理解为：</p>\n<ol>\n <li><strong>读取配置</strong>：首先，<strong>BeanFactory</strong> 会读取程序中的配置，了解每个对象应该如何创建（例如，它需要哪些其他对象、如何初始化等）。</li>\n <li><strong>创建对象</strong>：当需要一个对象时，<strong>BeanFactory</strong> 根据配置的规则来 <strong>创建</strong> 这个对象，而不是程序自己去创建。</li>\n <li><strong>管理对象生命周期</strong>：<strong>BeanFactory</strong> 还会管理对象的 <strong>生命周期</strong>，比如什么时候创建对象，什么时候销毁它。</li>\n</ol>\n<p>简单来说，<strong>BeanFactory</strong> 就是用来 <strong>管理对象</strong> 的工具，它帮助我们减少了手动创建和管理对象的工作。</p>"
+}, {
+  "id" : 102,
+  "uri" : "https://zha-ge.cn/java/h9dv90ei/",
+  "title" : "Spring中的应用上下文指的是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 6,
+  "answer" : "<p><strong>ApplicationContext</strong> 是 Spring 容器的核心，它是 <strong>BeanFactory</strong> 的 <strong>增强版</strong>，功能更强大。简单来说，<strong>ApplicationContext</strong> 不仅能管理和创建对象，还能做更多事情：</p>\n<ol>\n <li>它能管理 <strong>对象</strong>（也叫 <strong>Bean</strong>），就像 <strong>BeanFactory</strong> 一样。</li>\n <li>但是它还额外提供了 <strong>国际化</strong>（比如支持多种语言的显示）、<strong>资源获取</strong>（比如从文件中获取内容）和 <strong>环境信息</strong>（比如当前的系统环境）等功能。</li>\n <li>它支持 <strong>事件发布</strong>，可以在程序中发布和监听事件。</li>\n <li>它还支持 <strong>自动注入</strong>，自动给对象提供所需要的其他对象。</li>\n</ol>\n<p>所以，<strong>ApplicationContext</strong> 不仅能帮助我们管理对象，还能应对更复杂的需求，比 <strong>BeanFactory</strong> 功能更全，能更好地满足 <strong>大规模应用</strong> 的需求。</p>"
+}, {
+  "id" : 103,
+  "uri" : "https://zha-ge.cn/java/4eazb9mr/",
+  "title" : "Spring Bean的作用域类型有多少种？",
+  "categoryId" : 4,
+  "sortOrder" : 7,
+  "answer" : "<p>Spring 框架提供了六种 <strong>Bean 作用域</strong>，用来控制对象的 <strong>生命周期</strong> 和 <strong>使用范围</strong>：</p>\n<ol>\n <li><strong>singleton</strong>：整个应用中只创建一个对象，每次使用都返回同一个实例。</li>\n <li><strong>prototype</strong>：每次请求都会创建一个新的对象。</li>\n <li><strong>request</strong>：在 <strong>Web 环境</strong> 下，每个 <strong>请求</strong> 创建一个新对象，请求结束时销毁。</li>\n <li><strong>session</strong>：在 <strong>Web 环境</strong> 下，和 <strong>用户会话</strong>绑定，直到会话结束时销毁。</li>\n <li><strong>application</strong>：整个应用共享一个对象，应用关闭时销毁。</li>\n <li><strong>websocket</strong>：在 <strong>Web 环境</strong> 下，WebSocket 连接创建一个对象，连接结束时销毁。</li>\n</ol>\n<p>这些作用域让我们可以根据需求管理对象的生命周期。</p>"
+}, {
+  "id" : 104,
+  "uri" : "https://zha-ge.cn/java/s2ptesz1/",
+  "title" : "Spring中的面向切面编程是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>AOP</strong>（面向切面编程）是一种编程方式，用来处理那些 <strong>跨多个模块</strong> 的共同功能，比如 <strong>日志记录</strong>、<strong>安全控制</strong> 和 <strong>事务管理</strong> 等。AOP 的主要目的是 <strong>分离</strong> 这些功能与业务逻辑，让代码更加 <strong>简洁</strong>、<strong>清晰</strong> 和 <strong>易于维护</strong>。</p>\n<p>核心思想是，把像 <strong>日志</strong>、<strong>安全</strong> 等功能从业务代码中 <strong>分离</strong> 出来，然后在需要的时候，自动把这些功能加到业务代码中。这种方式叫做将 <strong>横切关注点</strong> 处理成独立的部分，并在合适的时机自动加入到程序中。</p>"
+}, {
+  "id" : 105,
+  "uri" : "https://zha-ge.cn/java/3fmp3eg5/",
+  "title" : "Spring AOP默认采用的动态代理技术是什么，二者有何差异？",
+  "categoryId" : 4,
+  "sortOrder" : 9,
+  "answer" : "<p>在 <strong>Spring AOP</strong> 中，默认使用两种代理方式来增强对象的功能：</p>\n<ol>\n <li><p><strong>JDK 动态代理</strong>：这种方式适用于目标类实现了 <strong>接口</strong> 的情况。代理对象是通过接口来创建的，代理的工作是基于接口的。</p></li>\n <li><p><strong>CGLIB 动态代理</strong>：在 <strong>Spring Boot 2.x</strong> 版本中，默认使用这种方式。它是通过 <strong>继承</strong> 目标类来创建一个子类进行代理，适合那些 <strong>没有接口</strong> 的类。</p></li>\n</ol>\n<p>简单来说，<strong>JDK 动态代理</strong> 依赖接口，而 <strong>CGLIB 动态代理</strong> 则通过类的继承来创建代理。</p>"
+}, {
+  "id" : 106,
+  "uri" : "https://zha-ge.cn/java/z0y5wu1w/",
+  "title" : "Spring事务传播行为的实际作用是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>Spring 事务传播行为</strong> 用来管理多个事务方法之间的关系，特别是当一个方法调用另一个方法时，事务应该如何处理。它帮助我们决定：</p>\n<ul>\n <li>是否需要 <strong>开启一个新事务</strong>。</li>\n <li>是否可以 <strong>使用现有事务</strong>。</li>\n <li>是否要 <strong>暂停当前事务</strong> 等。</li>\n</ul>\n<p>通过设置合适的传播行为，我们能确保多个操作之间的事务能保持 <strong>一致性</strong> 和 <strong>独立性</strong>，让业务执行得更稳定、更可靠。</p>"
+}, {
+  "id" : 107,
+  "uri" : "https://zha-ge.cn/java/5xtilnv0/",
+  "title" : "Spring的单例Bean是否存在并发安全性隐患？",
+  "categoryId" : 4,
+  "sortOrder" : 11,
+  "answer" : "<p>Spring 的 <strong>单例 Bean</strong> 默认是单例模式，也就是说，整个应用程序中的所有线程都会共享 <strong>同一个 Bean 实例</strong>。如果这个单例 Bean 里有 <strong>可变的状态</strong> 或者其他 <strong>不安全的资源</strong>，那么在 <strong>多个线程</strong> 同时访问的时候，就可能会引发 <strong>并发问题</strong>。</p>\n<p>简单来说，<strong>如果你的单例 Bean 没有状态</strong>，或者它使用了 <strong>线程安全</strong> 的保护，那么它在多线程环境中是安全的。但如果它 <strong>有状态</strong>，或者没有做相应的 <strong>线程安全处理</strong>，就可能会出现 <strong>并发安全问题</strong>。</p>"
+}, {
+  "id" : 108,
+  "uri" : "https://zha-ge.cn/java/kx4uiyy2/",
+  "title" : "Spring事务在哪些场景下会失去效果？",
+  "categoryId" : 4,
+  "sortOrder" : 12,
+  "answer" : "<p>Spring 事务失效的常见情况包括：</p>\n<ol>\n <li><strong>注解配置不当</strong>：比如没有正确设置 <code>@Transactional</code> 注解的某些选项（例如 <code>rollbackFor</code>）。</li>\n <li><strong>异常被捕获但没重新抛出</strong>：如果方法内部捕获了异常但没有抛出，事务不会回滚。</li>\n <li><strong>同一个类的方法调用</strong>：如果在同一个类内调用一个带 <code>@Transactional</code> 注解的方法，事务可能无法生效。</li>\n <li><strong>方法不是 <code>public</code> 或 <code>final</code></strong>：如果 <code>@Transactional</code> 应用于非 <code>public</code> 或 <code>final</code> 方法，事务可能失效。</li>\n <li><strong>传播机制配置错误</strong>：如果事务的传播设置不正确，可能导致事务处理出错。</li>\n <li><strong>多线程环境问题</strong>：在多线程的环境中，事务管理可能无法正确执行。</li>\n <li><strong>使用不支持事务的数据库</strong>：例如 MySQL 中的 <strong>MyISAM</strong> 引擎不支持事务。</li>\n</ol>\n<p>这些问题可能导致事务没有按预期工作，影响程序的稳定性。</p>"
+}, {
+  "id" : 109,
+  "uri" : "https://zha-ge.cn/java/wbyyoex6/",
+  "title" : "Spring支持的自动装配方式有哪些？",
+  "categoryId" : 4,
+  "sortOrder" : 13,
+  "answer" : "<p>Spring 的 <strong>自动装配机制</strong> 帮助我们在开发中自动管理不同对象之间的 <strong>依赖关系</strong>。通过自动装配，Spring 可以自动给类的 <strong>字段</strong>、<strong>构造函数</strong> 或 <strong>方法</strong> 提供需要的对象，从而减少了手动配置和管理这些依赖的复杂性。</p>\n<p>Spring 提供了四种主要的自动装配方式：</p>\n<ol>\n <li><strong>no</strong>：不进行自动装配。也就是不自动注入任何依赖，需要手动配置。</li>\n <li><strong>byName</strong>：根据 <strong>字段的名字</strong> 自动注入对应的对象。也就是说，如果有一个与字段名相同的对象，Spring 会自动注入。</li>\n <li><strong>byType</strong>：根据 <strong>字段的类型</strong> 来注入依赖。只要类型匹配，Spring 就会自动注入。</li>\n <li><strong>constructor</strong>：通过 <strong>构造函数</strong> 注入依赖。Spring 会根据构造函数的参数来自动注入对应的依赖对象。</li>\n</ol>\n<p>每种方式适用于不同的情况，选择合适的方式能让我们在开发时更加 <strong>简便</strong> 和 <strong>高效</strong>。</p>"
+}, {
+  "id" : 110,
+  "uri" : "https://zha-ge.cn/java/s2qow7oi/",
+  "title" : "@Primary注解在Spring中的具体功能是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 14,
+  "answer" : "<p>在 Spring 框架中，<strong><code>@Primary</code> 注解</strong> 用来 <strong>指定优先选择</strong> 哪个 Bean 当做默认的注入对象。举个例子，当一个接口有多个实现类时，如果不告诉 Spring 该选哪个实现类，Spring 就会报错，因为它无法决定该注入哪个。</p>\n<p>通过使用 <strong><code>@Primary</code></strong> 注解，我们可以告诉 Spring 哪个实现类是 <strong>首选</strong>，这样在多个可选的对象中，Spring 就会自动选择标记为首选的那个对象，避免了选择冲突。</p>"
+}, {
+  "id" : 111,
+  "uri" : "https://zha-ge.cn/java/bz28k6iz/",
+  "title" : "@Value注解在Spring中的用途是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 15,
+  "answer" : "<p><strong><code>@Value</code> 注解</strong> 在 Spring 中主要用来 <strong>注入外部配置</strong> 的值，比如从 <strong>属性文件</strong>、<strong>环境变量</strong> 和 <strong>系统属性</strong> 中获取的值。通过这个注解，Spring 可以把这些外部配置的值自动注入到我们管理的对象中，这样就能让配置的管理更加 <strong>灵活</strong> 和 <strong>易于维护</strong>。</p>\n<p>简单来说，<strong><code>@Value</code> 注解</strong> 就是帮助我们把外部的配置信息自动带入到代码中，避免了在代码里直接写死这些配置（<strong>硬编码</strong>）。这样一来，修改配置就变得更方便。⚡</p>"
+}, {
+  "id" : 112,
+  "uri" : "https://zha-ge.cn/java/ryuitpln/",
+  "title" : "@Profile注解在Spring中的作用是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>@Profile 注解</strong> 是 Spring 用来根据不同 <strong>环境</strong> 来选择不同配置的工具。通过这个注解，我们可以为不同的环境（比如 <strong>开发</strong>、<strong>测试</strong>、<strong>生产</strong> 环境）指定不同的 <strong>对象</strong>（Bean）和 <strong>配置类</strong>。</p>\n<p>这样，Spring 就能确保在每个环境下，应用的配置是正确的，避免了配置混乱的问题。\uD83C\uDF0D 例如，在开发环境中使用一个数据库配置，而在生产环境中使用另一个配置。</p>"
+}, {
+  "id" : 113,
+  "uri" : "https://zha-ge.cn/java/mtmu3wro/",
+  "title" : "Spring框架的核心优势有哪些？",
+  "categoryId" : 4,
+  "sortOrder" : 17,
+  "answer" : "<p>Spring 是一个 <strong>开源框架</strong>，就像一个功能强大的工具包，帮助开发者更简单、更高效地做开发。它的目标就是让你能够用更少的时间做更多的事情。</p>\n<h3 id=\"spring-的优势\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#spring-的优势\"><span>Spring 的优势：</span></a></h3>\n<ol>\n <li><strong>轻量级</strong>：Spring 非常小巧，不占用太多的计算机资源，启动起来非常快。这意味着你不需要担心它拖慢系统的速度。</li>\n <li><strong>灵活性</strong>：你可以根据自己的需要，选择要用哪些功能模块。你不需要把所有东西都用上。比如，如果你只需要数据库操作的功能，就只用那一部分，不必管其他不需要的功能。</li>\n <li><strong>模块化</strong>：Spring 把功能分成很多小的部分（模块），每个模块完成一项特定的任务。如果你的项目需要某个功能，就只要选用那个模块，避免了把所有功能都绑在一起，导致代码冗余。这样做让开发更加 <strong>灵活</strong> 和 <strong>高效</strong>。</li>\n <li><strong>强大的社区支持</strong>：Spring 有一个 <strong>非常活跃的开发者社区</strong>，你在使用过程中遇到任何问题，几乎都能在网上找到解决办法。这是一个很大的优势，避免了开发者在遇到难题时被卡住。</li>\n</ol>"
+}, {
+  "id" : 114,
+  "uri" : "https://zha-ge.cn/java/pd5mt5ig/",
+  "title" : "如何在Spring中启用事务支持？",
+  "categoryId" : 4,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>事务管理</strong> 在任何企业级应用中都非常重要，它确保了多个操作要么都成功，要么都失败，保持数据的一致性。Spring 提供了两种主要的事务管理方式：</p>\n<ol>\n <li><p><strong>编程式事务</strong>：开发者在代码中手动控制事务的开始、提交和回滚。这种方式比较灵活，但代码量大且难以维护。</p></li>\n <li><p><strong>声明式事务</strong>：开发者只需要在配置上进行声明，Spring 自动帮你处理事务的开始和结束。这样代码更简洁，维护起来也更容易，但在某些特殊情况下可能不如编程式事务灵活。</p></li>\n</ol>\n<p>选择适合的事务管理方式，可以 <strong>提高代码效率</strong> 和 <strong>可维护性</strong>，让应用运行更稳定。\uD83D\uDE80</p>"
+}, {
+  "id" : 115,
+  "uri" : "https://zha-ge.cn/java/9tj3zdrg/",
+  "title" : "事务管理的三大核心要素是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 19,
+  "answer" : "<p>简单来说，事务有 <strong>三个要素</strong>，分别是：</p>\n<ol>\n <li><p><strong>数据源</strong>：负责提供和处理数据的地方，比如数据库，它是事务的基础资源。</p></li>\n <li><p><strong>事务管理器</strong>：负责管理事务的执行，确保操作的 <strong>开始、提交或回滚</strong>。它确保事务按规则执行。</p></li>\n <li><p><strong>事务配置与属性</strong>：这些是定义事务 <strong>规则</strong> 的部分，决定了事务的 <strong>行为方式</strong>，比如什么时候提交，什么时候回滚等。</p></li>\n</ol>\n<p>这三个部分协同工作，确保事务能正确执行，保持数据的一致性和完整性。</p>"
+}, {
+  "id" : 116,
+  "uri" : "https://zha-ge.cn/java/d782fs8r/",
+  "title" : "Spring是如何处理循环依赖问题的？",
+  "categoryId" : 4,
+  "sortOrder" : 20,
+  "answer" : "<p>Spring 使用 <strong>三级缓存</strong> 来解决循环依赖问题，原理如下：</p>\n<p>1️⃣ <strong>三级缓存</strong> 就是分成三步保存对象：</p>\n<ul>\n <li><strong>一级缓存</strong>：存储已经完全准备好的对象（就像已经做好的菜）。</li>\n <li><strong>二级缓存</strong>：存储正在做的一半完成的对象（半成品）。</li>\n <li><strong>三级缓存</strong>：存储用来制造半成品的工具或方法（可以随时做半成品）。</li>\n</ul>\n<p>2️⃣ <strong>解决方式</strong>： 当两个对象互相依赖时，Spring 会先把它们放到 <strong>三级缓存</strong> 中，这样它们就可以先用“半成品”凑合着工作，而不会一直等待对方的完成。</p>\n<p>3️⃣ <strong>最后完成</strong>： 等到所有对象都准备好了，Spring 就会把它们放到 <strong>一级缓存</strong> 中，这样它们就可以完全使用了。</p>\n<p>简单说，<strong>Spring 用“先用半成品”的方法巧妙打破了循环依赖</strong>。</p>"
+}, {
+  "id" : 117,
+  "uri" : "https://zha-ge.cn/java/lyql1jhr/",
+  "title" : "Spring中的循环依赖问题指的是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 21,
+  "answer" : "<p>Spring 的 <strong>循环依赖问题</strong> 就是说，当两个或者多个对象（我们叫它们 <strong>Bean</strong>）互相依赖时，它们就像互相拉着对方， 结果谁也创建不出来，因为它们都在等对方的实例化。</p>"
+}, {
+  "id" : 118,
+  "uri" : "https://zha-ge.cn/java/712a8d92/",
+  "title" : "@Lazy注解能否有效解决循环依赖问题？",
+  "categoryId" : 4,
+  "sortOrder" : 22,
+  "answer" : "<p><strong>@Lazy</strong> 注解可以让 Spring 稍微等一等，延迟对象的创建。它的作用就是让 Spring <strong>不急着立刻</strong>创建对象，而是等到真正需要的时候才去创建。</p>\n<p>当你在一个对象上使用 <strong>@Lazy</strong>，Spring 会选择不立刻创建它，而是等到这部分真正被调用的时候才去创建。这样，Spring 就能够打破这两个对象相互等待的<strong>死循环</strong>，最终成功地创建这两个对象。</p>\n<h3 id=\"注意事项\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#注意事项\"><span>注意事项：</span></a></h3>\n<p>虽然 <strong>@Lazy</strong> 注解能帮你解决循环依赖问题，但实际上，<strong>还是建议尽量避免循环依赖</strong>。因为如果经常出现这种情况，代码的逻辑会变得 <strong>复杂</strong>，也不容易维护。所以，最好从设计上尽量避免这种问题。</p>"
+}, {
+  "id" : 119,
+  "uri" : "https://zha-ge.cn/java/porvg03u/",
+  "title" : "Spring中@Service、@Component、@Repository注解的区别是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 23,
+  "answer" : "<p>简单来说，<strong>这些注解本质上都是 @Component</strong>，它们的作用都是告诉 Spring：<strong>“这个类是我需要管理的对象（Bean）”</strong>。但是它们之间有些不同，主要体现在<strong>语义的明确性</strong>，也就是帮助我们清楚地知道这个类是做什么的。</p>\n<h3 id=\"区别\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#区别\"><span>区别：</span></a></h3>\n<ul>\n <li><strong><code>@Service</code></strong>：用在 <strong>服务层</strong>，通常表示处理业务逻辑的类。</li>\n <li><strong><code>@Repository</code></strong>：用在 <strong>数据访问层</strong>，通常表示与数据库交互的类。</li>\n <li><strong><code>@Component</code></strong>：是最通用的，可以用在任何层，表示这个类是 Spring 管理的。</li>\n</ul>"
+}, {
+  "id" : 120,
+  "uri" : "https://zha-ge.cn/java/ahy3wkhn/",
+  "title" : "Spring框架中应用了哪些经典设计模式？",
+  "categoryId" : 4,
+  "sortOrder" : 24,
+  "answer" : "<p><strong>Spring 框架</strong>采用了多种设计模式，帮助开发者更好地管理对象、提高系统灵活性和可扩展性。</p>\n<p><strong>Spring框架应用的设计模式包括:</strong></p>\n<p><strong>简单工厂模式：</strong> 这个模式就像是一个“工厂”，专门负责生产各种对象。你只需要告诉工厂你需要哪种类型的对象，工厂就会为你创建并交给你。</p>\n<p><strong>工厂方法模式：</strong> 跟简单工厂模式类似，但这个模式让每个工厂都有自己的方法来创建对象。每个工厂根据不同的需求创建不同的对象。</p>\n<p><strong>单例模式：</strong> 这个模式的核心是确保整个程序中，某个类只有一个实例。这个类只有一个实例，其他地方都引用这个唯一的实例。</p>\n<p><strong>原型模式：</strong> 这个模式允许我们通过复制现有的对象来创建新对象。就像是拿到一个模型，然后基于这个模型复制出新的对象，而不是从头开始创建。</p>\n<p><strong>代理模式：</strong> 代理模式就像是中介，在你和目标对象之间提供帮助。这可以用来控制访问、增加额外功能或者简化操作。</p>\n<p><strong>适配器模式</strong>： 适配器模式就像是变压器，它让两个不兼容的接口能够互相交流。比如你想用一款新的设备，但它和你现有的系统不兼容，适配器就可以将它们连接起来，让系统正常工作。</p>\n<p><strong>观察者模式：</strong> 这个模式类似于新闻发布。当某个事件发生时，所有关心这个事件的人都会被通知到。</p>\n<p><strong>模板方法模式：</strong> 模板方法模式就像是为某个流程设定了一个“模板”，你可以在这个模板的框架中插入自定义步骤。</p>"
+}, {
+  "id" : 121,
+  "uri" : "https://zha-ge.cn/java/1fxsuv8o/",
+  "title" : "Spring AOP与AspectJ AOP的差异是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 25,
+  "answer" : "<p><strong>Spring AOP</strong> 和 <strong>AspectJ</strong> 都是用来在程序中 <strong>加额外功能</strong> 的工具，它们的不同在于 <strong>怎么加</strong> 和 <strong>适合什么样的程序</strong>。</p>\n<h3 id=\"spring-aop-\uD83C\uDFAF\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#spring-aop-\uD83C\uDFAF\"><span><strong>Spring AOP</strong> \uD83C\uDFAF</span></a></h3>\n<ul>\n <li>它是 <strong>Spring 框架</strong>的一部分，利用 <strong>动态代理</strong> 来加功能。</li>\n <li>只适用于 <strong>Spring 管理的对象</strong>，简单、易用，适合 <strong>小型到中型的应用</strong>。</li>\n</ul>\n<h3 id=\"aspectj-\uD83D\uDE80\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#aspectj-\uD83D\uDE80\"><span><strong>AspectJ</strong> \uD83D\uDE80</span></a></h3>\n<ul>\n <li>它更强大，支持在 <strong>编译时</strong>、<strong>加载时</strong>和<strong>运行时</strong>加功能。</li>\n <li>适合那些 <strong>对性能要求高</strong> 或 <strong>结构复杂的应用</strong>。</li>\n</ul>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<ul>\n <li>如果你的项目比较简单，想要快速加功能，选 <strong>Spring AOP</strong>；</li>\n <li>如果项目很复杂或对性能要求高，选 <strong>AspectJ</strong>。</li>\n</ul>"
+}, {
+  "id" : 122,
+  "uri" : "https://zha-ge.cn/java/y37a17jb/",
+  "title" : "Spring事务隔离级别的深入剖析是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 26,
+  "answer" : "<p>在 <strong>Spring</strong> 里，事务的隔离级别就像是给数据访问设定的“防护罩”，一共有 <strong>五种</strong>，它们决定了不同事务之间的数据互相影响的程度：</p>\n<p><strong>五种事务隔离级别（从最松到最严）</strong></p>\n<ol>\n <li><p><strong>DEFAULT（默认）</strong><br> 用数据库自己默认的方式来处理事务，通常相当于 <strong><code>READ_COMMITTED</code></strong>（只能读已提交的数据）。</p></li>\n <li><p><strong>READ_UNCOMMITTED（读未提交）</strong><br> 允许读取<strong>别人的未提交数据</strong>，速度快，但可能出现 <strong>脏读、不可重复读、幻读</strong>，安全性最差。</p></li>\n <li><p><strong>READ_COMMITTED（读已提交）</strong><br> 只能读取<strong>别人已经提交的内容</strong>，<strong>杜绝脏读</strong>，但仍然可能出现 <strong>不可重复读和幻读</strong>。</p></li>\n <li><p><strong>REPEATABLE_READ（可重复读）</strong><br><strong>同一个事务里的多次查询结果保持一致</strong>，防止 <strong>脏读</strong> 和 <strong>不可重复读</strong>，但仍然可能有 <strong>幻读</strong>（新增数据导致的误差）。</p></li>\n <li><p><strong>SERIALIZABLE（串行化）</strong><br><strong>最严格的级别</strong>，所有事务<strong>一个接一个顺序执行</strong>，完全杜绝<strong>脏读、不可重复读、幻读</strong>，但<strong>性能最差</strong>，适用于高安全要求的场景。</p></li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span><strong>总结</strong></span></a></h3>\n<ul>\n <li>想要 <strong>快</strong>？<code>READ_UNCOMMITTED</code>（但可能有问题）</li>\n <li>想要 <strong>安全</strong>？<code>SERIALIZABLE</code>（但性能开销大）</li>\n <li><strong>常用选择</strong>：<code>READ_COMMITTED</code>（一般数据库默认）或 <code>REPEATABLE_READ</code>（MySQL 默认）</li>\n</ul>"
+}, {
+  "id" : 123,
+  "uri" : "https://zha-ge.cn/java/23ymrqp7/",
+  "title" : "Spring事务传播行为的全面解析是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 27,
+  "answer" : "<p>Spring 提供了 7 种事务传播行为来控制方法在事务中的执行方式，分别是：</p>\n<ol>\n <li><strong>PROPAGATION_REQUIRED</strong>：默认行为，方法会加入现有事务中，如果没有事务，则新建一个事务。</li>\n <li><strong>PROPAGATION_SUPPORTS</strong>：支持当前事务，如果没有事务，则以非事务方式执行。</li>\n <li><strong>PROPAGATION_MANDATORY</strong>：要求在现有事务中执行，如果没有事务，则抛出异常。</li>\n <li><strong>PROPAGATION_REQUIRES_NEW</strong>：新建事务，如果存在事务，则挂起当前事务。</li>\n <li><strong>PROPAGATION_NOT_SUPPORTED</strong>：不支持事务，始终以非事务方式执行。</li>\n <li><strong>PROPAGATION_NEVER</strong>：不支持事务，如果当前有事务，则抛出异常。</li>\n <li><strong>PROPAGATION_NESTED</strong>：在当前事务中创建嵌套事务，内层事务回滚不影响外层事务。</li>\n</ol>"
+}, {
+  "id" : 124,
+  "uri" : "https://zha-ge.cn/java/a6gmo6gv/",
+  "title" : "Spring事务传播行为的核心价值是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 28,
+  "answer" : "<p><strong>Spring 事务传播行为</strong>主要是用来<strong>规定</strong>在多个方法调用时，<strong>事务</strong>该怎么处理。比如，一个方法调用了另一个方法，这两个方法的事务是<strong>一起用同一个事务</strong>，还是<strong>各自用不同的事务</strong>，或者<strong>先暂停当前事务</strong>，等另一个方法执行完再继续。</p>\n<p>这种机制主要是为了解决<strong>事务嵌套</strong>、<strong>共享事务</strong>或<strong>挂起事务</strong>这些复杂情况，确保在处理多个事务时，数据能<strong>保持一致</strong>，系统能<strong>稳定运行</strong>。</p>"
+}, {
+  "id" : 125,
+  "uri" : "https://zha-ge.cn/java/l13zf1s1/",
+  "title" : "Spring事务注解的底层原理是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 29,
+  "answer" : "<p><strong><code>@Transactional</code></strong> 注解的本质就是 <strong>声明式事务管理</strong>，它的作用是帮我们 <strong>自动管理事务</strong>，不用自己手动写一堆 <code>beginTransaction</code>、<code>commit</code>、<code>rollback</code> 之类的代码。</p>\n<p>Spring <strong>利用 AOP（面向切面编程）</strong>，在<strong>运行时</strong> 解析 <code>@Transactional</code> 里的<strong>事务配置</strong>，然后决定<strong>什么时候开启事务、什么时候提交、什么时候回滚</strong>。</p>\n<p>\uD83D\uDCCC <strong>重点：</strong></p>\n<ul>\n <li><strong><code>@Transactional</code> 让事务管理变得简单</strong>，不需要我们手写事务处理代码。</li>\n <li><strong>事务控制交给 Spring 处理</strong>，代码更清晰，业务逻辑更专注。</li>\n <li><strong>支持灵活配置</strong>，可以指定 <strong>事务的传播行为、隔离级别、回滚策略</strong> 等。</li>\n</ul>\n<p><strong>简单来说</strong>，加上 <code>@Transactional</code>，Spring 就会在<strong>该方法执行时</strong> 自动开启一个事务，执行完成后 <strong>提交</strong>，如果中间遇到异常，就会 <strong>自动回滚</strong>，保证数据一致性！ \uD83D\uDE80</p>"
+}, {
+  "id" : 126,
+  "uri" : "https://zha-ge.cn/java/ypy3kyxc/",
+  "title" : "Spring中创建Bean的方式有哪几种？",
+  "categoryId" : 4,
+  "sortOrder" : 30,
+  "answer" : "<p>Spring <strong>创建 Bean</strong> 有几种常见方式：</p>\n<ol>\n <li><p><strong>注解方式（最常用）</strong></p>\n  <ul>\n   <li>使用 <strong><code>@Component</code>、<code>@Service</code>、<code>@Repository</code>、<code>@Controller</code></strong> 标注类，Spring <strong>自动识别并注册为 Bean</strong>。</li>\n  </ul></li>\n <li><p><strong><code>@Bean</code> 注解（手动注册）</strong></p>\n  <ul>\n   <li>在 <strong><code>@Configuration</code></strong> 类中，用 <strong><code>@Bean</code></strong> 方法手动创建 Bean，适用于 <strong>需要自定义</strong> 的情况。</li>\n  </ul></li>\n <li><p><strong>XML 配置（老办法）</strong></p>\n  <ul>\n   <li>在 XML 文件中使用 <code>&lt;bean&gt;</code> 标签配置 Bean，<strong>虽然老旧，但有些项目仍在使用</strong>。</li>\n  </ul></li>\n <li><p><strong><code>@Import</code> 注解（批量导入）</strong></p>\n  <ul>\n   <li>直接 <strong>导入其他类或配置</strong>，让它们成为 <strong>Spring 管理的 Bean</strong>，适合 <strong>模块化开发</strong>。</li>\n  </ul></li>\n</ol>\n<p><strong>总结：</strong> <code>@Component</code> 系列最常用，<code>@Bean</code> 可手动定义，XML 适用于老项目，<code>@Import</code> 用来批量注册。</p>"
+}, {
+  "id" : 127,
+  "uri" : "https://zha-ge.cn/java/bayp9tyh/",
+  "title" : "Spring中注入Bean的方式有哪几种？",
+  "categoryId" : 4,
+  "sortOrder" : 31,
+  "answer" : "<p>在 Spring 中，<strong>Bean 的注入方式</strong> 有以下几种：</p>\n<ol>\n <li><p><strong><code>@Autowired</code> 注解（最常用）</strong></p>\n  <ul>\n   <li><strong>自动注入 Bean</strong>，可以 <strong>直接用在字段、构造器或 setter 方法</strong> 上，让 Spring 帮你找合适的对象注入。</li>\n  </ul></li>\n <li><p><strong><code>@Resource</code> 和 <code>@Inject</code> 注解</strong></p>\n  <ul>\n   <li><strong><code>@Resource</code></strong> 按 <strong>名字</strong> 找 Bean，适合需要精准匹配的情况。</li>\n   <li><strong><code>@Inject</code></strong> 和 <code>@Autowired</code> 类似，按 <strong>类型</strong> 注入，是 Java 标准注解。</li>\n  </ul></li>\n <li><p><strong>XML 配置（老方法）</strong></p>\n  <ul>\n   <li>通过 XML 手动定义和注入 Bean，<strong>虽然现在不常用，但老项目里可能会见到</strong>。</li>\n  </ul></li>\n <li><p><strong>构造器自动注入</strong></p>\n  <ul>\n   <li><strong>Spring 4.3 以后</strong>，如果 <strong>一个类只有一个构造方法</strong>，Spring <strong>默认用它来注入 Bean</strong>，不用加 <code>@Autowired</code> 也行。</li>\n  </ul></li>\n <li><p><strong><code>FactoryBean</code>（特殊场景）</strong></p>\n  <ul>\n   <li>用于 <strong>生成和管理 Bean</strong>，一般用来 <strong>集成第三方框架或创建复杂 Bean</strong>。</li>\n  </ul></li>\n</ol>\n<p><strong>总结：</strong> <code>@Autowired</code> 最常用，<code>@Resource</code> 可按名字匹配，<code>@Inject</code> 是 Java 标准，XML 适用于老项目，<code>FactoryBean</code> 适合特殊需求。</p>"
+}, {
+  "id" : 128,
+  "uri" : "https://zha-ge.cn/java/f2pcsh23/",
+  "title" : "@EventListener注解在Spring中的作用是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 32,
+  "answer" : "<p><strong><code>@EventListener</code> 注解</strong> 是 Spring 框架里的一种 <strong>“自动响应”</strong> 机制。简单来说，就是当某个 <strong>事件</strong> 发生时，它会 <strong>自动触发</strong> 一个方法去执行相应的操作。比如，你发布了一个消息，<code>@EventListener</code> 就会像 <strong>“耳朵”</strong> 一样，听到这个消息并做出反应。</p>\n<p>它的最大好处是 <strong>解耦</strong>，也就是让 <strong>事件发布者</strong> 和 <strong>监听者</strong> 互不干扰，系统更灵活、更容易维护。比如，用户注册成功后，你可以发布一个事件，然后通过 <code>@EventListener</code> 自动触发 <strong>发送欢迎邮件</strong>、<strong>记录日志</strong> 或者 <strong>通知管理员</strong> 等操作。</p>\n<p>总结一下：<strong><code>@EventListener</code></strong> 就是 Spring 的 <strong>“自动触发器”</strong>，帮你轻松处理各种事件，让代码更简洁、更高效！</p>"
+}, {
+  "id" : 129,
+  "uri" : "https://zha-ge.cn/java/p6b50rcf/",
+  "title" : "@Qualifier注解在Spring中的功能是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 33,
+  "answer" : "<p>在 Spring 框架中，<strong><code>@Qualifier</code></strong> 的作用是解决 <strong>多个实现类</strong> 的依赖注入问题。 当有多个实现类需要注入时，Spring 可能会不知道用哪个，这时 <strong><code>@Qualifier</code></strong> 就可以通过 <strong>指定 Bean 的名称</strong>， 告诉 Spring 到底要用哪个具体的实现类，避免冲突。</p>\n<p><strong>简单说，<code>@Qualifier</code> 就是用来明确告诉 Spring：“我要用这个 Bean，别搞错了！”</strong></p>"
+}, {
+  "id" : 130,
+  "uri" : "https://zha-ge.cn/java/5wj7c1ri/",
+  "title" : "@Scheduled注解在Spring中的用途是什么？",
+  "categoryId" : 4,
+  "sortOrder" : 34,
+  "answer" : "<p><strong>@Scheduled</strong> 是 Spring 提供的一个工具，用来实现定时任务。你只需要在方法上加这个注解，就能让程序按照设定的时间规律去执行任务。 比如，你可以设置每隔几分钟、几小时运行一次任务，或者用 Cron 表达式来设定更复杂的运行时间。 这个工具特别适合用来处理那些需要定期重复执行的任务，而且它的用法很简单，也很灵活，对于小型的定时任务来说，是个很不错的首选方案。</p>"
+} ]

@@ -1,0 +1,246 @@
+[ {
+  "id" : 233,
+  "uri" : "https://zha-ge.cn/java/wctzmxod/",
+  "title" : "MySQL中数据排序的实现原理是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 1,
+  "answer" : "<p>在 MySQL 中，数据排序主要有两种方式：</p>\n<ol>\n <li><p><strong>索引排序</strong>：当你在查询时使用的 <code>ORDER BY</code> 字段与索引的顺序一致时，MySQL 会直接利用已有的索引来进行排序。因为索引本身已经是排好序的，这样做是最快的。</p></li>\n <li><p><strong>文件排序（Filesort）</strong>：</p>\n  <ul>\n   <li><strong>内存排序</strong>：如果需要排序的数据量较小，MySQL 会将数据加载到内存中进行排序，这种方式效率高，因为数据都在内存里，速度更快。</li>\n   <li><strong>磁盘排序</strong>：当数据量太大，内存无法容纳时，MySQL 会将数据写入磁盘上的临时文件进行排序，这时排序的速度较慢。为了避免磁盘排序，可以调整 <code>sort_buffer_size</code> 参数，确保数据可以在内存中完成排序。</li>\n  </ul></li>\n</ol>\n<p>总结：合理的内存配置和使用索引排序可以显著提高查询性能，避免慢的磁盘排序。</p>"
+}, {
+  "id" : 234,
+  "uri" : "https://zha-ge.cn/java/8xh6j7my/",
+  "title" : "MySQL支持哪些存储引擎？它们之间的差异在哪里？",
+  "categoryId" : 8,
+  "sortOrder" : 2,
+  "answer" : "<p>MySQL 提供了多种存储引擎，最常用的是 <strong>InnoDB</strong> 和 <strong>MyISAM</strong>：</p>\n<ol>\n <li><p><strong>InnoDB</strong>：它支持事务处理（可以确保数据的完整性和一致性），<strong>行级锁</strong>（能在高并发的情况下减少冲突），以及 <strong>外键</strong>（帮助管理数据之间的关系）。因此，InnoDB 非常适合需要高并发和数据完整性的场景。</p></li>\n <li><p><strong>MyISAM</strong>：相比 InnoDB，MyISAM 在 <strong>读多写少</strong> 的场景下表现更好，因为它的性能较高。但它 <strong>不支持事务</strong>，这意味着它不保证数据的一致性和安全性，所以不适合对数据有高要求的应用。</p></li>\n</ol>\n<p>除了这两种，还有其他存储引擎，比如 <strong>MEMORY</strong>（存储在内存中，速度快），<strong>NDB</strong>（适用于分布式数据库），和 <strong>ARCHIVE</strong>（适合存储归档数据）。每种引擎适合不同的需求，选择合适的存储引擎能提高数据库的性能和可靠性。</p>"
+}, {
+  "id" : 235,
+  "uri" : "https://zha-ge.cn/java/73rb1f1n/",
+  "title" : "MySQL的索引类型有哪些？",
+  "categoryId" : 8,
+  "sortOrder" : 3,
+  "answer" : "<p>MySQL 有几种常见的 <strong>索引类型</strong>，适用于不同的查询需求：</p>\n<ol>\n <li><strong>B+树索引</strong>：适合 <strong>范围查询</strong> 和 <strong>排序</strong>，比如按某个字段排序。</li>\n <li><strong>哈希索引</strong>：适合 <strong>精确查询</strong>，比如查找某个特定值。</li>\n <li><strong>倒排索引（Full-Text）</strong>：用于 <strong>全文搜索</strong>，快速查找文本中的关键词。</li>\n <li><strong>R-树索引</strong>：用于 <strong>空间数据</strong>，比如位置查询。</li>\n</ol>\n<p>合理选择索引，可以显著提高查询效率。</p>"
+}, {
+  "id" : 236,
+  "uri" : "https://zha-ge.cn/java/j74kw0i9/",
+  "title" : "MySQL InnoDB引擎中聚簇索引与非聚簇索引的区别是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 4,
+  "answer" : "<p>在 MySQL 的 <strong>InnoDB</strong> 引擎中，<strong>聚簇索引</strong>和<strong>非聚簇索引</strong>的区别在于数据存储方式：</p>\n<ul>\n <li><strong>聚簇索引</strong>：数据直接存储在索引结构中，查询时可以更快获取数据。</li>\n <li><strong>非聚簇索引</strong>：只存储索引列和主键值，需要通过主键再查一次数据，所以速度稍慢。</li>\n</ul>\n<p>每个表只能有一个 <strong>聚簇索引</strong>，但可以有多个 <strong>非聚簇索引</strong>。</p>"
+}, {
+  "id" : 237,
+  "uri" : "https://zha-ge.cn/java/5380w2xe/",
+  "title" : "MySQL中的回表操作指的是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>回表</strong>是指在使用<strong>非聚簇索引</strong>查询时，数据库无法直接拿到所有的列数据，因为非聚簇索引只存储了索引字段和主键。为了获取完整的数据，数据库需要通过<strong>主键</strong>去<strong>聚簇索引</strong>找实际的数据行，这个过程叫做“回表”。</p>"
+}, {
+  "id" : 238,
+  "uri" : "https://zha-ge.cn/java/b2zcl3o3/",
+  "title" : "MySQL索引的最左前缀匹配原则如何理解？",
+  "categoryId" : 8,
+  "sortOrder" : 6,
+  "answer" : "<p><strong>最左前缀匹配原则</strong>是 MySQL 在使用联合索引时的规则。简单来说，查询条件必须从索引的<strong>最左边的列</strong>开始，不能跳过。如果跳过了某个左侧的列，MySQL 就不能使用这个索引来加速查询。</p>\n<p>举个例子，假设有一个索引包含 <strong>姓名</strong>、<strong>年龄</strong> 和 <strong>城市</strong>，查询时如果从姓名开始，然后是年龄和城市，这个索引就能加速查询。如果只查询年龄或城市，MySQL 可能无法使用这个索引，就只能扫描整个表了。</p>"
+}, {
+  "id" : 239,
+  "uri" : "https://zha-ge.cn/java/s2m6pom6/",
+  "title" : "MySQL中的覆盖索引是什么意思？",
+  "categoryId" : 8,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>覆盖索引</strong>是一种优化查询速度的方法。它指的是索引中包含了查询所需的所有数据，这样数据库可以直接从索引中获取结果，而无需访问实际的数据表。通常，查询需要先通过索引定位数据，再从数据表中获取完整内容。而<strong>覆盖索引</strong>通过将所有需要的字段都放进索引里，省去了查找数据表的步骤，从而提高了查询效率。简单来说，覆盖索引让查询完全通过索引完成，减少了不必要的操作。</p>"
+}, {
+  "id" : 240,
+  "uri" : "https://zha-ge.cn/java/0zl9m8fa/",
+  "title" : "MySQL中的索引下推机制是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>索引下推</strong>是一种优化查询的技术。它的作用是让数据库在查询时，直接在存储数据的部分进行初步筛选，而不是等到所有数据都查找完再处理。这样，数据库可以提前筛选掉一些不符合条件的数据，从而减少查询时间和消耗的资源。简而言之，<strong>索引下推</strong>让查询更高效，节省了不必要的工作。</p>"
+}, {
+  "id" : 241,
+  "uri" : "https://zha-ge.cn/java/7twq1ilc/",
+  "title" : "使用MySQL索引一定能提升性能吗？如何验证索引效果？",
+  "categoryId" : 8,
+  "sortOrder" : 9,
+  "answer" : "<p>在 MySQL 中，<strong>索引</strong>并不总是能提高查询速度。有时候，<strong>查询条件</strong>没有涉及到索引列，或者索引列中的数据很少，索引就可能没有效果。而对于一些小表，<strong>全表扫描</strong>反而可能更高效，因为它的开销较小。是否使用索引，MySQL 会根据它的<strong>成本评估</strong>来决定，考虑到 CPU 和磁盘操作的开销，如果认为全表扫描更便宜，它就会选择不使用索引。</p>"
+}, {
+  "id" : 242,
+  "uri" : "https://zha-ge.cn/java/npdrja35/",
+  "title" : "MySQL中索引数量是否越多越好？原因是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>索引</strong>虽然能加速查询，但并不是越多越好。每增加一个索引，就会增加<strong>写入开销</strong>和占用更多的<strong>存储空间</strong>。所以，我们应该根据实际需求来合理选择索引的数量，而不是盲目添加索引。</p>"
+}, {
+  "id" : 243,
+  "uri" : "https://zha-ge.cn/java/p395499o/",
+  "title" : "MySQL中的MVCC机制指的是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 11,
+  "answer" : "<p><strong>MVCC</strong>（多版本并发控制）是一种机制，允许多个事务同时运行而不互相干扰。每次修改数据时，MySQL 不会直接覆盖原数据，而是创建一个新的数据版本。这样，每个事务看到的都是它开始时的数据**“快照”**，避免了事务间的冲突，从而提升了数据库的并发能力。</p>"
+}, {
+  "id" : 244,
+  "uri" : "https://zha-ge.cn/java/pnuutb88/",
+  "title" : "MySQL支持哪些事务隔离级别？",
+  "categoryId" : 8,
+  "sortOrder" : 12,
+  "answer" : "<p>在 MySQL 中，事务隔离级别决定了事务之间如何相互影响，主要有四种：</p>\n<ol>\n <li><strong>读未提交</strong>：事务可以读取其他事务尚未保存的数据，这可能导致“脏读”问题。</li>\n <li><strong>读已提交</strong>：事务只能读取已经保存的数据，避免了脏读，但可能导致查询结果不一致。</li>\n <li><strong>可重复读</strong>：保证在同一个事务中多次查询的结果一致，避免了数据不一致，但可能出现“幻读”。</li>\n <li><strong>串行化</strong>：所有事务一个接一个执行，完全避免并发问题，但会极大降低性能。</li>\n</ol>"
+}, {
+  "id" : 245,
+  "uri" : "https://zha-ge.cn/java/q7qkthdn/",
+  "title" : "数据库中的脏读、不可重复读和幻读分别是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 13,
+  "answer" : "<p>在数据库并发处理中，常见的三种问题是：</p>\n<h3 id=\"_1-脏读-\uD83E\uDDF9\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-脏读-\uD83E\uDDF9\"><span>1. <strong>脏读</strong> \uD83E\uDDF9</span></a></h3>\n<p>一个事务读取了另一个事务<strong>未提交</strong>的数据，可能导致错误或无效数据。</p>\n<h3 id=\"_2-不可重复读-\uD83D\uDD04\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-不可重复读-\uD83D\uDD04\"><span>2. <strong>不可重复读</strong> \uD83D\uDD04</span></a></h3>\n<p>同一事务读取同一数据时，数据被其他事务修改，导致读取结果不同。</p>\n<h3 id=\"_3-幻读-\uD83D\uDD2E\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-幻读-\uD83D\uDD2E\"><span>3. <strong>幻读</strong> \uD83D\uDD2E</span></a></h3>\n<p>同一查询多次执行时，结果集发生变化，通常因为其他事务插入或删除数据。</p>\n<h3 id=\"解决方法\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#解决方法\"><span><strong>解决方法：</strong></span></a></h3>\n<p>通过设置更高的<strong>隔离级别</strong>来避免这些问题，确保事务间的影响最小化。</p>"
+}, {
+  "id" : 246,
+  "uri" : "https://zha-ge.cn/java/njugx7wp/",
+  "title" : "MySQL中有哪些类型的锁？",
+  "categoryId" : 8,
+  "sortOrder" : 14,
+  "answer" : "<p>MySQL 中有几种锁，用来确保多个事务同时操作时数据不出错。常见的锁类型包括：</p>\n<ul>\n <li><strong>行级锁</strong>：锁住单行数据，允许其他行操作。</li>\n <li><strong>表级锁</strong>：锁住整张表，其他事务不能操作。</li>\n <li><strong>意向锁</strong>：告诉数据库你将对某些数据加锁。</li>\n <li><strong>共享锁</strong>：允许其他事务读取，但不允许修改数据。</li>\n <li><strong>排它锁</strong>：独占数据，其他事务不能读写。</li>\n <li><strong>元数据锁</strong>：保护数据库结构信息。</li>\n <li><strong>间隙锁</strong>：锁住数据之间的空位，防止插入。</li>\n <li><strong>临键锁</strong>：锁定范围内的数据，避免修改。</li>\n <li><strong>插入意向锁</strong>：优化插入操作。</li>\n <li><strong>自增锁</strong>：确保自增字段唯一。</li>\n</ul>\n<p>根据不同需求，选择合适的锁可以提高性能，避免死锁，确保数据的正确性。</p>"
+}, {
+  "id" : 247,
+  "uri" : "https://zha-ge.cn/java/bc2d8h04/",
+  "title" : "MySQL中发生死锁时应如何处理？",
+  "categoryId" : 8,
+  "sortOrder" : 15,
+  "answer" : "<p>MySQL 会自动检测到<strong>死锁</strong>情况，意思是两个或多个事务互相等待对方释放资源，导致无法继续执行。为了避免系统停滞，MySQL会通过<strong>回滚</strong>一个事务来打破死锁，通常会选择回滚<strong>占用最少资源</strong>的事务。</p>\n<p>如果你想查看死锁的详细信息，可以使用 <strong>SHOW ENGINE INNODB STATUS</strong> 这个命令，它会显示当前的死锁信息，你也可以手动<strong>终止</strong>死锁事务。</p>\n<p>简单来说，MySQL 自动帮助你解决死锁问题，保证数据库继续正常运行。</p>"
+}, {
+  "id" : 248,
+  "uri" : "https://zha-ge.cn/java/sdgy8cyc/",
+  "title" : "如何利用MySQL的EXPLAIN语句分析查询性能？",
+  "categoryId" : 8,
+  "sortOrder" : 16,
+  "answer" : "<p><code>EXPLAIN</code> 语句是用来查看 MySQL 查询的执行计划的工具。通过它，你可以了解查询是如何执行的，特别是它是如何使用<strong>索引</strong>、<strong>表的访问顺序</strong>以及<strong>连接类型</strong>等信息。这样，开发者可以找到查询的瓶颈，并进行优化 \uD83D\uDD0D。</p>\n<p><code>EXPLAIN</code> 输出的一些重要字段包括：</p>\n<ul>\n <li><strong>id</strong>：查询的唯一标识，帮助区分不同的查询操作。</li>\n <li><strong>select_type</strong>：查询的类型，如简单查询、联合查询等。</li>\n <li><strong>table</strong>：查询操作涉及的表。</li>\n <li><strong>type</strong>：访问表的方式，如全表扫描、索引扫描等。</li>\n <li><strong>possible_keys</strong>：查询可能使用的索引。</li>\n <li><strong>key</strong>：实际使用的索引。</li>\n <li><strong>rows</strong>：扫描的行数，越少越好。</li>\n</ul>\n<p>通过分析这些信息，可以帮助你优化查询，提升数据库性能 \uD83D\uDCDD。</p>"
+}, {
+  "id" : 249,
+  "uri" : "https://zha-ge.cn/java/2japalza/",
+  "title" : "SQL 调优：如何让 MySQL 运行得更快？",
+  "categoryId" : 8,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>SQL 调优</strong>的目标就是让查询语句跑得更快，减少数据库的负担。常见的调优方法有：</p>\n<ul>\n <li>使用 <strong><code>EXPLAIN</code></strong> 来分析查询计划，查看查询是如何执行的，从而发现优化的空间。</li>\n <li><strong>合理使用索引</strong>，通过创建合适的索引加速查询，避免全表扫描。</li>\n <li><strong>优化缓存</strong>，提高数据的访问速度，减少重复查询。</li>\n <li><strong>避免全表扫描</strong>，尽量避免不必要的遍历整张表。</li>\n <li><strong>调整数据库配置</strong>，根据实际情况调整 MySQL 的性能设置。</li>\n</ul>\n<p>简单来说，SQL 调优就是让 <strong>MySQL</strong> 更聪明地处理数据，尽量减少不必要的工作，提高查询效率，保证数据库运行顺畅 \uD83D\uDCA1。</p>"
+}, {
+  "id" : 250,
+  "uri" : "https://zha-ge.cn/java/vl1mm7ok/",
+  "title" : "MySQL中varchar与char的差异是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 18,
+  "answer" : "<ul>\n <li><strong><code>CHAR</code></strong>：定长的字符串类型，不管实际内容有多长，它都会占用固定的空间。如果内容不够长，系统会自动补齐空格。</li>\n <li><strong><code>VARCHAR</code></strong>：变长的字符串类型，它根据实际存储的字符数来分配存储空间，不会自动补齐空格。</li>\n</ul>\n<p>简单来说，<strong><code>CHAR</code></strong> 总是占用固定空间，而 <strong><code>VARCHAR</code></strong> 只占用实际需要的空间。</p>\n<h3 id=\"\uD83D\uDCDA-知识内容\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDCDA-知识内容\"><span>\uD83D\uDCDA <strong>知识内容</strong></span></a></h3>\n<h4 id=\"\uD83D\uDCDD-1-char-数据类型\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDCDD-1-char-数据类型\"><span>\uD83D\uDCDD <strong>1. <code>CHAR</code> 数据类型</strong></span></a></h4>\n<p><strong>定义</strong>：<br><code>CHAR</code> 是定长的字符数据类型，无论存储的数据长度是多少，MySQL 都会为每个值分配固定的存储空间。如果存储的字符串比定义的长度短，MySQL 会用空格进行填充。</p>\n<p><strong>工作原理</strong>：<br> 当定义一个 <code>CHAR(n)</code> 类型时，MySQL 会为每个存储的字符串分配 <code>n</code> 个字符的空间。如果存储的字符串长度小于 <code>n</code>，会自动在末尾补充空格。</p>\n<p><strong>示例</strong>：</p>\n<div class=\"language-sql line-numbers-mode\" data-ext=\"sql\" data-title=\"sql\">\n <button class=\"copy\" title=\"复制代码\" data-copied=\"已复制\"></button>\n <pre class=\"shiki shiki-themes vitesse-light vitesse-dark vp-code\"><code><span class=\"line\"><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">CREATE</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">TABLE</span><span class=\"space\"> </span><span style=\"--shiki-light:#59873A;--shiki-dark:#80A665;\">users</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(</span></span>\n<span class=\"line\"><span class=\"space\"> </span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">username</span><span class=\"space\"> </span><span style=\"--shiki-light:#AB5959;--shiki-dark:#CB7676;\">CHAR</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(</span><span style=\"--shiki-light:#2F798A;--shiki-dark:#4C9A91;\">10</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">)</span></span>\n<span class=\"line\"><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">);</span></span></code></pre>\n <div class=\"line-numbers\" aria-hidden=\"true\" style=\"counter-reset:line-number 0;\">\n  <div class=\"line-number\"></div>\n  <div class=\"line-number\"></div>\n  <div class=\"line-number\"></div>\n </div>\n</div>\n<p>如果插入一个长度为 5 的字符串 <code>abcde</code>，MySQL 会将它存储为 <code>abcde </code>（后面有 5 个空格）。</p>\n<p><strong>优缺点</strong>：</p>\n<ul>\n <li><strong>优点</strong>：由于固定长度，<code>CHAR</code> 类型的数据检索速度较快，适合存储长度固定的字符串，如国家代码、性别、身份证号等。</li>\n <li><strong>缺点</strong>：对于变长数据，会浪费存储空间。比如，存储长度为 5 的字符串时，仍然占用 10 字节。</li>\n</ul>\n<h4 id=\"\uD83D\uDD20-2-varchar-数据类型\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDD20-2-varchar-数据类型\"><span>\uD83D\uDD20 <strong>2. <code>VARCHAR</code> 数据类型</strong></span></a></h4>\n<p><strong>定义</strong>：<br><code>VARCHAR</code> 是变长的字符数据类型，存储时根据实际数据长度分配存储空间。它会根据存储的字符实际长度来分配存储空间，而不会进行空格填充。</p>\n<p><strong>工作原理</strong>：<br><code>VARCHAR(n)</code> 类型的字段最多可以存储 <code>n</code> 个字符。<code>VARCHAR</code> 会为每个值分配实际存储字符的空间，并额外存储 1 或 2 个字节用以记录字符串的长度。</p>\n<p><strong>示例</strong>：</p>\n<div class=\"language-sql line-numbers-mode\" data-ext=\"sql\" data-title=\"sql\">\n <button class=\"copy\" title=\"复制代码\" data-copied=\"已复制\"></button>\n <pre class=\"shiki shiki-themes vitesse-light vitesse-dark vp-code\"><code><span class=\"line\"><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">CREATE</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">TABLE</span><span class=\"space\"> </span><span style=\"--shiki-light:#59873A;--shiki-dark:#80A665;\">users</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(</span></span>\n<span class=\"line\"><span class=\"space\"> </span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">username</span><span class=\"space\"> </span><span style=\"--shiki-light:#AB5959;--shiki-dark:#CB7676;\">VARCHAR</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(</span><span style=\"--shiki-light:#2F798A;--shiki-dark:#4C9A91;\">10</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">)</span></span>\n<span class=\"line\"><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">);</span></span></code></pre>\n <div class=\"line-numbers\" aria-hidden=\"true\" style=\"counter-reset:line-number 0;\">\n  <div class=\"line-number\"></div>\n  <div class=\"line-number\"></div>\n  <div class=\"line-number\"></div>\n </div>\n</div>\n<p>如果插入一个长度为 5 的字符串 <code>abcde</code>，MySQL 会只使用 5 字节存储数据，而不是 10 字节。</p>\n<p><strong>优缺点</strong>：</p>\n<ul>\n <li><strong>优点</strong>：适合存储长度不固定的字符串，比如姓名、地址等。它节省了存储空间，尤其在存储变长字符串时非常高效。</li>\n <li><strong>缺点</strong>：由于存储数据时需要额外记录长度，<code>VARCHAR</code> 在处理时的效率比 <code>CHAR</code> 略低，尤其是在高并发的情况下。</li>\n</ul>\n<h4 id=\"\uD83C\uDD9A-3-char-和-varchar-的主要区别\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83C\uDD9A-3-char-和-varchar-的主要区别\"><span>\uD83C\uDD9A <strong>3. <code>CHAR</code> 和 <code>VARCHAR</code> 的主要区别</strong></span></a></h4>\n<table>\n <thead>\n  <tr>\n   <th>特性</th>\n   <th><code>CHAR</code></th>\n   <th><code>VARCHAR</code></th>\n  </tr>\n </thead>\n <tbody>\n  <tr>\n   <td><strong>存储方式</strong></td>\n   <td>定长，固定长度</td>\n   <td>变长，根据实际长度存储</td>\n  </tr>\n  <tr>\n   <td><strong>存储空间</strong></td>\n   <td>不足部分用空格填充</td>\n   <td>不会用空格填充，仅存储实际字符</td>\n  </tr>\n  <tr>\n   <td><strong>存储效率</strong></td>\n   <td>对固定长度数据更高效</td>\n   <td>对变长数据更高效</td>\n  </tr>\n  <tr>\n   <td><strong>额外存储空间</strong></td>\n   <td>无</td>\n   <td>需要额外 1 或 2 个字节存储长度</td>\n  </tr>\n  <tr>\n   <td><strong>适用场景</strong></td>\n   <td>存储长度固定的字符串（如身份证号）</td>\n   <td>存储长度不固定的字符串（如姓名）</td>\n  </tr>\n  <tr>\n   <td><strong>查询性能</strong></td>\n   <td>查询速度较快</td>\n   <td>查询速度较慢</td>\n  </tr>\n </tbody>\n</table>\n<hr>\n<h4 id=\"_4-选择-char-还是-varchar\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_4-选择-char-还是-varchar\"><span><strong>4. 选择 <code>CHAR</code> 还是 <code>VARCHAR</code>？</strong></span></a></h4>\n<p><strong>使用 <code>CHAR</code> 的场景</strong>：</p>\n<ul>\n <li>适合存储长度固定的字符串数据，如国家代码、邮政编码、性别等。</li>\n <li>适合查询时性能要求高且数据长度不变的情况，使用 <code>CHAR</code> 可以更快地处理。</li>\n</ul>\n<p><strong>使用 <code>VARCHAR</code> 的场景</strong>：</p>\n<ul>\n <li>适合存储长度不固定的字符串数据，如用户姓名、地址、电子邮件等。</li>\n <li>适合存储大部分情况下，字符长度变化较大的数据，<code>VARCHAR</code> 可以节省存储空间。</li>\n</ul>\n<hr>"
+}, {
+  "id" : 251,
+  "uri" : "https://zha-ge.cn/java/egjpve2w/",
+  "title" : "如何在MySQL中进行SQL性能优化？",
+  "categoryId" : 8,
+  "sortOrder" : 19,
+  "answer" : "<p>SQL 性能优化是一个系统性的过程，主要涉及 <strong>索引优化</strong>、<strong>SQL 语句优化</strong>、<strong>数据库结构优化</strong> 和 <strong>系统参数调整</strong> 等多个关键方面。 合理设计索引可以大幅提升查询效率，减少数据库扫描的开销； 优化 SQL 语句能够避免不必要的全表扫描，提高数据检索的速度； 良好的数据库结构设计有助于减少冗余、提高存储效率，并改善查询性能； 而系统参数的合理调整，则可以优化数据库的资源分配， 提升并发能力和整体响应速度。 通过综合运用这些优化策略，可以有效提高 MySQL 的查询性能，降低系统负载，确保数据库在大规模数据处理环境下依然保持高效稳定的运行。</p>\n<hr>"
+}, {
+  "id" : 252,
+  "uri" : "https://zha-ge.cn/java/502vor6j/",
+  "title" : "如何在MySQL中避免单点故障的发生？",
+  "categoryId" : 8,
+  "sortOrder" : 20,
+  "answer" : "<p><strong>单点故障</strong>指的是系统中某个组件出现问题，导致整个系统无法正常工作。为了避免这种情况，我们可以采用以下几种方法：</p>\n<ul>\n <li><strong>主从复制</strong>：将数据复制到备用服务器，当主服务器故障时，备用服务器可以接管工作。</li>\n <li><strong>读写分离</strong>：将查询（读）操作和修改（写）操作分开，提升数据库性能，减少主服务器的负担。</li>\n <li><strong>主主复制</strong>：两个主服务器互相复制数据，任何一个出现故障时，另一个可以继续提供服务。</li>\n <li><strong>MySQL 集群</strong>：多个数据库节点共同工作，确保数据一致性，提升系统的容错能力。</li>\n <li><strong>自动故障转移与负载均衡</strong>：当一个节点出现故障时，系统自动将流量转移到正常节点，确保服务不间断。</li>\n</ul>\n<p>这些方法能够提升数据库的<strong>可用性</strong>，确保即使某个节点出问题，服务依然能正常运行，避免<strong>单点故障</strong>带来的影响。</p>"
+}, {
+  "id" : 253,
+  "uri" : "https://zha-ge.cn/java/qn72669d/",
+  "title" : "MySQL中如何实现读写分离的功能？",
+  "categoryId" : 8,
+  "sortOrder" : 21,
+  "answer" : "<p><strong>读写分离</strong>是指将<strong>写操作</strong>（如 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>）和<strong>读操作</strong>（如 <code>SELECT</code>）分配到不同的数据库节点上。通常，<strong>主库</strong>处理所有的<strong>写操作</strong>，而<strong>从库</strong>处理所有的<strong>读操作</strong>。这样，通过<strong>中间层</strong>或<strong>数据库代理</strong>来智能路由，使得所有的<strong>读请求</strong>被发送到从库，<strong>写请求</strong>被发送到主库。</p>\n<p>实现读写分离的主要方式有两种：</p>\n<ol>\n <li><strong>代码封装</strong>：在应用代码中实现读写分离的逻辑，手动指定读和写操作的目标数据库。</li>\n <li><strong>使用中间件</strong>：通过专门的中间件来处理读写分离，它能够根据请求类型自动选择主库或从库，并且屏蔽不同编程语言的差异。</li>\n</ol>\n<p>通过<strong>读写分离</strong>，可以有效提升数据库的性能，减轻主库的负担，同时提高系统的<strong>可扩展性</strong>和<strong>稳定性</strong>。</p>"
+}, {
+  "id" : 254,
+  "uri" : "https://zha-ge.cn/java/ushrtqqz/",
+  "title" : "MySQL的主从同步机制是什么？其实现原理如何？",
+  "categoryId" : 8,
+  "sortOrder" : 22,
+  "answer" : "<p>MySQL 的 <strong>主从同步机制</strong>通过 <strong>二进制日志（binlog）</strong> 实现数据的复制。当主库执行<strong>写操作</strong>（如 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>）时，这些操作会被记录到<strong>二进制日志</strong>中。然后，主库会将这些日志推送给从库，从库读取并重放这些日志，保持与主库的数据一致性。</p>\n<p>常见的复制类型包括：</p>\n<ul>\n <li><strong>异步复制</strong>：主库写操作后立即返回，数据会异步地同步到从库。性能较高，但可能会有数据延迟。</li>\n <li><strong>同步复制</strong>：主库在写操作完成后，等待从库确认数据已同步再返回。确保数据一致性，但会影响性能。</li>\n <li><strong>半同步复制</strong>：主库写操作后等待至少一个从库确认同步，再返回。它在性能和一致性之间做出了折中。</li>\n</ul>\n<p>每种复制方式在<strong>性能</strong>和<strong>数据一致性</strong>之间做出了不同的权衡，根据系统需求选择合适的复制方式。</p>"
+}, {
+  "id" : 255,
+  "uri" : "https://zha-ge.cn/java/8lr7fhxd/",
+  "title" : "如何解决MySQL主从同步中的延迟问题？",
+  "categoryId" : 8,
+  "sortOrder" : 23,
+  "answer" : "<p><strong>MySQL 主从同步延迟</strong>就是从库的数据更新慢于主库的变化。在主从复制中，从库需要从主库<strong>拉取日志</strong>来同步数据，这个过程会有一些延迟。常见原因有：<strong>主库太忙</strong>，<strong>从库硬件不够强</strong>，或者<strong>网络慢</strong>。解决方法是：<strong>提高复制性能</strong>，调整复制方式，或者加强从库的硬件和配置，这样可以减少延迟，让数据更新更快。</p>"
+}, {
+  "id" : 256,
+  "uri" : "https://zha-ge.cn/java/1acvgzmw/",
+  "title" : "MySQL数据库性能优化的方法有哪些？",
+  "categoryId" : 8,
+  "sortOrder" : 24,
+  "answer" : "<p>MySQL 的性能优化可以通过以下几个方面来提高：</p>\n<ol>\n <li><strong>数据库设计优化</strong>：设计合理的表结构和选择合适的数据类型，让数据库更高效。</li>\n <li><strong>查询优化</strong>：优化查询语句，使用合适的索引，避免做不必要的查询，这样查询就更快。</li>\n <li><strong>索引优化</strong>：合理创建索引，避免创建太多没用的索引，这样可以减少不必要的性能开销。</li>\n <li><strong>硬件优化</strong>：配置更好的服务器硬件，尤其是<strong>CPU</strong>、<strong>内存</strong>和<strong>磁盘</strong>，提高处理能力。</li>\n <li><strong>系统配置优化</strong>：调整MySQL的配置，确保它适应具体的业务需求，从而提升性能。</li>\n</ol>\n<p>这些方法能帮助你提升数据库的性能，让它运行得更快、更稳定。</p>"
+}, {
+  "id" : 257,
+  "uri" : "https://zha-ge.cn/java/s6konb8d/",
+  "title" : "MySQL查询优化器如何决定执行计划？",
+  "categoryId" : 8,
+  "sortOrder" : 25,
+  "answer" : "<p>MySQL 的 <strong>查询优化器</strong>就像是查询语句的“<strong>导航员</strong>”，它会根据查询的内容，计算并选择执行的最佳路径。它会考虑数据量、索引的使用情况和执行计划的<strong>开销</strong>，然后决定如何执行查询。目标是让查询<strong>尽可能快</strong>，消耗<strong>最少的资源</strong>。</p>\n<p>简单来说，查询优化器就是分析查询，找出最省时和最节省计算资源的执行方式，让数据库运行更高效 ⚡。</p>\n<hr>"
+}, {
+  "id" : 258,
+  "uri" : "https://zha-ge.cn/java/gd11sqfu/",
+  "title" : "MySQL事务中的二阶段提交是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 26,
+  "answer" : "<p><strong>二阶段提交协议</strong>就是一种确保多个系统操作一致性的规则，它分成两步：</p>\n<ol>\n <li><strong>准备阶段</strong>：事务的负责人会问所有参与的系统，确认它们是否可以提交数据。</li>\n <li><strong>提交阶段</strong>：当所有系统都确认没问题后，负责人决定是<strong>提交数据</strong>还是<strong>撤销操作</strong>。</li>\n</ol>\n<p>这个协议的目的是确保所有系统要么都提交数据，要么都撤销操作，避免出现数据不一致的情况。</p>"
+}, {
+  "id" : 259,
+  "uri" : "https://zha-ge.cn/java/7eurofjs/",
+  "title" : "MySQL执行插入语句时，redolog记录了什么内容？",
+  "categoryId" : 8,
+  "sortOrder" : 27,
+  "answer" : "<p><strong>Redo Log</strong> 是 MySQL 用来确保数据不会丢失的日志。</p>\n<p>当你插入数据时，所有的修改首先会记录到 <strong>Redo Log</strong> 中。这样，如果系统崩溃了，MySQL 就能通过这些记录把数据恢复回来。它记录了每次数据的实际变化，比如插入的内容和数据的改动，确保数据的一致性。</p>"
+}, {
+  "id" : 260,
+  "uri" : "https://zha-ge.cn/java/1r1sxf8e/",
+  "title" : "MySQL中BLOB与TEXT的区别是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 28,
+  "answer" : "<p><strong>BLOB</strong> 和 <strong>TEXT</strong> 都是用来存储大量数据的类型，但它们有一些不同：</p>\n<ul>\n <li><strong>BLOB</strong> 用来存储<strong>二进制数据</strong>，比如<strong>图片</strong>、<strong>音频</strong>、<strong>视频</strong>等。</li>\n <li><strong>TEXT</strong> 用来存储<strong>文本数据</strong>，比如<strong>文章</strong>、<strong>评论</strong>、<strong>日志</strong>等。</li>\n</ul>\n<p>简单来说，<strong>BLOB</strong> 储存的是像图片这种非文字的信息，<strong>TEXT</strong> 储存的是普通的文字内容。</p>"
+}, {
+  "id" : 261,
+  "uri" : "https://zha-ge.cn/java/dhtc8x06/",
+  "title" : "MySQL的binlog支持哪些格式？",
+  "categoryId" : 8,
+  "sortOrder" : 29,
+  "answer" : "<p>MySQL 的 <strong>binlog</strong>（二进制日志）有三种主要的记录方式：</p>\n<ol>\n <li><strong>基于语句的复制</strong>（SBR）：记录的是执行的<strong>操作语句</strong>，比如插入一行数据的命令。</li>\n <li><strong>基于行的复制</strong>（RBR）：记录的是<strong>数据行</strong>的具体变化，比如某一行数据的更新内容。</li>\n <li><strong>混合复制</strong>（MBR）：结合了前两者的特点，根据不同情况选择记录语句或数据行的变化。</li>\n</ol>\n<p>每种记录方式有不同的优势，适用于不同的使用场景，帮助提高数据库的同步效率。</p>"
+}, {
+  "id" : 262,
+  "uri" : "https://zha-ge.cn/java/0m7mxdhn/",
+  "title" : "如何优化MySQL中的深度分页查询？",
+  "categoryId" : 8,
+  "sortOrder" : 30,
+  "answer" : "<p><strong>深度分页</strong>是指在查询数据时，当你需要<strong>跳过的数据越多</strong>，查询的速度就会变得越慢。为了让查询更快，可以采取以下方法：</p>\n<ul>\n <li><strong>避免跳过太多数据</strong>，这样数据库可以更快找到你需要的内容。</li>\n <li>让查询<strong>更精准</strong>，只查询必要的数据，减少无关的部分。</li>\n <li>使用<strong>加速工具</strong>（比如 <strong>索引</strong>），帮助数据库更高效地定位到目标数据。</li>\n <li>使用<strong>缓存</strong>来减少重复查询，让已经查过的数据再次查询时更快。</li>\n <li><strong>把数据分成小块</strong>，每次查询只处理一小部分，减少一次查询的工作量。</li>\n</ul>\n<p>通过这些方法，可以让查询变得更快，避免深度分页带来的性能问题。</p>"
+}, {
+  "id" : 263,
+  "uri" : "https://zha-ge.cn/java/ztr9ywvp/",
+  "title" : "高并发场景下自增主键会重复吗？原因是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 31,
+  "answer" : "<p>在正常情况下，<strong>MySQL 的自增主键是不会重复的</strong>。每次插入数据时，<strong>MySQL</strong> 会自动为它分配一个<strong>唯一的主键</strong>，确保每个主键值都不相同。即使多个请求同时插入数据，<strong>MySQL</strong> 也会保证每个请求得到的主键是<strong>独一无二的</strong>。</p>\n<p>简单来说，就算很多人在同一时刻往数据库里插入数据，<strong>MySQL</strong> 也能确保每条数据的主键都是<strong>唯一的</strong>，不会发生冲突。</p>"
+}, {
+  "id" : 264,
+  "uri" : "https://zha-ge.cn/java/ol3rqrdi/",
+  "title" : "设计MySQL索引时应遵循哪些原则？",
+  "categoryId" : 8,
+  "sortOrder" : 32,
+  "answer" : "<p>设计索引时，有几个简单的原则可以帮助你提高查询速度：</p>\n<ol>\n <li>选那些<strong>数据变化多</strong>的字段做索引，这样能提高效率。</li>\n <li><strong>不要索引太多</strong>，因为太多索引会拖慢写入数据的速度。</li>\n <li>在<strong>联合索引</strong>时，把<strong>常用的字段</strong>放在前面，能加速查询。</li>\n <li>如果一个索引可以<strong>满足查询所有数据</strong>，那就最好了，避免多个索引。</li>\n <li><strong>定期清理和维护索引</strong>，避免过时的索引影响性能。</li>\n</ol>\n<p>按照这些原则来设计索引，能让查询更快，同时不会影响数据库的写入速度。</p>"
+}, {
+  "id" : 265,
+  "uri" : "https://zha-ge.cn/java/kb5a4dpb/",
+  "title" : "MySQL中主键与候选键的区别是什么？",
+  "categoryId" : 8,
+  "sortOrder" : 33,
+  "answer" : "<p><strong>主键</strong>是用来<strong>唯一标识</strong>每条记录的字段，它不能是空的（<code>NULL</code>），并且每个表只能有一个主键。可以把它看作是每条记录的**“身份证”<strong>，确保每条数据都是</strong>唯一**的。</p>\n<p><strong>候选键</strong>是那些也能<strong>唯一标识</strong>记录的字段或字段组合。一个表可能有多个候选键，但最终只有一个候选键会被选为主键，其他的候选键就成了备用的**“备选方案”**。</p>"
+}, {
+  "id" : 266,
+  "uri" : "https://zha-ge.cn/java/pzkg3uf0/",
+  "title" : "MySQL如何实现高可用性的方案？",
+  "categoryId" : 8,
+  "sortOrder" : 34,
+  "answer" : "<p>MySQL 高可用通常通过以下技术实现：</p>\n<ul>\n <li><strong>主从复制</strong>：主数据库负责写操作，从数据库负责读操作，确保数据同步。</li>\n <li><strong>主主复制</strong>：两个主数据库互相复制，任何一个出现问题时，另一个可以继续工作。</li>\n <li><strong>MHA</strong>（MySQL 高可用集群）：通过自动化故障转移，保证数据库系统的高可用性。</li>\n <li><strong>MySQL Router</strong>：提供负载均衡，将查询流量分配到不同的数据库实例，提升性能。</li>\n <li><strong>ProxySQL</strong>：通过代理层管理数据库连接，支持负载均衡、故障转移等功能。</li>\n <li><strong>Group Replication</strong>：通过多个数据库节点共同工作，提供高可用性和数据一致性。</li>\n</ul>\n<p>这些技术能够提供<strong>故障恢复</strong>、<strong>负载均衡</strong>和<strong>自动切换</strong>等功能，确保数据库系统的高可用性。\uD83D\uDD04</p>"
+}, {
+  "id" : 267,
+  "uri" : "https://zha-ge.cn/java/s6yj026a/",
+  "title" : "MySQL中count几种查询条件的区别？",
+  "categoryId" : 8,
+  "sortOrder" : 35,
+  "answer" : "<ul>\n <li><strong><code>COUNT(*)</code></strong>：计算查询结果中的<strong>所有行数</strong>，包括那些**<code>NULL</code>** 值的行。</li>\n <li><strong><code>COUNT(1)</code></strong>：计算查询结果中的行数，跟 <strong><code>COUNT(*)</code></strong> 的结果一样，但背后实现方式稍有不同。</li>\n <li><strong><code>COUNT(字段名)</code></strong>：只计算指定字段不为**<code>NULL</code>** 的行数。</li>\n</ul>\n<p>简单来说，<strong><code>COUNT(*)</code></strong> 计算所有行，<strong><code>COUNT(1)</code></strong> 跟它一样，<strong><code>COUNT(字段名)</code></strong> 只计算该字段不为空的行。</p>\n<h3 id=\"\uD83D\uDCDA-知识内容\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDCDA-知识内容\"><span>\uD83D\uDCDA <strong>知识内容：</strong></span></a></h3>\n<h4 id=\"✨-1-count\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#✨-1-count\"><span>✨ <strong>1. <code>COUNT(*)</code></strong></span></a></h4>\n<p><strong>定义</strong>：<br><code>COUNT(*)</code> 用于计算查询结果中的所有行数，包括那些字段值为 <code>NULL</code> 的行。它不关心表中任何列的数据类型或是否为 <code>NULL</code>，只是简单地计算符合查询条件的行数。</p>\n<p><strong>工作原理</strong>：<br> 当我们执行 <code>COUNT(*)</code> 时，MySQL 不会对字段做任何限制，数据库会扫描所有行并计算所有行的数量。这个操作是最直观、最常见的行数统计方法。</p>\n<p><strong>示例</strong>：</p>\n<div class=\"language-sql line-numbers-mode\" data-ext=\"sql\" data-title=\"sql\">\n <button class=\"copy\" title=\"复制代码\" data-copied=\"已复制\"></button>\n <pre class=\"shiki shiki-themes vitesse-light vitesse-dark vp-code\"><code><span class=\"line\"><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">SELECT</span><span class=\"space\"> </span><span style=\"--shiki-light:#998418;--shiki-dark:#B8A965;\">COUNT</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(</span><span style=\"--shiki-light:#AB5959;--shiki-dark:#CB7676;\">*</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">)</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">FROM</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">employees</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">WHERE</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">salary</span><span class=\"space\"> </span><span style=\"--shiki-light:#AB5959;--shiki-dark:#CB7676;\">&gt;</span><span class=\"space\"> </span><span style=\"--shiki-light:#2F798A;--shiki-dark:#4C9A91;\">5000</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">;</span></span></code></pre>\n <div class=\"line-numbers\" aria-hidden=\"true\" style=\"counter-reset:line-number 0;\">\n  <div class=\"line-number\"></div>\n </div>\n</div>\n<p>此查询返回的是 <code>salary &gt; 5000</code> 的所有行数，无论这些行中的字段值是否为 <code>NULL</code>。</p>\n<p><strong>性能</strong>：<br><code>COUNT(*)</code> 通常会通过扫描整张表来获取行数，即使某些列是 <code>NULL</code>。在没有索引的情况下，MySQL 需要对整个表进行全表扫描，这可能会影响查询性能。</p>\n<h4 id=\"\uD83D\uDD22-2-count-1\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDD22-2-count-1\"><span>\uD83D\uDD22 <strong>2. <code>COUNT(1)</code></strong></span></a></h4>\n<p><strong>定义</strong>：<br><code>COUNT(1)</code> 计算查询结果中的所有行数，但与 <code>COUNT(*)</code> 不同的是，它并不计算字段内容，而是用常数 <code>1</code> 来进行计数。简单来说，它计算的是符合查询条件的行数。</p>\n<p><strong>工作原理</strong>：<br> 在大多数情况下，<code>COUNT(1)</code> 的行为与 <code>COUNT(*)</code> 相同，因为它统计的是符合条件的行数。MySQL 会在计算过程中忽略常数 <code>1</code>，因此 <code>COUNT(1)</code> 会像 <code>COUNT(*)</code> 一样扫描所有行。</p>\n<p><strong>示例</strong>：</p>\n<div class=\"language-sql line-numbers-mode\" data-ext=\"sql\" data-title=\"sql\">\n <button class=\"copy\" title=\"复制代码\" data-copied=\"已复制\"></button>\n <pre class=\"shiki shiki-themes vitesse-light vitesse-dark vp-code\"><code><span class=\"line\"><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">SELECT</span><span class=\"space\"> </span><span style=\"--shiki-light:#998418;--shiki-dark:#B8A965;\">COUNT</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(</span><span style=\"--shiki-light:#2F798A;--shiki-dark:#4C9A91;\">1</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">)</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">FROM</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">employees</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">WHERE</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">salary</span><span class=\"space\"> </span><span style=\"--shiki-light:#AB5959;--shiki-dark:#CB7676;\">&gt;</span><span class=\"space\"> </span><span style=\"--shiki-light:#2F798A;--shiki-dark:#4C9A91;\">5000</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">;</span></span></code></pre>\n <div class=\"line-numbers\" aria-hidden=\"true\" style=\"counter-reset:line-number 0;\">\n  <div class=\"line-number\"></div>\n </div>\n</div>\n<p>此查询返回的是与 <code>COUNT(*)</code> 相同的结果，即 <code>salary &gt; 5000</code> 的所有行数。</p>\n<p><strong>性能</strong>：<br> 尽管 <code>COUNT(1)</code> 与 <code>COUNT(*)</code> 看起来非常相似，但它们的执行方式有细微差别。在某些情况下，<code>COUNT(1)</code> 会比 <code>COUNT(*)</code> 更高效，因为它不需要检索行的所有列，只需要处理常数 <code>1</code>。然而，实际上这两者在大多数情况下的性能差异微乎其微，MySQL 通常会优化它们，执行计划是相同的。</p>\n<h4 id=\"\uD83C\uDFF7️-3-count-字段名\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83C\uDFF7️-3-count-字段名\"><span>\uD83C\uDFF7️ <strong>3. <code>COUNT(字段名)</code></strong></span></a></h4>\n<p><strong>定义</strong>：<br><code>COUNT(字段名)</code> 只计算指定字段值不为 <code>NULL</code> 的行数。如果字段值为 <code>NULL</code>，则不会计入结果。</p>\n<p><strong>工作原理</strong>：<br> 当使用 <code>COUNT(字段名)</code> 时，MySQL 只统计该字段值不为 <code>NULL</code> 的行数。与 <code>COUNT(*)</code> 和 <code>COUNT(1)</code> 不同，<code>COUNT(字段名)</code> 会排除字段值为 <code>NULL</code> 的行。</p>\n<p><strong>示例</strong>：</p>\n<div class=\"language-sql line-numbers-mode\" data-ext=\"sql\" data-title=\"sql\">\n <button class=\"copy\" title=\"复制代码\" data-copied=\"已复制\"></button>\n <pre class=\"shiki shiki-themes vitesse-light vitesse-dark vp-code\"><code><span class=\"line\"><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">SELECT</span><span class=\"space\"> </span><span style=\"--shiki-light:#998418;--shiki-dark:#B8A965;\">COUNT</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">(salary)</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">FROM</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">employees</span><span class=\"space\"> </span><span style=\"--shiki-light:#1E754F;--shiki-dark:#4D9375;\">WHERE</span><span class=\"space\"> </span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">department_id</span><span class=\"space\"> </span><span style=\"--shiki-light:#AB5959;--shiki-dark:#CB7676;\">=</span><span class=\"space\"> </span><span style=\"--shiki-light:#2F798A;--shiki-dark:#4C9A91;\">1</span><span style=\"--shiki-light:#393A34;--shiki-dark:#DBD7CAEE;\">;</span></span></code></pre>\n <div class=\"line-numbers\" aria-hidden=\"true\" style=\"counter-reset:line-number 0;\">\n  <div class=\"line-number\"></div>\n </div>\n</div>\n<p>此查询将返回部门 ID 为 1 且薪资不为 <code>NULL</code> 的行数。如果有员工的薪资为 <code>NULL</code>，则不会被计入结果。</p>\n<p><strong>性能</strong>：<br><code>COUNT(字段名)</code> 需要扫描指定字段的所有行，并检查该字段的值是否为 <code>NULL</code>。如果字段上有索引，MySQL 可能会利用该索引来优化查询。若字段没有索引，可能会导致全表扫描。</p>\n<h4 id=\"_4-总结表格\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_4-总结表格\"><span><strong>4. 总结表格：</strong></span></a></h4>\n<table>\n <thead>\n  <tr>\n   <th>函数</th>\n   <th>计算方式</th>\n   <th>结果描述</th>\n   <th>性能</th>\n  </tr>\n </thead>\n <tbody>\n  <tr>\n   <td><code>COUNT(*)</code></td>\n   <td>计算所有行，包含 <code>NULL</code> 值</td>\n   <td>计算所有行数，不考虑任何字段的值</td>\n   <td>执行较慢，尤其是无索引时需要全表扫描</td>\n  </tr>\n  <tr>\n   <td><code>COUNT(1)</code></td>\n   <td>计算所有行，使用常数 <code>1</code> 作为计数</td>\n   <td>与 <code>COUNT(*)</code> 相同，返回行数</td>\n   <td>性能几乎与 <code>COUNT(*)</code> 相同</td>\n  </tr>\n  <tr>\n   <td><code>COUNT(字段)</code></td>\n   <td>计算指定字段值不为 <code>NULL</code> 的行数</td>\n   <td>排除字段值为 <code>NULL</code> 的行</td>\n   <td>如果字段有索引，查询性能较好</td>\n  </tr>\n </tbody>\n</table>\n<hr>"
+} ]

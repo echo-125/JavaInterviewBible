@@ -1,0 +1,190 @@
+[ {
+  "id" : 444,
+  "uri" : "https://zha-ge.cn/java/uw161dev/",
+  "title" : "ZooKeeper 是什么？它的核心功能有哪些？",
+  "categoryId" : 15,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>ZooKeeper</strong> 是一个帮助多个系统或服务 <strong>协作</strong> 的工具。它的主要作用是让这些服务在一起工作时，可以共享和管理一些重要的信息，比如：</p>\n<ul>\n <li><strong>配置信息</strong>：让所有服务都能使用统一的设置。</li>\n <li><strong>名字的统一管理</strong>：确保每个服务有独一无二的名字，方便找到。</li>\n <li><strong>任务的分配</strong>：合理分配工作，确保每个服务都知道自己做什么。</li>\n <li><strong>权限管理</strong>：确定每个服务可以做什么，避免出现问题。</li>\n</ul>\n<p><strong>ZooKeeper</strong> 还能确保多个服务之间不会发生冲突，帮助它们协调工作。即使有部分服务出问题，其他服务仍然能够正常工作，保证整个系统 <strong>稳定</strong> 运行。</p>\n<p>这种工具非常 <strong>可靠</strong>，确保每次传递的信息都准确，而且在出现问题时能 <strong>快速恢复</strong>，确保整个系统 <strong>高效运转</strong>。</p>"
+}, {
+  "id" : 445,
+  "uri" : "https://zha-ge.cn/java/rh2nhbys/",
+  "title" : "ZooKeeper 如何保证高可用性？采用了哪些机制确保服务不中断？",
+  "categoryId" : 15,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>ZooKeeper</strong> 为了保证服务一直可用，采用了一些重要的方法：</p>\n<ol>\n <li><strong>多个节点保存同样的数据</strong>：这样即使有某些节点出问题，其他节点仍然可以提供相同的数据，保证系统不崩溃。</li>\n <li><strong>选举负责人</strong>：通过一种“投票”的方式，选出一个节点作为负责人，来确保工作有序进行。</li>\n <li><strong>多数节点同意</strong>：对于重要的操作，必须得到大多数节点的同意，确保数据的 <strong>准确性</strong>。</li>\n <li><strong>记录所有操作的日志</strong>：记录每次操作的过程，这样如果出现问题，可以 <strong>追溯</strong>，确保数据不出错。</li>\n</ol>\n<p>这些方法的核心目的是，即使部分节点出现问题，其他节点仍能接替工作，<strong>保证系统稳定运行</strong>，并确保 <strong>数据一致性</strong> 不会乱掉。</p>"
+}, {
+  "id" : 446,
+  "uri" : "https://zha-ge.cn/java/apvioez2/",
+  "title" : "什么是 ZooKeeper 的 ZNode？它在数据存储中的作用是什么？",
+  "categoryId" : 15,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>ZNode</strong> 是 <strong>ZooKeeper</strong> 中一个非常重要的“模块”，它用来存储数据并管理整个系统的状态。你可以把它想象成分布式系统的 <strong>“信息中心”</strong>，它有几个重要作用：</p>\n<ol>\n <li><strong>存储共享数据</strong>：可以存放系统需要共享的数据，确保各部分的数据一致。</li>\n <li><strong>记录系统状态</strong>：跟踪和记录系统运行的情况，让大家知道系统的当前状态。</li>\n <li><strong>通知变化</strong>：当数据或状态变化时，<strong>ZNode</strong> 会及时通知其他部分，确保大家都能做出相应的调整。</li>\n</ol>\n<p>通过 <strong>ZNode</strong>，<strong>ZooKeeper</strong> 能轻松地完成：</p>\n<ul>\n <li><strong>配置同步</strong>：确保各服务使用的是相同的配置。</li>\n <li><strong>分布式锁的实现</strong>：确保多个服务不会同时做冲突的工作。</li>\n <li><strong>多个服务状态管理</strong>：管理和协调各个服务的状态，确保它们高效合作。</li>\n</ul>\n<p>简而言之，<strong>ZNode</strong> 帮助 <strong>ZooKeeper</strong> 确保 <strong>分布式系统</strong> 能高效、稳定地协作运行。</p>"
+}, {
+  "id" : 447,
+  "uri" : "https://zha-ge.cn/java/8bhfwogr/",
+  "title" : "ZooKeeper 服务有哪些工作状态？各状态的含义是什么？",
+  "categoryId" : 15,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>ZooKeeper</strong> 是一个用来管理 <strong>分布式系统</strong> 的工具。它的工作状态有三种角色：<strong>Leader</strong>、<strong>Follower</strong> 和 <strong>Observer</strong>。</p>\n<ol>\n <li><p><strong>Leader</strong>：就像是负责人，处理所有的 <strong>写操作</strong>，决定数据应该怎么改变。同时，<strong>Leader</strong> 还要带领其他节点一起工作，确保系统协同运行。</p></li>\n <li><p><strong>Follower</strong>：相当于 <strong>Leader</strong> 的帮手，主要负责处理 <strong>读操作</strong>，并跟着 <strong>Leader</strong> 保证数据一致，确保大家看到的数据是一样的。</p></li>\n <li><p><strong>Observer</strong>：像是一个 <strong>观察者</strong>，只处理 <strong>读操作</strong>，不参与选择 <strong>Leader</strong>。它的作用是提高 <strong>读操作的速度</strong>，让系统更高效。</p></li>\n</ol>\n<p>这些角色各司其职，保证了系统的 <strong>可靠性</strong> 和 <strong>稳定性</strong>，让服务能够顺畅运行。</p>"
+}, {
+  "id" : 448,
+  "uri" : "https://zha-ge.cn/java/zxo8hqef/",
+  "title" : "ZooKeeper 集群的角色有哪些？它们分别承担哪些职责？",
+  "categoryId" : 15,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>ZooKeeper</strong> 集群里有三个主要角色：<strong>Leader</strong>、<strong>Follower</strong> 和 <strong>Observer</strong>，它们各自负责不同的任务：</p>\n<ol>\n <li><p><strong>Leader</strong>：就像是 <strong>老板</strong>，负责处理所有的 <strong>写操作</strong>，决定数据如何更改。同时，<strong>Leader</strong> 还需要管理其他节点，比如选出新的 <strong>Leader</strong>。</p></li>\n <li><p><strong>Follower</strong>：相当于 <strong>助手</strong>，主要负责处理 <strong>读操作</strong>，同时帮忙记录数据和保持数据同步，跟 <strong>Leader</strong> 配合确保数据一致。</p></li>\n <li><p><strong>Observer</strong>：是一个 <strong>旁观者</strong>，只负责处理 <strong>读操作</strong>，不参与选举 <strong>Leader</strong>，主要是提高 <strong>系统读数据的速度</strong>，让系统更高效。</p></li>\n</ol>\n<p>这三者通过分工合作，确保了系统既能 <strong>快速响应</strong>，又能保持 <strong>稳定性</strong>。</p>"
+}, {
+  "id" : 449,
+  "uri" : "https://zha-ge.cn/java/9fvx6obe/",
+  "title" : "ZooKeeper 集群是如何进行 Leader 选举的？选举机制是怎样的？",
+  "categoryId" : 15,
+  "sortOrder" : 6,
+  "answer" : "<p>在 <strong>ZooKeeper</strong> 集群中，<strong>Leader 选举</strong> 是确保当主节点出现问题时，能迅速恢复的机制。简单来说，当主节点故障时，其他节点会通过 <strong>投票机制</strong> 选出一个新的主节点，保证系统不受影响。</p>\n<p>具体流程是这样的：</p>\n<ol>\n <li>节点发起选举，大家开始竞争谁来当新主节点。</li>\n <li>各节点会比较谁的 <strong>事务日志更新得更高</strong>，即谁的记录最新。</li>\n <li>当超过半数的节点支持某个节点时，这个节点就成为新的主节点。</li>\n</ol>\n<p>通过这种方式，<strong>ZooKeeper</strong> 保证了集群在主节点故障时能够快速恢复，确保集群能继续 <strong>正常工作</strong>，不出现中断。</p>"
+}, {
+  "id" : 450,
+  "uri" : "https://zha-ge.cn/java/yeyjhb84/",
+  "title" : "为什么 ZooKeeper 集群的服务器数量通常是奇数？有什么优势？",
+  "categoryId" : 15,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>ZooKeeper 集群</strong> 的服务器数量通常是 <strong>奇数</strong>，这是因为它依赖 <strong>过半原则</strong> 来确保系统能正常运行。</p>\n<p>简单来说：</p>\n<ul>\n <li>集群中超过一半的节点需要同意某个操作，操作才能执行。比如，如果有 5 个节点，至少 3 个节点同意某个操作，才能进行。</li>\n <li><strong>奇数个节点</strong> 可以避免出现平局，确保总有一半以上的节点能达成一致，这样系统才能 <strong>稳定运行</strong>。</li>\n</ul>\n<p>选择奇数个节点还有一个好处：</p>\n<ul>\n <li><strong>最大化容错能力</strong>：即使部分节点出问题，只要超过一半的节点还正常，系统依然能继续工作。</li>\n <li><strong>节省硬件资源</strong>：不需要太多节点就能保证系统性能，避免浪费 <strong>硬件资源</strong>，在保证性能的同时 <strong>节省成本</strong>。</li>\n</ul>"
+}, {
+  "id" : 451,
+  "uri" : "https://zha-ge.cn/java/pfdy7cdr/",
+  "title" : "ZooKeeper 采用了哪种分布式一致性协议？常见的分布式一致性协议还有哪些？",
+  "categoryId" : 15,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>ZooKeeper</strong> 使用了 <strong>ZAB 协议</strong>（ZooKeeper 原子广播协议）作为核心协议，确保系统中的数据始终一致并且服务可用。</p>\n<p>简单来说，<strong>ZAB 协议</strong> 就像是一种特殊的规则，它帮助 <strong>ZooKeeper</strong> 保证：</p>\n<ul>\n <li>即使 <strong>节点故障</strong> 或 <strong>网络中断</strong>，系统依然能够保持一致，不会出现数据错误。</li>\n <li>它保证了数据的 <strong>一致性</strong> 和 <strong>高可用性</strong>，也就是说，系统中不同部分的数据始终是同步的。</li>\n</ul>\n<p>除了 <strong>ZAB 协议</strong>，常见的分布式一致性协议还包括：</p>\n<ul>\n <li><strong>Paxos</strong>：适合用在需要高稳定性的场景，但实现较复杂。</li>\n <li><strong>Raft</strong>：相对容易理解，适用于大多数分布式系统。</li>\n <li><strong>Viewstamped Replication</strong>：类似于 Paxos，但在某些特定场景下效率更高。</li>\n</ul>\n<p>这些协议虽然各有不同的使用场景，但它们都能帮助系统在分布式环境中保证 <strong>数据一致性</strong>，确保系统正常运行。</p>"
+}, {
+  "id" : 452,
+  "uri" : "https://zha-ge.cn/java/rjabr0vi/",
+  "title" : "ZooKeeper 如何保证事务的顺序一致性？内部机制是怎样的？",
+  "categoryId" : 15,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>ZooKeeper</strong> 确保事务按顺序一致性的方式非常简单：</p>\n<ol>\n <li><strong>Leader 节点</strong> 首先处理所有的 <strong>写操作</strong>，这样就能确保这些操作按顺序进行，不会乱掉。</li>\n <li>然后，<strong>Leader 节点</strong> 会把这些写操作 <strong>广播</strong> 给其他 <strong>Follower 节点</strong>，确保每个节点都按照相同的顺序处理这些操作。</li>\n <li>只有当 <strong>大多数节点</strong> 确认收到操作后，事务才会提交，这样就能保证所有节点的数据一致。</li>\n <li>如果 <strong>Leader 节点</strong> 发生故障，新的 <strong>Leader</strong> 会从上次成功提交的事务开始，继续处理，避免顺序混乱。</li>\n</ol>\n<p>通过这些步骤，<strong>ZooKeeper</strong> 即使在遇到故障时，依然能够确保所有事务都按照正确的顺序进行，保证数据的 <strong>一致性</strong>。</p>"
+}, {
+  "id" : 453,
+  "uri" : "https://zha-ge.cn/java/qaesvlac/",
+  "title" : "ZooKeeper 是如何优化 Watcher 机制，避免羊群效应的？",
+  "categoryId" : 15,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>ZooKeeper</strong> 通过 <strong>Watcher</strong> 机制来监控节点的变化。当多个客户端同时收到通知时，可能会导致系统性能下降，这个问题叫做 <strong>羊群效应</strong>。</p>\n<p>为了避免这个问题，<strong>ZooKeeper</strong> 采取了两种有效的措施：</p>\n<ol>\n <li><p><strong>事件驱动机制</strong>：只有当节点发生 <strong>变化</strong> 时，才会触发通知。这样就避免了不必要的检查和浪费资源。</p></li>\n <li><p><strong>一次性触发</strong>：每个 <strong>Watcher</strong> 只会触发一次通知，通知触发后，客户端需要重新注册。这就减少了重复通知的情况，避免了系统的负担。</p></li>\n</ol>\n<p>通过这两种方式，<strong>ZooKeeper</strong> 能有效减轻 <strong>系统压力</strong>，确保系统 <strong>性能不下降</strong>，高效运行。</p>"
+}, {
+  "id" : 454,
+  "uri" : "https://zha-ge.cn/java/8ht1l389/",
+  "title" : "如何使用 ZooKeeper 来实现分布式锁？具体流程是怎样的？",
+  "categoryId" : 15,
+  "sortOrder" : 11,
+  "answer" : "<p>在 <strong>ZooKeeper</strong> 中实现 <strong>分布式锁</strong>，主要是利用 <strong>临时节点</strong> 和 <strong>顺序节点</strong>。</p>\n<ol>\n <li><p>每个客户端在 <strong>ZooKeeper</strong> 中创建一个 <strong>顺序临时节点</strong>。这些节点是有顺序的，每个客户端创建的节点会有一个 <strong>唯一的编号</strong>，确保每个节点都可以被区分。</p></li>\n <li><p>客户端通过 <strong>Watcher</strong> 机制来监控节点的变化。当 <strong>ZooKeeper</strong> 中的锁变得可用时，客户端就能获得锁并开始执行任务。</p></li>\n <li><p>任务执行完后，客户端会删除自己创建的节点，释放锁，这样其他客户端就可以获得锁并执行任务。</p></li>\n</ol>\n<p>通过这种方式，<strong>ZooKeeper</strong> 确保了在 <strong>分布式系统</strong> 中，多个客户端不会 <strong>同时访问同一个资源</strong>，从而避免了资源冲突。</p>"
+}, {
+  "id" : 455,
+  "uri" : "https://zha-ge.cn/java/qks60el9/",
+  "title" : "什么是 ZooKeeper 的 Observer 节点？它与其他节点的区别是什么？",
+  "categoryId" : 15,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>ZooKeeper</strong> 的 <strong>观察者节点（Observer）</strong> 是一种特别的节点，它主要用于 <strong>同步数据</strong> 和 <strong>处理读取请求</strong>。</p>\n<ul>\n <li><strong>Observer</strong> 节点会和其他节点保持数据一致，确保大家的数据是一样的。</li>\n <li>不过，<strong>Observer</strong> 不参与那些需要做 <strong>决定</strong> 的操作，比如 <strong>写数据</strong> 或者 <strong>选举新主节点</strong>（Leader）。它只是帮助提升读取数据的效率。</li>\n</ul>\n<p>通过引入 <strong>Observer</strong> 节点，系统能够 <strong>提高读取性能</strong>，同时也减少了写操作对整个系统的压力，确保系统在处理大量读取请求时更加 <strong>高效</strong>。</p>"
+}, {
+  "id" : 456,
+  "uri" : "https://zha-ge.cn/java/60ii4iw7/",
+  "title" : "ZooKeeper 如何处理大规模 Watcher 通知带来的性能问题？",
+  "categoryId" : 15,
+  "sortOrder" : 13,
+  "answer" : "<p><strong>ZooKeeper</strong> 通过 <strong>事件驱动</strong> 和 <strong>一次性触发</strong> 的设计来处理大量的 <strong>Watcher 通知</strong>，确保系统高效运行。</p>\n<ol>\n <li><p><strong>事件驱动</strong>：只有在数据发生 <strong>变化</strong> 时，<strong>ZooKeeper</strong> 才会通知客户端，这样就避免了不必要的频繁检查。</p></li>\n <li><p><strong>一次性触发</strong>：每个 <strong>Watcher</strong> 只会触发一次通知，通知后需要重新注册，防止了重复的通知，减少了系统负担。</p></li>\n <li><p><strong>异步通知</strong>：客户端接收到通知后会 <strong>快速处理</strong>，而不需要等待或阻塞，这让系统能迅速响应而不影响其他操作。</p></li>\n</ol>\n<p>通过这几种方式，<strong>ZooKeeper</strong> 能高效地处理大量的通知请求，避免系统负担过重，保持 <strong>高效和流畅</strong>。</p>"
+}, {
+  "id" : 457,
+  "uri" : "https://zha-ge.cn/java/d35xbj21/",
+  "title" : "当客户端与 ZooKeeper 断开连接后，如何恢复？重连机制如何工作？",
+  "categoryId" : 15,
+  "sortOrder" : 14,
+  "answer" : "<p>当 <strong>ZooKeeper</strong> 客户端和服务器的连接断开时，客户端会自动 <strong>尝试重新连接</strong>。</p>\n<p>一旦网络恢复，客户端就可以通过一个特别的 <strong>会话 ID</strong> 来恢复之前的状态。这个 <strong>会话 ID</strong> 就像是客户端的 <strong>身份证</strong>，它帮助客户端记住之前的工作状态。</p>\n<p>这意味着，客户端在重新连接后，能够 <strong>继续执行</strong> 之前的操作，而不用重新开始。<strong>ZooKeeper</strong> 通过这种设计，保证了即使连接暂时断开，也不会影响数据的一致性，客户端可以顺利接着之前的工作继续进行，确保系统的 <strong>稳定性</strong> 和 <strong>高效性</strong>。</p>"
+}, {
+  "id" : 458,
+  "uri" : "https://zha-ge.cn/java/az6it796/",
+  "title" : "Kafka 为什么决定去除 ZooKeeper？其设计思路发生了哪些变化？",
+  "categoryId" : 15,
+  "sortOrder" : 15,
+  "answer" : "<p><strong>Kafka</strong> 决定不再使用 <strong>ZooKeeper</strong>，主要是因为 <strong>ZooKeeper</strong> 在管理 <strong>Kafka 集群</strong> 时出现了一些问题，特别是在系统负载大、分布式系统越来越复杂的情况下。随着 <strong>Kafka</strong> 用户越来越多，使用场景不断增加，<strong>ZooKeeper</strong> 成为了 <strong>瓶颈</strong>，在处理一些关键任务时变得效率低下，比如 <strong>Leader 选举</strong>、<strong>元数据管理</strong> 和 <strong>集群管理</strong>。</p>\n<p>为了解决这些问题，<strong>Kafka</strong> 引入了新的架构 <strong>KRaft</strong>（Kafka Raft Metadata Mode）。这个新架构使用了 <strong>Raft 协议</strong> 来管理系统中的数据，取代了 <strong>ZooKeeper</strong>，大大提升了系统的 <strong>性能</strong> 和 <strong>可扩展性</strong>，让 <strong>Kafka</strong> 在处理大规模数据时更加高效和稳定。</p>"
+}, {
+  "id" : 459,
+  "uri" : "https://zha-ge.cn/java/ro7cwp0d/",
+  "title" : "ZooKeeper 在遇到网络分区问题时如何处理？数据一致性如何保障？",
+  "categoryId" : 15,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>ZooKeeper</strong> 在处理 <strong>网络分区问题</strong> 时，选择优先保证 <strong>数据的一致性</strong>，也就是确保所有节点的数据是 <strong>同步的</strong>。即使这可能会让某些节点暂时无法正常工作，它依然选择这样做。</p>\n<p>它的解决办法是使用一个 <strong>投票机制</strong>，只有当 <strong>超过一半的节点</strong> 同意后，才能进行数据操作。这样可以避免在 <strong>网络分区</strong>的情况下，不同部分的数据互相冲突或混乱。</p>\n<p>虽然这样会导致一些节点在网络分区时 <strong>无法提供服务</strong>，但是这种设计确保了整个系统的 <strong>可靠性</strong> 和 <strong>正确性</strong>，避免了更严重的数据问题。</p>"
+}, {
+  "id" : 460,
+  "uri" : "https://zha-ge.cn/java/nj7ubsxr/",
+  "title" : "如何使用 ZooKeeper 命令行工具管理 ZNode？常见命令有哪些？",
+  "categoryId" : 15,
+  "sortOrder" : 17,
+  "answer" : "<p>在 <strong>ZooKeeper</strong> 中，<strong>ZNode</strong> 是用来存储数据的节点，类似于文件系统中的文件夹和文件，具有 <strong>层级结构</strong>。</p>\n<p>我们可以通过 <strong>ZooKeeper 提供的命令行工具（CLI）</strong> 来进行一些基本操作：</p>\n<ol>\n <li><strong>查看节点和子节点结构</strong>：使用 <code>ls</code> 命令可以查看某个节点和它下面的所有子节点。</li>\n <li><strong>创建不同类型的节点</strong>：使用 <code>create</code> 命令可以创建 <strong>持久节点</strong>（一直存在）、<strong>临时节点</strong>（客户端断开后自动删除）和 <strong>顺序节点</strong>（自动带有编号）。</li>\n <li><strong>查看节点数据和信息</strong>：使用 <code>get</code> 命令可以查看某个节点的 <strong>数据</strong> 和 <strong>元信息</strong>（比如版本号）。</li>\n <li><strong>更新节点数据</strong>：使用 <code>set</code> 命令可以更新节点的数据。</li>\n <li><strong>删除节点</strong>：使用 <code>delete</code> 命令或脚本可以删除节点及其子节点。</li>\n</ol>\n<p>虽然 <strong>ZooKeeper CLI</strong> 很适合用来调试和学习分布式系统，但在 <strong>生产环境</strong> 中，通常更推荐使用编程语言的客户端库（比如 <strong>Java</strong> 或 <strong>Python</strong>）来进行操作，这样可以通过代码来管理和控制节点。</p>"
+}, {
+  "id" : 461,
+  "uri" : "https://zha-ge.cn/java/nk9epa93/",
+  "title" : "ZooKeeper 提供了哪些身份认证机制？安全性如何保障？",
+  "categoryId" : 15,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>ZooKeeper</strong> 提供了 <strong>四种身份认证方式</strong>，可以根据不同的 <strong>安全需求</strong> 选择合适的方式：</p>\n<ol>\n <li><strong>匿名身份认证</strong>：不需要任何身份信息，任何人都可以访问。</li>\n <li><strong>用户名密码身份认证</strong>：需要提供 <strong>用户名和密码</strong> 来验证身份。</li>\n <li><strong>IP 白名单认证</strong>：只允许来自 <strong>特定 IP 地址</strong> 的客户端访问。</li>\n <li><strong>Kerberos 认证</strong>：一种更复杂、更安全的认证方式，适用于需要更高安全保障的场景。</li>\n</ol>\n<p>这些认证方式可以根据具体的需求来选择，确保系统的安全性。</p>"
+}, {
+  "id" : 462,
+  "uri" : "https://zha-ge.cn/java/scc8xqbo/",
+  "title" : "ZooKeeper 的 FIFO 队列是如何实现的？适用于哪些场景？",
+  "categoryId" : 15,
+  "sortOrder" : 19,
+  "answer" : "<p><strong>ZooKeeper</strong> 的 <strong>FIFO 队列</strong>（先进先出队列）是这样实现的：</p>\n<ol>\n <li><p><strong>顺序节点</strong>：每次把任务加到队列时，<strong>ZooKeeper</strong> 会自动为每个节点的名字加上一个 <strong>递增的序号</strong>，确保任务按顺序加入。</p></li>\n <li><p><strong>排序消费子节点</strong>：当读取队列时，<strong>ZooKeeper</strong> 会根据节点的名字排序，从 <strong>序号最小的节点</strong> 开始处理任务，确保是先进的任务先被消费。</p></li>\n <li><p><strong>自动监听机制</strong>：通过 <strong>Watcher</strong>，ZooKeeper 会实时监控队列的变化，保证一有新任务就可以立即处理。</p></li>\n</ol>\n<p>FIFO 队列的实现依赖于 <strong>顺序节点</strong> 和 <strong>数据一致性保障</strong>，确保任务按顺序进行处理。</p>"
+}, {
+  "id" : 463,
+  "uri" : "https://zha-ge.cn/java/729e7g27/",
+  "title" : "ZooKeeper 的事务日志和快照机制有何不同？如何优化它们的性能？",
+  "categoryId" : 15,
+  "sortOrder" : 20,
+  "answer" : "<ul>\n <li><p><strong>事务日志</strong> 记录了每次数据变更的操作，类似于一个 <strong>增量记录</strong>，主要用于在系统崩溃后恢复数据和同步数据。</p></li>\n <li><p><strong>快照</strong> 是整个数据结构的 <strong>完整保存</strong>，它保存了数据的一个完整镜像，在需要恢复时，可以快速加载整个数据。</p></li>\n</ul>\n<p>这两者一起使用，不仅能确保数据的 <strong>安全性</strong>，还能够提高 <strong>系统恢复的速度</strong>，确保快速恢复到正常状态。</p>"
+}, {
+  "id" : 464,
+  "uri" : "https://zha-ge.cn/java/km3jky3s/",
+  "title" : "什么是 Paxos 算法？它在 ZooKeeper 体系中扮演什么角色？",
+  "categoryId" : 15,
+  "sortOrder" : 21,
+  "answer" : "<p><strong>Paxos 算法</strong> 是为了解决分布式系统中多个节点在出现故障时如何达成一致的问题。简单来说，它能保证即使有部分节点出问题，其他正常的节点也能达成一致的决定。</p>\n<p>虽然 <strong>ZooKeeper</strong> 没有直接使用 Paxos，但它的协议 <strong>Zab</strong> 受到了 Paxos 的启发，专门为 <strong>ZooKeeper</strong> 设计。相比 Paxos，<strong>Zab</strong> 更高效，更适合 ZooKeeper 的使用场景。</p>\n<p>总的来说，<strong>Paxos</strong> 是一种理论上的一致性方案，而 <strong>Zab</strong> 则是将这个理论应用和优化后，专门为 ZooKeeper 提供的解决方案。</p>"
+}, {
+  "id" : 465,
+  "uri" : "https://zha-ge.cn/java/dg6n64q9/",
+  "title" : "ZooKeeper 中的 stat 属性是什么？它的作用是什么？",
+  "categoryId" : 15,
+  "sortOrder" : 22,
+  "answer" : "<p><strong><code>stat</code> 属性</strong> 是 ZooKeeper 提供的一种元数据，它包含了节点的 <strong>详细状态信息</strong>，比如创建时间、最后修改时间、版本号等。</p>\n<p>它的作用是帮助 <strong>开发者</strong> 和 <strong>系统</strong> 跟踪节点的变化，确保在 <strong>分布式系统</strong> 中的数据始终保持一致。这样，大家就可以知道每个节点的最新情况，避免出现数据错误。</p>"
+}, {
+  "id" : 466,
+  "uri" : "https://zha-ge.cn/java/p32l8zxy/",
+  "title" : "ZooKeeper 如何保证数据的一致性和可靠性？涉及哪些关键机制？",
+  "categoryId" : 15,
+  "sortOrder" : 23,
+  "answer" : "<p><strong>ZooKeeper</strong> 是一个帮助多个计算机系统 <strong>协同工作</strong> 的工具，目标是确保在分布式环境下，各台机器的数据保持 <strong>一致性</strong>，并且系统能够 <strong>高可靠性</strong>，不容易出问题。它通过以下几种方式来实现这些目标：</p>\n<ol>\n <li><p><strong>数据一致性</strong>：ZooKeeper 确保当某台机器写入数据时，其他机器也能得到 <strong>相同的数据</strong>，避免不同机器的数据不一致，确保所有机器的数据是同步的。</p></li>\n <li><p><strong>数据可靠性</strong>：即使系统发生故障，ZooKeeper 也能确保数据不会丢失，并且能够通过 <strong>备份</strong> 恢复数据，保证数据不受损坏。</p></li>\n</ol>\n<p>ZooKeeper 的一致性和可靠性特性在很多 <strong>分布式应用</strong> 中非常重要，比如 <strong>分布式锁</strong>、<strong>配置管理</strong>、<strong>服务注册与发现</strong> 等，确保系统能稳定高效地运行。</p>"
+}, {
+  "id" : 467,
+  "uri" : "https://zha-ge.cn/java/ls484t0g/",
+  "title" : "ZooKeeper 集群是否支持动态扩容？如何添加新的服务器？",
+  "categoryId" : 15,
+  "sortOrder" : 24,
+  "answer" : "<p><strong>是的，ZooKeeper 集群是支持动态添加机器的</strong>。不过，增加新机器时并不是完全自动化的，需要做一些 <strong>手动配置</strong>，并且可能需要 <strong>重启集群</strong> 中的部分或全部节点。</p>\n<p>动态添加机器的目的是 <strong>扩展集群</strong>，增强系统的 <strong>容错性</strong>、<strong>负载均衡能力</strong> 和 <strong>高可用性</strong>。通过增加更多的机器，ZooKeeper 可以更好地应对大规模的操作，确保系统稳定运行。</p>"
+}, {
+  "id" : 468,
+  "uri" : "https://zha-ge.cn/java/2hjewuax/",
+  "title" : "ZooKeeper 的数据模型和存储结构是怎样的？底层如何存储数据？",
+  "categoryId" : 15,
+  "sortOrder" : 25,
+  "answer" : "<p>ZooKeeper 用来管理分布式系统中的数据，主要有以下特点：</p>\n<ol>\n <li><strong>树形结构</strong>：数据按层次排列，每个数据都有唯一的路径，就像文件夹结构。</li>\n <li><strong>节点类型</strong>： \n  <ul>\n   <li><strong>持久节点</strong>：数据一直保留，除非手动删除。</li>\n   <li><strong>临时节点</strong>：连接断开时自动删除。</li>\n   <li><strong>顺序节点</strong>：节点名按创建顺序自动编号。</li>\n  </ul></li>\n <li><strong>存储方式</strong>：数据先存储在内存中，处理快速；同时会通过日志和备份保存在磁盘中，确保数据安全。</li>\n</ol>\n<p>简单来说，ZooKeeper 用树形结构管理数据，通过不同类型的节点和内存+磁盘的存储方式保证了数据的快速处理和安全恢复。</p>"
+}, {
+  "id" : 469,
+  "uri" : "https://zha-ge.cn/java/wpzfvhea/",
+  "title" : "如何配置 ZooKeeper 的 session 超时时间？超时后会发生什么？",
+  "categoryId" : 15,
+  "sortOrder" : 26,
+  "answer" : "<p>在 <strong>ZooKeeper</strong> 中，<strong>session 超时时间</strong> 就是指客户端和服务器之间允许没有互动的最大时间。简单来说，就是如果客户端和服务器在这段时间内没有任何沟通，ZooKeeper 就会认为这个客户端不再活跃，于是会自动关闭它的 <strong>session</strong>。</p>\n<p>你可以在建立连接时设置这个超时时间，决定多久没有互动后会关闭连接。</p>\n<p>一旦 <strong>session 超时</strong>，ZooKeeper 会清除和这个客户端相关的数据，特别是 <strong>临时节点</strong> 和 <strong>事件监听器</strong>。这意味着，客户端的临时数据和它注册的监听事件会被删除。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>session 超时时间</strong> 就是客户端和服务器之间允许不联系的最长时间，一旦超时，ZooKeeper 会清除客户端的临时数据和监听器。</p>"
+}, {
+  "id" : 470,
+  "uri" : "https://zha-ge.cn/java/xifrore8/",
+  "title" : "ZooKeeper 的负载均衡机制是如何工作的？如何优化集群性能？",
+  "categoryId" : 15,
+  "sortOrder" : 27,
+  "answer" : "<p>ZooKeeper 通过一套聪明的方式来平衡集群的负载，确保高效又稳定。这个机制主要有三个关键点：</p>\n<ol>\n <li><p><strong>读写分离</strong>：<strong>读操作</strong>可以在集群里的所有节点上进行，这样就能分散工作负担，减少单个节点的压力。<strong>写操作</strong>则由一个特别的节点——<strong>Leader</strong>来处理，保证所有数据的一致性。</p></li>\n <li><p><strong>客户端连接分配</strong>：客户端每次连接时，可以<strong>随机选择一个节点</strong>。这样就能避免某一个节点压力太大，造成系统崩溃。</p></li>\n <li><p><strong>Leader 选举</strong>：如果 Leader 发生故障，ZooKeeper 会通过<strong>选举机制</strong>快速选出新的 Leader，确保系统的写操作不会中断，保证集群稳定。</p></li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p>ZooKeeper 用 <strong>读写分离</strong> 来提高性能，用 <strong>客户端随机连接</strong> 避免某个节点过载，同时通过 <strong>Leader 选举</strong> 保证集群的可靠性和高可用性。这样使得 ZooKeeper 在分布式系统中既高效又可靠。</p>"
+} ]

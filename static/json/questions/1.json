@@ -1,0 +1,211 @@
+[ {
+  "id" : 1,
+  "uri" : "https://zha-ge.cn/java/na3f5lwu/",
+  "title" : "Java中序列化与反序列化的概念是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>序列化</strong>就是把<strong>Java对象</strong>变成一串字节流，字节流就像是一种“通用语言”，可以在不同的计算机间传递。 这样做的主要目的是保存对象的状态，以便以后可以恢复。<strong>反序列化</strong>则是把这些字节流重新变回<strong>Java对象</strong>， 恢复对象的状态，方便程序继续使用它。</p>"
+}, {
+  "id" : 2,
+  "uri" : "https://zha-ge.cn/java/ts4n9cg6/",
+  "title" : "Java的多态特性指的是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 2,
+  "answer" : "<p><strong>多态</strong>就是：<strong>一个功能，可以有不同的做法</strong>。在 Java 中，主要通过两种方式实现：<strong>方法重载</strong>和<strong>方法重写</strong>。 方法重载就是一个方法名可以根据输入的不同参数做不同的事，方法重写则是子类可以重新定义父类的方法。 多态让代码更灵活，你可以根据不同的情况，调用不同的处理方式，扩展起来也特别方便。</p>"
+}, {
+  "id" : 3,
+  "uri" : "https://zha-ge.cn/java/iex8nxrk/",
+  "title" : "Java中Exception与Error的差异是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 3,
+  "answer" : "<p>在 Java 中，<strong>Exception</strong> 就是那些可以预料到并且可以通过代码处理的问题， 通常是因为程序逻辑错误或者外部环境出了点问题。它分为两种：<strong>Checked Exception</strong>（检查型异常）和 <strong>Unchecked Exception</strong>（运行时异常）。 而 <strong>Error</strong> 则是系统层面的大问题，比如内存爆了或者栈溢出这种事，这些问题无法通过代码去捕获和解决， 通常得靠优化系统或环境来解决。</p>"
+}, {
+  "id" : 4,
+  "uri" : "https://zha-ge.cn/java/ba62c2zv/",
+  "title" : "Java的参数传递机制是基于值还是引用？",
+  "categoryId" : 1,
+  "sortOrder" : 4,
+  "answer" : "<p>在 <strong>Java</strong> 中，参数传递<strong>永远是按值传递</strong>，无论是基本数据类型，还是对象。 你传给方法的，其实是变量的<strong>副本</strong>（就是一个拷贝），所以看起来就像是按值传递。 对于基本数据类型，传递的是值的拷贝；对于对象引用，传递的是引用的拷贝。总的来说，<strong>Java 不支持按引用传递</strong>。</p>\n<hr>"
+}, {
+  "id" : 5,
+  "uri" : "https://zha-ge.cn/java/0wrmacor/",
+  "title" : "Java为何不支持多重继承的实现？",
+  "categoryId" : 1,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>Java 不支持类的多重继承</strong>，主要是为了避免一些麻烦的事情：</p>\n<ol>\n <li><p>\uD83D\uDEAB <strong>避免钻石问题</strong>：如果一个类继承了两个类，而这两个类又都有一个相同的方法，那程序就不知道应该调用哪个方法了，结果可能出错。</p></li>\n <li><p>\uD83D\uDEE0️ <strong>让语言简单</strong>：Java 设计的时候，考虑到多重继承会让东西变得复杂，学起来和用起来都麻烦。所以就没有让类支持多重继承。</p></li>\n <li><p>✔️ <strong>用接口来解决</strong>：虽然类不能多继承，但 Java 支持一个类实现多个接口。接口只是声明方法，不涉及具体实现，这样就能避免方法冲突的问题。</p></li>\n</ol>\n<p>总之，Java 这样设计是为了让代码更清楚、更容易理解、维护起来也不麻烦，还能避免潜在的 bug。</p>\n<hr>"
+}, {
+  "id" : 6,
+  "uri" : "https://zha-ge.cn/java/ia4d216s/",
+  "title" : "Java方法重载与方法重写的区别在哪里？",
+  "categoryId" : 1,
+  "sortOrder" : 6,
+  "answer" : "<ul>\n <li><strong>方法重载</strong>（Overloading）：在同一个类中，方法名相同，但<strong>参数列表不同</strong>（参数个数、类型、顺序等）。</li>\n <li><strong>方法重写</strong>（Overriding）：子类重新定义父类已经实现的方法，<strong>方法名、参数列表、返回类型都必须相同</strong>，实现方式不同。</li>\n</ul>\n<p><strong>主要区别：</strong></p>\n<ul>\n <li><strong>方法重载</strong>：同一个类里，方法名字相同但参数不同，用来区分不同的调用方式。</li>\n <li><strong>方法重写</strong>：子类重新定义父类的方法，目的是改变父类方法的行为，并实现<strong>运行时多态</strong>。</li>\n</ul>"
+}, {
+  "id" : 7,
+  "uri" : "https://zha-ge.cn/java/x4f5mg3k/",
+  "title" : "String、StringBuilder和StringBuffer的特性有何不同？",
+  "categoryId" : 1,
+  "sortOrder" : 7,
+  "answer" : "<h3 id=\"_1-string\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-string\"><span>1. <strong>String</strong>：</span></a></h3>\n<ul>\n <li><strong>不可变</strong>的对象，每次修改都会重新创建一个新的字符串。</li>\n <li><strong>线程安全</strong>，适合少量字符串操作的场景。</li>\n <li>性能较低，频繁修改字符串时会产生大量新的对象，效率不高。</li>\n</ul>\n<h3 id=\"_2-stringbuilder\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-stringbuilder\"><span>2. <strong>StringBuilder</strong>：</span></a></h3>\n<ul>\n <li><strong>可变</strong>对象，修改时直接在原有对象上操作，避免了创建新对象。</li>\n <li><strong>非线程安全</strong>，但是性能更好，适合单线程环境。</li>\n <li>最适合<strong>频繁修改字符串</strong>的场景，比如拼接字符串。</li>\n</ul>\n<h3 id=\"_3-stringbuffer\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-stringbuffer\"><span>3. <strong>StringBuffer</strong>：</span></a></h3>\n<ul>\n <li><strong>可变</strong>对象，修改时不会创建新的对象。</li>\n <li><strong>线程安全</strong>，通过同步机制保证多线程环境下的安全。</li>\n <li>性能比 <strong>StringBuilder</strong> 稍微差一些，但适合多线程环境使用。</li>\n</ul>"
+}, {
+  "id" : 8,
+  "uri" : "https://zha-ge.cn/java/4mnu5eb9/",
+  "title" : "Java中StringBuilder的底层实现原理是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>StringBuilder</strong> 是 Java 中用于处理可变字符序列的类，它实现了 <strong>可变字符串</strong> 的功能， 避免了频繁创建新字符串的性能问题。<code>StringBuilder</code> 内部通过一个字符数组来存储字符串的内容， 并且该数组在容量不足时会自动扩展。它的主要优势是<strong>提高了字符串拼接的效率</strong>，尤其是在大量修改字符串的场景中。</p>"
+}, {
+  "id" : 9,
+  "uri" : "https://zha-ge.cn/java/pd6i3h40/",
+  "title" : "Java动态代理的定义是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>动态代理</strong> 是 Java 中的一种技术，它让程序在运行时能够<strong>自动创建代理对象</strong>，然后通过代理对象来<strong>拦截</strong>和<strong>增强</strong>你原本的方法。</p>\n<h3 id=\"_1-怎么实现\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-怎么实现\"><span>1. <strong>怎么实现</strong>：</span></a></h3>\n<ul>\n <li><strong>JDK 动态代理</strong>：它用的是 <strong>Java 反射</strong>，所以<strong>被代理的类必须实现接口</strong>。</li>\n <li><strong>CGLIB 动态代理</strong>：它通过 <strong>字节码操作</strong>，即使类没有实现接口也能代理。</li>\n</ul>\n<h3 id=\"_2-主要用途\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-主要用途\"><span>2. <strong>主要用途</strong>：</span></a></h3>\n<ul>\n <li><strong>增强功能</strong>：你可以在方法运行前后加点额外的操作，比如记录日志、检查权限或者管理事务。</li>\n <li><strong>解耦设计</strong>：把一些通用功能（比如日志、权限检查）和核心业务逻辑分开，<strong>让代码更清晰、更容易维护</strong>。</li>\n</ul>\n<h3 id=\"_3-应用场景\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-应用场景\"><span>3. <strong>应用场景</strong>：</span></a></h3>\n<ul>\n <li><strong>Spring AOP</strong>：动态代理用于实现一些功能，比如记录日志和事务管理，和核心代码分开。</li>\n <li><strong>MyBatis</strong>：通过动态代理自动生成接口的实现类，省去了手动编写代码的麻烦。</li>\n</ul>"
+}, {
+  "id" : 10,
+  "uri" : "https://zha-ge.cn/java/lacv082n/",
+  "title" : "JDK 动态代理 VS CGLIB 动态代理：谁才是“代理界的霸主”？",
+  "categoryId" : 1,
+  "sortOrder" : 10,
+  "answer" : "<p><strong>JDK 动态代理</strong> 是通过 <strong>接口</strong> 来实现的代理，只有目标类实现了接口，才能被代理。 而 <strong>CGLIB 动态代理</strong> 则是通过 <strong>继承目标类</strong> 来生成代理对象，它可以代理没有接口的类。</p>\n<ul>\n <li><strong>JDK 代理</strong> 适合用来代理那些有接口的类。</li>\n <li><strong>CGLIB 代理</strong> 适合用来代理那些没有接口的类，尤其是当目标类不能修改时。</li>\n</ul>"
+}, {
+  "id" : 11,
+  "uri" : "https://zha-ge.cn/java/ksz7p2t5/",
+  "title" : "Java注解的实现原理是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 11,
+  "answer" : "<h3 id=\"_1-什么是注解\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-什么是注解\"><span>1. <strong>什么是注解？</strong></span></a></h3>\n<ul>\n <li>注解就是<strong>给代码加标签</strong>，可以在类、方法、字段等地方标记一些额外的信息。</li>\n <li>注解自己不做事情，它需要一些工具或框架来<strong>读取和处理</strong>，这样就能实现一些额外的功能。</li>\n</ul>\n<h3 id=\"_2-注解的分类\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-注解的分类\"><span>2. <strong>注解的分类</strong>：</span></a></h3>\n<ul>\n <li><strong>内置注解</strong>：Java 自带的一些注解，比如 <strong>@Override</strong>（表示方法是重写的）和 <strong>@Deprecated</strong>（表示方法不推荐再用）。</li>\n <li><strong>自定义注解</strong>：你自己定义的注解，用来实现自己需要的功能。</li>\n <li><strong>元注解</strong>：像 <strong>@Retention</strong> 和 <strong>@Target</strong> 这样的注解，用来设置其他注解的规则。</li>\n</ul>\n<h3 id=\"_3-注解的原理\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-注解的原理\"><span>3. <strong>注解的原理</strong>：</span></a></h3>\n<ul>\n <li>Java 提供了<strong>反射</strong>和<strong>注解处理器</strong>，可以在程序运行时或者编译时读取注解。</li>\n <li>注解的<strong>存活时间</strong>由 <strong>RetentionPolicy</strong> 决定： \n  <ul>\n   <li><code>SOURCE</code>：只存在源代码里，编译后就没有了。</li>\n   <li><code>CLASS</code>：保留在字节码文件里，但运行时看不到。</li>\n   <li><code>RUNTIME</code>：保留在字节码里，程序运行时可以通过反射读取。</li>\n  </ul></li>\n</ul>\n<h3 id=\"_4-实际用途\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_4-实际用途\"><span>4. <strong>实际用途</strong>：</span></a></h3>\n<ul>\n <li><strong>框架开发</strong>：像 Spring AOP 或 MyBatis 用注解自动生成代码。</li>\n <li><strong>代码检查</strong>：比如 <strong>@Override</strong> 用来确保你重写的方法是正确的。</li>\n <li><strong>编译时工具</strong>：像 Lombok 用注解自动生成代码，减少手动写。</li>\n</ul>"
+}, {
+  "id" : 12,
+  "uri" : "https://zha-ge.cn/java/q7ctvr0i/",
+  "title" : "Java反射机制的定义及其应用场景是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>反射机制</strong> 是 Java 提供的一种功能，它让我们可以在程序运行时<strong>动态获取类的信息</strong>，并且操作类的<strong>对象</strong>。 简单来说，通过反射，我们可以在<strong>不知道类的具体信息</strong>时，还是能够<strong>动态创建对象</strong>、访问字段、调用方法等。 反射的核心是 Java 提供的 <code>java.lang.reflect</code> 包。这个包里有很多工具，帮助我们实现这些操作。</p>"
+}, {
+  "id" : 13,
+  "uri" : "https://zha-ge.cn/java/ttudh87m/",
+  "title" : "Java中深拷贝与浅拷贝的区别是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 13,
+  "answer" : "<ol>\n <li><p><strong>浅拷贝</strong>：浅拷贝就是复制一个对象时，如果这个对象里有<strong>简单数据</strong>（比如数字、字符），它会直接复制这些值。如果对象里有其他对象，那就只会复制<strong>指向它的地址</strong>，而不是复制这个对象本身。这样，<strong>新旧两个对象会指向同一个地方</strong>，如果你改了一个对象的内容，另一个对象也会变化。</p></li>\n <li><p><strong>深拷贝</strong>：深拷贝是完全复制一个对象，<strong>不仅复制简单数据，还会复制里面的所有其他对象</strong>。这样做的结果是，<strong>新旧两个对象完全独立</strong>，你改变一个对象的内容，另一个对象不会受到影响。</p></li>\n</ol>"
+}, {
+  "id" : 14,
+  "uri" : "https://zha-ge.cn/java/tusabds4/",
+  "title" : "Java中Integer缓存池的作用是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 14,
+  "answer" : "<p><strong>Integer 缓存池</strong> 是 Java 提供的一种<strong>缓存机制</strong>，它会缓存 <strong><code>-128</code> 到 <code>127</code></strong> 范围内的 <strong>Integer 对象</strong>。这样，当你多次使用相同的数值时，Java 就不会每次都创建新的对象， 而是直接使用已经缓存的对象。这样做可以提高<strong>内存使用效率</strong>和<strong>性能</strong>， 因为这些常用数值在第一次创建时会被存入缓存池，之后再用时直接引用缓存里的对象。</p>"
+}, {
+  "id" : 15,
+  "uri" : "https://zha-ge.cn/java/c9m848vm/",
+  "title" : "Java中final、finally和finalize的区别是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 15,
+  "answer" : "<ol>\n <li><p><strong>final</strong>：用来标记类、方法和变量，表示<strong>不能再修改</strong>。</p>\n  <ul>\n   <li><strong>类</strong>：不能被继承（也就是不能创建这个类的子类）。</li>\n   <li><strong>方法</strong>：不能被改写（也就是不能重新定义这个方法的内容）。</li>\n   <li><strong>变量</strong>：表示<strong>常量</strong>，一旦赋值之后就不能再改变它的值。</li>\n  </ul></li>\n <li><p><strong>finally</strong>：是用来<strong>处理异常</strong>的，保证不管发生什么情况，最后都会执行的一段代码。通常用来做一些资源清理的工作，比如关闭文件或者数据库连接。</p></li>\n <li><p><strong>finalize</strong>：是 <strong>Object</strong> 类中的一个方法，目的是在对象被<strong>垃圾回收</strong>之前做一些清理工作。但它什么时候被调用并不确定，所以不推荐使用，最好手动管理资源，确保在需要的时候释放。</p></li>\n</ol>"
+}, {
+  "id" : 16,
+  "uri" : "https://zha-ge.cn/java/lv956egb/",
+  "title" : "Java中wait()与sleep()方法的不同点是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 16,
+  "answer" : "<ul>\n <li><p><strong><code>wait()</code></strong> 是一个让程序暂停的方法，它会让当前的程序<strong>停下来</strong>，并且<strong>释放锁</strong>，直到其他程序来<strong>唤醒</strong>它。 这个方法只能在<strong>同步方法</strong>或者<strong>同步代码块</strong>里使用。</p></li>\n <li><p><strong><code>sleep()</code></strong> 是让程序暂停一段时间的方法，<strong>它不会释放锁</strong>， 程序暂停后会在指定时间过后自动恢复继续执行。</p></li>\n</ul>"
+}, {
+  "id" : 17,
+  "uri" : "https://zha-ge.cn/java/5wzfhgip/",
+  "title" : "Java继承机制的核心原理是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>继承（Inheritance）</strong> 是面向对象编程（OOP）中的一种机制，通过它，子类可以继承父类的字段和方法，并且能够对这些方法进行 <strong>重写</strong>（Override）。继承的主要作用是 <strong>代码复用</strong> 和 <strong>功能扩展</strong>，它使得我们可以在已有的类的基础上添加更多的功能。</p>\n<h3 id=\"主要特点\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#主要特点\"><span>主要特点：</span></a></h3>\n<ol>\n <li><strong>单继承</strong>：Java 不支持类的多重继承，允许一个类有且只有一个父类。</li>\n <li><strong>方法重写（Override）</strong>：子类可以重写父类的方法，改变其行为。</li>\n <li><strong>方法隐藏（Overload）</strong>：子类可以定义与父类同名的多个方法，这不是方法重写，而是方法重载。</li>\n <li><strong>super 关键字</strong>：用来访问父类的成员变量和方法。</li>\n <li><strong>构造函数的继承</strong>：构造函数不能被继承，但子类可以通过 <code>super()</code> 调用父类的构造函数。</li>\n</ol>"
+}, {
+  "id" : 18,
+  "uri" : "https://zha-ge.cn/java/eeqy5du9/",
+  "title" : "Java中静态方法与实例方法的差异是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 18,
+  "answer" : "<ul>\n <li><p><strong>静态方法</strong>是和<strong>类</strong>本身关联的，可以直接通过<strong>类名</strong>来调用，而不需要创建类的<strong>对象</strong>。静态方法只能访问<strong>静态的</strong>变量和方法，不能访问实例（对象）的变量和方法。</p></li>\n <li><p><strong>实例方法</strong>是和<strong>类的对象</strong>关联的，必须通过<strong>对象</strong>来调用。实例方法可以访问<strong>对象的</strong>变量和方法，也可以访问<strong>静态的</strong>变量和方法。</p></li>\n</ul>"
+}, {
+  "id" : 19,
+  "uri" : "https://zha-ge.cn/java/pxwrpese/",
+  "title" : "for 循环 VS foreach 循环：你是哪种“跑车”派？",
+  "categoryId" : 1,
+  "sortOrder" : 19,
+  "answer" : "<ul>\n <li><p><strong>for 循环</strong>：这是一种非常灵活的循环方式，程序员可以<strong>完全控制</strong>循环的<strong>开始</strong>、<strong>结束</strong>和<strong>步进</strong>。它适合用在需要更细致控制循环行为的时候，比如你想控制循环的<strong>步长</strong>，或者需要用<strong>索引</strong>来操作数组或集合里的每个元素。</p></li>\n <li><p><strong>foreach 循环</strong>：这是 Java 5 后新增的一种更简洁的循环方式，专门用来遍历数组或者实现了 <code>Iterable</code> 接口的集合。它的写法简单，主要用来<strong>遍历元素</strong>，自动处理循环中的<strong>索引</strong>和<strong>迭代器</strong>，避免了手动管理这些东西，适合用在只需要遍历元素的简单场景。</p></li>\n</ul>"
+}, {
+  "id" : 20,
+  "uri" : "https://zha-ge.cn/java/8d3romm3/",
+  "title" : "Java的双亲委派模型指的是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 20,
+  "answer" : "<p><strong>双亲委派模型</strong> 是 Java 中用来加载类的一种机制。简单来说，当 <strong>类加载器</strong> 需要加载一个类时，它不会直接自己去加载，而是会先把这个请求交给它的 <strong>父加载器</strong>。如果父加载器不能加载该类，当前的加载器才会尝试加载。</p>\n<p>这种方式的好处是：<strong>系统类</strong>（像 <strong>JDK 核心类库</strong>）会优先被加载，避免了不同的类加载器加载同一个类而导致冲突，从而增强了系统的 <strong>安全性</strong> 和 <strong>稳定性</strong>。</p>"
+}, {
+  "id" : 21,
+  "uri" : "https://zha-ge.cn/java/7ul3teq1/",
+  "title" : "Java与Go语言的主要区别是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 21,
+  "answer" : "<ol>\n <li><p><strong>Java</strong> 是一种编程语言，最强的特点是它可以在 <strong>不同平台</strong> 上运行，也就是说，无论你用的是 <strong>Windows</strong> 还是 <strong>Mac</strong>，只要有 <strong>JVM（Java虚拟机）</strong>，Java程序就能跑。Java的语法比较难，适合用来做那些 <strong>复杂的大型应用</strong>，它有很多现成的工具和类库，可以帮助你快速开发。</p></li>\n <li><p><strong>Go（Golang）</strong> 是 <strong>Google</strong> 做的编程语言，特点是 <strong>简单</strong>、<strong>速度快</strong>、能同时处理很多任务（就是支持 <strong>并发</strong>）。Go特别适合做 <strong>网络服务</strong> 或者 <strong>云计算</strong> 相关的工作。它的编译速度很快，运行也很高效，而且它的并发方式很轻便，能够很好地利用多核处理器，性能也更强。</p></li>\n</ol>\n<h3 id=\"主要区别\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#主要区别\"><span><strong>主要区别</strong>：</span></a></h3>\n<ul>\n <li><strong>语法复杂性</strong>：Java 语法较为复杂，适合大型应用开发；Go 的语法简洁，适合快速开发。</li>\n <li><strong>并发处理</strong>：Java 使用传统的 <strong>多线程</strong> 模型，而 Go 使用 <strong>goroutines</strong>（协程），它的并发模型更加轻量级和高效。</li>\n <li><strong>内存管理</strong>：Java 有垃圾回收机制，而 Go 也有垃圾回收，但它强调内存的手动管理（如 <code>defer</code>）。</li>\n <li><strong>编译与执行</strong>：Java 是字节码编译执行（JVM），而 Go 是直接编译成机器码，执行速度更快。</li>\n</ul>"
+}, {
+  "id" : 22,
+  "uri" : "https://zha-ge.cn/java/f8gf5sy9/",
+  "title" : "Java字节码的定义是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 22,
+  "answer" : "<p><strong>字节码</strong> 是一种中间代码，它是 Java 源代码通过 <strong>编译器</strong> 编译后的产物，通常存储在 <code>.class</code> 文件中。字节码不依赖于操作系统或硬件平台，它可以在任何安装了 <strong>Java 虚拟机（JVM）</strong> 的环境中运行。JVM 会将字节码转换成对应平台的机器码进行执行，从而实现了 Java 程序的跨平台特性。</p>"
+}, {
+  "id" : 23,
+  "uri" : "https://zha-ge.cn/java/5nrqlt68/",
+  "title" : "Java中Optional类的作用及其用途是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 23,
+  "answer" : "<p><strong><code>Optional</code> 类</strong> 就是一个容器，用来表示一个值可能为空。它的设计思路是，把 <strong><code>null</code></strong> 包装成一个 <strong><code>Optional</code></strong> 对象，这样就能明确表示某个值可能是 <strong><code>null</code></strong>，而不是直接用 <code>null</code> 来表示“没有值”。使用 <strong><code>Optional</code></strong> 后，开发者可以更清晰地处理 <strong>空值问题</strong>，从而避免出现 <strong>空指针异常</strong>。</p>\n<h3 id=\"主要功能\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#主要功能\"><span><strong>主要功能</strong>：</span></a></h3>\n<ul>\n <li><strong>Optional.empty()</strong>：表示一个空的 <code>Optional</code> 对象。</li>\n <li><strong>Optional.of(value)</strong>：如果值非 <code>null</code>，返回一个包含值的 <code>Optional</code> 对象。</li>\n <li><strong>Optional.ofNullable(value)</strong>：返回一个可能为空的 <code>Optional</code> 对象。</li>\n <li><strong>isPresent()</strong>：检查 <code>Optional</code> 是否包含值。</li>\n <li><strong>ifPresent()</strong>：如果 <code>Optional</code> 中包含值，则执行指定的操作。</li>\n <li><strong>get()</strong>：获取值，如果值为空则抛出 <code>NoSuchElementException</code> 异常。</li>\n</ul>"
+}, {
+  "id" : 24,
+  "uri" : "https://zha-ge.cn/java/qll2l8y3/",
+  "title" : "Java运行时异常与编译时异常的区别是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 24,
+  "answer" : "<p>Java 中，<strong>运行时异常</strong> 是程序运行中可能发生的错误，编译器不会强制要求处理；而 <strong>编译时异常</strong> 是在编译阶段被检查到的问题，必须显式处理，程序才能通过编译。</p>"
+}, {
+  "id" : 25,
+  "uri" : "https://zha-ge.cn/java/y94siji6/",
+  "title" : "Java中的IO流分类有哪些？",
+  "categoryId" : 1,
+  "sortOrder" : 25,
+  "answer" : "<p>Java 中的 <strong>IO 流</strong> 是通过 <strong>输入流</strong> 和 <strong>输出流</strong> 来操作数据的。Java IO 流可以分为 <strong>字节流</strong>（byte stream）和 <strong>字符流</strong>（character stream）两大类，它们用于不同类型的数据传输。</p>\n<ul>\n <li><strong>字节流</strong>：用于处理原始二进制数据，如文件、图片、音频等。</li>\n <li><strong>字符流</strong>：用于处理字符数据，主要用于文本文件的读写。</li>\n</ul>\n<p>Java 的 IO 流分为 <strong>节点流</strong> 和 <strong>处理流</strong>。节点流直接与数据源（如文件、网络）交互，而处理流则是对节点流的进一步包装，用于增强功能。</p>"
+}, {
+  "id" : 26,
+  "uri" : "https://zha-ge.cn/java/g6565y2m/",
+  "title" : "Java中IO与NIO的区别是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 26,
+  "answer" : "<p>Java IO 是 <strong>面向流</strong> 的 <strong>阻塞式 IO</strong>，也就是说它一次只能处理一块数据，每次处理一个任务时需要等待上一个任务完成。相对来说，Java NIO 是 <strong>面向缓冲区</strong> 的 <strong>非阻塞式 IO</strong>，可以同时处理多个数据流，提高了处理效率，特别适合 <strong>并发</strong> 数据流的场景。简单来说，Java IO 更适合单任务处理，而 Java NIO 则更适合高效处理多个任务。</p>"
+}, {
+  "id" : 27,
+  "uri" : "https://zha-ge.cn/java/qdhqxcu5/",
+  "title" : "List、Set和Map三者的特性差异是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 27,
+  "answer" : "<ul>\n <li><strong>List</strong> 是一个有序的集合，允许元素重复。它保存插入元素的顺序，并通过索引访问元素。常用的实现类有 <code>ArrayList</code> 和 <code>LinkedList</code>。</li>\n <li><strong>Set</strong> 是一个无序的集合，不允许元素重复。它通过元素的哈希值进行去重，不保证插入顺序。常用的实现类有 <code>HashSet</code> 和 <code>TreeSet</code>。</li>\n <li><strong>Map</strong> 是一个键值对集合，每个元素由一个 <strong>键</strong>（key）和一个 <strong>值</strong>（value）组成。一个键只能映射到一个值，不允许重复的键。常用的实现类有 <code>HashMap</code> 和 <code>TreeMap</code>。</li>\n</ul>"
+}, {
+  "id" : 28,
+  "uri" : "https://zha-ge.cn/java/gocs0hnu/",
+  "title" : "HashMap与ConcurrentHashMap的异同点是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 28,
+  "answer" : "<p><strong>HashMap</strong> 是非线程安全的数据结构，更适合单线程场景；<strong>ConcurrentHashMap</strong> 是线程安全的，通过分段锁或 CAS 提供高效并发性能，适合多线程环境。</p>"
+}, {
+  "id" : 29,
+  "uri" : "https://zha-ge.cn/java/l3xcdqhe/",
+  "title" : "HashMap长度为何设计为2的n次方？",
+  "categoryId" : 1,
+  "sortOrder" : 29,
+  "answer" : "<p><code>HashMap</code> 的容量设置为 2 的 <strong>n 次方</strong>，其主要原因是 <strong>哈希表索引的计算</strong>。在 <code>HashMap</code> 中，键值对通过 <strong>哈希值</strong> 存储，哈希值计算得到的索引决定了键值对存放在哈希表中的位置。为了使索引的计算更加高效，<code>HashMap</code> 将容量设置为 2 的 <strong>n 次方</strong>，这样可以通过 <strong>位运算</strong> 来代替传统的取余运算，显著提高查找、插入、删除的效率。</p>"
+}, {
+  "id" : 30,
+  "uri" : "https://zha-ge.cn/java/0iad391u/",
+  "title" : "Java中异常的分类及处理机制是什么？",
+  "categoryId" : 1,
+  "sortOrder" : 30,
+  "answer" : "<p>Java 中的异常分为两种：<strong>受检异常（Checked Exception）</strong> 和 <strong>非受检异常（Unchecked Exception）</strong>。</p>\n<ul>\n <li><strong>受检异常</strong>：在编译时必须处理，如果不处理，代码就不能通过编译。</li>\n <li><strong>非受检异常</strong>：不强制要求处理，但 <strong>良好的习惯</strong> 是应该分析这些异常，并尽量避免它们发生。</li>\n</ul>\n<p>异常处理的方式包括 <code>try-catch-finally</code> 块，用来捕获和处理运行时出现的问题，另外还有 <code>throw/throws</code> 声明，帮助你抛出或声明异常。</p>"
+} ]

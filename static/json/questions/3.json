@@ -1,0 +1,291 @@
+[ {
+  "id" : 54,
+  "uri" : "https://zha-ge.cn/java/h3sp1cy0/",
+  "title" : "Java中线程同步的概念是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>线程同步</strong>就是给共享资源<strong>上锁</strong>，防止多个线程“抢着用”，从而避免“资源打架”引发的数据错误。打个比方，就像排队打饭\uD83C\uDF5B， 每次只能有一个人拿饭，其他人乖乖等着，大家都能吃得饱，才不会有人多拿，有人饿着！ 常见的锁方法有几种，每种方法的优劣势也有所不同。<strong>我们来看看这些常用的锁：</strong></p>\n<h3 id=\"_1-synchronized-锁-\uD83D\uDD12\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-synchronized-锁-\uD83D\uDD12\"><span>1. <strong><code>synchronized</code> 锁</strong> \uD83D\uDD12</span></a></h3>\n<ul>\n <li><strong>优点</strong>：简单易用，自动加锁解锁，保证线程安全。</li>\n <li><strong>缺点</strong>：性能较低，多个线程争抢锁时会导致等待。</li>\n</ul>\n<h3 id=\"_2-reentrantlock-锁-\uD83D\uDD10\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-reentrantlock-锁-\uD83D\uDD10\"><span>2. <strong><code>ReentrantLock</code> 锁</strong> \uD83D\uDD10</span></a></h3>\n<ul>\n <li><strong>优点</strong>：灵活，支持手动加锁、解锁、超时等功能。</li>\n <li><strong>缺点</strong>：需要显式释放锁，容易导致死锁。</li>\n</ul>\n<h3 id=\"_3-readwritelock-锁-\uD83D\uDCDA\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-readwritelock-锁-\uD83D\uDCDA\"><span>3. <strong><code>ReadWriteLock</code> 锁</strong> \uD83D\uDCDA</span></a></h3>\n<ul>\n <li><strong>优点</strong>：适用于读多写少的场景，能提高性能。</li>\n <li><strong>缺点</strong>：实现复杂，写操作仍然是互斥的。</li>\n</ul>\n<h3 id=\"_4-stampedlock-锁-\uD83D\uDD8B️\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_4-stampedlock-锁-\uD83D\uDD8B️\"><span>4. <strong><code>StampedLock</code> 锁</strong> \uD83D\uDD8B️</span></a></h3>\n<ul>\n <li><strong>优点</strong>：支持更高效的读操作，适合读多写少。</li>\n <li><strong>缺点</strong>：用法复杂，需要小心管理锁状态。</li>\n</ul>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<ul>\n <li><strong><code>synchronized</code></strong>：简单，但性能差。</li>\n <li><strong><code>ReentrantLock</code></strong>：灵活，但需小心使用。</li>\n <li><strong><code>ReadWriteLock</code></strong>：适合读多写少的场景，性能好。</li>\n <li><strong><code>StampedLock</code></strong>：高效，但复杂。</li>\n</ul>\n<p>根据实际需求选择合适的锁来提高性能和避免线程冲突。</p>"
+}, {
+  "id" : 55,
+  "uri" : "https://zha-ge.cn/java/7nnzf55v/",
+  "title" : "Java中线程安全的定义是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 2,
+  "answer" : "<p>线程安全就是<strong>多个线程一起用一个资源时，不会打架，结果始终正确✅</strong>。无论线程怎么插队或者交替执行，程序都能按预期工作，不出幺蛾子。比如：多个人在一个账户上操作\uD83D\uDCB0，最后余额还是对的，这就是线程安全的保证。\uD83C\uDFAF</p>"
+}, {
+  "id" : 56,
+  "uri" : "https://zha-ge.cn/java/81uvkrlb/",
+  "title" : "Synchronized与ReentrantLock的区别在哪里？",
+  "categoryId" : 3,
+  "sortOrder" : 3,
+  "answer" : "<p><strong>Synchronized</strong> 是 Java 内建的“锁\uD83D\uDD12”，用起来很简单，直接就能使用。但它的功能比较基础，适合一些简单的场景，限制比较多。</p>\n<p><strong>ReentrantLock</strong> 是 Java 提供的更<strong>强大</strong>的锁，属于并发工具的一部分，功能比 <strong>Synchronized</strong> 更灵活。它支持一些高级功能，比如：</p>\n<ul>\n <li><strong>可中断</strong>：你可以中断正在等待锁的操作。</li>\n <li><strong>公平锁</strong>：保证先请求的线程先得到锁。</li>\n <li>支持<strong>多个条件</strong>，让程序能根据不同的情况做不同的处理。</li>\n</ul>\n<p>总的来说，<strong>Synchronized</strong> 适合简单的场景，而 <strong>ReentrantLock</strong> 适合更复杂的情况，需要更多控制和灵活性。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong>Synchronized</strong> 是简单易用的锁，适合基础使用；<strong>ReentrantLock</strong> 是功能强大的锁，适合复杂的需求。</p>"
+}, {
+  "id" : 57,
+  "uri" : "https://zha-ge.cn/java/4v4wnzcg/",
+  "title" : "Java中synchronized的实现原理是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 4,
+  "answer" : "<p><strong><code>synchronized</code></strong> 就是 <strong>Java 的“锁王”</strong>，它保证多个线程同时访问时，大家不会互相干扰，操作能井然有序。</p>\n<p>它的工作原理是通过 JVM 的 <strong>“Monitor 锁”</strong> 和对象里的 <strong>“身份证”——Mark Word</strong> 来实现的，确保线程安全。</p>\n<p>简单来说：</p>\n<ul>\n <li><strong>同一时间</strong>，只有拿到锁的线程才能执行操作，其他线程只能排队等着。</li>\n <li>通过这种方式，<strong>synchronized</strong> 确保了每次只有一个线程在进行操作，避免数据混乱或错误。</li>\n</ul>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong><code>synchronized</code></strong> 就是 Java 中的“锁王”，它确保线程之间按顺序执行，不会互相干扰，保证了线程安全。</p>"
+}, {
+  "id" : 58,
+  "uri" : "https://zha-ge.cn/java/81mrqp86/",
+  "title" : "synchronized如何保障原子性、可见性和有序性？",
+  "categoryId" : 3,
+  "sortOrder" : 5,
+  "answer" : "<p><strong><code>synchronized</code></strong> 通过底层的 <strong>Monitor锁</strong> 来实现线程的控制，确保多个线程操作时不会发生冲突。</p>\n<p>它保证了三个关键点：</p>\n<ol>\n <li><strong>原子性</strong>：通过<strong>加锁和解锁</strong>，确保一个线程在操作时不会被打断，其他线程无法干扰。</li>\n <li><strong>可见性</strong>：确保所有线程看到的数据都是最新的，强制让线程中的数据和主内存中的数据保持一致。</li>\n <li><strong>有序性</strong>：通过在内存中加入<strong>屏障</strong>，避免指令执行的顺序被打乱，确保操作按正确的顺序进行。</li>\n</ol>\n<p>这些机制的结合，确保了<strong>多线程</strong>能够<strong>井然有序</strong>地进行工作，不会出现数据混乱或冲突的情况。\uD83D\uDD12</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p><strong><code>synchronized</code></strong> 通过加锁机制确保操作<strong>原子性</strong>、<strong>可见性</strong>和<strong>有序性</strong>，让多个线程能够安全且有序地工作。</p>\n<h1 id=\"\uD83D\uDCA1-知识内容\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDCA1-知识内容\"><span>\uD83D\uDCA1 知识内容</span></a></h1>"
+}, {
+  "id" : 59,
+  "uri" : "https://zha-ge.cn/java/r35ouxj3/",
+  "title" : "Java中synchronized轻量级锁会执行自旋操作吗？",
+  "categoryId" : 3,
+  "sortOrder" : 6,
+  "answer" : "<p>轻量级锁就像一个不耐烦的朋友，<strong>如果拿不到钥匙</strong>（也就是操作失败），它<strong>不会一直在原地等</strong>，而是会直接去找一个更强大的朋友（也就是升级为更强的锁）来帮忙解决问题。</p>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<p>轻量级锁是个聪明的锁，如果失败了就不再浪费时间，而是升级到更强的锁来处理，避免卡住整个系统。</p>"
+}, {
+  "id" : 60,
+  "uri" : "https://zha-ge.cn/java/kw3w5esz/",
+  "title" : "当synchronized升级为重量级锁后，所有线程释放锁时它仍是重量级锁吗？",
+  "categoryId" : 3,
+  "sortOrder" : 7,
+  "answer" : "<p><strong>synchronized</strong> 是一种确保在多线程程序中，多个线程在执行时不会互相干扰的机制。它最开始是通过“轻量级锁”来工作，这意味着它比较简单、高效。</p>\n<p>但是，当程序变得复杂，或者有很多线程同时争抢这个锁时，它就会“升级”成<strong>重量级锁</strong>。这意味着锁的管理变得更复杂，可能会消耗更多的系统资源。</p>\n<h3 id=\"关键点\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#关键点\"><span>关键点：</span></a></h3>\n<ul>\n <li><strong>重量级锁</strong>会让锁的竞争变得更激烈，性能可能会下降。</li>\n <li>但如果所有线程都<strong>释放了锁</strong>，锁对象会回到<strong>无锁状态</strong>，意味着暂时没有任何线程持有锁。</li>\n <li>当新的线程想要获取锁时，它不会直接进入重量级锁的状态，而是会从<strong>轻量级锁</strong>开始争抢。</li>\n</ul>\n<p>简单来说，<strong>synchronized</strong>在不需要太多锁竞争时效率高，而一旦竞争激烈，它会“升级”成更重的锁，导致性能可能下降，但当没有竞争时，又会变回轻量级锁，让程序继续高效运行。</p>"
+}, {
+  "id" : 61,
+  "uri" : "https://zha-ge.cn/java/qcr00j3k/",
+  "title" : "你对Java线程池的工作原理有何了解？",
+  "categoryId" : 3,
+  "sortOrder" : 8,
+  "answer" : "<p>Java 线程池就像是一个高效的“<strong>打工人管理工具</strong>”\uD83D\uDCBC。它<strong>提前创建了一些工人</strong>（也就是线程），然后根据实际需要<strong>分配给不同的任务</strong>。这样，程序就不需要每次都重新<strong>创建和销毁线程</strong>，节省了大量的时间和资源。</p>\n<h3 id=\"关键点\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#关键点\"><span>关键点：</span></a></h3>\n<ol>\n <li><strong>核心线程</strong>：线程池一开始就准备好了“基础工人”，随时可以派遣任务。</li>\n <li><strong>最大线程数</strong>：如果任务特别多，线程池会派更多的“临时工”来帮忙，但最多也只能有这个数量的工人。</li>\n <li><strong>任务队列</strong>：如果所有的工人都在忙，新的任务会排队等着被处理，<strong>不至于丢掉任务</strong>。</li>\n <li><strong>拒绝策略</strong>：如果任务实在太多，超过了最大线程数和队列的容量，线程池会采取一定的策略来“拒绝”这些任务，比如直接放弃或者通知主程序。</li>\n</ol>\n<p>总之，线程池就是一个聪明的任务分配器，它通过一些规则管理工人的工作，避免了频繁创建工人的麻烦，提高了程序的效率。\uD83C\uDF1F</p>"
+}, {
+  "id" : 62,
+  "uri" : "https://zha-ge.cn/java/d2yr9mhs/",
+  "title" : "Java线程池的拒绝策略有哪些种类？",
+  "categoryId" : 3,
+  "sortOrder" : 9,
+  "answer" : "<p>Java 线程池有四种内置的<strong>拒绝策略</strong>，用来处理当任务太多，无法继续接受时的情况。每种策略的处理方式不同，帮助程序更灵活地应对任务积压。</p>\n<h3 id=\"这四种拒绝策略是\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#这四种拒绝策略是\"><span>这四种拒绝策略是：</span></a></h3>\n<ol>\n <li><strong>AbortPolicy</strong>（<strong>抛异常</strong>）：如果线程池无法接受新的任务，它会抛出一个错误，告诉你任务没有被处理。</li>\n <li><strong>CallerRunsPolicy</strong>（<strong>调用者执行</strong>）：如果线程池满了，它会把任务交给发起任务的“调用者”来处理，而不是丢弃任务或报错。</li>\n <li><strong>DiscardOldestPolicy</strong>（<strong>丢弃最旧任务</strong>）：线程池会丢弃掉队列里最早的任务，然后把新的任务加进来。就像是做队列管理，丢掉排在最前面的任务。</li>\n <li><strong>DiscardPolicy</strong>（<strong>直接丢弃</strong>）：如果线程池满了，新的任务就会被直接丢弃，不做任何处理。</li>\n</ol>\n<h3 id=\"自定义拒绝策略\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#自定义拒绝策略\"><span>自定义拒绝策略：</span></a></h3>\n<p>如果这些内置的策略不符合你的需求，你还可以<strong>自己定义</strong>拒绝策略，来根据特定需求灵活处理任务。</p>\n<p>总之，这些拒绝策略让你能够根据不同情况做出<strong>合适的反应</strong>，避免任务过多时程序崩溃或者不做处理。</p>\n<hr>"
+}, {
+  "id" : 63,
+  "uri" : "https://zha-ge.cn/java/lhto3sme/",
+  "title" : "Java线程池的核心线程数在运行时可以调整吗？如何实现调整？",
+  "categoryId" : 3,
+  "sortOrder" : 10,
+  "answer" : "<p>当然可以，而且非常简单！你只需要用 <strong><code>setCorePoolSize()</code></strong> 这个方法，就可以<strong>动态调整</strong>线程池的核心线程数。意思就是你可以<strong>随时增加或减少</strong>参与工作的线程。</p>\n<p>比如，如果任务变多了，你可以<strong>增加人手</strong>来加快速度；如果任务少了，你也可以<strong>让一些人休息</strong>，不需要再一直忙碌。</p>\n<h3 id=\"关键点\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#关键点\"><span>关键点：</span></a></h3>\n<ul>\n <li><strong>增加人手</strong>：需要更多线程来处理任务时，可以随时增加线程数。</li>\n <li><strong>让人歇着</strong>：任务少了，可以减少线程，避免浪费资源。</li>\n <li><strong>不影响正在跑的任务</strong>：调整线程数时，不会打断已经开始的任务，<strong>任务会继续正常进行</strong>。</li>\n</ul>\n<p>总的来说，使用这个方法，调整线程数变得像调整人手一样方便，不会影响工作中的进度！\uD83D\uDE04</p>\n<hr>"
+}, {
+  "id" : 64,
+  "uri" : "https://zha-ge.cn/java/8026o0v4/",
+  "title" : "Java线程池中shutdown与shutdownNow的差异是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 11,
+  "answer" : "<p><code>shutdown()</code> 和 <code>shutdownNow()</code> 是线程池停止工作的两种方式，它们的区别就像是<strong>温柔的劝退</strong>和<strong>直接清场</strong>。</p>\n<h3 id=\"具体区别\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#具体区别\"><span>具体区别：</span></a></h3>\n<ol>\n <li><p><strong><code>shutdown()</code></strong>：就像是<strong>温柔的劝退</strong>，它会告诉线程池“可以停止工作了”，但是会等到<strong>当前正在做的任务完成</strong>后才会关门。这样做不会突然打断正在进行的工作。</p></li>\n <li><p><strong><code>shutdownNow()</code></strong>：这个就像是<strong>直接清场</strong>，它会<strong>立刻停止所有任务</strong>，不管这些任务是否还在进行。它甚至会把<strong>没执行完的任务</strong>列出来，告诉你哪些任务没有完成，完全没有给任务留下任何处理的时间。</p></li>\n</ol>\n<h3 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h3>\n<ul>\n <li><strong><code>shutdown()</code></strong>：先让任务做完，再关闭，比较温和。</li>\n <li><strong><code>shutdownNow()</code></strong>：直接停止，任务没做完的都会被抛弃，并告诉你哪些任务还没完成。</li>\n</ul>\n<p>所以，如果你想任务做完再关掉线程池，选择**<code>shutdown()</code><strong>；如果你不想再等任务做完，直接停止所有工作，那就用</strong><code>shutdownNow()</code>**。\uD83D\uDED1</p>"
+}, {
+  "id" : 65,
+  "uri" : "https://zha-ge.cn/java/6myq0wbm/",
+  "title" : "Java线程池中submit()与execute()方法的不同点是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 12,
+  "answer" : "<p><strong><code>submit()</code></strong> 和 <strong><code>execute()</code></strong> 都是用来将任务提交给线程池执行的，但是它们有一个很重要的区别：</p>\n<ul>\n <li><p><strong><code>submit()</code></strong>：会返回一个 <strong><code>Future</code></strong> 对象，<strong>可以用来获取任务执行的结果</strong>，或者判断任务是否完成。如果你提交的是一个有返回值的任务，可以通过 <strong><code>Future.get()</code></strong> 方法来获取结果。简单来说，<strong><code>submit()</code></strong> 不仅提交任务，还能拿到任务的执行结果。</p></li>\n <li><p><strong><code>execute()</code></strong>：不会返回任何结果，<strong>它只是提交任务</strong>，适用于那些不需要返回值的情况。如果你只是想让任务执行，而不关心结果或者状态，可以使用 <strong><code>execute()</code></strong>。</p></li>\n</ul>\n<h4 id=\"总结\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#总结\"><span>总结：</span></a></h4>\n<ul>\n <li><strong><code>submit()</code></strong>：适合需要结果的任务，返回 <strong><code>Future</code></strong> 对象，可以通过它获取任务的执行结果。</li>\n <li><strong><code>execute()</code></strong>：适合那些只需要执行的任务，不关心结果或状态。</li>\n</ul>"
+}, {
+  "id" : 66,
+  "uri" : "https://zha-ge.cn/java/daz9w07z/",
+  "title" : "Java中创建多线程的方式有哪些？",
+  "categoryId" : 3,
+  "sortOrder" : 13,
+  "answer" : "<p>在 Java 中，创建多线程的方法有 <strong>5种</strong>：<br> 1️⃣ <strong>实现 Runnable 接口</strong><br> 2️⃣ <strong>继承 Thread 类</strong><br> 3️⃣ <strong>结合 Callable 和 FutureTask</strong><br> 4️⃣ <strong>使用线程池（ExecutorService）</strong><br> 5️⃣ <strong>借助 CompletableFuture</strong></p>\n<p>这些方法各有优缺点，根据场景选择合适的方法才是王道！\uD83E\uDDE0</p>"
+}, {
+  "id" : 67,
+  "uri" : "https://zha-ge.cn/java/kjq1zr9w/",
+  "title" : "Java中线程生命周期的定义是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 14,
+  "answer" : "<p>Java 中的线程有 <strong>6 种状态</strong>，每种状态代表着线程的不同阶段。我们来快速了解一下每种状态的含义：</p>\n<h3 id=\"_1-new-新建-\uD83C\uDD95\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-new-新建-\uD83C\uDD95\"><span>1. <strong>New（新建）</strong> \uD83C\uDD95</span></a></h3>\n<p>线程刚创建出来，还没开始做任何事。</p>\n<h3 id=\"_2-runnable-可运行-\uD83C\uDFC3\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-runnable-可运行-\uD83C\uDFC3\"><span>2. <strong>Runnable（可运行）</strong> \uD83C\uDFC3</span></a></h3>\n<p>线程准备好开始工作了，只不过可能还在等 CPU 分配时间。</p>\n<h3 id=\"_3-blocked-阻塞-\uD83D\uDED1\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-blocked-阻塞-\uD83D\uDED1\"><span>3. <strong>Blocked（阻塞）</strong> \uD83D\uDED1</span></a></h3>\n<p>线程在等资源，像是等别人释放锁才能继续工作。</p>\n<h3 id=\"_4-waiting-等待-⏸️\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_4-waiting-等待-⏸️\"><span>4. <strong>Waiting（等待）</strong> ⏸️</span></a></h3>\n<p>线程在等其他线程的信号，像是等上级指示才能继续工作。</p>\n<h3 id=\"_5-timed-waiting-定时等待-⏳\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_5-timed-waiting-定时等待-⏳\"><span>5. <strong>Timed Waiting（定时等待）</strong> ⏳</span></a></h3>\n<p>线程等一段固定时间，等时间一到就继续工作。</p>\n<h3 id=\"_6-terminated-终止-\uD83D\uDED1\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_6-terminated-终止-\uD83D\uDED1\"><span>6. <strong>Terminated（终止）</strong> \uD83D\uDED1</span></a></h3>\n<p>线程完成任务或者被强制结束，工作结束。</p>\n<p>总的来说，线程就是在这些状态中“循环跳跃”，直到任务完成。</p>"
+}, {
+  "id" : 68,
+  "uri" : "https://zha-ge.cn/java/kc3hmgze/",
+  "title" : "Java中线程间通信的实现方式是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 15
+}, {
+  "id" : 69,
+  "uri" : "https://zha-ge.cn/java/jjxrwhlj/",
+  "title" : "多线程的实际用途是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>多线程的核心作用</strong>，简单来说就是让程序更快、更高效、更灵活。具体来说，主要有以下几个好处：</p>\n<h3 id=\"_1-充分利用多核-cpu-的计算能力-\uD83D\uDCBB\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-充分利用多核-cpu-的计算能力-\uD83D\uDCBB\"><span>1. <strong>充分利用多核 CPU 的计算能力</strong> \uD83D\uDCBB</span></a></h3>\n<p>现在的 CPU 通常是多核的，意思就是有多个“处理单元”可以同时工作。<strong>多线程</strong>就是利用这些多个核心让任务同时进行，避免了一个任务占用所有核心，从而<strong>提升计算效率</strong>，让程序跑得更快。</p>\n<h3 id=\"_2-防止程序阻塞-\uD83D\uDEAB\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-防止程序阻塞-\uD83D\uDEAB\"><span>2. <strong>防止程序阻塞</strong> \uD83D\uDEAB</span></a></h3>\n<p>有些操作，比如<strong>读取文件</strong>或<strong>访问数据库</strong>，需要等很长时间。如果程序在等这些操作的结果时只能做一个任务，就会被“卡住”。多线程通过<strong>异步操作</strong>，让程序能在等待的时候继续做其他事情，<strong>避免阻塞</strong>，提升了<strong>响应速度</strong>和系统的<strong>吞吐量</strong>。</p>\n<h3 id=\"_3-简化复杂任务的建模-\uD83E\uDDE9\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-简化复杂任务的建模-\uD83E\uDDE9\"><span>3. <strong>简化复杂任务的建模</strong> \uD83E\uDDE9</span></a></h3>\n<p>有些任务非常复杂，如果一个任务都靠一个线程去完成，代码会变得很乱很复杂。通过多线程，可以把一个大任务分解成多个小任务，让每个线程处理一个小部分，<strong>简化了任务建模</strong>，还可以<strong>增强程序的扩展性和可维护性</strong>。</p>\n<p>总结来说，多线程的核心作用就是<strong>让程序更高效、更灵活</strong>，充分利用硬件资源，避免等待浪费时间，同时让代码更清晰、更容易管理。</p>"
+}, {
+  "id" : 70,
+  "uri" : "https://zha-ge.cn/java/xp8kcs9r/",
+  "title" : "如何合理确定Java线程池的线程数量？",
+  "categoryId" : 3,
+  "sortOrder" : 17
+}, {
+  "id" : 71,
+  "uri" : "https://zha-ge.cn/java/nr1ttr65/",
+  "title" : "如何在Java中优化锁的使用效率？",
+  "categoryId" : 3,
+  "sortOrder" : 18,
+  "answer" : "<p>锁的优化技巧主要有两种：<strong>减小锁的粒度</strong>和<strong>减少锁的使用</strong>。</p>\n<h3 id=\"_1-减小锁的粒度-\uD83D\uDD12\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-减小锁的粒度-\uD83D\uDD12\"><span>1. <strong>减小锁的粒度</strong> \uD83D\uDD12</span></a></h3>\n<p>意思就是尽量让锁的范围小一点。你可以把锁的区域<strong>缩小</strong>，只保护最必要的部分，避免不必要的操作也被锁住。这样就能提高效率，减少浪费的时间。</p>\n<h3 id=\"_2-减少锁的使用-\uD83D\uDEAB\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-减少锁的使用-\uD83D\uDEAB\"><span>2. <strong>减少锁的使用</strong> \uD83D\uDEAB</span></a></h3>\n<p>不是所有的情况都需要加锁，能不加锁就尽量不加。减少锁的使用，意味着你让程序的其他部分可以更自由地运行，避免了频繁等待锁，提升了整体速度。</p>\n<p>总的来说，<strong>聪明的锁</strong>就是只在必须的时候加锁，并且尽量<strong>缩小锁的范围</strong>。不要“傻乎乎地乱加锁”，这样能让系统在处理大量任务时，<strong>保持快速响应</strong>，避免性能下降。</p>\n<h3 id=\"\uD83D\uDCDA-知识内容\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#\uD83D\uDCDA-知识内容\"><span>\uD83D\uDCDA 知识内容</span></a></h3>\n<p>锁是并发编程中的“关键道具”，但用不好会变成性能杀手。理解和掌握锁优化的技巧，可以让你的程序像过山车一样快速流畅。我们一起来详细拆解这两大优化招数。</p>\n<hr>\n<h3 id=\"_1️⃣-减小锁的粒度-让锁更细腻\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1️⃣-减小锁的粒度-让锁更细腻\"><span>1️⃣ <strong>减小锁的粒度（让锁更细腻）</strong></span></a></h3>\n<p>我们可以把锁想象成一种交通信号灯，而每一条道路上的车流就是线程。信号灯的范围越大，所有的车就得在更大的范围内等，效率自然就低了。那么，减小锁的粒度就是减少“红灯”的时间，让交通更流畅！具体操作如下：</p>\n<ul>\n <li><p><strong>缩小加锁范围</strong>：加锁时不要锁住整个方法或者大块代码，只在必要的最小代码块内加锁。这就像你只需要把车道的起点和终点画好，而不是整个马路都用信号灯管理。通过减少加锁的范围，可以让其他线程在不需要等待的情况下继续执行。</p><p>举个例子：你不需要把整个数据读取、写入操作都加锁，只需要锁住关键的那一部分。</p></li>\n <li><p><strong>细粒度锁</strong>：如果你的锁作用范围大，就把它拆成多个小锁。就像你有一个超级大的停车场，把停车位按区域划分，让每个区域都可以独立锁住，大家可以并行停车，避免了一个区域停车需要等另一个区域完成。这也是 <code>HashTable</code> 和 <code>ConcurrentHashMap</code> 的优化思路。</p><p>实际操作上，<code>ConcurrentHashMap</code> 会把整个对象拆成多个桶，每个桶有独立的锁，避免了单一锁的瓶颈。</p></li>\n <li><p><strong>读写锁（ReadWriteLock）</strong>：在数据访问中，如果你是“读多写少”的场景，可以使用读写锁。想象成一个大门，只要大家都在“看展”，门就开着，读的多，大家都可以通行；但如果要“修改展品”，就得独占门口，这样就避免了频繁的争夺。</p><p><code>ReentrantReadWriteLock</code> 就是典型的实现，它允许多个线程并发读取，但写入时会阻塞其他的读和写操作。</p></li>\n</ul>\n<hr>\n<h3 id=\"_2️⃣-减少锁的使用-让锁成为稀有资源\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2️⃣-减少锁的使用-让锁成为稀有资源\"><span>2️⃣ <strong>减少锁的使用（让锁成为稀有资源）</strong></span></a></h3>\n<p>如果锁是交通信号灯，那么减少锁的使用就像是减少不必要的红灯，让车流更通畅。减少锁的使用，有两个主要方向：</p>\n<ul>\n <li><p><strong>无锁编程（Lock-Free）</strong>：避免传统的加锁机制，通过一些更高级的技术，比如 <code>CAS</code>（Compare-And-Swap）操作，让线程在不加锁的情况下保证数据一致性。这种方式就像是让车不必停下，只需要确保车速合适，不会互相碰撞。</p><p>例如，<code>AtomicInteger</code> 和 <code>AtomicReference</code> 类就能在没有锁的情况下实现线程安全，它们通过原子操作来保证数据的一致性，这种方式性能非常高，适用于高并发场景。</p></li>\n <li><p><strong>减少共享资源的使用</strong>：为了避免多个线程争抢同一资源，减少共享资源的使用是一个有效的优化策略。你可以尽量使用局部变量，或者为每个线程分配独立的资源（例如使用 <code>ThreadLocal</code>）。这样，每个线程只访问自己独占的数据，就减少了对同一资源的竞争，也就不需要加锁了。</p></li>\n</ul>\n<hr>"
+}, {
+  "id" : 72,
+  "uri" : "https://zha-ge.cn/java/azbhpmsh/",
+  "title" : "Java中的CAS（比较并交换）操作指的是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 19,
+  "answer" : "<p><strong>CAS</strong>（比较并交换）是一种计算机中非常基础的操作。它的工作方式是：先比较某个值和预期值是否一样，如果一样，再更新这个值。 如果不一样，就不做任何修改。这个操作很特别，它能够保证多个线程在同一时间修改数据时，不会互相干扰，从而确保数据的一致性。 简单来说，它是做线程安全的关键技术之一，也是一种“无锁”技术，使得多个任务可以同时运行，而不会出现问题。</p>"
+}, {
+  "id" : 73,
+  "uri" : "https://zha-ge.cn/java/shfnjskq/",
+  "title" : "Java中的锁自适应自旋机制是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 20
+}, {
+  "id" : 74,
+  "uri" : "https://zha-ge.cn/java/k36o0mik/",
+  "title" : "Java中的StampedLock是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 21,
+  "answer" : "<p><strong><code>StampedLock</code> 是一种能提升多线程效率的工具，它有三种模式：</strong></p>\n<ul>\n <li><strong>写锁</strong>：只允许一个线程写，其他线程得排队，适合改数据的时候用。</li>\n <li><strong>悲观读锁</strong>：允许多个线程同时读，但是如果有线程想写，就得等所有读操作完成。</li>\n <li><strong>乐观读锁</strong>：读数据的时候不挡路，速度超快，但如果中途有人写数据，还得验证一遍数据有没有被改过。</li>\n</ul>"
+}, {
+  "id" : 75,
+  "uri" : "https://zha-ge.cn/java/esjso7to/",
+  "title" : "你对Java中读写锁的理解是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 22,
+  "answer" : "<p>Java 的读写锁通过 <strong><code>ReentrantReadWriteLock</code></strong> 这个工具来实现，主要有两种工作方式：</p>\n<ul>\n <li><strong>读锁</strong>（共享锁）：多个线程可以同时读数据，只要不做修改，大家都可以一起读，不会互相影响。</li>\n <li><strong>写锁</strong>（独占锁）：只有一个线程能修改数据，其他线程必须等着。</li>\n</ul>\n<p>这种锁的设计非常适合那些<strong>读操作很多，写操作少</strong>的场景。它的作用是：当多个线程都在读取数据时，不会互相干扰；但如果有线程要写数据，它就会阻止其他线程继续读或写，直到写操作完成。这样，<strong>确保了数据的安全性</strong>，同时也提升了程序运行的效率，特别是在大量读取操作的情况下。</p>"
+}, {
+  "id" : 76,
+  "uri" : "https://zha-ge.cn/java/haa90na9/",
+  "title" : "公平锁与非公平锁的区别是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 23,
+  "answer" : "<ul>\n <li><strong>非公平锁</strong>：线程获取锁时不按照申请顺序，而是直接尝试抢锁。如果抢不到，再进入队列排队。 优点是效率高，但可能导致某些线程长时间拿不到锁（“饿死”）。</li>\n <li><strong>公平锁</strong>：线程获取锁时按申请顺序来，谁先申请谁先拿锁。优点是不会“饿死”，但由于排队， 吞吐量会下降。</li>\n</ul>\n<hr>"
+}, {
+  "id" : 77,
+  "uri" : "https://zha-ge.cn/java/1xhm3fu8/",
+  "title" : "Java中的Semaphore是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 24,
+  "answer" : "<p><strong>Semaphore</strong> 是一种工具，用来控制多个线程（就是计算机做任务的单位）在同一时间能有多少个线程可以一起访问某个资源，简单来说，就是用来<strong>限制并发的数量</strong>。它的工作方式就像一个门卫站岗，只有有限数量的人能进门，其他人只能排队等候。</p>\n<p>具体来说，<strong>Semaphore</strong> 通过“<strong>发放许可证</strong>”和“<strong>回收许可证</strong>”的方式来管理资源。许可证就像是<strong>访问资源的通行证</strong>。当一个线程要使用资源时，它就需要拿到一个许可证。如果资源已经被占满了（就是说，所有的许可证都被拿走了），其他线程就必须等到有线程<strong>用完资源后归还许可证</strong>，才能继续获取许可进入。</p>"
+}, {
+  "id" : 78,
+  "uri" : "https://zha-ge.cn/java/lra0v7s0/",
+  "title" : "Java中的CyclicBarrier是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 25,
+  "answer" : "<p><strong>CyclicBarrier</strong> 就像一个大家一起做任务的“<strong>等待点</strong>”。当多个线程（可以理解为多个做任务的小组）都执行到这个“等待点”时， 它们会停下来<strong>等其他线程到达</strong>，直到所有线程都到达这个点后，它们才能一起继续做后面的事情。</p>"
+}, {
+  "id" : 79,
+  "uri" : "https://zha-ge.cn/java/t5xnbctd/",
+  "title" : "Java中的CountDownLatch是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 26,
+  "answer" : "<p><strong><code>CountDownLatch</code></strong> 是一种线程同步工具类，允许一个线程等待其他线程完成工作后再继续执行。它通过设定一个初始的计数器， 线程执行过程中每次调用 <code>countDown()</code> 方法将计数器减一，直到计数器为零时，所有等待的线程才能继续执行。</p>"
+}, {
+  "id" : 80,
+  "uri" : "https://zha-ge.cn/java/8tdaetp6/",
+  "title" : "Java中的ForkJoinPool是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 27,
+  "answer" : "<p><code>ForkJoinPool</code> 是 <strong>Java 并发框架</strong> 中用于 <strong>并行计算</strong> 的线程池，基于 <strong>分治（Fork-Join）</strong> 和 <strong>工作窃取（Work Stealing）</strong> 机制， 适用于 <strong>递归任务</strong> 和 <strong>大规模计算</strong>。它通过 <strong>拆分任务（Fork）</strong>、<strong>合并结果（Join）</strong> 提高 CPU 利用率，适用于 <strong>计算密集型任务</strong>。 与传统线程池相比，<code>ForkJoinPool</code> 更适用于 <strong>递归计算</strong>，但不适用于 <strong>IO 密集型任务</strong>。</p>"
+}, {
+  "id" : 81,
+  "uri" : "https://zha-ge.cn/java/lt7r5t0j/",
+  "title" : "Java中线程安全的集合有哪些？",
+  "categoryId" : 3,
+  "sortOrder" : 28
+}, {
+  "id" : 82,
+  "uri" : "https://zha-ge.cn/java/c1i9dohb/",
+  "title" : "Java中ConcurrentHashMap在1.7与1.8版本间的差异是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 29,
+  "answer" : "<p><strong>ConcurrentHashMap</strong> 在 Java 1.8 比 1.7 有了很大改进，主要让它变得更快，能更好地处理多个线程同时访问数据。</p>\n<h3 id=\"_1-性能提升-\uD83D\uDD27\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-性能提升-\uD83D\uDD27\"><span>1. <strong>性能提升</strong> \uD83D\uDD27</span></a></h3>\n<p>它改进了锁的方式，多个线程可以更高效地同时访问数据，就像是<strong>排队时不再拥挤</strong>，效率大大提升。</p>\n<h3 id=\"_2-锁机制改进-\uD83D\uDD12\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-锁机制改进-\uD83D\uDD12\"><span>2. <strong>锁机制改进</strong> \uD83D\uDD12</span></a></h3>\n<p>以前修改数据时会锁住整个区域，导致其他线程得等很久。现在，它只锁住需要修改的部分，<strong>其他部分可以同时进行</strong>，所以大家不用再互相等待。</p>\n<h3 id=\"_3-新桶结构-\uD83C\uDFF7️\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-新桶结构-\uD83C\uDFF7️\"><span>3. <strong>新桶结构</strong> \uD83C\uDFF7️</span></a></h3>\n<p>数据存储结构也优化了，从以前的链表改成了链表加红黑树的组合。这样做可以<strong>更快地找到和修改数据</strong>，避免了链表太长带来的慢问题。</p>\n<p>总结一下，这些改进让 <strong>ConcurrentHashMap</strong> 在高并发的环境下，处理数据更加聪明和高效。</p>"
+}, {
+  "id" : 83,
+  "uri" : "https://zha-ge.cn/java/p1k3xn8d/",
+  "title" : "Java中的CopyOnWriteArrayList是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 30,
+  "answer" : "<p><code>CopyOnWriteArrayList</code> 是 Java 提供的一个线程安全的动态数组实现， 适合于 <strong>读多写少</strong> 的场景。它的核心机制是 <strong>写时复制</strong>，即每次执行写操作时， 都会创建原数组的副本，在副本上进行修改，最后替换掉原数组。这样可以确保读操作不加锁， 极大提升了并发读操作的效率！\uD83D\uDE80</p>"
+}, {
+  "id" : 84,
+  "uri" : "https://zha-ge.cn/java/pbx9bax8/",
+  "title" : "Java中ConcurrentHashMap的get方法需要加锁吗？",
+  "categoryId" : 3,
+  "sortOrder" : 31,
+  "answer" : "<p><code>get</code> 方法不需要加锁！<br> 在 <code>ConcurrentHashMap</code> 中，通过使用 <code>volatile</code> 和 <code>Unsafe</code> 提供的内存操作，<code>get</code> 方法实现了高效的线程安全性。 在读取过程中，即使有写操作发生，也能保证读取到最新的数据，因此无需加锁。</p>"
+}, {
+  "id" : 85,
+  "uri" : "https://zha-ge.cn/java/3rp1tayq/",
+  "title" : "为什么Java中需要使用ThreadLocal？",
+  "categoryId" : 3,
+  "sortOrder" : 32,
+  "answer" : "<p>\uD83E\uDDE9 <strong>ThreadLocal</strong> 让每个线程都有自己独立的 <strong>变量副本</strong>，这样一个线程中的数据不会和其他线程的数据混淆或者互相影响。简单来说，<strong>每个线程都拥有自己的私有空间</strong>，它不会和其他线程去争抢数据，这样就避免了数据冲突。</p>\n<p><strong>为什么这样做很重要呢？</strong> 因为在传统的多线程编程中，多个线程可能会同时修改同一份数据，这样就容易出错。而 <strong>ThreadLocal</strong> 通过给每个线程分配一份独立的副本，<strong>就确保了每个线程只修改自己的数据</strong>，这样就能轻松保证 <strong>线程安全</strong>，避免了不必要的麻烦。</p>"
+}, {
+  "id" : 86,
+  "uri" : "https://zha-ge.cn/java/fyos6t2u/",
+  "title" : "Java中ThreadLocal如何实现线程间的资源隔离？",
+  "categoryId" : 3,
+  "sortOrder" : 33,
+  "answer" : "<p><strong>ThreadLocal 是一种让每个线程拥有自己独立数据的机制</strong>。 每个线程可以在自己独立的空间里存取数据，不会和其他线程共享这些数据。 这样，线程之间的数据不会互相干扰，确保了线程安全。每个线程都只看到自己设置的数据，避免了多线程环境下的竞争和冲突。</p>"
+}, {
+  "id" : 87,
+  "uri" : "https://zha-ge.cn/java/prqh515o/",
+  "title" : "Java中的InheritableThreadLocal是什么？",
+  "categoryId" : 3,
+  "sortOrder" : 34,
+  "answer" : "<p><strong>InheritableThreadLocal</strong> 是 <strong>ThreadLocal</strong> 的一个扩展，允许子线程继承父线程中设置的本地变量副本， 使得子线程可以访问父线程的变量，而不会互相影响。它解决了 <strong>ThreadLocal</strong> 无法在子线程中继承父线程变量的问题。</p>"
+}, {
+  "id" : 88,
+  "uri" : "https://zha-ge.cn/java/rn0dc8sx/",
+  "title" : "ThreadLocal存在哪些缺点？",
+  "categoryId" : 3,
+  "sortOrder" : 35,
+  "answer" : "<p>虽然 <strong>ThreadLocal</strong> 非常方便，但它也有一些缺点，特别是在某些情况下，可能会带来以下几个问题：</p>\n<h3 id=\"_1-内存泄漏问题-\uD83D\uDCA7\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_1-内存泄漏问题-\uD83D\uDCA7\"><span>1. <strong>内存泄漏问题</strong> \uD83D\uDCA7</span></a></h3>\n<p>如果使用 <strong>ThreadLocal</strong> 的时候没有及时清理线程中的数据，它可能会导致 <strong>内存泄漏</strong>。这就好比你在某个地方放了很多私人物品，但没有在离开时把它们收拾好。这样，东西就会积累在那儿，占用空间，最后导致资源浪费。</p>\n<h3 id=\"_2-hash-冲突效率低-\uD83C\uDFC3\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_2-hash-冲突效率低-\uD83C\uDFC3\"><span>2. <strong>Hash 冲突效率低</strong> \uD83C\uDFC3</span></a></h3>\n<p><strong>ThreadLocal</strong> 依赖 <strong>哈希表</strong> 来存储每个线程的独立数据。当多个线程的数据在哈希表中发生冲突时，查找和存取数据的效率就会变低。这就像在一个很拥挤的商场里找东西，当人太多时，找到你要的东西会变得特别慢。</p>\n<h3 id=\"_3-主动清理数据的性能开销较高-\uD83D\uDD27\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#_3-主动清理数据的性能开销较高-\uD83D\uDD27\"><span>3. <strong>主动清理数据的性能开销较高</strong> \uD83D\uDD27</span></a></h3>\n<p>由于 <strong>ThreadLocal</strong> 让每个线程都有自己的数据副本，这些副本可能会在使用完后一直存在，除非我们主动去清理它们。清理这些数据需要额外的处理，这会增加额外的 <strong>性能开销</strong>。就像你在办公室工作时，如果每次都要清理桌子，浪费了很多时间和精力。</p>\n<p>所以，尽管 <strong>ThreadLocal</strong> 很方便，但在使用时需要特别注意这些潜在的缺点，尤其是在复杂或高并发的场景下。</p>"
+}, {
+  "id" : 89,
+  "uri" : "https://zha-ge.cn/java/bbp06xj9/",
+  "title" : "Java中ThreadLocal对key的引用是弱引用吗？",
+  "categoryId" : 3,
+  "sortOrder" : 36
+}, {
+  "id" : 90,
+  "uri" : "https://zha-ge.cn/java/giofr9xd/",
+  "title" : "死锁的四大必要条件有哪些？如何解决？",
+  "categoryId" : 3,
+  "sortOrder" : 37
+}, {
+  "id" : 91,
+  "uri" : "https://zha-ge.cn/java/4ti8t784/",
+  "title" : "Thread.sleep() 和 Thread.yield() 方法的区别？它们如何影响线程调度？",
+  "categoryId" : 3,
+  "sortOrder" : 38
+}, {
+  "id" : 92,
+  "uri" : "https://zha-ge.cn/java/teznu2y4/",
+  "title" : "Thread.sleep(0) 的作用是什么？它如何影响 CPU 调度？",
+  "categoryId" : 3,
+  "sortOrder" : 39
+}, {
+  "id" : 93,
+  "uri" : "https://zha-ge.cn/java/3hyshwy3/",
+  "title" : "wait()、notify() 和 notifyAll() 在 Java 多线程中的作用及使用方式？",
+  "categoryId" : 3,
+  "sortOrder" : 40
+}, {
+  "id" : 94,
+  "uri" : "https://zha-ge.cn/java/4znecmxs/",
+  "title" : "什么是 Java 并发中的 ABA 问题？如何解决？",
+  "categoryId" : 3,
+  "sortOrder" : 41
+}, {
+  "id" : 95,
+  "uri" : "https://zha-ge.cn/java/6ms097cj/",
+  "title" : "为什么会发生 ConcurrentModificationException？如何规避并发修改异常？",
+  "categoryId" : 3,
+  "sortOrder" : 42,
+  "answer" : "<p><code>ConcurrentModificationException</code> 是 Java 中的一种运行时异常，通常出现在遍历集合时，集合被修改了。⚠️ 它是 Java 中的 <strong>fail-fast</strong> 机制的一部分，目的是防止在集合遍历过程中发生不一致的修改。\uD83D\uDCA5</p>"
+}, {
+  "id" : 96,
+  "uri" : "https://zha-ge.cn/java/9ogqk9rm/",
+  "title" : "如何控制多个线程按特定顺序执行？有哪些实现方式？",
+  "categoryId" : 3,
+  "sortOrder" : 43
+} ]

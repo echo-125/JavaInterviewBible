@@ -1,0 +1,246 @@
+[ {
+  "id" : 159,
+  "uri" : "https://zha-ge.cn/java/tyxjx53j/",
+  "title" : "配置中心的核心概念是什么？请你详细讲解",
+  "categoryId" : 6,
+  "sortOrder" : 1,
+  "answer" : "<p><strong>配置中心</strong>是一个<strong>集中管理配置的工具</strong>，它可以让应用程序在<strong>运行的时候</strong>自动获取和更新配置。通过配置中心，开发者可以<strong>统一管理</strong>所有应用的配置，不用再手动修改配置文件，也<strong>不需要重启服务</strong>，省去了很多麻烦。</p>\n<p>当配置发生变化时，系统会<strong>自动更新</strong>，不会影响服务的<strong>正常运行</strong>。这样一来，配置管理的<strong>效率</strong>和<strong>灵活性</strong>都大大提高了。</p>"
+}, {
+  "id" : 160,
+  "uri" : "https://zha-ge.cn/java/8covejt9/",
+  "title" : "服务注册与发现如何在微服务架构中实现高效匹配？",
+  "categoryId" : 6,
+  "sortOrder" : 2,
+  "answer" : "<p>在<strong>分布式系统</strong>中，服务的数量非常多，如果靠<strong>人工维护</strong>会非常麻烦。<strong>服务注册与发现</strong>通过一个<strong>注册中心</strong>，让服务<strong>自动上报</strong>自己的信息（比如地址、状态等），其他服务需要的时候，可以直接从注册中心<strong>查询</strong>到目标服务的地址。</p>\n<p>这样一来，服务的管理变得<strong>更方便</strong>，系统的<strong>灵活性</strong>和<strong>扩展性</strong>也得到了提升，不用再为服务之间的连接问题头疼了。</p>"
+}, {
+  "id" : 161,
+  "uri" : "https://zha-ge.cn/java/5gdtgbk2/",
+  "title" : "链路追踪在微服务中的作用是什么？Spring Cloud提供了哪些追踪工具？",
+  "categoryId" : 6,
+  "sortOrder" : 3,
+  "answer" : "<p>在<strong>微服务架构</strong>中，服务之间的调用关系非常复杂，出了问题很难找到原因。<strong>链路追踪</strong>就是为了解决这个问题，它可以<strong>跟踪请求的流动</strong>，帮助开发者快速找到<strong>性能瓶颈</strong>或者<strong>故障点</strong>。</p>\n<p>具体来说，链路追踪会给每个请求加上一个<strong>独特的 Trace ID</strong> 和 <strong>Span ID</strong>，这样就能清楚地看到请求从<strong>一个服务</strong>到<strong>另一个服务</strong>的流转路径。简单来说，链路追踪能<strong>大大提高</strong>故障排查的效率，也让整个系统的<strong>运行状态</strong>变得更透明、更容易观察。</p>"
+}, {
+  "id" : 162,
+  "uri" : "https://zha-ge.cn/java/n6jqva3j/",
+  "title" : "Spring Cloud的优势与不足有哪些？你如何看待这些特点？",
+  "categoryId" : 6,
+  "sortOrder" : 4,
+  "answer" : "<p><strong>Spring Cloud</strong> 是一个<strong>功能很强大的微服务工具</strong>，它把很多<strong>分布式系统</strong>里常用的组件都集成在一起了，比如<strong>服务注册</strong>、<strong>负载均衡</strong>、<strong>断路器</strong>这些功能它都有。不过，它也不是没有缺点。</p>\n<p>它的<strong>优点</strong>是：</p>\n<ol>\n <li><strong>生态丰富</strong>，啥都能找到。</li>\n <li><strong>扩展起来很容易</strong>，能快速搭起一套微服务系统。</li>\n</ol>\n<p>它的<strong>缺点</strong>是：</p>\n<ol>\n <li><strong>学习起来有点难</strong>，新手可能要花点时间。</li>\n <li>要是用在对<strong>性能要求特别高</strong>的场景里，它可能会有点“<strong>拖后腿</strong>”，因为它的<strong>性能开销</strong>比较大。</li>\n</ol>"
+}, {
+  "id" : 163,
+  "uri" : "https://zha-ge.cn/java/go5xk4ou/",
+  "title" : "Spring Boot与Spring Cloud在微服务领域的竞争格局如何？",
+  "categoryId" : 6,
+  "sortOrder" : 5,
+  "answer" : "<p><strong>Spring Boot</strong> 和 <strong>Spring Cloud</strong>，简直是<strong>微服务开发</strong>的黄金组合！✨</p>\n<ul>\n <li><strong>Spring Boot</strong> 让你<strong>轻松构建应用</strong>，配置少、开发快，目标是让你像<strong>拼乐高</strong>一样快速搭建应用。</li>\n <li><strong>Spring Cloud</strong> 是在 <strong>Spring Boot</strong> 基础上打造的<strong>微服务“加强版”</strong>，为你的应用增加了<strong>服务发现</strong>、<strong>负载均衡</strong>、<strong>断路器</strong>等高级功能，简直是微服务的<strong>超级工具</strong>！\uD83D\uDCA5</li>\n</ul>"
+}, {
+  "id" : 164,
+  "uri" : "https://zha-ge.cn/java/cl97buk3/",
+  "title" : "Spring Cloud的组件构成有哪些？全面解析其生态体系",
+  "categoryId" : 6,
+  "sortOrder" : 6,
+  "answer" : "<p><strong>Spring Cloud</strong> 是一个专门用来<strong>构建微服务架构</strong>的强大框架，它提供了一整套完整的解决方案。主要包括以下核心功能：</p>\n<ul>\n <li><strong>服务注册与发现</strong></li>\n <li><strong>负载均衡</strong></li>\n <li><strong>服务容错</strong></li>\n <li><strong>服务治理</strong></li>\n <li><strong>日志追踪</strong></li>\n</ul>\n<p>这些功能让<strong>微服务之间</strong>能够<strong>高效协作</strong>，并且在<strong>大规模系统</strong>中，还能保证系统的<strong>稳定性</strong>和<strong>可扩展性</strong>。\uD83C\uDF0D\uD83D\uDD27</p>"
+}, {
+  "id" : 165,
+  "uri" : "https://zha-ge.cn/java/frondtxy/",
+  "title" : "单体架构、SOA和微服务架构各自的特点是什么？你更倾向哪一种？",
+  "categoryId" : 6,
+  "sortOrder" : 7,
+  "answer" : "<ul>\n <li><p><strong>单体应用</strong>：就是把<strong>所有功能</strong>都放在一个大包里，<strong>开发</strong>和<strong>部署</strong>很方便，但要是想<strong>扩展</strong>或者<strong>维护</strong>，就比较麻烦。简单来说就是：<strong>简单开发部署，难扩展维护</strong>。⚡</p></li>\n <li><p><strong>SOA</strong>：把系统分成<strong>多个服务</strong>，服务之间通过<strong>网络通信</strong>。适合<strong>大型企业</strong>用，但会用到一些<strong>复杂的中间件</strong>。简单来说就是：<strong>适合大型企业，中间件复杂</strong>。\uD83D\uDD17</p></li>\n <li><p><strong>微服务架构</strong>：把系统拆成<strong>很多个小服务</strong>，每个服务都能<strong>单独部署</strong>。适合<strong>大规模应用</strong>，但<strong>管理起来比较复杂</strong>。简单来说就是：<strong>独立部署，管理复杂</strong>。\uD83D\uDD27</p></li>\n</ul>"
+}, {
+  "id" : 166,
+  "uri" : "https://zha-ge.cn/java/tklsrrbn/",
+  "title" : "Spring Cloud Config如何成为配置管理的核心解决方案？",
+  "categoryId" : 6,
+  "sortOrder" : 8,
+  "answer" : "<p><strong>Spring Cloud Config</strong> 是一个<strong>分布式配置中心</strong>，专门用来<strong>集中管理配置</strong>。它通过 <strong>Config Server</strong> 和 <strong>Config Client</strong> 两部分，帮助管理微服务的配置，还支持<strong>版本控制</strong>和<strong>动态刷新</strong>。</p>\n<ul>\n <li><strong>Config Server</strong>：负责<strong>集中管理配置</strong>，通常用 <strong>Git</strong> 来存储配置，支持<strong>版本控制</strong>。</li>\n <li><strong>Config Client</strong>：从 <strong>Config Server</strong> 拉取配置，支持<strong>多环境配置</strong>和<strong>动态刷新</strong>，配置改了不用重启服务。</li>\n</ul>"
+}, {
+  "id" : 167,
+  "uri" : "https://zha-ge.cn/java/aoj4cz6t/",
+  "title" : "Seata在分布式事务中的作用是什么？它能解决哪些关键问题？",
+  "categoryId" : 6,
+  "sortOrder" : 9,
+  "answer" : "<p><strong>Seata</strong> 有四种主要的处理分布式事务的方法，分别是： <strong>自动提交模式（AT 模式）、尝试 - 确认 - 取消模式（TCC 模式）、长事务模式（Saga 模式）和 传统两阶段提交模式（XA 模式）</strong></p>\n<p>每种方法都有自己的特点，适合不同的情况，能够很好地管好分布式事务，保证系统既一致又可靠。</p>"
+}, {
+  "id" : 168,
+  "uri" : "https://zha-ge.cn/java/bczbdb7q/",
+  "title" : "Spring Cloud注册中心如何作为微服务的核心入口？",
+  "categoryId" : 6,
+  "sortOrder" : 10,
+  "answer" : "<p>Spring Cloud 提供了几种服务注册中心，帮助管理微服务：</p>\n<ul>\n <li><strong>Eureka</strong>：轻量级，适合中小型系统。</li>\n <li><strong>Consul</strong>：除了服务注册，还能做健康检查，适合需要高可用的系统。</li>\n <li><strong>Zookeeper</strong>：提供强一致性，适合大规模分布式系统。</li>\n <li><strong>Nacos</strong>：除了服务注册，还能管理配置，适合需要动态配置的应用。</li>\n <li><strong>Etcd</strong>：简洁且一致性强，适用于大规模容器化平台。</li>\n</ul>\n<p>选择合适的注册中心，可以提高服务发现和系统的稳定性。</p>"
+}, {
+  "id" : 169,
+  "uri" : "https://zha-ge.cn/java/qc2k2x3t/",
+  "title" : "Eureka在Spring Cloud中扮演怎样的自动化管理角色？",
+  "categoryId" : 6,
+  "sortOrder" : 11,
+  "answer" : "<p><strong>Eureka</strong> 是由 Netflix 提供的一个工具，主要用于管理和跟踪系统中的各个服务。简单来说，它帮助你 <strong>找到</strong> 各种服务并且 <strong>确保它们健康</strong>。</p>\n<p>在微服务架构中，服务之间要互相联系。<strong>Eureka</strong> 会自动记录每个服务的状态，当服务健康或出现问题时，它会及时更新信息。这样，其他服务就能知道哪个服务是 <strong>可用的</strong>。</p>\n<p>尽管 Netflix 在 2020 年宣布不再更新和维护 <strong>Eureka</strong>，但它依然是许多旧系统和 <strong>Spring Cloud</strong> 项目的关键部分。<strong>Eureka</strong> 让开发者省去了手动管理服务列表的麻烦，极大提高了效率。</p>"
+}, {
+  "id" : 170,
+  "uri" : "https://zha-ge.cn/java/2s5bj8bb/",
+  "title" : "Spring Cloud如何实现服务注册的高效自动化？",
+  "categoryId" : 6,
+  "sortOrder" : 12,
+  "answer" : "<p><strong>Spring Cloud</strong> 本身并不直接管理服务注册，它是通过和不同的 <strong>注册中心</strong>（比如 <strong>Nacos</strong>、<strong>Eureka</strong>）合作来完成这个任务的。</p>\n<p>当某个服务启动时，它会通过一个工具自动把自己的 <strong>信息</strong>（比如 <strong>IP 地址</strong>、<strong>端口号</strong> 等）发送给注册中心。这样，注册中心就会记下这个服务的 <strong>位置</strong>，其他服务也可以通过注册中心找到它。</p>\n<p>简而言之，服务通过注册中心“自我登记”，这样其他服务就能找到并使用它。这种方式大大简化了服务管理，让系统更加灵活和自动化。</p>"
+}, {
+  "id" : 171,
+  "uri" : "https://zha-ge.cn/java/z838qqi0/",
+  "title" : "负载均衡如何实现请求的公平分配？",
+  "categoryId" : 6,
+  "sortOrder" : 13,
+  "answer" : "<p><strong>负载均衡</strong> 就是把流量或任务分配到多个服务上，确保没有一个服务被压得太重，整个系统能更 <strong>高效</strong> 和 <strong>稳定</strong>。根据不同的需求，负载均衡有几种常见的方式：</p>\n<ol>\n <li><p><strong>软件负载均衡</strong>：这是一种通过 <strong>软件</strong> 来分配流量的方法。它的优点是 <strong>灵活</strong>，可以根据需求做很多自定义设置，但也需要占用一些 <strong>计算资源</strong>。</p></li>\n <li><p><strong>硬件负载均衡</strong>：这种方式是使用 <strong>专门的硬件设备</strong> 来分配流量。它的优点是 <strong>高效</strong>，能处理大量流量，但价格较贵，适合大规模、高负载的环境。</p></li>\n <li><p><strong>基于 DNS 的负载均衡</strong>：通过 <strong>域名系统（DNS）</strong> 来分配流量，简单、快速，适合 <strong>分布式</strong> 环境，但它没有那么 <strong>灵活</strong>，对于流量变化的应对较慢。</p></li>\n</ol>\n<p>每种负载均衡方式都有它的 <strong>优势</strong> 和 <strong>局限性</strong>，需要根据实际需求来选择合适的方式。</p>"
+}, {
+  "id" : 172,
+  "uri" : "https://zha-ge.cn/java/tk5knr0o/",
+  "title" : "Feign作为远程调用利器，如何实现负载均衡功能？",
+  "categoryId" : 6,
+  "sortOrder" : 14,
+  "answer" : "<p>Feign 是一个声明式的 HTTP 客户端，它让远程调用变得更加简单和优雅。❓但是，<strong>Feign 本身并不具备负载均衡功能</strong>，它需要依赖其他工具来实现负载均衡。当前，最常见的两种负载均衡框架是 <strong>Ribbon</strong> 和 <strong>loadbalancer</strong>。</p>\n<ul>\n <li><strong>Ribbon</strong>：最初与 Feign 配合使用的负载均衡框架，负责从服务注册中心获取服务实例并执行负载均衡算法。</li>\n <li><strong>loadbalancer</strong>：随着 Ribbon 停止维护，Spring Cloud 引入了 loadbalancer，替代了 Ribbon，提供了类似的负载均衡功能。</li>\n</ul>\n<p>通过这两者，Feign 能够自动从多个服务实例中选择一个进行请求，从而实现负载均衡。⚖️</p>"
+}, {
+  "id" : 173,
+  "uri" : "https://zha-ge.cn/java/l6v768sx/",
+  "title" : "为什么微服务需要熔断器？Hystrix的核心原理是什么？",
+  "categoryId" : 6,
+  "sortOrder" : 15,
+  "answer" : "<p><strong>Hystrix</strong> 是 Netflix 提供的一个工具，它的作用是 <strong>保护</strong> 微服务系统的稳定性。当某个服务出现故障或响应慢时，Hystrix 会通过类似“<strong>断路器</strong>”的技术，快速 <strong>切换</strong> 到备用方案，避免整个系统崩溃。</p>\n<p>就像一个 <strong>安全网</strong>，即使某部分服务出现问题，整个应用还是能平稳运行，不会影响其他服务。这种机制包括 <strong>熔断</strong>、<strong>降级</strong> 和 <strong>隔离</strong>，它们能保证即使有问题，系统也不会因为单点故障而崩溃。</p>"
+}, {
+  "id" : 174,
+  "uri" : "https://zha-ge.cn/java/yrafy6mp/",
+  "title" : "服务降级的定义是什么？它在系统压力下的作用如何？",
+  "categoryId" : 6,
+  "sortOrder" : 16,
+  "answer" : "<p><strong>服务降级</strong> 就是在服务出现问题或负载过高时，主动 <strong>降低</strong> 一些功能的要求，目的是确保系统 <strong>不崩溃</strong>，保持稳定。通过减少系统的压力，避免问题扩大到整个系统。</p>\n<p>常见的降级方式包括：</p>\n<ul>\n <li>返回一些 <strong>默认值</strong>，即使服务没有完全工作。</li>\n <li>返回 <strong>错误信息</strong>，告诉用户系统出了一些问题。</li>\n <li>限制一些 <strong>功能的使用</strong>，比如暂时关闭不重要的功能。</li>\n</ul>\n<p>简单来说，服务降级就是当出现问题时，选择 <strong>适当减少</strong> 功能，保证最基本的服务还在运行。</p>"
+}, {
+  "id" : 175,
+  "uri" : "https://zha-ge.cn/java/zrxy2rik/",
+  "title" : "Sentinel如何通过限流机制超越Hystrix的智能性？",
+  "categoryId" : 6,
+  "sortOrder" : 17,
+  "answer" : "<p><strong>Sentinel</strong> 是一个工具，帮助我们 <strong>控制</strong> 系统的流量，避免系统因为负载过重而崩溃。它通过定义 <strong>资源</strong>（比如某个服务）和设置 <strong>流量限制规则</strong> 来控制请求的数量。</p>\n<p>Sentinel 使用不同的方法（比如 <strong>令牌桶</strong> 或 <strong>滑动窗口</strong>）来决定什么时候需要 <strong>限制流量</strong>。如果流量太大，Sentinel 会自动采取措施，比如：</p>\n<ul>\n <li><strong>限流</strong>：限制访问的数量。</li>\n <li><strong>熔断</strong>：如果某个服务出现问题，它会暂时停止对该服务的访问。</li>\n <li><strong>降级</strong>：减少一些不重要的功能，确保关键功能继续工作。</li>\n</ul>\n<p>这样，<strong>Sentinel</strong> 就像是系统的“流量管理员”，根据流量变化，自动采取相应措施，确保系统 <strong>稳定运行</strong>。</p>"
+}, {
+  "id" : 176,
+  "uri" : "https://zha-ge.cn/java/63zozdhu/",
+  "title" : "微服务网关为何是架构中的关键节点？Spring Cloud有哪些网关选择？",
+  "categoryId" : 6,
+  "sortOrder" : 18,
+  "answer" : "<p><strong>微服务网关</strong> 就是一个负责接收和转发客户端请求的“门卫”。当用户发出请求时，网关会把请求引导到对应的 <strong>后端服务</strong>，并且提供一些额外的帮助功能，比如 <strong>安全验证</strong>、<strong>协议转换</strong>（让不同的服务能互相沟通）和 <strong>缓存优化</strong>（加快响应速度）。</p>\n<p>通过让所有请求都经过这个统一的网关，系统的管理变得更加简单，避免了很多 <strong>复杂性</strong>。同时，网关的这些功能还提高了系统的 <strong>性能</strong> 和 <strong>可管理性</strong>，让整个系统更加稳定和高效。</p>"
+}, {
+  "id" : 177,
+  "uri" : "https://zha-ge.cn/java/dwdw5c52/",
+  "title" : "服务熔断的本质是什么？它如何帮助系统稳定？",
+  "categoryId" : 6,
+  "sortOrder" : 19,
+  "answer" : "<p><strong>服务熔断</strong> 就是为了防止 <strong>服务之间的问题扩散</strong>，当一个服务的请求失败次数达到一定的标准时，熔断器会自动 <strong>切断</strong> 对该服务的访问。这样做的目的是避免系统一直发起失败的请求，减少系统的 <strong>负担</strong>，保护整个系统不崩溃。</p>\n<p>当服务的状态好转后，熔断器会在一段时间后尝试重新 <strong>恢复</strong> 请求，重新接入服务。</p>\n<p>简单来说，<strong>服务熔断</strong> 就像是一个“自动保护机制”，帮助系统避免因为部分服务问题而引起整个系统的崩溃。</p>"
+}, {
+  "id" : 178,
+  "uri" : "https://zha-ge.cn/java/vj01y68g/",
+  "title" : "Dubbo与Spring Cloud Gateway在微服务流量管理中的对比如何？",
+  "categoryId" : 6,
+  "sortOrder" : 20,
+  "answer" : "<p><strong>Dubbo</strong> 和 <strong>Spring Cloud Gateway</strong> 都是微服务架构中常用的工具，但它们解决的问题和作用完全不同。</p>\n<ul>\n <li><p><strong>Dubbo</strong> 是一个高效的工具，专门用于 <strong>服务间的远程通信</strong>，也就是让不同的服务能够互相请求和交流。它帮助服务之间进行 <strong>数据交换</strong>，提高服务之间的 <strong>效率</strong>。</p></li>\n <li><p><strong>Spring Cloud Gateway</strong> 则是一个 <strong>API 网关</strong>，它主要负责 <strong>管理外部请求</strong>，比如把用户请求 <strong>路由</strong> 到正确的服务，控制请求的 <strong>流量</strong>，并且提供 <strong>安全保护</strong>。它像是系统的“门卫”，确保外部请求进入时不受到威胁，并且高效流转到合适的地方。</p></li>\n</ul>\n<p>简单来说，<strong>Dubbo</strong> 处理 <strong>服务内部</strong> 的通讯问题，而 <strong>Spring Cloud Gateway</strong> 处理 <strong>外部请求</strong> 如何进入系统的问题。两者各司其职，共同确保系统稳定和高效运行。</p>"
+}, {
+  "id" : 179,
+  "uri" : "https://zha-ge.cn/java/6qk9iz78/",
+  "title" : "令牌桶算法如何作为流量控制的关键工具？最佳实践是什么？",
+  "categoryId" : 6,
+  "sortOrder" : 21,
+  "answer" : "<p><strong>令牌桶算法</strong> 是一种用来 <strong>控制请求速度</strong> 的方法，防止系统因为 <strong>请求太多</strong> 而崩溃。它的原理很简单：</p>\n<ol>\n <li>系统会 <strong>定时</strong> 生成一些 <strong>令牌</strong>（像是进入系统的“通行证”）。</li>\n <li>每个请求想要被处理，就必须 <strong>消耗一个令牌</strong>。</li>\n <li>如果令牌 <strong>足够</strong>，请求会被正常处理；如果令牌 <strong>不够</strong>，请求就会被 <strong>延迟</strong> 或 <strong>直接拒绝</strong>。</li>\n</ol>\n<p>这种方法的好处是：</p>\n<ul>\n <li><strong>稳定流量</strong>：让系统以一个可控的速度处理请求，而不会被突然的大量请求压垮。</li>\n <li><strong>应对突发流量</strong>：当短时间内有大量请求时，如果桶里还有 <strong>积攒的令牌</strong>，系统可以快速处理一部分请求，不会完全拒绝所有流量。</li>\n</ul>\n<p>简单来说，<strong>令牌桶算法</strong> 就像是在控制“过马路的行人数量”，只有拿到“通行证”（令牌）的才能通过，避免所有人一拥而上导致混乱。</p>"
+}, {
+  "id" : 180,
+  "uri" : "https://zha-ge.cn/java/98g0np7s/",
+  "title" : "微服务为何在技术领域如此受欢迎？",
+  "categoryId" : 6,
+  "sortOrder" : 22,
+  "answer" : "<p><strong>微服务架构</strong> 就是一种把一个大应用分解成多个 <strong>小而独立的服务</strong> 的方式。每个服务就像一个 <strong>独立的“模块”</strong>，它们之间通过 <strong>简单的通信方式</strong>（比如基于 HTTP 的接口）来互相交流。</p>\n<p>这些服务每个都有自己的 <strong>进程</strong>，并且专注于解决 <strong>特定的业务问题</strong>。这样，你可以 <strong>单独更新</strong> 或 <strong>部署</strong> 某个服务，而不需要影响整个系统。</p>\n<p>微服务架构的关键特点是：</p>\n<ul>\n <li><strong>独立性</strong>：每个服务是独立的，不依赖其他服务。</li>\n <li><strong>灵活性</strong>：你可以根据需求随时调整或替换某个服务。</li>\n <li><strong>高效性</strong>：系统能根据需要快速响应，并且更容易进行扩展。</li>\n</ul>\n<p>总的来说，微服务架构让我们可以更高效、灵活地构建和维护现代应用。</p>"
+}, {
+  "id" : 181,
+  "uri" : "https://zha-ge.cn/java/949lbeug/",
+  "title" : "Ribbon与Feign的区别会如何影响负载均衡策略选择？",
+  "categoryId" : 6,
+  "sortOrder" : 23,
+  "answer" : "<p><strong>Ribbon</strong> 和 <strong>Feign</strong> 都是帮助微服务之间进行 <strong>通信</strong> 的工具，但它们的工作方式有所不同：</p>\n<ul>\n <li><p><strong>Ribbon</strong> 主要提供 <strong>负载均衡功能</strong>，也就是说，它能帮助系统把请求合理分配到多个服务上，避免某个服务负担过重。使用 Ribbon 时，我们需要 <strong>手动构建请求</strong>，也就是自己写代码来发送请求。</p></li>\n <li><p><strong>Feign</strong> 则是一个 <strong>声明式 HTTP 客户端</strong>，意思是你只需要告诉 Feign 要调用哪个服务，它会自动帮你生成请求，简化了调用的过程。用 Feign，你不需要手动写请求的代码，调用变得更加简单。</p></li>\n</ul>\n<p>简而言之，<strong>Ribbon</strong> 需要更多手动操作，适合需要更多定制的场景，而 <strong>Feign</strong> 则通过简单的配置，自动处理请求，适合需要快速开发的场景。</p>"
+}, {
+  "id" : 182,
+  "uri" : "https://zha-ge.cn/java/0j2r90ol/",
+  "title" : "Ribbon的负载均衡机制是如何实现请求智能分配的？",
+  "categoryId" : 6,
+  "sortOrder" : 24,
+  "answer" : "<p><strong>Ribbon</strong> 就是一个 <strong>请求分配工具</strong>，它帮助系统把请求分配到多个服务上，避免某个服务因为接收过多请求而崩溃。这样可以确保系统更加 <strong>高效</strong> 和 <strong>稳定</strong>。</p>\n<p>它主要用于 <strong>微服务架构</strong> 中，可以控制 <strong>HTTP</strong> 和 <strong>TCP</strong> 请求的流向，保证这些请求均匀地分配给后端的服务，增强系统的 <strong>可用性</strong> 和 <strong>性能</strong>。</p>\n<p>而 <strong>Feign</strong> 默认就和 <strong>Ribbon</strong> 配合使用，也就是说，Feign 在发起请求时，会自动使用 Ribbon 来分配请求，让请求更加 <strong>均衡</strong>，避免某个服务承受过多压力。</p>"
+}, {
+  "id" : 183,
+  "uri" : "https://zha-ge.cn/java/5kdte9yi/",
+  "title" : "Feign在远程调用中的优势体现在哪些方面？",
+  "categoryId" : 6,
+  "sortOrder" : 25,
+  "answer" : "<p><strong>Feign</strong> 是一个简化服务之间 <strong>通信</strong> 的工具。它的工作原理非常简单：你只需要用 <strong>注解</strong> 和 <strong>接口</strong> 来定义要调用的服务，Feign 就会帮你自动生成请求，不需要自己去构建复杂的 <strong>HTTP 请求</strong>。</p>\n<p>它的主要优点是：</p>\n<ul>\n <li><strong>简洁</strong>：不需要写复杂的代码，只需简单配置。</li>\n <li><strong>易用</strong>：通过注解和接口就能完成远程调用，开发起来非常方便。</li>\n <li><strong>提高效率</strong>：减少了代码重复，让开发工作变得更高效。</li>\n</ul>\n<p>总之，<strong>Feign</strong> 帮助你快速实现服务之间的通信，节省了大量的时间和精力。</p>"
+}, {
+  "id" : 184,
+  "uri" : "https://zha-ge.cn/java/e23exzoz/",
+  "title" : "负载均衡算法的深入解析",
+  "categoryId" : 6,
+  "sortOrder" : 26,
+  "answer" : "<p><strong>负载均衡</strong> 的核心目的是将 <strong>流量</strong> 平均分配到多台服务器上，避免某一台服务器负担过重，从而确保系统 <strong>高可用</strong> 和 <strong>性能</strong>。</p>\n<p>常见的分配流量的方法有：</p>\n<ul>\n <li><strong>轮询</strong>：按照顺序把请求一个一个地分配给每台服务器。</li>\n <li><strong>加权轮询</strong>：给不同的服务器设置不同的权重，流量会根据权重分配，权重高的服务器会接到更多请求。</li>\n <li><strong>随机</strong>：随机选择一台服务器来处理请求。</li>\n <li><strong>加权随机</strong>：和加权轮询类似，但选择是随机的，权重高的服务器更容易被选择。</li>\n <li><strong>最少连接</strong>：把请求分配给当前连接数最少的服务器，确保服务器不会因为连接数过多而负载过高。</li>\n <li><strong>哈希算法</strong>：根据某些规则（比如请求的内容）计算一个值，然后通过这个值选择服务器。</li>\n</ul>\n<p>这些方法帮助系统 <strong>平衡</strong> 流量，保证每台服务器的负载均匀，提升整体系统的稳定性和响应速度。</p>"
+}, {
+  "id" : 185,
+  "uri" : "https://zha-ge.cn/java/bvfa1n38/",
+  "title" : "Feign的真实技术本质是什么？",
+  "categoryId" : 6,
+  "sortOrder" : 27,
+  "answer" : "<p><strong>Feign</strong> 是一个简化 <strong>服务间通信</strong> 的工具。开发者只需定义一个 <strong>接口</strong> 和一些简单的 <strong>标注</strong>（注解），Feign 就会自动构建并发送 <strong>HTTP 请求</strong>，避免手动写复杂代码。</p>\n<p>与 <strong>Spring Cloud</strong> 集成后，它还能：</p>\n<ul>\n <li>实现 <strong>负载均衡</strong>，自动分配请求到不同的服务器。</li>\n <li>支持 <strong>服务熔断</strong>，保护系统稳定性。</li>\n</ul>\n<p>简单来说，<strong>Feign</strong> 让服务间的请求变得更加 <strong>简单</strong> 和 <strong>高效</strong>。</p>"
+}, {
+  "id" : 186,
+  "uri" : "https://zha-ge.cn/java/ymcz97fn/",
+  "title" : "Feign与OpenFeign之间是否存在关联？",
+  "categoryId" : 6,
+  "sortOrder" : 28,
+  "answer" : "<p><strong>Feign</strong> 和 <strong>OpenFeign</strong> 的区别在于：</p>\n<ul>\n <li><p><strong>Feign</strong> 是由 Netflix 提供的一个 <strong>简化 HTTP 请求</strong> 的工具，帮助开发者轻松地进行服务间的通信。它是一个通用的工具，但功能相对简单。</p></li>\n <li><p><strong>OpenFeign</strong> 是在 <strong>Feign</strong> 的基础上进行 <strong>扩展</strong> 和 <strong>优化</strong>，特别是为 <strong>Spring Cloud</strong> 系统量身定做的。它将 Feign 和 Spring 的一些功能（比如 <strong>自动配置</strong>、<strong>负载均衡</strong>、<strong>熔断</strong>）结合起来，提升了微服务之间的调用体验，让开发更加 <strong>简洁</strong> 和 <strong>高效</strong>。</p></li>\n</ul>\n<p>简单来说，<strong>OpenFeign</strong> 是 <strong>Feign</strong> 的 <strong>升级版</strong>，专门为 Spring 环境做了更多增强，让使用它的开发者能更方便地实现服务之间的调用。</p>"
+}, {
+  "id" : 187,
+  "uri" : "https://zha-ge.cn/java/xtfbmbsk/",
+  "title" : "熔断器是否等同于系统中的“保险丝”？",
+  "categoryId" : 6,
+  "sortOrder" : 29,
+  "answer" : "<p><strong>熔断器</strong> 就像是一个智能的 <strong>“保护机制”</strong>，当系统出现问题时，它会及时 <strong>切断故障链条</strong>，避免问题蔓延导致整个系统崩溃。可以把它想象成给服务加上的 <strong>“紧急刹车”</strong>，当发现有问题时，熔断器会停止对有问题服务的请求，确保其他部分能够 <strong>正常运行</strong>。</p>\n<p>这种机制保证了即使某个服务出了问题，整个系统依然能够 <strong>稳定</strong> 运行，不会因为小问题影响到整个大系统。</p>"
+}, {
+  "id" : 188,
+  "uri" : "https://zha-ge.cn/java/726207k1/",
+  "title" : "服务降级应如何理解其作用与意义？",
+  "categoryId" : 6,
+  "sortOrder" : 30,
+  "answer" : "<p><strong>服务降级</strong> 就是系统在 <strong>遇到问题</strong> 或者负载过高时，采取的一种聪明的应急措施。当某个服务出现故障或者压力太大时，系统会 <strong>暂时关闭一些不重要的功能</strong>，保证最 <strong>核心的功能</strong> 还能正常运行。</p>\n<p>这就像是系统在 <strong>紧急情况下</strong> 选择放慢脚步，避免全系统崩溃，确保不至于 <strong>摔倒</strong>。通过这种方式，系统依然能保持 <strong>基本运行</strong>，避免大面积崩溃。</p>"
+}, {
+  "id" : 189,
+  "uri" : "https://zha-ge.cn/java/yxmkbua4/",
+  "title" : "你对服务熔断的理解是什么？",
+  "categoryId" : 6,
+  "sortOrder" : 31,
+  "answer" : "<p><strong>服务熔断</strong> 就是一种 <strong>自动保护机制</strong>，当某个服务出现 <strong>频繁故障</strong> 时，熔断器会自动 <strong>切断</strong> 对该服务的请求，避免 <strong>浪费更多资源</strong>，从而保护整个系统不被影响。</p>\n<p>你可以把 <strong>熔断器</strong> 想象成 <strong>电路的保险丝</strong>，当出现问题时，它会自动 <strong>断开</strong>，防止问题继续扩大，确保其他部分正常运行。</p>"
+}, {
+  "id" : 190,
+  "uri" : "https://zha-ge.cn/java/iveh45ie/",
+  "title" : "Sentinel与Hystrix之间有何技术关联？",
+  "categoryId" : 6,
+  "sortOrder" : 32,
+  "answer" : "<p><strong>Hystrix</strong> 和 <strong>Sentinel</strong> 都是用来管理微服务中的 <strong>流量控制</strong> 和 <strong>熔断</strong> 的工具，但它们关注的重点不同：</p>\n<ul>\n <li><p><strong>Hystrix</strong> 主要是通过 <strong>保护服务</strong> 来防止 <strong>服务失败</strong> 引发一系列问题。它像是给服务加上了一个 <strong>保护盾</strong>，确保某个服务出问题时，不会影响到整个系统。</p></li>\n <li><p><strong>Sentinel</strong> 则更专注于 <strong>细致的流量控制</strong>，它不仅能控制流量的大小，还能 <strong>实时监控</strong> 系统状态，并根据需要 <strong>动态调整</strong>，让系统更灵活地应对突发情况。</p></li>\n</ul>\n<p>简单来说，<strong>Hystrix</strong> 更像是一个 <strong>紧急防护系统</strong>，而 <strong>Sentinel</strong> 更像是一个 <strong>智能流量管控工具</strong>，可以根据情况灵活调整。</p>"
+}, {
+  "id" : 191,
+  "uri" : "https://zha-ge.cn/java/uppsnhmn/",
+  "title" : "Spring Cloud API的实现方式有哪些？",
+  "categoryId" : 6,
+  "sortOrder" : 33,
+  "answer" : "<p><strong>Spring Cloud</strong> 提供了多种 <strong>API 网关</strong> 解决方案，帮助管理和处理外部请求。这些解决方案包括 <strong>Spring Cloud Gateway</strong>、<strong>Kong</strong>、<strong>Apache APISIX</strong>、<strong>Envoy</strong>、<strong>Nginx</strong> 和 <strong>Zuul</strong>。</p>\n<p>其中，<strong>Spring Cloud Gateway</strong> 是最常被推荐的，因为它与 <strong>Spring 生态系统</strong> 配合得非常好，特别适合用在 <strong>Spring</strong> 构建的微服务架构中。它帮助开发者 <strong>简化请求处理</strong>，提供了更好的 <strong>集成性</strong> 和 <strong>灵活性</strong>，让开发和管理微服务更加高效。</p>"
+}, {
+  "id" : 192,
+  "uri" : "https://zha-ge.cn/java/e78tpg4t/",
+  "title" : "Spring Cloud Gateway是什么？如何优化微服务路由？",
+  "categoryId" : 6,
+  "sortOrder" : 34,
+  "answer" : "<p><strong>Spring Cloud Gateway</strong> 是专门为 <strong>微服务架构</strong> 设计的工具，帮助管理和转发外部请求。它是基于 <strong>WebFlux</strong> 和 <strong>Netty</strong> 构建的，这让它能 <strong>高效处理大量并发请求</strong>，保证系统不会因为同时处理多个请求而崩溃。</p>\n<p>它的主要功能包括：</p>\n<ul>\n <li><strong>路由转发</strong>：将请求智能地分发到不同的服务上。</li>\n <li><strong>流量管理</strong>：控制请求的数量和频率，避免系统过载。</li>\n <li><strong>请求过滤</strong>：在请求进来之前，可以对请求进行筛选和处理。</li>\n</ul>\n<p>最重要的是，<strong>Spring Cloud Gateway</strong> 与 <strong>Spring Cloud</strong> 其他工具高度集成，这让开发者能够更加轻松地 <strong>管理和配置微服务</strong>。它简化了开发流程，提升了微服务架构的效率。</p>"
+}, {
+  "id" : 193,
+  "uri" : "https://zha-ge.cn/java/7g1pt9he/",
+  "title" : "Spring Cloud Zuul是什么？如何保障微服务访问的稳定性？",
+  "categoryId" : 6,
+  "sortOrder" : 35,
+  "answer" : "<p><strong>Spring Cloud Zuul</strong> 是 <strong>Spring Cloud</strong> 中的一款早期推荐的工具，用来管理微服务架构中的 <strong>请求流量</strong>。它主要负责处理请求的 <strong>路由</strong>（即将请求分发到正确的服务）、<strong>权限认证</strong>（确保只有有权限的用户才能访问）、<strong>流量限制</strong>（控制请求的数量）以及 <strong>监控</strong>（跟踪请求的处理情况）。</p>\n<p>但由于 <strong>Zuul</strong> 的架构基于传统的 <strong>同步处理方式</strong>，它在 <strong>处理大量并发请求</strong> 时性能较差。为了提高效率，<strong>Spring Cloud Gateway</strong> 从 2020 年起取代了 <strong>Zuul</strong>，成为了更高效和现代的 <strong>API 网关</strong> 解决方案。</p>"
+} ]
