@@ -10,7 +10,10 @@
   <view class="category-card" @click="$emit('click')">
     <view class="category-card__header">
       <text class="category-card__name">{{ name }}</text>
-      <text class="category-card__count">{{ count }}题</text>
+      <view class="category-card__stats">
+        <text class="category-card__count">{{ progressText }}</text>
+        <text class="category-card__percent">{{ progress }}%</text>
+      </view>
     </view>
     
     <view class="category-card__progress">
@@ -20,7 +23,6 @@
           :style="{ width: `${progress}%` }"
         ></view>
       </view>
-      <text class="category-card__progress-text">{{ progress }}%</text>
     </view>
   </view>
 </template>
@@ -43,6 +45,10 @@ defineProps({
   progress: {
     type: Number,
     default: 0
+  },
+  progressText: {
+    type: String,
+    default: '0/0'
   }
 });
 
@@ -62,18 +68,26 @@ export default {
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 0;
   
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
   
   &__name {
     font-size: 16px;
     font-weight: bold;
     color: #333333;
+    flex: 1;
+  }
+  
+  &__stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   
   &__count {
@@ -81,10 +95,16 @@ export default {
     color: #666666;
   }
   
+  &__percent {
+    font-size: 12px;
+    color: #1890ff;
+    min-width: 36px;
+    text-align: right;
+  }
+  
   &__progress {
     display: flex;
     align-items: center;
-    gap: 8px;
   }
   
   &__progress-bar {
@@ -100,13 +120,6 @@ export default {
     background: #1890ff;
     border-radius: 3px;
     transition: width 0.3s ease;
-  }
-  
-  &__progress-text {
-    font-size: 12px;
-    color: #666666;
-    min-width: 40px;
-    text-align: right;
   }
 }
 </style> 

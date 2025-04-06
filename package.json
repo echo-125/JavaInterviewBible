@@ -28,14 +28,14 @@
 		"vue": "3.2.45"
 	},
 	"devDependencies": {
-		"@dcloudio/types": "3.3.2",
+		"@dcloudio/types": "^3.3.2",
 		"@dcloudio/vite-plugin-uni": "3.0.0-3080720230703001",
-		"@types/node": "18.15.11",
+		"@types/node": "^18.15.11",
 		"@typescript-eslint/eslint-plugin": "5.59.1",
 		"@typescript-eslint/parser": "5.59.1",
-		"@vue/eslint-config-typescript": "11.0.3",
-		"@vue/runtime-core": "3.2.45",
 		"@vitejs/plugin-vue": "4.1.0",
+		"@vue/eslint-config-typescript": "11.0.3",
+		"@vue/runtime-core": "^3.2.45",
 		"eslint": "8.39.0",
 		"eslint-config-prettier": "8.8.0",
 		"eslint-plugin-vue": "9.11.0",

@@ -7,7 +7,6 @@
  */
 import type { Category, Question } from '../api/types';
 import categoryJson from '../static/json/category.json';
-import questions1Json from '../static/json/questions/1.json';
 
 // 特定JSON文件中的问题类型（与Question类型略有不同）
 interface JsonQuestion {
@@ -54,6 +53,20 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 /**
+ * 根据分类ID动态导入题目数据
+ */
+async function importQuestionsByCategory(categoryId: number): Promise<JsonQuestion[]> {
+  try {
+    // 动态导入对应分类的JSON文件
+    const module = await import(`../static/json/questions/${categoryId}.json`);
+    return module.default || [];
+  } catch (error) {
+    console.warn(`导入分类 ${categoryId} 的题目数据失败:`, error);
+    return [];
+  }
+}
+
+/**
  * 获取题目列表
  * @param categoryId 分类ID
  * @returns Promise<Question[]>
@@ -67,12 +80,11 @@ export async function getQuestions(categoryId: number): Promise<Question[]> {
   try {
     console.log(`开始读取分类 ${categoryId} 的题目列表...`);
     
-    // 目前只提供了分类1的数据，其他分类返回空数组
-    let data: Question[] = [];
-    if (categoryId === 1) {
-      // 转换JSON格式为应用需要的格式
-      data = (questions1Json as JsonQuestion[]).map(convertJsonQuestion);
-    }
+    // 动态导入对应分类的题目数据
+    const jsonQuestions = await importQuestionsByCategory(categoryId);
+    
+    // 转换为应用格式
+    const data = jsonQuestions.map(convertJsonQuestion);
     
     console.log(`分类 ${categoryId} 的题目列表读取成功:`, data);
     return data;
