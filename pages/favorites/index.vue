@@ -9,8 +9,7 @@
 <template>
   <view class="favorites">
     <view class="favorites__header">
-      <text class="favorites__title">我的收藏</text>
-      <text class="favorites__count">共 {{ favorites.length }} 题</text>
+      <text class="favorites__count">收藏题目 {{ favorites.length }} 道</text>
     </view>
     
     <scroll-view 
@@ -20,24 +19,17 @@
       :refresher-triggered="isRefreshing"
       @refresherrefresh="onRefresh"
     >
-      <view v-if="favorites.length > 0">
+      <view v-if="favorites.length > 0" class="favorites__list">
         <view 
           v-for="favorite in favorites" 
           :key="favorite.id" 
           class="favorite-item"
           @click="handleQuestionClick(favorite.id, favorite.categoryId)"
+          @longpress="handleLongPress(favorite.id)"
         >
           <view class="favorite-info">
             <text class="favorite-title">{{ favorite.title }}</text>
             <text class="favorite-category">{{ getCategoryName(favorite.categoryId) }}</text>
-          </view>
-          <view class="favorite-actions">
-            <button 
-              class="favorite-btn"
-              @click.stop="handleUnfavorite(favorite.id)"
-            >
-              取消收藏
-            </button>
           </view>
         </view>
       </view>
@@ -86,7 +78,7 @@ const getCategoryName = (categoryId: number): string => {
 // 点击题目
 const handleQuestionClick = (questionId: number, categoryId: number) => {
   uni.navigateTo({
-    url: `/pages/question-detail/index?id=${questionId}&categoryId=${categoryId}`
+    url: `/pages/question-detail/index?questionId=${questionId}&categoryId=${categoryId}`
   });
 };
 
@@ -109,6 +101,19 @@ const handleUnfavorite = async (questionId: number) => {
   }
 };
 
+// 长按处理
+const handleLongPress = (questionId: number) => {
+  uni.showActionSheet({
+    itemList: ['取消收藏'],
+    itemColor: '#ff4d4f',
+    success: (res) => {
+      if (res.tapIndex === 0) {
+        handleUnfavorite(questionId);
+      }
+    }
+  });
+};
+
 // 下拉刷新
 const onRefresh = async () => {
   isRefreshing.value = true;
@@ -126,70 +131,53 @@ onMounted(() => {
 .favorites {
   min-height: 100vh;
   background: #f5f5f5;
-  padding: 20px;
+  padding: 12px;
   
   &__header {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  
-  &__title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333333;
-    margin-bottom: 8px;
+    text-align: left;
+    margin-bottom: 16px;
+    padding: 0 4px;
   }
   
   &__count {
-    font-size: 14px;
+    font-size: 16px;
     color: #666666;
+    font-weight: 500;
   }
   
   &__content {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 60px);
+  }
+  
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
   
   .favorite-item {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: relative;
   }
   
   .favorite-info {
-    flex: 1;
-    margin-right: 16px;
+    width: 100%;
   }
   
   .favorite-title {
-    font-size: 16px;
+    font-size: 15px;
     color: #333333;
-    line-height: 1.5;
-    margin-bottom: 8px;
+    line-height: 1.4;
+    margin-bottom: 4px;
     display: block;
   }
   
   .favorite-category {
     font-size: 12px;
     color: #666666;
-  }
-  
-  .favorite-actions {
-    display: flex;
-    align-items: center;
-  }
-  
-  .favorite-btn {
-    font-size: 12px;
-    color: #ff4d4f;
-    background: rgba(255, 77, 79, 0.1);
-    padding: 4px 8px;
-    border-radius: 4px;
-    border: none;
   }
   
   .empty-state {
