@@ -53,7 +53,9 @@ export default {
       categoryLearningData: {},
       scrollTop: 0,
       currentScrollTop: 0,
-      isInitialized: false
+      isInitialized: false,
+      questionCategoryMap: {}, // 缓存问题ID与分类ID的映射关系
+      questionsLoaded: false // 标记是否已加载所有问题ID与分类ID的映射
     };
   },
   
@@ -61,7 +63,12 @@ export default {
     // 获取分类列表
     async loadCategories() {
       try {
-        this.categories = await getCategories();
+        if (this.categories.length === 0) {
+          // 只有在分类列表为空时才重新加载
+          console.log('加载分类列表...');
+          this.categories = await getCategories();
+        }
+        
         // 加载学习进度数据
         await this.loadLearningData();
         this.isInitialized = true;
@@ -74,43 +81,83 @@ export default {
       }
     },
     
+    // 预加载问题ID与分类ID的映射关系
+    async preloadQuestionCategoryMap() {
+      try {
+        if (this.questionsLoaded) {
+          return; // 已加载过，不再重复加载
+        }
+        
+        // 初始化映射对象
+        this.questionCategoryMap = {};
+        
+        console.log('预加载问题ID与分类ID的映射关系...');
+        
+        // 创建所有分类数据加载的Promise数组
+        const loadPromises = this.categories.map(async (category) => {
+          try {
+            const questions = await getQuestions(category.id);
+            // 将每个问题的ID和分类ID加入映射表
+            questions.forEach(question => {
+              this.questionCategoryMap[question.id] = category.id;
+            });
+          } catch (error) {
+            console.error(`加载分类 ${category.id} 的问题失败:`, error);
+          }
+        });
+        
+        // 并行加载所有分类的问题
+        await Promise.all(loadPromises);
+        
+        this.questionsLoaded = true;
+        console.log('问题ID与分类ID的映射关系加载完成');
+      } catch (error) {
+        console.error('预加载问题映射关系失败:', error);
+      }
+    },
+    
+    // 初始化分类学习数据结构
+    initCategoryLearningData() {
+      const learningData = {};
+      
+      // 初始化每个分类的学习数据
+      for (const category of this.categories) {
+        learningData[category.id] = {
+          total: category.count,
+          learned: 0
+        };
+      }
+      
+      return learningData;
+    },
+    
     // 加载所有分类的学习进度数据
     async loadLearningData() {
       try {
-        const records = await LearningStorage.getRecords();
-        const learningData = {};
+        // 初始化学习数据结构
+        const learningData = this.initCategoryLearningData();
         
-        // 初始化每个分类的学习数据
-        for (const category of this.categories) {
-          learningData[category.id] = {
-            total: category.count,
-            learned: 0
-          };
+        // 获取学习记录
+        const records = await LearningStorage.getRecords();
+        const learnedQuestionIds = Object.entries(records)
+          .filter(([_, record]) => record && record.isLearned)
+          .map(([id, _]) => parseInt(id));
+        
+        // 如果有已学习的问题，且问题映射未加载，则加载映射
+        if (learnedQuestionIds.length > 0 && !this.questionsLoaded) {
+          await this.preloadQuestionCategoryMap();
         }
         
-        // 计算每个分类已学习的题目数量
-        for (const [questionId, record] of Object.entries(records)) {
-          if (record && record.isLearned) {
-            const question = { id: parseInt(questionId), categoryId: 0 };
-            // 查找该题目属于哪个分类
-            for (const categoryId in learningData) {
-              // 此处简化处理，实际应从题目数据中获取categoryId
-              const questions = await getQuestions(parseInt(categoryId));
-              const found = questions.find(q => q.id === question.id);
-              if (found) {
-                question.categoryId = found.categoryId;
-                break;
-              }
-            }
-            
-            if (question.categoryId > 0 && learningData[question.categoryId]) {
-              learningData[question.categoryId].learned += 1;
-            }
+        // 使用映射表快速统计各分类的已学习数量
+        for (const questionId of learnedQuestionIds) {
+          const categoryId = this.questionCategoryMap[questionId];
+          if (categoryId && learningData[categoryId]) {
+            learningData[categoryId].learned += 1;
           }
         }
         
         this.categoryLearningData = learningData;
-        console.log('学习进度数据已更新:', this.categoryLearningData);
+        console.log('学习进度数据已更新');
       } catch (error) {
         console.error('加载学习进度数据失败:', error);
       }
@@ -150,6 +197,8 @@ export default {
     // 下拉刷新
     async onRefresh() {
       this.isRefreshing = true;
+      // 强制刷新映射关系
+      this.questionsLoaded = false;
       await this.loadCategories();
       this.isRefreshing = false;
     },
