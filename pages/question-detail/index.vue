@@ -17,9 +17,26 @@
       </view>
     </view>
     
+    <!-- 添加固定位置的学习计时器 -->
+    <view v-if="!isLearned && autoLearnProgress > 0" class="question-detail__fixed-timer">
+      <view class="question-detail__learn-progress">
+        <view class="question-detail__learn-progress-text">
+          <text><text class="timer-icon">⌛</text> 学习计时中</text>
+          <text>{{ autoLearnProgress }}/{{ autoLearnDuration }}秒</text>
+        </view>
+        <view class="question-detail__learn-progress-bar">
+          <view 
+            class="question-detail__learn-progress-fill"
+            :style="{ width: (autoLearnProgress / autoLearnDuration * 100) + '%' }"
+          ></view>
+        </view>
+      </view>
+    </view>
+    
     <scroll-view 
       class="question-detail__content"
       scroll-y
+      :style="contentStyle"
     >
       <view class="question-detail__wrapper">
         <view class="question-detail__section">
@@ -36,7 +53,9 @@
         </view>
         
         <view class="question-detail__section">
-          <text class="question-detail__section-title">答案</text>
+          <view class="question-detail__section-header">
+            <text class="question-detail__section-title">答案</text>
+          </view>
           <rich-text class="question-detail__rich-text" :nodes="processedAnswer"></rich-text>
         </view>
         
@@ -51,7 +70,7 @@
         :class="{ 'question-detail__action-btn--disabled': !hasPrev }"
         @click="hasPrev && handlePrev()"
       >
-        <text class="btn-icon">&#9664;</text>
+        <text class="btn-icon iconfont icon-left"></text>
         <text class="btn-text">上一题</text>
       </view>
       
@@ -60,7 +79,7 @@
         :class="{ 'question-detail__favorite-btn--active': isFavorite }"
         @click="handleFavorite"
       >
-        <text class="btn-icon">&#10084;</text>
+        <text class="btn-icon iconfont" :class="isFavorite ? 'icon-heart-fill' : 'icon-heart'"></text>
         <text class="btn-text">{{ isFavorite ? '已收藏' : '收藏' }}</text>
       </view>
       
@@ -69,8 +88,8 @@
         :class="{ 'question-detail__action-btn--disabled': !hasNext }"
         @click="hasNext && handleNext()"
       >
-        <text class="btn-icon">&#9654;</text>
         <text class="btn-text">下一题</text>
+        <text class="btn-icon iconfont icon-right"></text>
       </view>
     </view>
   </view>
@@ -93,7 +112,11 @@ export default {
       learningRecord: {
         lastLearnTime: 0,
         reviewCount: 0
-      }
+      },
+      autoLearnTimer: null,
+      autoLearnProgress: 0,
+      autoLearnInterval: null,
+      autoLearnDuration: 85 // 自动学习所需秒数
     }
   },
   
@@ -125,6 +148,15 @@ export default {
       content = content.replace(/\n/g, '<br>');
       
       return content;
+    },
+    
+    // 计算内容区域的顶部边距
+    contentStyle() {
+      // 如果显示计时器，则添加额外的边距
+      if (!this.isLearned && this.autoLearnProgress > 0) {
+        return { paddingTop: '50px' };
+      }
+      return {};
     }
   },
   
@@ -135,6 +167,21 @@ export default {
       this.loadQuestions();
       this.loadCategoryName();
     }
+  },
+  
+  onShow() {
+    // 开始计时器
+    this.startAutoLearnTimer();
+  },
+  
+  onHide() {
+    // 清除计时器
+    this.clearAutoLearnTimer();
+  },
+  
+  onUnload() {
+    // 清除计时器
+    this.clearAutoLearnTimer();
   },
   
   methods: {
@@ -172,6 +219,11 @@ export default {
         // 更新收藏状态
         const favorites = await FavoriteStorage.getFavorites();
         this.isFavorite = !!favorites[this.questionId];
+        
+        // 数据加载完成后，开始自动学习计时器
+        this.$nextTick(() => {
+          this.startAutoLearnTimer();
+        });
       } catch (error) {
         console.error('加载题目失败:', error);
         uni.showToast({
@@ -195,6 +247,9 @@ export default {
     // 上一题
     handlePrev() {
       if (this.hasPrev) {
+        // 清除当前计时器
+        this.clearAutoLearnTimer();
+        
         const prevQuestion = this.questions[this.currentIndex - 1];
         uni.redirectTo({
           url: `/pages/question-detail/index?questionId=${prevQuestion.id}&categoryId=${this.categoryId}`
@@ -205,6 +260,9 @@ export default {
     // 下一题
     handleNext() {
       if (this.hasNext) {
+        // 清除当前计时器
+        this.clearAutoLearnTimer();
+        
         const nextQuestion = this.questions[this.currentIndex + 1];
         uni.redirectTo({
           url: `/pages/question-detail/index?questionId=${nextQuestion.id}&categoryId=${this.categoryId}`
@@ -227,6 +285,68 @@ export default {
       this.isFavorite = !this.isFavorite;
     },
     
+    // 开始自动学习计时器
+    startAutoLearnTimer() {
+      // 如果已经学习过，则不需要计时
+      if (this.isLearned) {
+        return;
+      }
+      
+      // 清除可能存在的旧计时器
+      this.clearAutoLearnTimer();
+      
+      // 设置主计时器，25秒后标记为已学习
+      this.autoLearnTimer = setTimeout(() => {
+        if (!this.isLearned) {
+          this.markAsLearned();
+        }
+      }, this.autoLearnDuration * 1000);
+      
+      // 设置进度更新计时器，每秒更新一次
+      this.autoLearnProgress = 0;
+      this.autoLearnInterval = setInterval(() => {
+        if (this.autoLearnProgress < this.autoLearnDuration) {
+          this.autoLearnProgress++;
+        } else {
+          clearInterval(this.autoLearnInterval);
+        }
+      }, 1000);
+    },
+    
+    // 清除自动学习计时器
+    clearAutoLearnTimer() {
+      if (this.autoLearnTimer) {
+        clearTimeout(this.autoLearnTimer);
+        this.autoLearnTimer = null;
+      }
+      
+      if (this.autoLearnInterval) {
+        clearInterval(this.autoLearnInterval);
+        this.autoLearnInterval = null;
+      }
+    },
+    
+    // 标记为已学习
+    markAsLearned() {
+      const now = Date.now();
+      const newRecord = {
+        isLearned: true,
+        lastLearnTime: now,
+        reviewCount: this.learningRecord.reviewCount + 1
+      };
+      
+      LearningStorage.updateRecord(this.questionId, newRecord);
+      this.isLearned = true;
+      this.learningRecord = newRecord;
+      
+      // 显示提示
+      uni.showToast({
+        title: '已标记为学习完成',
+        icon: 'none',
+        duration: 1500
+      });
+    },
+    
     // 标记学习状态
     handleLearn() {
       const now = Date.now();
@@ -239,6 +359,14 @@ export default {
       LearningStorage.updateRecord(this.questionId, newRecord);
       this.isLearned = newRecord.isLearned;
       this.learningRecord = newRecord;
+      
+      // 如果标记为未学习，则重新开始计时
+      if (!this.isLearned) {
+        this.startAutoLearnTimer();
+      } else {
+        // 如果标记为已学习，则清除计时器
+        this.clearAutoLearnTimer();
+      }
     }
   }
 }
@@ -256,6 +384,7 @@ export default {
     background: #ffffff;
     padding: 16px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    z-index: 10;
   }
   
   &__title-bar {
@@ -279,6 +408,7 @@ export default {
     flex: 1;
     width: 100%;
     box-sizing: border-box;
+    position: relative;
   }
   
   &__wrapper {
@@ -302,7 +432,21 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(to right, #4dabf7, #3a8ee6);
+      border-radius: 2px;
+    }
   }
   
   &__section-title {
@@ -367,7 +511,11 @@ export default {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
     
     .btn-icon {
-      font-size: 15px;
+      font-size: 20px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .btn-text {
@@ -408,6 +556,73 @@ export default {
         color: white;
       }
     }
+  }
+  
+  &__fixed-timer {
+    position: fixed;
+    top: 54px; /* 根据header高度调整 */
+    left: 0;
+    right: 0;
+    z-index: 9;
+    padding: 0 16px;
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  &__learn-progress {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 8px 12px;
+    border-left: 3px solid #3a8ee6;
+  }
+  
+  &__learn-progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 6px;
+    
+    .timer-icon {
+      font-size: 14px;
+      margin-right: 4px;
+      display: inline-block;
+      animation: rotate 2s infinite linear;
+    }
+    
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+      75% { transform: rotate(180deg); }
+      100% { transform: rotate(360deg); }
+    }
+  }
+  
+  &__learn-progress-bar {
+    height: 6px;
+    background: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  &__learn-progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #4dabf7, #3a8ee6);
+    border-radius: 3px;
+    transition: width 0.3s linear;
   }
 }
 </style> 

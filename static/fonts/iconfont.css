@@ -1,0 +1,22 @@
+/* 使用Unicode字符图标，不依赖外部字体文件 */
+.icon-left:before {
+  content: "\2039"; /* 左箭头 */
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.icon-right:before {
+  content: "\203A"; /* 右箭头 */
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.icon-heart:before {
+  content: "\2661"; /* 空心爱心 */
+  font-family: sans-serif;
+}
+
+.icon-heart-fill:before {
+  content: "\2665"; /* 实心爱心 */
+  font-family: sans-serif;
+} 
