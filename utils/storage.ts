@@ -31,7 +31,7 @@ export class StorageUtil {
         key,
         data: serializedData
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error(`保存数据失败: ${key}`, error);
       throw new Error(`保存数据失败: ${error}`);
     }
@@ -46,7 +46,12 @@ export class StorageUtil {
     try {
       const { data } = await uni.getStorage({ key });
       return data ? JSON.parse(data) : null;
-    } catch (error) {
+    } catch (error: any) {
+      // 如果是数据不存在的错误，静默处理
+      if (error.errMsg && error.errMsg.includes('data not found')) {
+        return null;
+      }
+      // 其他错误才记录
       console.error(`获取数据失败: ${key}`, error);
       return null;
     }
@@ -60,7 +65,7 @@ export class StorageUtil {
   static async remove(key: string): Promise<void> {
     try {
       await uni.removeStorage({ key });
-    } catch (error) {
+    } catch (error: any) {
       console.error(`删除数据失败: ${key}`, error);
       throw new Error(`删除数据失败: ${error}`);
     }
@@ -73,7 +78,7 @@ export class StorageUtil {
   static async clearAll(): Promise<void> {
     try {
       await uni.clearStorage();
-    } catch (error) {
+    } catch (error: any) {
       console.error('清除所有数据失败', error);
       throw new Error(`清除所有数据失败: ${error}`);
     }
@@ -87,7 +92,7 @@ export class StorageUtil {
     try {
       const { keys } = await uni.getStorageInfo();
       return keys;
-    } catch (error) {
+    } catch (error: any) {
       console.error('获取存储键失败', error);
       return [];
     }
@@ -95,12 +100,12 @@ export class StorageUtil {
 
   /**
    * 获取存储信息
-   * @returns Promise<UniApp.GetStorageInfoSuccess>
+   * @returns Promise<any>
    */
-  static async info(): Promise<UniApp.GetStorageInfoSuccess> {
+  static async info(): Promise<any> {
     try {
       return await uni.getStorageInfo();
-    } catch (error) {
+    } catch (error: any) {
       console.error('获取存储信息失败', error);
       throw new Error(`获取存储信息失败: ${error}`);
     }
