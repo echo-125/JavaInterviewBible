@@ -43,8 +43,6 @@ function convertJsonQuestion(jsonQuestion: JsonQuestion): Question {
  */
 export async function getCategories(): Promise<Category[]> {
   try {
-    console.log('开始读取分类列表...');
-    console.log('分类列表读取成功:', categoryJson);
     return categoryJson as Category[];
   } catch (error) {
     console.error('获取分类列表失败:', error);
@@ -78,15 +76,12 @@ async function importQuestionsByCategory(categoryId: number): Promise<JsonQuesti
  */
 export async function getQuestions(categoryId: number): Promise<Question[]> {
   try {
-    console.log(`开始读取分类 ${categoryId} 的题目列表...`);
-    
     // 动态导入对应分类的题目数据
     const jsonQuestions = await importQuestionsByCategory(categoryId);
     
     // 转换为应用格式
     const data = jsonQuestions.map(convertJsonQuestion);
     
-    console.log(`分类 ${categoryId} 的题目列表读取成功:`, data);
     return data;
   } catch (error) {
     console.error(`获取分类 ${categoryId} 的题目列表失败:`, error);
@@ -107,7 +102,6 @@ export async function getQuestions(categoryId: number): Promise<Question[]> {
  */
 export async function getQuestionDetail(questionId: number, categoryId: number): Promise<Question> {
   try {
-    console.log(`开始获取题目 ${questionId} 的详情...`);
     const questions = await getQuestions(categoryId);
     const question = questions.find(q => q.id === questionId);
     
@@ -115,7 +109,6 @@ export async function getQuestionDetail(questionId: number, categoryId: number):
       throw new Error(`题目 ${questionId} 不存在`);
     }
     
-    console.log(`题目 ${questionId} 的详情获取成功:`, question);
     return question;
   } catch (error) {
     console.error(`获取题目 ${questionId} 详情失败:`, error);
@@ -135,7 +128,6 @@ export async function getQuestionDetail(questionId: number, categoryId: number):
  */
 export async function getCategoryDetail(categoryId: number): Promise<Category> {
   try {
-    console.log(`开始获取分类 ${categoryId} 的详情...`);
     const categories = await getCategories();
     const category = categories.find(c => c.id === categoryId);
     
@@ -143,7 +135,6 @@ export async function getCategoryDetail(categoryId: number): Promise<Category> {
       throw new Error(`分类 ${categoryId} 不存在`);
     }
     
-    console.log(`分类 ${categoryId} 的详情获取成功:`, category);
     return category;
   } catch (error) {
     console.error(`获取分类 ${categoryId} 详情失败:`, error);

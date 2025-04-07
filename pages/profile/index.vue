@@ -143,7 +143,7 @@ const onRefresh = async () => {
 
 // 客服联系回调
 const onContact = (e: any) => {
-  console.log('客服会话状态变化', e.detail);
+  // 不需要记录日志
 };
 
 // 关于我

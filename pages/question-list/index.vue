@@ -88,9 +88,8 @@ export default {
     }
   },
   
-  // 从题目详情返回时刷新数据
+  // 页面显示时
   onShow() {
-    console.log('题目列表页面显示，更新状态');
     if (this.categoryId) {
       this.loadQuestionStatuses();
       

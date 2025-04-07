@@ -65,7 +65,6 @@ export default {
       try {
         if (this.categories.length === 0) {
           // 只有在分类列表为空时才重新加载
-          console.log('加载分类列表...');
           this.categories = await getCategories();
         }
         
@@ -91,8 +90,6 @@ export default {
         // 初始化映射对象
         this.questionCategoryMap = {};
         
-        console.log('预加载问题ID与分类ID的映射关系...');
-        
         // 创建所有分类数据加载的Promise数组
         const loadPromises = this.categories.map(async (category) => {
           try {
@@ -110,7 +107,6 @@ export default {
         await Promise.all(loadPromises);
         
         this.questionsLoaded = true;
-        console.log('问题ID与分类ID的映射关系加载完成');
       } catch (error) {
         console.error('预加载问题映射关系失败:', error);
       }
@@ -157,7 +153,6 @@ export default {
         }
         
         this.categoryLearningData = learningData;
-        console.log('学习进度数据已更新');
       } catch (error) {
         console.error('加载学习进度数据失败:', error);
       }
@@ -227,7 +222,6 @@ export default {
   
   // 页面显示时更新数据
   onShow() {
-    console.log('页面显示，更新学习数据');
     // 每次从其他页面返回时更新学习进度
     this.loadLearningData();
     // 恢复滚动位置
