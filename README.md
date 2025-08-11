@@ -95,4 +95,4 @@ pnpm build:mp-weixin
 
 ## 在线体验
 
-![iagme](.\miniappcode.jpg)
+![iagme](miniappcode.jpg)
