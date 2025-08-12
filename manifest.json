@@ -65,6 +65,12 @@
             }
         },
         "usingComponents" : true,
+        "plugins": {
+            "WechatAI": {
+                "version": "0.3.6",
+                "provider": "wx069ba97219f66d99"
+            }
+        },
         "permission" : {},
         "requiredPrivateInfos" : [],
         "optimization" : {
@@ -84,11 +90,5 @@
     "uniStatistics" : {
         "enable" : false
     },
-    "vueVersion" : "3",
-	"plugins": { 
-	     "Face2FaceTranslator": { 
-	        "version": "0.3.6", 
-	        "provider": "wx069ba97219f66d99" 
-	    }
-	 }
+    "vueVersion" : "3"
 }

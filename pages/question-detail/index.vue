@@ -42,11 +42,19 @@
         <view class="question-detail__section">
           <view class="question-detail__section-header">
             <text class="question-detail__section-title">题目</text>
-            <view class="question-detail__learn-tag" @click="handleLearn">
-              <text v-if="isLearned" class="question-detail__tag question-detail__tag--learned">
-                已学习 {{ formatDate(learningRecord.lastLearnTime) }}
-              </text>
-              <text v-else class="question-detail__tag question-detail__tag--unlearned">未学习</text>
+            <view class="question-detail__section-actions">
+              <view class="question-detail__audio-btn" @click="toggleAudioPlayback">
+                <view :class="[
+                  'icon',
+                  isPlayingQuestion ? 'icon-pause' : 'icon-play'
+                ]"></view>
+              </view>
+              <view class="question-detail__learn-tag" @click="handleLearn">
+                <text v-if="isLearned" class="question-detail__tag question-detail__tag--learned">
+                  已学习 {{ formatDate(learningRecord.lastLearnTime) }}
+                </text>
+                <text v-else class="question-detail__tag question-detail__tag--unlearned">未学习</text>
+              </view>
             </view>
           </view>
           <text class="question-detail__text">{{ currentQuestion?.title }}</text>
@@ -55,6 +63,12 @@
         <view class="question-detail__section">
           <view class="question-detail__section-header">
             <text class="question-detail__section-title">答案</text>
+            <view class="question-detail__audio-btn" @click="toggleAnswerAudioPlayback">
+              <view :class="[
+                'icon',
+                isPlayingAnswer ? 'icon-pause' : 'icon-play'
+              ]"></view>
+            </view>
           </view>
           <rich-text class="question-detail__rich-text" :nodes="processedAnswer"></rich-text>
         </view>
@@ -116,7 +130,12 @@ export default {
       autoLearnTimer: null,
       autoLearnProgress: 0,
       autoLearnInterval: null,
-      autoLearnDuration: 85 // 自动学习所需秒数
+      autoLearnDuration: 85, // 自动学习所需秒数
+      // 语音播放相关状态
+      isPlayingQuestion: false,
+      isPlayingAnswer: false,
+      audioContext: null,
+      plugin: null
     }
   },
   
@@ -177,11 +196,15 @@ export default {
   onHide() {
     // 清除计时器
     this.clearAutoLearnTimer();
+    // 停止语音播放
+    this.stopAudioPlayback();
   },
   
   onUnload() {
     // 清除计时器
     this.clearAutoLearnTimer();
+    // 停止语音播放
+    this.stopAudioPlayback();
   },
   
   methods: {
@@ -244,11 +267,201 @@ export default {
       return `${month}/${day}`;
     },
     
+    // 初始化TTS插件
+    initTTSPlugin() {
+      if (!this.plugin) {
+        this.plugin = requirePlugin("WechatAI");
+      }
+    },
+    
+    // 切换题目语音播放
+    toggleAudioPlayback() {
+      if (this.isPlayingQuestion) {
+        this.stopAudioPlayback();
+      } else {
+        this.playQuestionAndAnswer();
+      }
+    },
+    
+    // 播放题目和答案
+    playQuestionAndAnswer() {
+      this.initTTSPlugin();
+      
+      // 停止当前播放
+      this.stopAudioPlayback();
+      
+      // 设置播放状态
+      this.isPlayingQuestion = true;
+      
+      // 播放题目
+      const questionText = this.currentQuestion?.title || '';
+      if (questionText) {
+        this.playText(questionText, () => {
+          // 题目播放完成后播放答案
+          const answerText = this.stripHtmlTags(this.currentQuestion?.answer || '');
+          if (answerText) {
+            this.isPlayingQuestion = false;
+            this.isPlayingAnswer = true;
+            this.playText(answerText, () => {
+              // 答案播放完成，重置状态
+              this.isPlayingAnswer = false;
+            });
+          } else {
+            this.isPlayingQuestion = false;
+          }
+        });
+      }
+    },
+    
+    // 切换答案语音播放
+    toggleAnswerAudioPlayback() {
+      if (this.isPlayingAnswer) {
+        this.stopAudioPlayback();
+      } else {
+        this.playAnswer();
+      }
+    },
+    
+    // 播放答案
+    playAnswer() {
+      this.initTTSPlugin();
+      
+      // 停止当前播放
+      this.stopAudioPlayback();
+      
+      // 设置播放状态
+      this.isPlayingAnswer = true;
+      
+      // 播放答案
+      const answerText = this.stripHtmlTags(this.currentQuestion?.answer || '');
+      if (answerText) {
+        this.playText(answerText, () => {
+          // 播放完成，重置状态
+          this.isPlayingAnswer = false;
+        });
+      }
+    },
+    
+    // 播放文本
+    playText(text, callback) {
+      // 微信TTS单次最多播放50个字符，需要分段播放
+      const maxLength = 50;
+      if (text.length <= maxLength) {
+        this.speakText(text, callback);
+      } else {
+        // 如果文本过长，分段播放
+        this.playTextSegments(text, maxLength, callback);
+      }
+    },
+    
+    // 分段播放文本
+    playTextSegments(text, maxLength, finalCallback) {
+      const segments = [];
+      let currentSegment = '';
+      
+      // 简单按标点符号分段
+      const sentences = text.split(/([。！？；;!?])/);
+      for (let i = 0; i < sentences.length; i += 2) {
+        const sentence = sentences[i] + (sentences[i+1] || '');
+        if (currentSegment.length + sentence.length <= maxLength) {
+          currentSegment += sentence;
+        } else {
+          if (currentSegment) {
+            segments.push(currentSegment);
+          }
+          if (sentence.length <= maxLength) {
+            currentSegment = sentence;
+          } else {
+            // 如果单句超过长度限制，强制分割
+            for (let j = 0; j < sentence.length; j += maxLength) {
+              segments.push(sentence.substring(j, j + maxLength));
+            }
+            currentSegment = '';
+          }
+        }
+      }
+      
+      if (currentSegment) {
+        segments.push(currentSegment);
+      }
+      
+      // 依次播放各段
+      this.playSegments(segments, 0, finalCallback);
+    },
+    
+    // 播放段落
+    playSegments(segments, index, finalCallback) {
+      if (index >= segments.length) {
+        if (finalCallback) finalCallback();
+        return;
+      }
+      
+      this.speakText(segments[index], () => {
+        this.playSegments(segments, index + 1, finalCallback);
+      });
+    },
+    
+    // 调用TTS接口播放文本
+    speakText(text, callback) {
+      this.plugin.textToSpeech({
+        lang: "zh_CN",
+        content: text,
+        success: (res) => {
+          if (res.retcode === 0) {
+            this.audioContext = uni.createInnerAudioContext();
+            this.audioContext.src = res.filename;
+            this.audioContext.volume = 1;
+            this.audioContext.playbackRate = 1;
+            this.audioContext.play();
+            
+            this.audioContext.onEnded(() => {
+              if (callback) callback();
+            });
+            
+            this.audioContext.onError((res) => {
+              console.error('音频播放错误', res.errMsg);
+              this.resetAudioState();
+            });
+          } else {
+            console.error('TTS合成失败', res);
+            this.resetAudioState();
+          }
+        },
+        fail: (res) => {
+          console.error('TTS调用失败', res);
+          this.resetAudioState();
+        }
+      });
+    },
+    
+    // 停止音频播放
+    stopAudioPlayback() {
+      if (this.audioContext) {
+        this.audioContext.stop();
+        this.audioContext = null;
+      }
+      this.resetAudioState();
+    },
+    
+    // 重置音频状态
+    resetAudioState() {
+      this.isPlayingQuestion = false;
+      this.isPlayingAnswer = false;
+    },
+    
+    // 去除HTML标签
+    stripHtmlTags(html) {
+      if (!html) return '';
+      return html.replace(/<[^>]*>/g, '');
+    },
+    
     // 上一题
     handlePrev() {
       if (this.hasPrev) {
         // 清除当前计时器
         this.clearAutoLearnTimer();
+        // 停止语音播放
+        this.stopAudioPlayback();
         
         const prevQuestion = this.questions[this.currentIndex - 1];
         uni.redirectTo({
@@ -262,6 +475,8 @@ export default {
       if (this.hasNext) {
         // 清除当前计时器
         this.clearAutoLearnTimer();
+        // 停止语音播放
+        this.stopAudioPlayback();
         
         const nextQuestion = this.questions[this.currentIndex + 1];
         uni.redirectTo({
@@ -455,6 +670,22 @@ export default {
     color: #333333;
   }
   
+  &__section-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  &__audio-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(to right, #4dabf7, #3a8ee6);
+  }
+  
   &__learn-tag {
     
   }
@@ -472,6 +703,26 @@ export default {
     &--unlearned {
       color: #9E9E9E;
       background: rgba(158, 158, 158, 0.1);
+    }
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    
+    &.icon-play {
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiIHdpZHRoPSIxOHB4IiBoZWlnaHQ9IjE4cHgiPjxwYXRoIGQ9Ik04IDV2MTRsMTEtN3oiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    
+    &.icon-pause {
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiIHdpZHRoPSIxOHB4IiBoZWlnaHQ9IjE4cHgiPjxwYXRoIGQ9Ik02IDE5aDRWNUg2djE0em04LTE0djE0aDRWNWgtNHoiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
   
@@ -625,4 +876,4 @@ export default {
     transition: width 0.3s linear;
   }
 }
-</style> 
+</style>
