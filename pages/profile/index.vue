@@ -10,11 +10,11 @@
   <view class="profile">
     <!-- 添加下拉刷新 -->
     <scroll-view
-      class="profile__scroll"
-      scroll-y
-      refresher-enabled
-      :refresher-triggered="isRefreshing"
-      @refresherrefresh="onRefresh"
+        class="profile__scroll"
+        scroll-y
+        refresher-enabled
+        :refresher-triggered="isRefreshing"
+        @refresherrefresh="onRefresh"
     >
       <!-- 个人信息区域 -->
       <view class="profile__user-info">
@@ -23,7 +23,7 @@
           <text class="profile__streak">已连续学习 {{ streak }} 天</text>
         </view>
       </view>
-      
+
       <!-- 统计数据卡片 -->
       <view class="profile__card">
         <view class="profile__stats">
@@ -41,11 +41,15 @@
           </view>
         </view>
       </view>
-      
+
       <!-- 功能选项列表 -->
       <view class="profile__menu">
         <view class="profile__menu-item" @click="handleAboutMe">
           <text class="profile__menu-text">关于本工具</text>
+          <text class="profile__menu-arrow">›</text>
+        </view>
+        <view class="profile__menu-item" @click="handleShareApp">
+          <text class="profile__menu-text">分享给朋友</text>
           <text class="profile__menu-arrow">›</text>
         </view>
         <button
@@ -66,10 +70,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { LearningStorage, FavoriteStorage } from '@/utils/storage';
-import { StatisticsUtil } from '@/utils/statistics';
-import type { Statistics } from '@/api/types';
+import {ref, onMounted} from 'vue';
+import {LearningStorage, FavoriteStorage} from '@/utils/storage';
+import {StatisticsUtil} from '@/utils/statistics';
+import type {Statistics} from '@/api/types';
 
 // 页面数据
 const statistics = ref<Statistics>({
@@ -95,12 +99,12 @@ const loadStatistics = async () => {
         totalReviewCount: 0
       };
     }
-    
+
     // 计算连续学习天数
     try {
       const records = await LearningStorage.getRecords();
       streak.value = await StatisticsUtil.calculateStreak(records);
-      
+
       // 计算已学习题目数量
       learnedCount.value = Object.values(records).filter(record => record.isLearned).length;
     } catch (error) {
@@ -108,7 +112,7 @@ const loadStatistics = async () => {
       streak.value = 0;
       learnedCount.value = 0;
     }
-    
+
     // 加载收藏数量
     try {
       const favorites = await FavoriteStorage.getFavorites();
@@ -117,7 +121,7 @@ const loadStatistics = async () => {
       console.error('加载收藏数量失败:', error);
       favoriteCount.value = 0;
     }
-    
+
     // 加载题目总数
     /* try {
       totalQuestionCount.value = await StatisticsUtil.getTotalQuestionCount();
@@ -167,7 +171,7 @@ const handleClearData = () => {
             LearningStorage.clearAll(),
             FavoriteStorage.clearAll()
           ]);
-          
+
           // 重置数据
           statistics.value = {
             totalLearnCount: 0,
@@ -176,7 +180,7 @@ const handleClearData = () => {
           streak.value = 0;
           favoriteCount.value = 0;
           learnedCount.value = 0;
-          
+
           uni.showToast({
             title: '数据已清除',
             icon: 'success'
@@ -193,6 +197,26 @@ const handleClearData = () => {
   });
 };
 
+// 页面分享配置
+const onShareAppMessage = () => {
+  return {
+    title: '面经通途 - Java面试题库助手',
+    desc: '专为Java求职者打造的高频面试题库，帮助你高效准备面试，提升竞争力',
+    path: '/pages/index/index',
+    imageUrl: '/static/logo.png'
+  };
+};
+
+// 分享给朋友
+const handleShareApp = () => {
+  uni.showModal({
+    title: '分享提示',
+    content: '由于小程序未完成认证，分享功能暂时无法使用。您可以通过点击右上角菜单，选择"转发"来分享给朋友。',
+    showCancel: false,
+    confirmText: '知道了'
+  });
+};
+
 // 页面加载
 onMounted(() => {
   loadStatistics();
@@ -203,20 +227,20 @@ onMounted(() => {
 .profile {
   min-height: 100vh;
   background: #f5f5f5;
-  
+
   &__scroll {
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
   }
-  
+
   &__user-info {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 24px;
   }
-  
+
   &__avatar {
     width: 80px;
     height: 80px;
@@ -225,11 +249,11 @@ onMounted(() => {
     border: 2px solid #ffffff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
   &__user-stats {
     text-align: center;
   }
-  
+
   &__streak {
     font-size: 14px;
     color: #666666;
@@ -237,7 +261,7 @@ onMounted(() => {
     padding: 4px 12px;
     border-radius: 16px;
   }
-  
+
   &__card {
     background: #ffffff;
     border-radius: 12px;
@@ -245,69 +269,69 @@ onMounted(() => {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
   }
-  
+
   &__stats {
     display: flex;
     justify-content: space-around;
   }
-  
+
   &__stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  
+
   &__stat-value {
     font-size: 24px;
     font-weight: bold;
     color: #1890ff;
     margin-bottom: 4px;
   }
-  
+
   &__stat-label {
     font-size: 12px;
     color: #666666;
   }
-  
+
   &__menu {
     background: #ffffff;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   }
-  
+
   &__menu-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 16px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    
+
     &:last-child {
       border-bottom: none;
     }
-    
+
     &:active {
       background-color: #f5f5f5;
     }
-    
+
     &--danger {
       .profile__menu-text {
         color: #ff4d4f;
       }
     }
   }
-  
+
   &__menu-text {
     font-size: 16px;
     color: #333333;
   }
-  
+
   &__menu-arrow {
     font-size: 18px;
     color: #999999;
   }
-  
+
   &__contact-btn {
     width: 100%;
     height: auto;
@@ -320,16 +344,10 @@ onMounted(() => {
     background-color: transparent;
     border-radius: 0;
     border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-    
-    &::after {
-      border: none;
-    }
-    
+
     &:active {
       background-color: #f5f5f5;
     }
   }
 }
-</style> 
+</style>
