@@ -41,14 +41,25 @@
       <view class="question-detail__wrapper">
         <view class="question-detail__section">
           <view class="question-detail__section-header">
-            <text class="question-detail__section-title">题目</text>
-            <view class="question-detail__section-actions">
-              <view class="question-detail__audio-btn" @click="toggleAudioPlayback">
-                <view :class="[
-                  'icon',
-                  isPlayingQuestion ? 'icon-pause' : 'icon-play'
-                ]"></view>
+            <view class="question-detail__question-header">
+              <text class="question-detail__section-title">题目</text>
+              <view class="question-detail__audio-container">
+                <view class="question-detail__audio-btn" @click="toggleAudioPlayback">
+                  <view :class="[
+                    'icon',
+                    isPlayingQuestion ? 'icon-pause' : 'icon-play'
+                  ]"></view>
+                </view>
+                <view v-if="isPlayingQuestion" class="question-detail__sound-wave">
+                  <view class="sound-wave__bar"></view>
+                  <view class="sound-wave__bar"></view>
+                  <view class="sound-wave__bar"></view>
+                  <view class="sound-wave__bar"></view>
+                  <view class="sound-wave__bar"></view>
+                </view>
               </view>
+            </view>
+            <view class="question-detail__section-actions">
               <view class="question-detail__learn-tag" @click="handleLearn">
                 <text v-if="isLearned" class="question-detail__tag question-detail__tag--learned">
                   已学习 {{ formatDate(learningRecord.lastLearnTime) }}
@@ -63,12 +74,6 @@
         <view class="question-detail__section">
           <view class="question-detail__section-header">
             <text class="question-detail__section-title">答案</text>
-            <view class="question-detail__audio-btn" @click="toggleAnswerAudioPlayback">
-              <view :class="[
-                'icon',
-                isPlayingAnswer ? 'icon-pause' : 'icon-play'
-              ]"></view>
-            </view>
           </view>
           <rich-text class="question-detail__rich-text" :nodes="processedAnswer"></rich-text>
         </view>
@@ -300,44 +305,13 @@ export default {
           // 题目播放完成后播放答案
           const answerText = this.stripHtmlTags(this.currentQuestion?.answer || '');
           if (answerText) {
-            this.isPlayingQuestion = false;
-            this.isPlayingAnswer = true;
             this.playText(answerText, () => {
               // 答案播放完成，重置状态
-              this.isPlayingAnswer = false;
+              this.resetAudioState();
             });
           } else {
-            this.isPlayingQuestion = false;
+            this.resetAudioState();
           }
-        });
-      }
-    },
-    
-    // 切换答案语音播放
-    toggleAnswerAudioPlayback() {
-      if (this.isPlayingAnswer) {
-        this.stopAudioPlayback();
-      } else {
-        this.playAnswer();
-      }
-    },
-    
-    // 播放答案
-    playAnswer() {
-      this.initTTSPlugin();
-      
-      // 停止当前播放
-      this.stopAudioPlayback();
-      
-      // 设置播放状态
-      this.isPlayingAnswer = true;
-      
-      // 播放答案
-      const answerText = this.stripHtmlTags(this.currentQuestion?.answer || '');
-      if (answerText) {
-        this.playText(answerText, () => {
-          // 播放完成，重置状态
-          this.isPlayingAnswer = false;
         });
       }
     },
@@ -446,7 +420,6 @@ export default {
     // 重置音频状态
     resetAudioState() {
       this.isPlayingQuestion = false;
-      this.isPlayingAnswer = false;
     },
     
     // 去除HTML标签
@@ -497,7 +470,7 @@ export default {
           categoryId: this.categoryId
         });
       }
-      this.isFavorite = !this.isFavorite;
+      this.isLearned = !this.isLearned;
     },
     
     // 开始自动学习计时器
@@ -664,16 +637,22 @@ export default {
     }
   }
   
+  &__question-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
   &__section-title {
     font-size: 16px;
     font-weight: 500;
     color: #333333;
   }
   
-  &__section-actions {
+  &__audio-container {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
   
   &__audio-btn {
@@ -684,6 +663,61 @@ export default {
     justify-content: center;
     border-radius: 50%;
     background: linear-gradient(to right, #4dabf7, #3a8ee6);
+  }
+  
+  &__sound-wave {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 20px;
+  }
+  
+  .sound-wave__bar {
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to top, #4dabf7, #3a8ee6);
+    border-radius: 2px;
+    animation: soundWave 1.2s ease-in-out infinite;
+    
+    &:nth-child(1) {
+      animation-delay: 0s;
+      height: 40%;
+    }
+    
+    &:nth-child(2) {
+      animation-delay: 0.1s;
+      height: 70%;
+    }
+    
+    &:nth-child(3) {
+      animation-delay: 0.2s;
+      height: 100%;
+    }
+    
+    &:nth-child(4) {
+      animation-delay: 0.3s;
+      height: 70%;
+    }
+    
+    &:nth-child(5) {
+      animation-delay: 0.4s;
+      height: 40%;
+    }
+  }
+  
+  @keyframes soundWave {
+    0%, 100% {
+      transform: scaleY(0.4);
+    }
+    50% {
+      transform: scaleY(1);
+    }
+  }
+  
+  &__section-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   
   &__learn-tag {
