@@ -483,10 +483,11 @@ export default {
       // 清除可能存在的旧计时器
       this.clearAutoLearnTimer();
       
-      // 设置主计时器，25秒后标记为已学习
+      // 设置主计时器，25秒后询问用户是否已完成学习
       this.autoLearnTimer = setTimeout(() => {
         if (!this.isLearned) {
-          this.markAsLearned();
+          // 倒计时结束后弹框询问用户
+          this.showLearnConfirm();
         }
       }, this.autoLearnDuration * 1000);
       
@@ -499,6 +500,30 @@ export default {
           clearInterval(this.autoLearnInterval);
         }
       }, 1000);
+    },
+    
+    // 显示学习确认弹框
+    showLearnConfirm() {
+      uni.showModal({
+        title: '学习确认',
+        content: '您已经学习完成这道题目了吗？',
+        confirmText: '完成啦',
+        cancelText: '继续学',
+        success: (res) => {
+          if (res.confirm) {
+            this.markAsLearned();
+          } else if (res.cancel) {
+            this.restartAutoLearnTimer();
+          }
+        }
+      });
+    },
+    
+    // 重新开始学习计时器
+    restartAutoLearnTimer() {
+      this.clearAutoLearnTimer();
+      this.autoLearnProgress = 0;
+      this.startAutoLearnTimer();
     },
     
     // 清除自动学习计时器
