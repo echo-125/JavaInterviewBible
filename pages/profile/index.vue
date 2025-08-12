@@ -52,14 +52,10 @@
           <text class="profile__menu-text">分享给朋友</text>
           <text class="profile__menu-arrow">›</text>
         </view>
-        <button
-          class="profile__menu-item profile__contact-btn"
-          open-type="contact"
-          @contact="onContact"
-        >
+        <view class="profile__menu-item" @click="onContact">
           <text class="profile__menu-text">建议/意见反馈</text>
           <text class="profile__menu-arrow">›</text>
-        </button>
+        </view>
         <view class="profile__menu-item profile__menu-item--danger" @click="handleClearData">
           <text class="profile__menu-text">清除所有数据</text>
           <text class="profile__menu-arrow">›</text>
@@ -332,22 +328,5 @@ onMounted(() => {
     color: #999999;
   }
 
-  &__contact-btn {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    font-size: 16px;
-    text-align: left;
-    background-color: transparent;
-    border-radius: 0;
-    border: none;
-
-    &:active {
-      background-color: #f5f5f5;
-    }
-  }
 }
 </style>
