@@ -52,10 +52,10 @@
           <text class="profile__menu-text">分享给朋友</text>
           <text class="profile__menu-arrow">›</text>
         </view>
-        <view class="profile__menu-item" @click="onContact">
+        <button class="profile__menu-item profile__contact-button" open-type="contact">
           <text class="profile__menu-text">建议/意见反馈</text>
           <text class="profile__menu-arrow">›</text>
-        </view>
+        </button>
         <view class="profile__menu-item">
           <text class="profile__menu-text">当前版本</text>
           <text class="profile__menu-text profile__version">v{{ version }}</text>
@@ -147,9 +147,7 @@ const onRefresh = async () => {
 };
 
 // 客服联系回调
-const onContact = (e: any) => {
-  // 不需要记录日志
-};
+// 已通过button的open-type="contact"实现，无需额外处理
 
 // 关于我
 const handleAboutMe = () => {
@@ -337,10 +335,40 @@ onMounted(() => {
     }
   }
 
+  // 联系客服按钮样式
+  &__contact-button {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: transparent;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+    
+    &::after {
+      display: none;
+    }
+    
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:active {
+      background-color: #f5f5f5;
+    }
+  }
+
   &__menu-text {
     font-size: 16px;
     color: #333333;
-    
+
     &.profile__version {
       color: #666666;
     }
