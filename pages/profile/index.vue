@@ -56,6 +56,10 @@
           <text class="profile__menu-text">建议/意见反馈</text>
           <text class="profile__menu-arrow">›</text>
         </view>
+        <view class="profile__menu-item">
+          <text class="profile__menu-text">当前版本</text>
+          <text class="profile__menu-text profile__version">v{{ version }}</text>
+        </view>
         <view class="profile__menu-item profile__menu-item--danger" @click="handleClearData">
           <text class="profile__menu-text">清除所有数据</text>
           <text class="profile__menu-arrow">›</text>
@@ -81,6 +85,7 @@ const favoriteCount = ref(0);
 const totalQuestionCount = ref(505); // 题目总数
 const learnedCount = ref(0); // 已学习题目数
 const isRefreshing = ref(false); // 下拉刷新状态
+const version = ref('1.1.2'); // 当前版本号
 
 // 加载统计数据
 const loadStatistics = async () => {
@@ -216,15 +221,6 @@ const handleClearData = () => {
   });
 };
 
-// 页面分享配置
-const onShareAppMessage = () => {
-  return {
-    title: '面经通途 - Java面试题库助手',
-    desc: '专为Java求职者打造的高频面试题库，帮助你高效准备面试，提升竞争力',
-    path: '/pages/index/index',
-    imageUrl: '/static/logo.png'
-  };
-};
 
 // 分享给朋友
 const handleShareApp = () => {
@@ -344,6 +340,10 @@ onMounted(() => {
   &__menu-text {
     font-size: 16px;
     color: #333333;
+    
+    &.profile__version {
+      color: #666666;
+    }
   }
 
   &__menu-arrow {
