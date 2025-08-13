@@ -1,11 +1,3 @@
-<!--
- * @description 个人中心页面
- * @features
- *   - 显示基本信息和头像
- *   - 显示学习统计数据
- *   - 显示功能选项
- *   - 清除数据功能
- -->
 <template>
   <view class="profile">
     <!-- 添加下拉刷新 -->
@@ -48,7 +40,7 @@
           <text class="profile__menu-text">关于本工具</text>
           <text class="profile__menu-arrow">›</text>
         </view>
-        <view class="profile__menu-item" @click="handleShareApp">
+        <view class="profile__menu-item" @click="showMiniProgramCode">
           <text class="profile__menu-text">分享给朋友</text>
           <text class="profile__menu-arrow">›</text>
         </view>
@@ -66,6 +58,21 @@
         </view>
       </view>
     </scroll-view>
+
+    <!-- 自定义模态框 -->
+    <view v-if="modalVisible" class="modal-mask" @click="hideModal">
+      <view class="modal-container" @click.stop>
+        <view class="modal-title">分享小程序码</view>
+        <image :src="modalImage" class="modal-image" mode="aspectFit"></image>
+        <view class="modal-tip">
+          由于小程序未完成认证，分享功能暂时无法使用。<br/>
+          您可以通过小程序码方式分享。
+        </view>
+        <view class="modal-footer">
+          <button class="btn-save" @click="saveImage">保存到相册</button>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -86,6 +93,10 @@ const totalQuestionCount = ref(505); // 题目总数
 const learnedCount = ref(0); // 已学习题目数
 const isRefreshing = ref(false); // 下拉刷新状态
 const version = ref('1.1.2'); // 当前版本号
+
+// 模态框相关
+const modalVisible = ref(false);
+const modalImage = ref('/static/images/小程序码.jpg');
 
 // 加载统计数据
 const loadStatistics = async () => {
@@ -122,14 +133,6 @@ const loadStatistics = async () => {
       console.error('加载收藏数量失败:', error);
       favoriteCount.value = 0;
     }
-
-    // 加载题目总数
-    /* try {
-      totalQuestionCount.value = await StatisticsUtil.getTotalQuestionCount();
-    } catch (error) {
-      console.error('加载题目总数失败:', error);
-      // 保持默认值505
-    } */
   } catch (error) {
     console.error('加载统计数据失败:', error);
     uni.showToast({
@@ -219,16 +222,38 @@ const handleClearData = () => {
   });
 };
 
-
-// 分享给朋友
-const handleShareApp = () => {
-  uni.showModal({
-    title: '分享提示',
-    content: '由于小程序未完成认证，分享功能暂时无法使用。您可以通过点击右上角菜单，选择"转发"来分享给朋友。',
-    showCancel: false,
-    confirmText: '知道了'
-  });
+// 显示小程序码
+const showMiniProgramCode = () => {
+  modalVisible.value = true;
 };
+
+// 隐藏模态框
+const hideModal = () => {
+  modalVisible.value = false;
+};
+
+// 保存图片到相册
+const saveImage = async () => {
+
+  // 保存到相册
+  await uni.saveImageToPhotosAlbum({
+    filePath: '/static/images/小程序码.jpg',
+    success: () => {
+      uni.showToast({
+        title: '已保存到相册',
+        icon: 'success'
+      });
+    },
+    fail: () => {
+      uni.showToast({
+        title: '保存失败，请检查权限',
+        icon: 'none'
+      });
+    }
+  });
+
+}
+
 
 // 页面加载
 onMounted(() => {
@@ -351,11 +376,11 @@ onMounted(() => {
     font-size: inherit;
     line-height: inherit;
     margin: 0;
-    
+
     &::after {
       display: none;
     }
-    
+
     &:last-child {
       border-bottom: none;
     }
@@ -379,5 +404,78 @@ onMounted(() => {
     color: #999999;
   }
 
+  // 自定义模态框样式
+  .modal-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-container {
+    background: white;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 300px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .modal-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+    color: #333;
+  }
+
+  .modal-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .modal-tip {
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn-cancel,
+  .btn-save {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-cancel {
+    background: #f5f5f5;
+    color: #666;
+  }
+
+  .btn-save {
+    background: #a0d8ff; // 更换为更浅的蓝色
+    color: white;
+    width: 100%;
+    margin: 0 auto;
+    padding: 6px 20px; // 进一步减小内边距以降低高度
+    font-size: 12px; // 调整字体大小以匹配新高度
+  }
 }
 </style>
