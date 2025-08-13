@@ -151,7 +151,30 @@ const handleAboutMe = () => {
   uni.showModal({
     title: '为什么叫面经通途？',
     content: '本来是叫Java八股精选，但一直不能通过审核，而且客服告知标题和简介不能有英文。希望能帮助你快速通过面试。',
-    showCancel: false
+    showCancel: true,
+    cancelText: '知道了',
+    confirmText: '关于我',
+    success: (res) => {
+      if (res.confirm) {
+        // 将链接复制到剪贴板
+        uni.setClipboardData({
+          data: 'https://www.he2000.top/about/',
+          success: () => {
+            uni.showToast({
+              title: '链接已复制，请在浏览器中打开',
+              icon: 'none',
+              duration: 2000
+            });
+          },
+          fail: () => {
+            uni.showToast({
+              title: '复制失败',
+              icon: 'none'
+            });
+          }
+        });
+      }
+    }
   });
 };
 
